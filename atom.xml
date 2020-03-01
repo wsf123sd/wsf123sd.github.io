@@ -2,7 +2,7 @@
 <feed xmlns="http://www.w3.org/2005/Atom">
     <id>https://wsf123sd.github.io/</id>
     <title>Gridea</title>
-    <updated>2020-03-01T05:19:35.361Z</updated>
+    <updated>2020-03-01T15:21:47.939Z</updated>
     <generator>https://github.com/jpmonette/feed</generator>
     <link rel="alternate" href="https://wsf123sd.github.io/"/>
     <link rel="self" href="https://wsf123sd.github.io/atom.xml"/>
@@ -10,6 +10,2712 @@
     <logo>https://wsf123sd.github.io/images/avatar.png</logo>
     <icon>https://wsf123sd.github.io/favicon.ico</icon>
     <rights>All rights reserved 2020, Gridea</rights>
+    <entry>
+        <title type="html"><![CDATA[pat乙级]]></title>
+        <id>https://wsf123sd.github.io/post/pat-yi-ji/</id>
+        <link href="https://wsf123sd.github.io/post/pat-yi-ji/">
+        </link>
+        <updated>2020-03-01T15:20:42.000Z</updated>
+        <content type="html"><![CDATA[<p>1001解题思路：<br>
+1.用while+if-else来控制循环次数（砍得的次数）和判断奇数偶数</p>
+<p>我的代码如下：</p>
+<pre><code class="language-cpp">#include &lt;iostream&gt; 
+using namespace std;
+
+int main()
+{
+	int n,step=0;
+	cin &gt;&gt; n;
+	while(n!=1)
+	{ 
+		if(n%2==0)
+			n/=2;
+		else
+			n=(3*n+1)/2;
+		step++;
+	} 
+	cout &lt;&lt; step;
+	return 0;
+}
+</code></pre>
+<p>别人的代码：</p>
+<pre><code class="language-cpp">#include &lt;iostream&gt;
+using namespace std;
+int main() {
+ int n, count = 0;
+ cin &gt;&gt; n;
+ while (n != 1)
+  {
+	 if (n % 2 != 0)      //这个循环就是判断奇数的，n为奇数*3+1完了，在下一句除2 这样就省掉了加括号的麻烦 抓住了不管奇数还是偶数                         
+//都有除2的特点 如果n为偶数不执行此语句，直接再下面除2
+		 n = 3 * n + 1;   
+	 n = n / 2;
+	 count++;
+ }
+ cout &lt;&lt; count;
+ return 0; }
+</code></pre>
+<p>1002解题思路：<br>
+1.用string类来存储数据，不然的话double，long long类型的长度不够</p>
+<ol start="2">
+<li>用for循环来计算各位数字之和</li>
+<li>用string类定义一个数组，其中成员是数字的拼音</li>
+<li>将数字和变量改为字符串类型，方便调用每个位数字，不用对数字除或求余</li>
+<li>通过循环从数字和的字符串中对应找到string类的数字拼音</li>
+</ol>
+<p>my code:</p>
+<pre><code class="language-cpp">#include&lt;iostream&gt;
+using namespace std;
+
+int main()
+{
+	string s;
+	cin &gt;&gt; s;
+	int i,sum=0;
+	for(i=0; i&lt;s.length(); i++)     //s.length()计算字符串长度 
+	{
+		sum+=s[i]-'0';
+	}
+	string name[10]={&quot;ling&quot;,&quot;yi&quot;,&quot;er&quot;,&quot;san&quot;,&quot;si&quot;,&quot;wu&quot;,&quot;liu&quot;,&quot;qi&quot;,&quot;ba&quot;,&quot;jiu&quot;};  //字符串用双引号括起来，字符用单引号括起来 
+	
+	string a = to_string(sum);
+	
+	for(i=0; i&lt;a.length(); i++)
+	{
+		cout &lt;&lt; name[a[i]-'0'];   //将数字转变为字符去存储方便调用每个位置上的数字，不用再除或求余啥的 
+		if (i != a.length()-1)
+			cout &lt;&lt; ' ';
+	}
+	
+
+	return 0;
+}
+</code></pre>
+<p>other's</p>
+<pre><code class="language-cpp">#include &lt;iostream&gt;
+#include &lt;string&gt;
+using namespace std;
+int main() 
+{
+	 string s;
+	 cin &gt;&gt; s;
+	 int sum = 0;
+	 string str[10] = {&quot;ling&quot;, &quot;yi&quot;, &quot;er&quot;, &quot;san&quot;, &quot;si&quot;, &quot;wu&quot;, &quot;liu&quot;, &quot;qi&quot;,&quot;ba&quot;, &quot;jiu&quot;};   //
+	 for (int i = 0; i &lt; s.length(); i++)
+	 	sum += (s[i] - '0');
+	 	
+	 string num = to_string(sum);
+	 
+	 for (int i = 0; i &lt; num.length(); i++)
+	 {
+		 if (i != 0)        //题目要求最后一个拼音不能有空格，所以是先输出拼音，后输出空格，提前加一个if判断，当输入完最后一个拼音，循环都已经结束了
+		 	cout &lt;&lt; &quot; &quot;;
+		 cout &lt;&lt; str[num[i] - '0'];
+	 }
+	 
+	 return 0; 
+ }
+</code></pre>
+<p>1003解题思路：<br>
+1.本题难点在于找规律，首先明确一点不是AAA...AAPAA...AATAA...AA这么简单的规律。<br>
+2.突破点在于aPbTc正确和aPbATca正确，显然第二个在P与A之间多加了一个A，后面多了一个a，而a又是第一个的P之前的部分，其实这里a,b,c均是狗（宇哥替换）。观察例子：AAPATAA与AAPAATAAAA，这里a相当于AA，b相当于A，c相当于AA。在第二个中P,T之间多加了A，则后面多加AA。所以规律是在P,T之间多加一个A，则原来字符串T后面多 补充 原来字符串P之前的部分。比如对于AAPAATAAAA而言，AAPAAATAAAAAA也是对的，AAPAAATAAAAAAAA也是对的。<br>
+3.如果P之前没有A，则无论在P,T之间加多少的A，T之后也不会有A,所以形如PAAA...AAAT都对<br>
+4.xPATx这种形式告诉我们，AAA...AAAPATAAA...AAA是可以的，只要PAT前和后的AAA对称。二一个当x为空格是PAT也是正确。<br>
+5.通过例子可知有且仅有P,A,T三种字符，其中P,T的个数只能为1，而A的个数不能0，P,T之间至少一个A，对于APAAATAA我们可知可以由APAATA得来，但是例子表示APAAATAA是错误，所以APAATA也是错误<br>
+6.总之，就是P之前A的个数*P与T之间A的个数等于T之后A的个数 （这规律我估计也不是他想出来的，或者就是偶然想到的）</p>
+<p>我的代码：</p>
+<pre><code class="language-cpp">#include&lt;iostream&gt;
+#include&lt;map&gt;
+using namespace std;
+
+int main()
+{
+	int n,i,j,p,t;
+	cin &gt;&gt; n;
+	string s;
+	for(i=0; i&lt;n; i++)
+	{
+		cin &gt;&gt; s;
+		map&lt;char, int &gt; m;
+		for(j=0; j&lt;s.length(); j++)
+		{
+			m[s[j]]++;
+			if(s[j]=='P')
+				p=j;
+			if(s[j]=='T')
+				t=j;
+		}
+		if(m['P']==1 &amp;&amp; m['A']!=0 &amp;&amp; m['T']==1 &amp;&amp; m.size()==3 &amp;&amp; t-p!=1 &amp;&amp; p*(t-p-1)==s.length()-t-1)
+			cout &lt;&lt; &quot;YES&quot; &lt;&lt; endl;
+		else
+			cout &lt;&lt; &quot;NO&quot; &lt;&lt; endl;
+	}
+	return 0;
+}
+</code></pre>
+<p>1004解题思路：<br>
+1.首先根本不用存储每次输入的学生的信息，重点是要知道成绩最值的学生的姓名和学号，所以用变量来存储这些信息。“铁打的营盘流水的兵”恰如其分描述铁打的营盘类似成绩最值的姓名和学号，而流水类似不断敲入的学生成绩，姓名和学号</p>
+<p>1005解题思路：<br>
+1.设置一个数组arr[]其中表示对输入数字进行c式处理后对应下标为1<br>
+比如：输入5 ，第一次c式处理后为8，则将arr[8]的值为1<br>
+先判断arr值是否为1，是则退出循环，输入下一个值判断，不是另其值为1<br>
+2.注意arr数组的空间大小为10000否则只是部分正确<br>
+代码：</p>
+<pre><code class="language-cpp">#include&lt;iostream&gt;
+#include&lt;vector&gt;
+#include&lt;algorithm&gt;
+using namespace std;
+int arr[10000];
+bool cmp(int a, int b)
+{
+    return a&gt;b;
+}
+
+int main()
+{
+    int k,n,flag=0;
+    cin &gt;&gt; k;
+    vector&lt;int&gt; v(k);//定义一个数组
+    //for中嵌套while，外面一共循环k次，里面就是对数字处理并且标记对应arr数组中的值为1
+    //如果在while中判断数字有1则直接输入下一个数
+    for(int i=0; i&lt;k; i++)
+    {
+        cin &gt;&gt; n;
+        v[i]=n;   //数组存放对应的数字
+        while(n!=1)
+        {
+            if(n%2!=0)
+                n=3*n+1;
+            n/=2;
+            /*?*/
+            if(arr[n]==1)
+                break;
+            arr[n]=1;
+        }
+    }
+    sort(v.begin(), v.end(), cmp); //将数组按照从大到小的顺序排列
+    for(int i=0; i&lt; v.size(); i++)
+    {
+        if(arr[v[i]]==0) //表示
+        {
+            if(flag==1)
+                cout &lt;&lt; &quot; &quot;;
+            cout &lt;&lt; v[i];
+            flag=1;
+
+        }
+    }
+    return 0;
+}
+
+</code></pre>
+<p>1006<br>
+解题思路：就是取百位然后循环输出B，求出十位循环输出S，求出个位循环输出1--n<br>
+参考代码：</p>
+<pre><code class="language-cpp">#include&lt;iostream&gt;
+using namespace std;
+/*
+    思路就是取百位然后循环输出B，求出十位循环输出S，求出个位循环输出1--n
+*/
+int main()
+{
+    int n;
+    cin &gt;&gt; n;
+    for(int i=1; i&lt;=n/100; i++)
+        cout &lt;&lt; 'B';
+    for(int j=1; j&lt;=n%100/10; j++)
+            cout &lt;&lt; 'S';
+    for(int k=1; k&lt;=n%10; k++)
+            cout &lt;&lt; k;
+    return 0;
+}
+
+</code></pre>
+<p>1007<br>
+解题思路：ans表示有多少对数字<br>
+遍历从0--n相邻且相差2的数字，然后判断是否为素数</p>
+<p>参考代码：</p>
+<pre><code class="language-cpp">#include&lt;iostream&gt;
+using namespace std;
+/*
+  解题思路：ans表示有多少对数字
+        遍历从0--n相邻且相差2的数字，然后判断是否为素数
+*/
+int f(int n)
+{
+    for(int i=2; i*i&lt;=n; i++)
+        if(n%i==0)
+            return 0;
+    return 1;
+}
+int main()
+{
+    int n,ans=0;
+    cin &gt;&gt; n;
+    for(int i=2; i&lt;=n-2; i++)
+    {
+        if(f(i) &amp;&amp; f(i+2))
+            ans++;
+    }
+    cout &lt;&lt; ans;
+    return 0;
+}
+
+</code></pre>
+<ol start="1008">
+<li></li>
+</ol>
+<p>解题思路：<br>
+先把数组倒叙，再把前m为倒叙，再把后面的倒叙即可。（客观规律，记住即可）<br>
+之前的思路是向后移数组，在把超出部分放到前面，但这样部分正确。我分析是：使用太多的数组，因为题目要求程序移动的次数竟可能少</p>
+<p>参考代码：</p>
+<pre><code class="language-cpp">#include&lt;iostream&gt;
+#include&lt;algorithm&gt;  //reverse()使用此头件
+#include&lt;vector&gt;  //vector使用此头文件
+using namespace std;
+int main()
+{
+    int n,m;
+    cin &gt;&gt; n &gt;&gt; m;
+    vector&lt;int &gt; a(n);
+    for(int i=0; i&lt;n; i++)
+        cin &gt;&gt; a[i];
+    m%=n;
+    if(m!=0)
+    {
+        reverse(a.begin(),a.end());  //a.begin()是指针，指向数组第一个元素；a.end()也是指针，指向a[6]
+        reverse(a.begin(),begin(a)+m);  //reverse中不会将第2部分的值也倒转，而是把他之前的值倒转
+        reverse(begin(a)+m,a.end());  //从上一位置开始
+    }
+    for(int i=0; i&lt;n-1; i++)
+        cout &lt;&lt; a[i] &lt;&lt; &quot; &quot;;
+    cout &lt;&lt; a[n-1];
+    return 0;
+}
+
+</code></pre>
+<p>1009<br>
+解题思路：<br>
+利用栈先进后出的思想来倒叙输出字符串<br>
+首先，将字符串压入栈，访问栈顶元素，弹出当前栈顶元素。<br>
+由于题目要求，字符串之间有空格并且最后一个字符串没有空格，下面就循环先输出空格再输出字符串然后弹出<br>
+参考代码：</p>
+<pre><code class="language-cpp">#include&lt;iostream&gt;
+#include&lt;stack&gt;
+using namespace std;
+
+int main()
+{
+    stack&lt;string&gt; v;
+    string s;
+    while(cin &gt;&gt; s)
+        v.push(s);
+    cout &lt;&lt; v.top();
+    v.pop();
+    while(!v.empty())
+    {
+        cout &lt;&lt; &quot; &quot; &lt;&lt; v.top();
+        v.pop();
+    }
+    return 0;
+}
+
+</code></pre>
+<p>1010<br>
+解题思路：<br>
+1.每次输入两个变量，不用存放到数组中，规律是每次输出第一个变量*第二个变量；第二个变量-1<br>
+2.对于上面规律使用前提是第二个变量不为0，若为0，不执行语句，进入下一次循环，看，在这里并不是<br>
+3. 使用continue，而是循环中嵌套一个if，这样当条件不满足时，自动不执行if中的语句，直接进入下一次循环<br>
+4.对于先输出数值，后输出空格，但在最后不能有空格的套路是用flag标记（你懂的）<br>
+5.对于零项多项式和全部都是常数项而言，当整个循环结束后还是用flag==0判断，并输出0 0</p>
+<p>注意事项：<br>
+1 . 0项多项式表示前面没有式子，这样在循环到最后一个式子时输出 0 0<br>
+2.对于前面有式子最后一个是0项多项式，这根本不叫0项多项式<br>
+3.对于目前这个程序而言根本无法测试出输出&quot;0 0&quot;这个式子因为循环一直不结束，之所以能输出想要的结果那是因为在循环内部就给出值了</p>
+<p>参考代码：</p>
+<pre><code class="language-cpp">#include&lt;iostream&gt;
+using namespace std;
+int main()
+{
+    int flag=0;
+    int a,b;
+    while(cin &gt;&gt; a &gt;&gt; b)
+    {
+        if(b!=0)
+        {
+            if(flag==1)
+                cout &lt;&lt; &quot; &quot;;
+            cout &lt;&lt; a*b &lt;&lt; &quot; &quot; &lt;&lt; b-1;
+            flag=1;
+        }
+    }
+    if(flag==0)
+        cout &lt;&lt; &quot;0 0&quot;;
+}
+
+</code></pre>
+<p>1012<br>
+解题思路：<br>
+1.将输入的数字存放到对5求余对应下标的二维数组中<br>
+2.计算A1--A5<br>
+1.A2：就是下标为偶数的加 - 下标为奇数的和<br>
+3.输出，用printf简单<br>
+注意事项：<br>
+1.==不是=<br>
+2.对于某个点一直过不去，重新敲一遍</p>
+<pre><code class="language-cpp">/*
+    解题思路：
+    1.将输入的数字存放到对5求余对应下标的二维数组中
+    2.计算A1--A5
+            1.A2：就是下标为偶数的加 - 下标为奇数的和
+    3.输出，用printf简单
+*/
+#include&lt;iostream&gt;
+#include&lt;vector&gt;
+using namespace std;
+int main()
+{
+    int n,digit,A1=0,A2=0,A3=0,A5=-1;   //对应的变量注意设置出来
+    double A4=0.0;
+    cin &gt;&gt; n;
+    vector&lt;int&gt; a[5];
+
+    for(int i=0; i&lt;n; i++)
+    {
+        cin &gt;&gt; digit;
+        a[digit%5].push_back(digit);      //这里使用push_back就是将数字压入，自动生成一个二维数组
+                                        //注意写法：数组[下标].push_back(要填入的数字);
+    }
+
+    for(int i=0; i&lt;5; i++)
+        for(int j=0; j&lt;a[i].size(); j++)
+        {
+            if(i==0 &amp;&amp; a[i][j]%2==0)
+                A1+=a[i][j];
+            if(i==1 &amp;&amp; j%2==0)
+                A2+=a[i][j];
+            if(i==1 &amp;&amp; j%2!=0)
+                A2-=a[i][j];
+            if(i==2)
+                A3++;
+            if(i==3)
+                A4+=a[i][j];
+            if(i==4 &amp;&amp; a[i][j]&gt;A5)     //一定要是大于A5
+                A5=a[i][j];
+        }
+    for(int i=0; i&lt;5; i++)
+    {
+        if(i!=0)
+            cout &lt;&lt; &quot; &quot;;
+        if(i==0 &amp;&amp; A1==0 || i!=0 &amp;&amp; a[i].size()==0)
+        {
+            cout &lt;&lt; &quot;N&quot;;
+            continue;
+        }
+        if(i==0)
+            printf(&quot;%d&quot;,A1);
+        if(i==1)
+            printf(&quot;%d&quot;, A2);  //计算出结果为何不直接输出值？因为每一次输出都有条件限制，对于不存在的数输出N，
+                            //为了保证思路的理解，就设置成循环，如果不满足条件就输出N，否则按照对应的值输出
+        if(i==2)
+            printf(&quot;%d&quot;,A3);
+        if(i==3)
+            printf(&quot;%.1f&quot;,A4/a[i].size());
+        if(i==4)
+            printf(&quot;%d&quot;,A5);
+    }
+    return 0;
+}
+
+</code></pre>
+<p>1013<br>
+解题思路：<br>
+将从第M个素数到第N个素数放到数组中</p>
+<p>参考代码：</p>
+<pre><code class="language-cpp">#include&lt;iostream&gt;
+#include&lt;vector&gt;
+using namespace std;
+
+bool isprime(int a)
+{
+    for(int i=2; i*i&lt;=a; i++)
+        if(a%i == 0)
+            return false;
+    return true;
+}
+
+int main()
+{
+    int M,N,num=2,cnt=0;
+    cin &gt;&gt; M &gt;&gt; N;
+    vector&lt;int&gt; v;
+    /*
+        1.从素数列中找到第m个到第n个放到数组中
+        2.用while循环，含义是循环至少执行N次，也就是M=5，N=27，循环至少执行27次，表示
+          从第一素数到第27个素数，而且cnt必须从0开始，因为num初值为2，进入到isprime函数中，
+          cnt++表示1与2为第一个素数相对应
+        3.num++与循环的判断条件无关，循环的判断条件是第几个素数，其中cnt为N-1就表示第N个素数
+          因为cnt从0开始
+    */
+    while(cnt &lt; N)       //cnt的值从0开始，自然要小于N
+    {
+        if(isprime(num))
+        {
+            cnt++;
+            if(cnt &gt;= M)
+                v.push_back(num);
+        }
+        num++;
+    }
+    cnt=0;
+    /*
+        对于每次先输出数字再输出空格，且最后一个不为空格，且每行10个的思想:
+        1.将输出空格代码放前面，用if的一个条件判断（避开第一次输出空格），
+          然后紧接着输出数字，依次循环
+        2.对于每次换行，都希望能与1中的if语句相关联。这样保证每次换行时不会先输出一个空格，
+          再输出数值，对于每次输出10个，那么每行的第一个就是1,11，21,31.....求余为1
+          这样在if中可以设置%10!=1输出空格，当然在最后要有如果求余10就输出换行
+    */
+    for(int i=0; i&lt;v.size(); i++)
+    {
+        cnt++;
+        if(cnt%10 != 1)
+            cout &lt;&lt; &quot; &quot;;
+        cout &lt;&lt; v[i];
+        if(cnt%10 == 0)
+            cout &lt;&lt; endl;
+    }
+}
+
+
+/**********我的代码但是超时**********/
+/*
+    解题思路：
+    1.素数公式判断
+    2.从第m个素数到第n个素数
+    主要是找到第一个
+        1.用while，条件是k==n;k=0
+*/
+#include&lt;iostream&gt;
+using namespace std;
+bool f(int n)
+{
+
+    for(int i=2; i*i&lt;=n; i++)
+        if(n%i==0)
+           return false;
+    return true;
+}
+
+int s(int n)  //找到第n个素数
+{
+    int k=1,i=3;
+    if(n==1)
+    {
+        return 2;
+    }
+    while(k!=n)
+    {
+        if(f(i))
+            k++;
+        i+=2;
+    }
+    return i-=2;
+}
+
+int main()
+{
+
+    int m,n,now=0,flag=0;
+    cin &gt;&gt; m &gt;&gt; n;
+    for(int i=s(m); i&lt;=s(n); i++)
+    {
+        if(f(i))
+        {
+            if(flag==1)
+                cout &lt;&lt; &quot; &quot;;
+            cout &lt;&lt; i;
+            flag=1;
+            now++;
+    /*
+        之前是换行后，先输出空格然后再输出值，我改为每次换行后，将flag的值修改，这样进入
+        下次循环时，就不会输出空格，并且按照最后一个不为空格的方式输出
+    */
+            if(now%10==0)
+            {
+                cout &lt;&lt; endl;
+                flag=0;
+            }
+        }
+
+    }
+
+
+    return 0;
+}
+
+</code></pre>
+<p>1014<br>
+解题思路：<br>
+1.用两次while分别找出a,b字符串中第一个和第二个相同字符<br>
+2.同样也用while遍历循环c，d两个字符串<br>
+参考代码：</p>
+<pre><code class="language-cpp">#include&lt;iostream&gt;
+#include&lt;string&gt;
+using namespace std;
+/*
+    解题思路：
+    1.用两次while分别找出a,b字符串中第一个和第二个相同字符
+    2.同样也用while遍历循环c，d两个字符串
+*/
+int main()
+{
+    string a,b,c,d;
+    char t[2];
+    cin &gt;&gt; a &gt;&gt; b &gt;&gt; c &gt;&gt; d;
+    int i=0,j=0,e=0;
+    //找到第一个相同的字符
+    while(i&lt;a.length() &amp;&amp; i&lt;b.length())
+    {
+        if(a[i]==b[i] &amp;&amp; ('A'&lt;=a[i] &amp;&amp; a[i]&lt;='G'))
+        {
+            t[0]=a[i];
+            break;
+        }
+        i++;
+    }
+    i++;
+
+    //找到第二个相同的字符
+    while(i&lt;a.length() &amp;&amp; i&lt;b.length())
+    {
+        if(a[i]==b[i])
+        {
+            if(isdigit(a[i]) || ('A'&lt;=a[i] &amp;&amp; a[i]&lt;='N'))  //isdigit(a[i])判断a[i]是否为数字字符
+            {
+                t[1]=a[i];
+                break;
+            }
+        }
+        i++;
+    }
+
+    //找到第三个字符
+    while(j&lt;c.length() &amp;&amp; j&lt;d.length())
+    {
+        if(c[j]==d[j] &amp;&amp; isalpha(c[j]))          //isalpha(c[j])判断c[j]是否为字母
+        {
+            e=j;
+            break;
+        }
+        j++;
+    }
+
+
+    char sa[7][5]={&quot;MON &quot;,&quot;TUE &quot;,&quot;WED &quot;,&quot;THU &quot;,&quot;FRI &quot;,&quot;SAT &quot;,&quot;SUN &quot;};
+    cout &lt;&lt; sa[t[0]-'A'];
+    int m=isdigit(t[1])? t[1]-'0': t[1]- 'A' + 10;    //切记这里用一个整形变量m来接受条件判断的结果，最后在输出
+    printf(&quot;%02d:%02d&quot;,m,j);       //采用c的方式输出，是为了当数字为1位时，前面有0补充；否则直接输出2位数
+
+    return 0;
+}
+
+
+</code></pre>
+<p>知识总结：</p>
+<pre><code class="language-cpp">isdigit(A)   //判断A是否为数字字符
+isalpha(A)   //判断A是否为字母
+</code></pre>
+<p>1015德才论<br>
+解题思路：<br>
+1.用一个结构stu来存放数据信息<br>
+2.设置一个排序函数，总分不同按照从大到小排列，总分相同，按照按照德分从大到小排列；德分相同，按照<br>
+学号从小到大输出<br>
+3.设置1个结构数组，一个临时变量结构用来存放每次的输入；循环中嵌套if判断，将对应的结构压入栈中，也就形成了二维数组<br>
+4.最后压栈进行排序后并输出<br>
+注意事项：<br>
+在输入时，用scanf格式控制字符来输入，不会超时<br>
+参考代码：</p>
+<pre><code class="language-cpp">#include&lt;iostream&gt;
+#include&lt;algorithm&gt;
+#include&lt;vector&gt;
+using namespace std;
+/*
+    解题思路：
+
+*/
+struct node
+{
+    int num,de,cai;
+};
+
+int cmp(struct node a, struct node b)
+{
+    if((a.de+a.cai)!=(b.de+b.cai))
+        return (a.de+a.cai) &gt; (b.de+b.cai);   //如果总分数不同，就按照最大到小的顺序排列
+    else if(a.de!=b.de)                    //如果总分数相同，但德分不同，按照德分从大到小排列
+        return a.de&gt;b.de;         //从大到小
+    else
+        return a.num&lt;b.num;            //从小到大
+}
+
+
+int main()
+{
+    int low,high,n;
+    cin &gt;&gt; n &gt;&gt; low &gt;&gt; high;
+    node temp;
+    vector&lt;node&gt; v[4];
+    int total=n;
+    for(int i=0; i&lt;n; i++)
+    {
+        scanf(&quot;%d %d %d&quot;, &amp;temp.num,&amp;temp.de, &amp;temp.cai);
+        if(temp.de &lt; low || temp.cai &lt; low)
+            total--;
+        else if(temp.de &gt;= high &amp;&amp; temp.cai &gt;= high)
+            v[0].push_back(temp);
+        else if(temp.de &gt;= high &amp;&amp; temp.cai &lt; high)
+            v[1].push_back(temp);
+        else if(temp.de &lt; high &amp;&amp; temp.cai &lt; high &amp;&amp; temp.de &gt;= temp.cai)
+            v[2].push_back(temp);
+        else
+            v[3].push_back(temp);
+
+    }
+    cout &lt;&lt; total &lt;&lt; endl;
+    for(int i=0; i&lt;4; i++)
+    {
+        sort(v[i].begin(),v[i].end(),cmp);
+        for(int j=0; j&lt;v[i].size(); j++)
+            cout &lt;&lt; v[i][j].num &lt;&lt; &quot; &quot; &lt;&lt; v[i][j].de &lt;&lt; &quot; &quot; &lt;&lt; v[i][j].cai &lt;&lt;endl;
+    }
+    return 0;
+
+}
+
+</code></pre>
+<p>知识总结：</p>
+<pre><code class="language-cpp">自定义排序：
+struct stu
+{
+	int mark,num;
+};
+bool cmp(stu a, stu b)
+{
+	if(a.mark != b.mark)
+		return a.mark &gt; b.mark  //降序排列
+	else
+		return a.num&lt;b.num      //mark相同按照num的升序排列
+}
+vector&lt;stu&gt; v[4];   //结构数组
+sort(v[i].begin(),v[i].end(),cmp);  //对数组进行相应的排序
+</code></pre>
+<p>1016<br>
+解题思路：<br>
+1.用string存放要输入的字符串数组，用int来存放其他类型<br>
+2.判断是否有相同的字符，并且记录个数，最后通过循环来累加起来<br>
+3.两次循环记录相同数字的个数<br>
+4.根据相同数字个数是否为0，否就再循环算出对应的值<br>
+参考代码</p>
+<pre><code class="language-cpp">#include&lt;iostream&gt;
+#include&lt;string&gt;
+using namespace std;
+/*
+    解题思路：
+    1.用string存放要输入的字符串数组，用int来存放其他类型
+    2.判断是否有相同的字符，并且记录个数，最后通过循环来累加起来
+*/
+int main()
+{
+    string a,b;
+    int a1,b1,num1=0,num2=0,suma=0,sumb=0;    //a1,b1表示要找的数字,num1,num2表示个数，suma,sumb表示和
+    cin &gt;&gt; a &gt;&gt; a1 &gt;&gt; b &gt;&gt; b1;
+    for(int i=0; i&lt;a.size(); i++)      //记录相同数字的个数
+    {
+        if(a1 == a[i]-'0')
+            num1++;
+    }
+    for(int i=0; i&lt;b.size(); i++)        //记录相同数字的个数
+    {
+        if(b1 == b[i]-'0')
+            num2++;
+    }
+
+    if(num1!=0)  
+        suma=a1;   
+    if(num2!=0)
+        sumb=b1;
+    for(int i=1; i&lt;num1; i++)
+        suma=suma*10+a1;
+    for(int i=1; i&lt;num2; i++)
+        sumb=sumb*10+b1;
+    cout &lt;&lt; suma+sumb;
+    return 0;
+}
+
+
+</code></pre>
+<p>1017<br>
+解题思路：<br>
+1.模拟手动求余的过程<br>
+2.对于1000位的数字，用string；对于输出商，不用变量存储，直接输出<br>
+参考代码：</p>
+<pre><code class="language-cpp">int main()
+{
+    string s;
+    int a,t=0,temp=0;
+    cin &gt;&gt; s &gt;&gt; a;
+    t=(s[0]-'0')/a;    //t就是商
+    /*
+        1.对于只有一位的数，直接输出商t
+        2.对于2位及2位以上，如17 ，93 这种情况，前者就不输出，后者输出1
+    */
+    if((t != 0 &amp;&amp; s.length() &gt; 1) || s.length() == 1)
+        cout &lt;&lt; t;
+    temp = (s[0]-'0')%a;    //保存余数
+    /*
+        i从1开始，先计算下一位数的数，输出商，保存余数
+    */
+    for(int i=1; i&lt;s.length(); i++)   
+    {
+        t=(temp*10+s[i]-'0')/a;       
+        cout &lt;&lt; t;
+        temp=(temp*10+s[i]-'0')%a;
+    }
+    cout &lt;&lt; &quot; &quot; &lt;&lt; temp;
+    return 0;
+}
+</code></pre>
+<p>1018<br>
+解题思路：<br>
+1.统计甲赢的次数，乙赢的次数。甲输的次数就是赢的次数，同理，乙也是如此。平的次数就是总数-甲赢的次数-乙赢的次数<br>
+2.如何确定赢次数最多的手势？<br>
+答：将BCJ默认为012，在统计赢的次数时，记录甲乙赢的时候，对应手势所对应的下标的数组++，最后选出最大的个数，并且记住<br>
+下标，最后定义一个字符数组&quot;BCJ&quot;这样刚才统计的下标就可以字符数组相对应<br>
+参考代码：</p>
+<pre><code class="language-cpp">#include&lt;iostream&gt;
+using namespace std;
+/*
+    解题思路：
+    1.jiawin  yiwin 分别记录甲赢的次数和已赢的次数
+    2.a[]  b[]两个数组分别统计B,J,C赢的次数，默认为012
+    3.最后对数组元素比较得出最大的数组下标，同时设计一个变量，也是BJC这样就输出了对应的值
+*/
+int main()
+{
+    int jiawin=0,yiwin=0;
+    int jia[3]={0};
+    int yi[3]={0};
+    char s,t;
+    int n;
+    cin &gt;&gt; n;
+    for(int i=0; i&lt;n; i++)
+    {
+        cin &gt;&gt; s &gt;&gt; t;
+        if(s=='B' &amp;&amp; t=='C')
+        {
+            jiawin++;
+            jia[0]++;
+        }
+        else if(s=='C' &amp;&amp; t=='J')
+        {
+            jiawin++;
+            jia[1]++;
+        }
+        else if(s=='J' &amp;&amp; t=='B')
+        {
+            jiawin++;
+            jia[2]++;
+        }
+        else if(s=='C' &amp;&amp; t=='B')
+        {
+            yiwin++;
+            yi[0]++;
+        }
+        else if(s=='J' &amp;&amp; t=='C')
+        {
+            yiwin++;
+            yi[1]++;
+        }
+        else if(s=='B' &amp;&amp; t=='J')
+        {
+            yiwin++;
+            yi[2]++;
+        }
+    }
+    cout &lt;&lt; jiawin &lt;&lt; &quot; &quot; &lt;&lt; n-jiawin-yiwin &lt;&lt; &quot; &quot; &lt;&lt; yiwin &lt;&lt; endl &lt;&lt; yiwin &lt;&lt; &quot; &quot; &lt;&lt; n-jiawin-yiwin &lt;&lt; &quot; &quot; &lt;&lt; jiawin &lt;&lt; endl;
+    int maxjia=jia[0]&gt;=jia[1]?0:1;    //设计大于等于的目的是：首先字母已经从字母序从小到大排列，当a[0]==a[1]时，结果max1还是0，不然最后max1就指向j
+    maxjia=jia[maxjia]&gt;=jia[2]?maxjia:2;
+
+    int maxyi=yi[0]&gt;=yi[1]?0:1;
+    maxyi=yi[maxyi]&gt;=yi[2]?maxyi:2;
+    char k[4]={&quot;BCJ&quot;};
+    cout &lt;&lt; k[maxjia] &lt;&lt; &quot; &quot; &lt;&lt; k[maxyi];
+    return 0;
+}
+</code></pre>
+<p>注意：BCJ对应012</p>
+<p>1019<br>
+解题思路：<br>
+1.还是用string类来存放输入的数字<br>
+2.自定义函数降序排列+结合sort升序排列+字符串转化为数字函数stoi()+数字转化为字符串函数to_string()+对不足四位的数补充0的相关函数s.insert(i,j,k)（题目要求四位输出）+do-while（当先输入0000时，还可以输出）<br>
+参考代码：</p>
+<pre><code class="language-cpp">#include&lt;iostream&gt;
+#include&lt;algorithm&gt;
+using namespace std;
+bool cmp(char a, char b)
+{
+    return a&gt;b;
+}
+int main()
+{
+    string s;
+    cin &gt;&gt; s;
+    s.insert(0,4-s.length(),'0');    //输入的数字不满足4位，则前补充0
+    do          //先输入do-while是为了，当输入6174时还能执行一次循环
+    {
+        string a=s,b=s;
+        sort(a.begin(),a.end(),cmp);  //数字以从大到小排列
+        sort(b.begin(),b.end());      //默认为从小到大
+        int result=stoi(a)-stoi(b);    //stoi将字符串转化为整数
+        s=to_string(result);            //将数字转化为字符
+        s.insert(0,4-s.length(),'0');
+        cout &lt;&lt; a &lt;&lt; &quot; - &quot; &lt;&lt; b &lt;&lt; &quot; = &quot; &lt;&lt; s &lt;&lt; endl;
+    }while(s!=&quot;6174&quot; &amp;&amp; s!=&quot;0000&quot;);
+    return 0;
+}
+
+
+/*
+    知识总结：
+    1.对字符串第i个位置开始，插入j个k
+        s.insert(i,k,j);
+    2.对字符串进行排序
+        sort(s.begin(),s.end(),cmp);   //按照cmp的顺序排列
+        sort(s.begin(),s.end());         //默认为从小到大排列
+    3.stoi(str)   //将字符串转化为整数
+    4.to_string(a)          //将数字转化为字符串
+*/
+
+
+</code></pre>
+<p>知识总结：</p>
+<pre><code class="language-cpp">​```cpp
+    1.对字符串第i个位置开始，插入j个k
+        s.insert(i,k,j);
+    2.对字符串进行排序
+        sort(s.begin(),s.end(),cmp);   //按照cmp的顺序排列
+        sort(s.begin(),s.end());         //默认为从小到大排列
+    3.stoi(str)   //将字符串转化为整数
+    4.to_string(a)          //将数字转化为字符串
+</code></pre>
+<pre><code>  
+1020
+解题思路：
+    1.构建一个结点里面有3个结构成员，分别是mount种类库存，price种类总价，unit种类单价
+    2.自定义cmp，按照单价的降序排列
+    3.设置循环，先紧着单价最高的使，然后用单价次一级的....这样最后利润一定是最高的
+   参考代码：
+   
+
+​```cpp
+#include&lt;iostream&gt;
+#include&lt;vector&gt;
+#include&lt;algorithm&gt;
+using namespace std;
+/*
+    解题思路：
+    1.构建一个结点里面有3个结构成员，分别是mount种类库存，price种类总价，unit种类单价
+    2.自定义cmp，按照单价的降序排列
+    3.设置循环，先紧着单价最高的使，然后用单价次一级的....这样最后利润一定是最高的
+*/
+
+struct mooncake
+{
+    float mount,price,unit;
+};
+int cmp(mooncake a, mooncake b)
+{
+    return a.unit &gt; b.unit;
+}
+int main()
+{
+    int n,need;
+    cin &gt;&gt; n &gt;&gt; need;
+    vector&lt;mooncake&gt; a(n); //且记要定义数组长度大小，否则不能连续for输入
+    for(int i=0; i&lt;n; i++)
+        scanf(&quot;%f&quot;,&amp;a[i].mount);  //切记，float类型的scanf是%f
+    for(int i=0; i&lt;n; i++)
+        scanf(&quot;%f&quot;,&amp;a[i].price);
+    for(int i=0; i&lt;n; i++)
+        a[i].unit=a[i].price/a[i].mount;
+
+    sort(a.begin(),a.end(),cmp);
+
+    float result=0.0;
+    for(int i=0; i&lt;n; i++)
+    {
+        if(a[i].mount &lt;= need)
+            result = result+a[i].price;
+        else
+        {
+            result=result+a[i].unit*need;
+            break;
+        }
+        need=need-a[i].mount;
+    }
+    printf(&quot;%.2f&quot;,result);
+    return 0;
+}
+
+</code></pre>
+<p>知识总结：<br>
+对于vector定义的数组连续for输入需要指明数组长度</p>
+<pre><code class="language-cpp">#include&lt;iostream&gt;
+#include&lt;vector&gt;
+using namespace std;
+
+int main()
+{
+    int n;
+    cin &gt;&gt; n;
+    vector&lt;int&gt; a(n),b(n);  //不定以数组长度大小，否则不能连续for输入
+    for(int i=0; i&lt;n; i++)
+        cin &gt;&gt; a[i];
+    for(int i=0; i&lt;n; i++)
+        cin &gt;&gt; b[i];
+    return 0;
+}
+
+
+</code></pre>
+<p>1021<br>
+解题思路：<br>
+用string存储整数，for遍历循环，定义9个长度的数组，对应的值++，最后按顺序输出数组元素不为0的</p>
+<pre><code class="language-cpp">#include&lt;iostream&gt;
+using namespace std;
+/*
+    解题思路：
+    1.
+*/
+int main()
+{
+    string s;
+    int a[10]={0};
+    cin &gt;&gt; s;
+    for(int i=0; i&lt;s.length(); i++)
+        a[s[i]-'0']++;
+    for(int i=0; i&lt;10; i++)
+    {
+        if(a[i]!=0)
+            cout &lt;&lt; i &lt;&lt; ':' &lt;&lt; a[i] &lt;&lt; endl;
+    }
+    return 0;
+}
+
+
+</code></pre>
+<p>注意事项：<br>
+有时候，用vector发生错误，就直接用普通数组定义法</p>
+<p>1022<br>
+解题思路：<br>
+1.将余数存入数组，while的判断条件sum!=0<br>
+2.将数组倒叙输出，j=i-1，<br>
+3.不要忘记sum的0，输出0，return 0<br>
+4.不要用VEctor压栈<br>
+参考代码：</p>
+<pre><code class="language-cpp">#include&lt;iostream&gt;
+using namespace std;
+/*
+    解题思路：
+    1.将余数存入数组，while的判断条件sum!=0
+    2.将数组倒叙输出，j=i-1，
+    3.不要忘记sum的0，输出0，return 0
+    4.不要用VEctor压栈
+*/
+
+int main()
+{
+    int sum,A,B,D,i=0;
+    cin &gt;&gt; A &gt;&gt; B &gt;&gt; D;
+    int a[100];
+    sum=A+B;
+    if(sum==0)
+    {
+        cout &lt;&lt; 0;
+        return 0;
+    }
+    while(sum!=0)
+    {
+        a[i++]=sum%D;
+        sum/=D;
+    }
+    for(int j=i-1; j&gt;=0; j--)
+        cout &lt;&lt; a[j];
+    return 0;
+}
+
+
+
+</code></pre>
+<p>1023<br>
+解题思路：<br>
+1.没理解题意，切记数组是存放数字的个数<br>
+2.先找出第一个不为0的数，并输出<br>
+3.将所有0输出<br>
+4.再输出所有第一个不为0的数<br>
+5.双层for循环输出剩下的所有数，第一层for表示要输出的数字，第二层for表示要输出的个数<br>
+参考代码：</p>
+<pre><code class="language-cpp">#include&lt;iostream&gt;
+using namespace std;
+int main()
+{
+    int a[10];
+    int t;
+    for(int i=0; i&lt;10; i++)
+        cin &gt;&gt; a[i];
+    for(int i=1; i&lt;10; i++)
+    {
+        if(a[i]!=0)
+        {
+            cout &lt;&lt; i;
+            t=i;           //t存放第一个不为0的数
+            break;
+        }
+    }
+
+    for(int i=0; i&lt;a[0]; i++)   //输出所有的0
+        cout &lt;&lt; 0;
+    for(int i=0; i&lt;a[t]-1; i++)   //输出所有第一个不为0的数，因为之前输出了一个，所以这里就少输出1个
+        cout &lt;&lt; t;
+    for(int i=t+1; i&lt;10; i++)
+        for(int j=0; j&lt;a[i]; j++)
+            cout &lt;&lt; i;
+    return 0;
+
+}
+
+</code></pre>
+<p>知识总结：</p>
+<pre><code class="language-cpp">#include&lt;iostream&gt;
+#include&lt;algorithm&gt;
+#include&lt;vector&gt;
+#include&lt;string&gt;
+using namespace std;
+/*
+    解题思路：
+    1.将余数压栈，sum&gt;D
+*/
+
+int main()
+{
+    vector&lt;int&gt; a(5);      //用vector定义数组长度就是后面加（n）n表示数组长度
+    for(int i=0; i&lt;a.size(); i++)    //遍历数组时，i&lt;a.size()而不是a.end()
+        cout &lt;&lt; a[i];
+    int k=333;
+    string s=to_string(k);      //将数字转化为字符串时用to_string切记是小写的to_string
+    cout &lt;&lt; s;
+    return 0;
+}
+
+</code></pre>
+<p>1024<br>
+解题思路：<br>
+1.从E将字符串一分为2，但第一个字符串不包括符号位<br>
+2.将后面的字符串转化为整数放到n<br>
+3.根据n 的正负，选择输出不同的情况<br>
+4.切记，当n为正数时，还要知道.和E之间的数字个数与n之间的关系，它们也是不同的输出<br>
+参考代码：</p>
+<pre><code class="language-cpp">#include&lt;iostream&gt;
+using namespace std;
+int main()
+{
+    /*
+        解题思路：
+        1.从E将字符串一分为2，但第一个字符串不包括符号位
+        2.将后面的字符串转化为整数放到n
+        3.根据n 的正负，选择输出不同的情况
+        4.切记，当n为正数时，还要知道.和E之间的数字个数与n之间的关系，它们也是不同的输出
+    */
+    string s;
+    cin &gt;&gt; s;
+    int i=0;
+
+    while(s[i]!='E')     //此时i表示E所在的位
+        i++;
+
+    string t=s.substr(1,i-1);     //t保存E之前的字符串，不包括符号位
+
+    int n=stoi(s.substr(i+1));     //将E之后下一位开始到字符串结束的转化为数字
+
+    if(s[0]=='-')
+        cout &lt;&lt; &quot;-&quot;;
+
+    cout &lt;&lt; n &lt;&lt; endl;
+    if(n&lt;0)
+    {
+        cout &lt;&lt; &quot;0.&quot;;
+
+        for(int j=0; j&lt;abs(n)-1; j++)  //输出0
+            cout &lt;&lt; '0';
+
+        for(int j=0; j&lt;t.length(); j++)   //遇到.就不输出
+            if(t[j] != '.')
+                cout &lt;&lt; t[j];
+    }
+    else
+    {
+        cout &lt;&lt; t[0];
+        int cnt,j;
+
+        for(j=2, cnt=0; j&lt;t.length() &amp;&amp; cnt&lt;n; j++,cnt++)  //若.和E之间的数字个数大于n，则只输出n个数字来
+            cout &lt;&lt; t[j];
+
+        /*
+            根据上面for结束的情况，一种是j==t.length()表示.和E之间的数字个数小于n，后面直接输出（n-cnt）个0;
+            另一种是cnt==n,表示.和E之间的数字个数大于或等于n，就得先输出. 然后从i=j开始一直到字符完输出
+        */
+        if(j==t.length())
+        {
+            for(int k=0; k&lt;n-cnt; k++)
+                cout &lt;&lt; '0';
+        }
+        else
+        {
+            cout &lt;&lt; '.';
+            for(int k=j; k&lt;t.length(); k++)
+                cout &lt;&lt; t[k];
+        }
+    }
+    return 0;
+}
+
+/*
+
+
+</code></pre>
+<p>知识总结：</p>
+<pre><code class="language-cpp">知识总结：
+1.s.substr() 截取字符串中的子串
+    s.substr(4)  //表示从4开始到下标结束
+    s.substr(5,3)   //表示从5开始3个字符*/
+
+</code></pre>
+<p>我的代码：</p>
+<pre><code class="language-cpp">#include&lt;iostream&gt;
+#include&lt;string&gt;
+using namespace std;
+/*
+    解题思路：
+    1.用string存放输入，判断E之后是+还是-
+    2.若为-，
+        先输出0. + （后面的值-符号和.之间有几位）*输出0  + 输出s[1]  + 输出s[3]--&gt;s[E所在的前一位]
+      若为+，
+        先输出s[1] + （输出第3位开始到E之前的所有数字) + （后面的值-小数点和E之间的数字个数）*输出0
+    3.若第一个字符为-，必须先输出-
+
+*/
+
+int main()
+{
+    string s,s1;
+    cin &gt;&gt; s;
+    int t,m,k;
+    int sum=0;
+    for(int i=0; i&lt;s.length(); i++)
+    {
+        if(s[i]=='E')
+        {
+            t=i;
+            break;
+        }
+    }
+    //计算E之后符号后的数值
+    for(int i=t+2; i&lt;s.length(); i++)
+    {
+        sum+=s[i]-'0';
+        sum*=10;
+    }
+    sum/=10;
+    if(s[0]=='-')
+        cout &lt;&lt; '-';
+    if(s[t+1]=='-')
+    {
+        cout &lt;&lt; 0 &lt;&lt; '.';
+        for(int i=1; i&lt;=sum-1; i++)
+            cout &lt;&lt; 0;
+        cout &lt;&lt; s[1];
+        for(int i=3; i&lt;t; i++)
+            cout &lt;&lt; s[i];
+    }
+    else
+    {
+        cout &lt;&lt; s[1];
+        for(int i=3; i&lt;t; i++)
+            cout &lt;&lt; s[i];
+        for(int i=1; i&lt;=sum-(t-3); i++)
+            cout &lt;&lt; 0;
+    }
+    return 0;
+}
+
+
+
+</code></pre>
+<p>1027<br>
+解题思路：<br>
+1.i表示从中间一行向外扩展的层数，比如样例中i为2<br>
+2.3+5+7+...+2<em>i+1=i(i+2)这是上半部分字符的个数，一共有2</em>i*(i+2)+1个字符。当2<em>i</em>(i+2)+1&gt;N时，令row=i-1表示向外扩大的<br>
+最大层数<br>
+3.通过3个for嵌套循环输出字符：第一for控制打印的层数；第二个for控制打印空格(row-i)；第三for控制打印字符(2<em>i+1)（注意在每一行的最后面<br>
+不需要打印空格，直接换行就能形成样例的效果）<br>
+4.打印最中间一行<br>
+5.打印最后下半部分<br>
+6.输出剩余个数N-（2</em>i*(i+2)+1）</p>
+<p>参考代码：</p>
+<pre><code class="language-cpp">#include&lt;iostream&gt;
+using namespace std;
+
+int main()
+{
+    int N,row=0;   //对row初始化否则超时
+    char c;
+    cin &gt;&gt; N &gt;&gt; c;
+    for(int i=1; i&lt;N; i++)
+    {
+        if((2*i*(i+2)+1)&gt;N)
+        {
+            row=i-1;
+            break;
+        }
+    }
+    for(int i=row; i&gt;=1; i--)
+    {
+        for(int k=row-i; k&gt;=1; k--)
+            cout &lt;&lt; ' ';
+        for(int j=2*i+1; j&gt;=1; j--)
+            cout &lt;&lt; c;
+        cout &lt;&lt; endl;
+    }
+    for(int i=0; i&lt;row; i++)
+        cout &lt;&lt; ' ';
+    cout &lt;&lt; c &lt;&lt; endl;
+    for(int i=1; i&lt;=row; i++)
+    {
+        for(int k=row-i; k&gt;=1; k--)
+            cout &lt;&lt; ' ';
+        for(int j=2*i+1; j&gt;=1; j--)
+            cout &lt;&lt; c;
+        cout &lt;&lt; endl;
+    }
+    cout &lt;&lt; N-(2*row*(row+2)+1);
+    return 0;
+}
+
+
+</code></pre>
+<p>注意事项：<br>
+1.对row要赋初值，否则运行超时</p>
+<p>1028<br>
+解题思路：<br>
+1.用字符串来存储，还是用铁打的营盘流水兵的思想<br>
+2.maxbirth=&quot;1814/09/06&quot;,minbirth=&quot;2014/09/06&quot;都是string类的,string的比较从左至右；对于输入判断&quot;1814/09/06&quot;&lt;=tempbirth&lt;=&quot;2014/09/06&quot;<br>
+参考代码：</p>
+<pre><code class="language-cpp">#include&lt;iostream&gt;
+using namespace std;
+/*
+    解题思路：
+   
+*/
+int main()
+{
+    int n,cnt=0;
+    cin &gt;&gt; n;
+    string name,birth,maxbirth=&quot;1814/09/06&quot;,minbirth=&quot;2014/09/06&quot;,maxname,minname;
+    for(int i=0; i&lt;n; i++)
+    {
+        cin &gt;&gt; name &gt;&gt; birth;
+        if(&quot;1814/09/06&quot;&lt;=birth &amp;&amp; birth&lt;=&quot;2014/09/06&quot;)
+        {
+            cnt++;
+            if(birth&gt;maxbirth)
+            {
+                maxbirth=birth;
+                minname=name;
+            }
+            if(birth&lt;minbirth)
+            {
+                minbirth=birth;
+                maxname=name;
+            }
+        }
+    }
+    cout &lt;&lt; cnt;
+    if(cnt!=0)
+        cout &lt;&lt; &quot; &quot; &lt;&lt; maxname &lt;&lt; &quot; &quot; &lt;&lt; minname;
+}
+
+
+</code></pre>
+<p>知识总结：<br>
+对于string字符串的比较是从左至右，按照ascii码比较</p>
+<p>1029<br>
+解题思路：<br>
+1.以第一个字符串为准使用for循环，然后用a.find(b)来判断a中是否含有b，如果没有find返回string::npos;<br>
+并且用ans来表示第一个字符串和第二个字符串中不相同的且不相同的字符转化为大写也是不同的<br>
+2.最后输出ans<br>
+参考代码：</p>
+<pre><code class="language-cpp">#include&lt;iostream&gt;
+#include&lt;string&gt;
+using namespace std;
+/*
+    解题思路：
+    1.以第一个字符串为准使用for循环，然后用a.find(b)来判断a中是否含有b，如果没有find返回string::npos;
+    并且用ans来表示第一个字符串和第二个字符串中不相同的且不相同的字符转化为大写也是不同的
+    2.最后输出ans
+    3.ans表示s1与s2中不相同的字符的字符串
+*/
+int main()
+{
+    string s1,s2,ans;
+    cin &gt;&gt; s1 &gt;&gt; s2;
+    for(int i=0; i&lt;s1.length(); i++)
+    {
+        if(s2.find(s1[i]) == string::npos &amp;&amp; ans.find(toupper(s1[i])) == string::npos)
+            ans+=toupper(s1[i]);
+    }
+    cout &lt;&lt; ans;
+    return 0;
+}
+
+
+</code></pre>
+<p>知识总结：<br>
+1.toupper（）将小写字母转化成大写字母</p>
+<pre><code class="language-cpp">#include&lt;iostream&gt;
+#include&lt;string&gt;
+using namespace std;
+int main()
+{
+    /*
+        1.toupper函数返回值为整数，在前面加个强制转化即可
+    */
+    char a='d';
+    cout &lt;&lt; (char)toupper(a);
+}
+
+
+</code></pre>
+<p>2.a.find(b)查找a字符串中是否含有b</p>
+<pre><code class="language-cpp">/*
+        1.a.find(b)如果字符串a中包含字符串b则值不等于string::npos，否则相同。a，b可以是字符串也可以是字符
+        2.npos是一个常数，用来表示不存在的位置
+        3.a字符串中如果包含b，则返回0；否则返回4294967295也就是npos
+*/
+#include&lt;iostream&gt;
+#include&lt;string&gt;
+using namespace std;
+int main()
+{
+    string a,b;
+    cin &gt;&gt; a &gt;&gt; b;
+    cout &lt;&lt; a.find(b) &lt;&lt; endl;
+    cout &lt;&lt; string::npos;
+    return 0;
+}
+
+
+</code></pre>
+<p>1030<br>
+解题思路：<br>
+1.先对数组进行排序，从小到大<br>
+2.通过两个for+if-else来找到满足题意的个数，外层for控制遍历整个数列，每次把v[i]当成最小的数，里面的for<br>
+就是判断当前v[i]是最小值时，所对应的满足题意的最多的个数。这里j=i+result与if(v[j]&lt;=v[i]*p)用来表示：比如<br>
+上次循环后result=3，此时一开始就判断从当前i开始往后第3个数是否满足条件，满足就修改result的值，不满足result<br>
+值不变<br>
+参考代码：</p>
+<pre><code class="language-cpp">#include&lt;iostream&gt;
+#include&lt;algorithm&gt;
+#include&lt;vector&gt;
+using namespace std;
+int main()
+{
+    int n,temp,result=0;
+    long long p;
+    cin &gt;&gt; n &gt;&gt; p;
+    vector&lt;int&gt;a(n);     //用vector定义有长度的数组时，数组名后用圆括号()中写数组长度
+    for(int i=0; i&lt;n; i++)
+        cin &gt;&gt; a[i];
+    sort(a.begin(),a.end());
+    for(int i=0; i&lt;n; i++)
+    {
+        for(int j=i+result; j&lt;n; j++)
+        {
+            if(a[j]&lt;=a[i]*p)
+            {
+                temp=j-i+1;
+                if(temp&gt;result)
+                    result=temp;
+            }
+            else
+                break;
+        }
+    }
+    cout &lt;&lt; result;
+    return 0;
+}
+</code></pre>
+<p>知识总结：<br>
+1.int：32位  0--2^32-1   long long： 64位 0--2^64-1<br>
+2.用vector定义有长度的数组时，数组名后用圆括号()中写数组长度</p>
+<p>1031<br>
+解题思路：<br>
+1.定义一个函数isTrue判断字符串是否满足题意<br>
+2.对于全部满足输出&quot;All passed&quot;和不满足时输出字符串，可以使用flag<br>
+3.对于isTrue函数中通过for循环如果有不是数字的字符返回false，并且求出加权和sum<br>
+4.对于末尾数组中有x对应数组中10，设置一个临时变量tem，如果s[17]=='x',将tem=10，然后在判断是否与检验数组中的值对应</p>
+<p>参考代码：</p>
+<pre><code class="language-cpp">#include&lt;iostream&gt;
+using namespace std;
+/*
+    解题思路：
+    1.定义一个函数isTrue判断字符串是否满足题意
+    2.对于全部满足输出&quot;All passed&quot;和不满足时输出字符串，可以使用flag
+    3.对于isTrue函数中通过for循环如果有不是数字的字符返回false，并且求出加权和sum
+    4.对于末尾数组中有x对应数组中10，设置一个临时变量tem，如果s[17]=='x',将tem=10，然后在判断是否与
+    检验数组中的值对应
+*/
+
+
+bool isTrue(string s)
+{
+    int a[17]={7,9,10,5,8,4,2,1,6,3,7,9,10,5,8,4,2};
+    int b[11]={1,0,10,9,8,7,6,5,4,3,2};
+    int sum=0;
+    for(int i=0; i&lt;17; i++)
+    {
+        if(s[i]&lt;'0' || s[i]&gt;'9')
+           return false;
+        sum+=(s[i]-'0')*a[i];
+    }
+    int temp=(s[17]=='X')?10:(s[17]-'0');
+    return b[sum%11]==temp;           //如果最后一位检验相同，就返回True；否则返回false；也可以用if-else来写
+
+}
+int main()
+{
+    int n,flag=0;
+    string s;
+    cin &gt;&gt; n;
+    for(int i=0; i&lt;n; i++)
+    {
+        cin &gt;&gt; s;
+        if(!isTrue(s))
+        {
+            flag=1;
+            cout &lt;&lt; s &lt;&lt; endl;
+        }
+    }
+    if(flag==0)
+        cout &lt;&lt; &quot;All passed&quot;;
+    return 0;
+}
+
+</code></pre>
+<p>1032<br>
+解题思路：<br>
+1.将成绩放到学校编号对应的下标数组中，数组表示成绩之和<br>
+2.将max表示最大成绩的下标，由于题中，学校编号是从1开始，所以max初值为1，最后直接输出max1，和a[max1]。<br>
+参考代码：</p>
+<pre><code class="language-cpp">#include&lt;iostream&gt;
+using namespace std;
+/*
+    解题思路：
+    1.学校编号school，成绩和数组a[]={0},
+    2.
+*/
+int main()
+{
+    int n,tem,max1=1,school;
+    cin &gt;&gt; n;
+    int a[n+1]={0};
+    for(int i=0; i&lt;n; i++)
+    {
+        cin &gt;&gt; school &gt;&gt; tem;
+        a[school]+=tem;
+    }
+    for(int i=2; i&lt;=n; i++)
+    {
+        if(a[i]&gt;a[max1])
+            max1=i;
+    }
+    cout &lt;&lt; max1 &lt;&lt; &quot; &quot; &lt;&lt; a[max1];
+    return 0;
+}
+
+
+</code></pre>
+<p>注意事项：<br>
+1.定义数组a的长度时是n+1并且初值为0，因为题中含义是n个学生，所以学校的编号最大是n，查找最大值时的那个循环要能遍历到n，如果定义数组a的长度为n，那么最后成绩之和最大的是a[n]（未赋初值的数组元素值是任意数），而最大值下标是n。<br>
+2.假设max1=1，也就是假设第一个学校的总分最大</p>
+<ol start="1034">
+<li></li>
+</ol>
+<p>解题思路：<br>
+解题思路：<br>
+1.三个函数：gcd求出最大公约数；func对分数进行化简，main输入a b c d<br>
+2.gcd用辗转相除求最大约数，<br>
+if(t2<mark>0)<br>
+return t1;<br>
+else<br>
+gcd(t2,t1%t2);<br>
+3.gcd函数<br>
+1.如果m*n</mark>0,分为2种情况：分母为0或分母为0，输出时加上判断分子是否为0<br>
+2.用flag表示异号为1，同号为0<br>
+3.对m,n都取绝对值，并向除<br>
+4.func函数：<br>
+1.解决Inf与分子为0的问题<br>
+2.定义flag，对m，n取整，x分子与分母的商<br>
+3.解决对于分数可能添加(-的问题<br>
+4.不论分子与分母是整除还是不整除，都先要输出x<br>
+5.如果对于整除的情况，根据flag看输不输出),并最后退出此函数<br>
+6.如果对于不是整除的情况，就要加上一个空格，以便让假分数的整数部分与分数分开<br>
+7.输出真分数的问题<br>
+1.先计算假分数去除整数部分的分子<br>
+2.然后调用gcd函数算出此时分母与分子的最大公约数<br>
+3.然后算出最简形式<br>
+4.按照分数的格式输出，注意最后还要根据flag看输出输出）。<br>
+5.main：<br>
+1.输入四个值a b c d<br>
+2.对于加法：通分手动算出分子分母然后将其作为参数代入func函数中求最简形式<br>
+3.对于减法，类似只是相减<br>
+4.对于乘法，类似根据手动的策略<br>
+5.对于除法，类似手动求倒数然后代入</p>
+<p>参考代码：</p>
+<pre><code class="language-cpp">#include &lt;iostream&gt;
+#include &lt;cmath&gt;
+#include&lt;cstdio&gt;
+using namespace std;
+long long a, b, c, d;       //为啥要是long long类型？答：必须范围足够大
+/*
+
+*/
+
+
+//辗转相除求最大约数
+long long gcd(long long t1, long long t2) {
+   if(t2==0)
+    return t1;
+  else
+    gcd(t2,t1%t2);
+}
+
+//对分数进行化简
+void func(long long m, long long n)
+{
+ if (m * n == 0)
+ {
+     printf(&quot;%s&quot;, n==0?&quot;Inf&quot;:&quot;0&quot;);
+     return ;
+ }
+
+ //异号是1，同号0
+ bool flag=((m&lt;0 &amp;&amp; n&gt;0) || (m&gt;0 &amp;&amp; n&lt;0));
+ m=abs(m); n= abs(n);
+ long long x = m/n;
+
+ printf(&quot;%s&quot;, flag?&quot;(-&quot;:&quot;&quot;);
+
+ if (x!=0)
+    printf(&quot;%lld&quot;,x);    //注意这里的格式化输出格式是小写的LLL 不是 11111111
+
+ if (m%n==0)
+ {
+        printf(&quot;%s&quot;,flag?&quot;)&quot;:&quot;&quot;);
+    return ;
+ }
+
+ if (x!=0)
+    printf(&quot; &quot;);
+ m=m-x*n;
+ long long t = gcd(m,n);
+ m=m/t; n=n/t;
+ printf(&quot;%lld/%lld%s&quot;,m,n,flag?&quot;)&quot;:&quot;&quot;);
+}
+
+int main()
+{
+ scanf(&quot;%lld/%lld %lld/%lld&quot;, &amp;a, &amp;b, &amp;c, &amp;d);
+ func(a,b); printf(&quot; + &quot;); func(c,d); printf(&quot; = &quot;); func(a*d+b*c,b*d);printf(&quot;\n&quot;);
+ func(a,b); printf(&quot; - &quot;); func(c,d); printf(&quot; = &quot;); func(a*d-b*c,b*d); printf(&quot;\n&quot;);
+ func(a,b); printf(&quot; * &quot;); func(c,d); printf(&quot; = &quot;); func(a*c, b*d);printf(&quot;\n&quot;);
+ func(a,b); printf(&quot; / &quot;); func(c,d); printf(&quot; = &quot;); func(a*d, b*c);
+ return 0;
+}
+
+</code></pre>
+<p>易错点：</p>
+<pre><code class="language-cpp">    if(m*n==0)
+    {
+        printf(&quot;%s&quot;,n==0?&quot;Inf&quot;:&quot;0&quot;);   
+        return ;            // 易错：如果分子为0，或者分母为0，输出完Inf和0之后就应该退出程序；否则扣分
+    }
+
+
+    bool flag=((m&lt;0 &amp;&amp; n&gt;0)||(m&gt;0 &amp;&amp; n&lt;0));   //易错：flag设置为bool类型
+</code></pre>
+<ol start="1035">
+<li></li>
+</ol>
+<p>解题思路：<br>
+插入排序：<br>
+i是数列b中第一个前一个数大于后一个数的位置<br>
+j相当于从i开始一直到b数列结束a数列与b数列完全匹配<br>
+对于插值排序：前面肯定是排好序的，也就是满足升序的序列，如果碰到前一位大于后一位则说明从此位的<br>
+后一位开始一直到数组结束都是乱序的，所以刚好用j从此位的后一位开始一直到数组结束，判断j是否为n，<br>
+如果是则为插序排列，然后对数组a进行sort排序（从头开始到i的下一位在排一次），表示他的下一次的插入排序，</p>
+<pre><code>归并排序：
+1.k初值为1，每次给自己乘2，
+2.由于b是排序过程中的某一此序列，所以用a数列循环和b数列进行比较，flag是一个标记，初值为1，若在循环中
+a[j]!=b[j]则令flag为1（意思是还要进行循环）本来模拟一次就行，但是测试点要求模拟整个过程。
+3.理解while的思路：
+    1.首先要明确，测试点要求整个的算法是模拟归并排序的整个过程，但输出时是要通过此算法得出下一次归并
+    排序的结果。
+    2.首先设置flag为1进入循环，将flag默认为0，下来的for用于判断初始数列和b数列是否相同，若相同则为0，
+    否则为1
+    3.k自乘2，然后for循环+sort(a+i*k,a+(i+1)*2)排序，最后还要有sort(a+n/k*k,a+n);
+</code></pre>
+<p>参考代码：</p>
+<pre><code class="language-cpp">#include&lt;iostream&gt;
+#include&lt;cstdio&gt;
+#include&lt;algorithm&gt;
+using namespace std;
+int main()
+{
+    int n,i,j;
+    cin &gt;&gt; n;
+    int a[n],b[n];
+    for(int i=0; i&lt;n; i++)
+        cin &gt;&gt; a[i];
+    for(int j=0; j&lt;n; j++)
+        cin &gt;&gt; b[j];
+
+    for(i=0; i&lt;n-1 &amp;&amp; b[i]&lt;=b[i+1]; i++)
+        ;
+    for(j=i+1; j&lt;n &amp;&amp; a[j]==b[j]; j++)
+        ;
+    if(j==n)
+    {
+        cout &lt;&lt; &quot;Insertion Sort&quot; &lt;&lt; endl;
+        sort(a,a+i+2);
+    }
+    else
+    {
+        cout &lt;&lt; &quot;Merge Sort&quot; &lt;&lt; endl;
+        int k=1,flag=1;
+        while(flag)
+        {
+            flag=0;
+            for(int i=0; i&lt;n; i++)
+                if(a[i]!=b[i])
+                    flag=1;
+            k=k*2;
+            for(int i=0; i&lt;n/k; i++)
+                sort(a+i*k,a+(i+1)*k);
+            sort(a+n/k*k,a+n);
+        }
+    }
+
+    for(int i=0; i&lt;n; i++)
+    {
+        if(i!=0)
+            cout &lt;&lt; &quot; &quot;;
+        cout &lt;&lt; a[i];
+    }
+    return 0;
+}
+
+</code></pre>
+<p>1036<br>
+解题思路；无<br>
+参考代码：</p>
+<pre><code class="language-cpp">#include&lt;iostream&gt;
+using namespace std;
+/*
+
+*/
+int main()
+{
+    int n;
+    char c;
+    cin &gt;&gt; n &gt;&gt; c;
+    for(int i=0; i&lt;n; i++)
+        cout &lt;&lt; c;
+    cout &lt;&lt; endl;
+    for(int j=0; j&lt;(n/2+n%2-2); j++)
+    {
+        cout &lt;&lt; c;
+        for(int k=0; k&lt;(n-2); k++)
+            cout &lt;&lt; &quot; &quot;;
+        cout &lt;&lt; c &lt;&lt; endl;
+    }
+    for(int i=0; i&lt;n; i++)
+        cout &lt;&lt; c;
+    return 0;
+}
+
+</code></pre>
+<p>易错点：</p>
+<blockquote>
+<p>对于50%的四舍五入是：n/2+n%2。比如17而言，结果为9<br>
+但是如果只有n/2，结果为8；并非四舍五入的结果</p>
+</blockquote>
+<p>1037<br>
+解题思路1：<br>
+1.scanf输入<br>
+2.将数字通过题中所给的进制转化，然后化为一个整数，然后计算。<br>
+解题思路2：<br>
+1.通过诸位比较，得出：实际付的钱小于应该付的钱时，要交换顺序，保证后面减的时候，是大的减小的；并且输出<br>
+负号<br>
+2.用实际付得钱mnt-应该付的钱abc,模拟手动减</p>
+<p>参考代码1：</p>
+<pre><code class="language-cpp">#include&lt;iostream&gt;
+#include&lt;cstdio&gt;
+#include&lt;algorithm&gt;
+using namespace std;
+/*
+    解题思路：
+    1.scanf输入
+    2.将数字通过题中所给的进制转化，然后化为一个整数，然后计算。
+*/
+int main()
+{
+    int a,b,c,a1,b1,c1;
+    scanf(&quot;%d.%d.%d&quot;,&amp;a,&amp;b,&amp;c);
+    scanf(&quot;%d.%d.%d&quot;,&amp;a1,&amp;b1,&amp;c1);
+    int P,A;
+    P=c+b*29+a*17*29;
+    A=c1+b1*29+a1*17*29;
+    int k=A-P;
+    if(k&lt;0)
+    {
+        cout &lt;&lt; '-';
+        k=abs(k);
+    }
+    cout &lt;&lt; k/(17*29) &lt;&lt; '.' &lt;&lt; (k%(17*29))/29 &lt;&lt; '.' &lt;&lt; (k%(17*29))%29;
+    return 0;
+}
+
+
+</code></pre>
+<p>参考代码2；</p>
+<pre><code class="language-cpp">#include&lt;iostream&gt;
+#include&lt;cstdio&gt;
+using namespace std;
+int main()
+{
+    int a,b,c,m,n,t,x,y,z;
+    scanf(&quot;%d.%d.%d %d.%d.%d&quot;,&amp;a,&amp;b,&amp;c,&amp;m,&amp;n,&amp;t);
+    if(a&gt;m || (a==m &amp;&amp; b&gt;n) || (a==m &amp;&amp; b==n &amp;&amp; c&gt;t))
+    {
+        swap(a,m);
+        swap(b,n);
+        swap(c,t);
+        cout &lt;&lt; &quot;-&quot;;
+    }
+    z=c&gt;t?29+t-c:t-c;
+    n=c&gt;t?n-1:n;
+    y=b&gt;n?17+n-b:n-b;
+    x=b&gt;n?m-1-a:m-a;
+    printf(&quot;%d.%d.%d&quot;,x,y,z);
+    return 0;
+}
+
+
+</code></pre>
+<p>注意事项：<br>
+1.abc表示应该付款值，mnt表示实际付款值，如果实际付款值小于应该付款值，则交换位置，并输出符号，因为最后都是用大的减去小的也就是用mnt-abc模拟手动减法</p>
+<p>1038<br>
+解题思路1：<br>
+1.先输入一堆数字放到数组中，然后再输入k，随后把要查找的数放到数组中<br>
+2.然后在循环查找原来数据中要查找数字的个数，并放入数组中，最后循环输出</p>
+<p>参考代码1：</p>
+<pre><code class="language-cpp">#include&lt;iostream&gt;
+using namespace std;
+/*
+    解题思路：
+    1.先输入一堆数字放到数组中，然后再输入k，随后把要查找的数放到数组中
+    2.然后在循环查找原来数据中要查找数字的个数，并放入数组中，最后循环输出
+*/
+int main()
+{
+    int n;
+    cin &gt;&gt; n;
+    int a[n];
+    
+    for(int i=0; i&lt;n; i++)
+        cin &gt;&gt; a[i];
+        
+    int k;
+    cin &gt;&gt; k;
+    int b[k],c[k]={0};
+    
+    for(int j=0; j&lt;k; j++)
+        cin &gt;&gt; b[j];
+    
+    for(int s=0; s&lt;k; s++)
+        for(int l=0; l&lt;n; l++)
+        {
+            if(a[l]==b[s])
+                c[s]++;
+        }
+        
+    for(int i=0; i&lt;k; i++)
+    {
+        if(i!=0)
+            cout &lt;&lt; &quot; &quot;;
+        cout &lt;&lt; c[i];
+    }
+    return 0;
+}
+
+
+</code></pre>
+<p>解题思路2：<br>
+1.将成绩作为下标，然后对应的元素值++<br>
+2.最后直接根据输入的值，循环输出</p>
+<pre><code class="language-cpp">#include&lt;iostream&gt;
+#include&lt;vector&gt;
+#include&lt;cstdio&gt;
+using namespace std;
+int main()
+{
+    int n,temp;
+    cin &gt;&gt; n;
+    vector&lt;int&gt;b(101);
+    for(int i=0; i&lt;n; i++)
+    {
+        cin &gt;&gt; temp;
+        b[temp]++;
+    }
+    int m;
+    cin &gt;&gt; m;
+    for(int i=0; i&lt;m; i++)
+    {
+        scanf(&quot;%d&quot;, &amp;temp);//这里要用scanf否则超时
+        if(i!=0)
+            printf(&quot; &quot;);
+         printf(&quot;%d&quot;, b[temp]);
+    }
+    return 0;
+}
+
+
+</code></pre>
+<p>注意事项：<br>
+对于for循环中有输入+输出，其实在输入时，只有敲回车，才会输出要输出的值，如果用空格将输入分开，则结果直接根据根据循环次数输出对应的值：</p>
+<pre><code class="language-cpp">#include &lt;iostream&gt;
+#include &lt;vector&gt;
+#include&lt;cstdio&gt;
+using namespace std;
+/*
+    解题思路：
+
+*/
+int main()
+{
+    vector&lt;int&gt;b(101);
+    int m=4;
+    int temp;
+     for (int i = 0; i &lt; m; i++)
+    {
+         scanf(&quot;%d&quot;, &amp;temp);
+         if (i != 0)
+            printf(&quot; &quot;);
+         printf(&quot;0&quot;);
+     }
+     return 0;
+ }
+
+
+</code></pre>
+<p><img src="https://img-blog.csdnimg.cn/20200211132105418.png" alt="在这里插入图片描述" loading="lazy"><br>
+<img src="https://img-blog.csdnimg.cn/2020021113212868.png" alt="在这里插入图片描述" loading="lazy"></p>
+<p>1039<br>
+解题思路1：<br>
+1.用字符串s1，s2分别存储摊主的串珠和小红想做的串珠<br>
+2.以s2为基准，for循环，再嵌套for循环s1，如果字符相同则将s1，s2字符都改成#<br>
+3.算出s1中不为#的字符个数，算出s2中为#的字符个数，<br>
+4.if判断如果s2中#的个数等于s2的字符长度，则输出yes和s1中不为#的字符个数；如果<br>
+s2中#的个数不等于s2的字符长度，则输出剩余的字符个数</p>
+<p>参考代码：</p>
+<pre><code class="language-cpp">#include&lt;iostream&gt;
+using namespace std;
+/*
+    解题思路：
+    1.用字符串s1，s2分别存储摊主的串珠和小红想做的串珠
+    2.以s2为基准，for循环，再嵌套for循环s1，如果字符相同则将s1，s2字符都改成#
+    3.算出s1中不为#的字符个数，算出s2中为#的字符个数，
+    4.if判断如果s2中#的个数等于s2的字符长度，则输出yes和s1中不为#的字符个数；如果
+    s2中#的个数不等于s2的字符长度，则输出剩余的字符个数
+*/
+int main()
+{
+    string s1,s2;
+    cin &gt;&gt; s1 &gt;&gt; s2;
+    for(int i=0; i&lt;s2.length(); i++)
+    {
+        for(int j=0; j&lt;s1.length(); j++)
+        {
+            if(s2[i]==s1[j])
+            {
+                s1[j]='#';
+                s2[i]='#';
+            }
+        }
+    }
+    int num2=0,num1=0;
+    for(int i=0; i&lt;s1.length(); i++)
+    {
+        if(s1[i]!='#')
+            num1++;
+    }
+
+    for(int i=0; i&lt;s2.length(); i++)
+    {
+        if(s2[i]=='#')
+            num2++;
+    }
+    if(num2==s2.length())
+        cout &lt;&lt; &quot;Yes &quot; &lt;&lt; num1;
+    else
+        cout &lt;&lt; &quot;No &quot; &lt;&lt; s2.length()-num2;
+    return 0;
+}
+
+</code></pre>
+<p>解题思路2：<br>
+1.将字符串中的字符转化成ascii码，存储到数组book中<br>
+2.设置result为0。for循环b字符串，如果根据字符对应book中的数字，如果大于0则book--，表示<br>
+相同的字符碰掉，如果不大于0，就说原来的字符中就没有或者是用光了，则result++<br>
+3.根据result判断，如果不为0，则输出no，输出result；如果为0，则输出yes，输出原来字符串-现在字符串</p>
+<p>参考代码：</p>
+<pre><code class="language-cpp">#include &lt;iostream&gt;
+using namespace std;
+int book[150];   //book默认值全为0
+int main() 
+{
+/*
+    解题思路：
+    1.将字符串中的字符转化成ascii码，存储到数组book中
+    2.设置result为0。for循环b字符串，如果根据字符对应book中的数字，如果大于0则book--，表示
+    相同的字符碰掉，如果不大于0，就说原来的字符中就没有或者是用光了，则result++
+    3.根据result判断，如果不为0，则输出no，输出result；如果为0，则输出yes，输出原来字符串-现在字符串
+*/
+
+     string a, b;
+     cin &gt;&gt; a &gt;&gt; b;
+     for (int i=0; i&lt;a.length(); i++)
+        book[a[i]]++;
+     int result = 0;
+     for (int i=0; i&lt;b.length(); i++) 
+     {
+         if (book[b[i]] &gt; 0)
+            book[b[i]]--;
+         else
+            result++;
+     }
+     if(result!=0)
+        printf(&quot;No %d&quot;, result);
+     else
+        printf(&quot;Yes %d&quot;, a.length()-b.length());
+     return 0; 
+}
+</code></pre>
+<p>1040<br>
+解题思路1：<br>
+1.先找第一个p，然后依次找A，最后找T，然后构建起来</p>
+<p>参考代码：</p>
+<pre><code class="language-cpp">#include&lt;iostream&gt;
+using namespace std;
+/*
+    解题思路：
+
+*/
+int main()
+{
+    int a=1000000007,num=0,o,p;
+    string s;
+    cin &gt;&gt; s;
+    for(int i=0; i&lt;s.length(); i++)
+    {
+        if(s[i]=='P')
+        {
+            o=i;
+            for(int j=i+1; j&lt;s.length(); j++)
+            {
+                if(s[j]=='A')
+                {
+                    p=j;
+                    for(int k=j+1; k&lt;s.length(); k++)
+                    {
+                        if(s[k]=='T')
+                            num++;
+                    }
+                }
+            }
+        }
+    }
+    cout &lt;&lt; num%a;
+    return 0;
+}
+
+</code></pre>
+<p>解题思路2：<br>
+1.要知道PAT的个数等于对于每一个A，A前P的个数<em>A后T的个数累加起来即为PAT的个数<br>
+2.先循环遍历T的个数<br>
+3.for循环，若遇到P，则countp++，如果遇到A,则直接用countP</em>coutT累加到result，如果遇到T，则countT--，<br>
+4.最后不要忘记对1000000007求余</p>
+<p>参考代码2：</p>
+<pre><code class="language-cpp">#include &lt;iostream&gt;
+#include &lt;string&gt;
+using namespace std;
+/*
+    解题思路：
+    1.要知道PAT的个数等于对于每一个A，A前P的个数*A后T的个数累加起来即为PAT的个数
+    2.先循环遍历T的个数
+    3.for循环，若遇到P，则countp++，如果遇到A,则直接用countP*coutT累加到result，如果遇到T，则countT--，
+    4.最后不要忘记对1000000007求余
+*/
+int main()
+{
+     string s;
+     cin &gt;&gt; s;
+     int len=s.length(), result=0, countp=0, countt=0;
+     for(int i=0; i&lt;len; i++)
+     {
+         if (s[i]=='T')
+         countt++;
+     }
+     for (int i=0; i&lt;len; i++)
+     {
+         if (s[i]=='P')
+            countp++;
+         if (s[i] == 'T')
+            countt--;
+         if (s[i] == 'A')
+            result=(result+(countp * countt))%1000000007;
+     }
+     cout &lt;&lt; result;
+     return 0;
+ }
+
+
+</code></pre>
+<p>1041<br>
+解题思路1：<br>
+1.string存储一个二维数组，设置两个字符串变量s1，s2<br>
+2.输入数据，保存在数组中<br>
+3.输入整数，根据整数来对应数组中的值进行输出<br>
+参考代码1：</p>
+<pre><code class="language-cpp">#include &lt;iostream&gt;
+using namespace std;
+/*
+    解题思路：
+    1.string存储一个二维数组，设置两个字符串变量s1，s2
+    2.输入数据，保存在数组中
+    3.输入整数，根据整数来对应数组中的值进行输出
+*/
+int main()
+{
+     string stu[1005][2], s1, s2;  //切记数组中的行标要超过1000
+     int n, m, t;
+     cin &gt;&gt; n;
+     for(int i=0; i&lt;n; i++) 
+     {
+         cin &gt;&gt; s1 &gt;&gt; t &gt;&gt; s2;
+         stu[t][0] = s1;
+         stu[t][1] = s2;
+     }
+     cin &gt;&gt; m;
+     for(int i=0; i&lt;m; i++) 
+     {
+         cin &gt;&gt; t;
+         cout &lt;&lt; stu[t][0] &lt;&lt; &quot; &quot; &lt;&lt; stu[t][1] &lt;&lt; endl;
+     }
+     return 0;
+ }
+
+
+</code></pre>
+<p>解题思路2：<br>
+1.用结构类型来存储，然后循环找对应的输出即可<br>
+参考代码：</p>
+<pre><code class="language-cpp">#include&lt;iostream&gt;
+using namespace std;
+/*
+    解题思路：
+    1.用结构类型来存储，然后循环找对应的输出即可
+*/
+struct stu
+{
+    long long a;
+    int b;
+    int c;
+};
+int main()
+{
+    int n;
+    cin &gt;&gt; n;
+    stu s[n];
+    for(int i=0; i&lt;n; i++)
+        cin &gt;&gt; s[i].a &gt;&gt; s[i].b &gt;&gt; s[i].c;
+    int m,tem;
+    cin &gt;&gt; m;
+    for(int i=0; i&lt;m; i++)
+    {
+        cin &gt;&gt; tem;
+        for(int i=0; i&lt;n; i++)
+        {
+            if(s[i].b==tem)
+                cout &lt;&lt; s[i].a &lt;&lt; &quot; &quot; &lt;&lt; s[i].c &lt;&lt; endl;
+        }
+    }
+    return 0;
+}
+
+</code></pre>
+<p>1042<br>
+解题思路：<br>
+1.通过getline输入一个字符串<br>
+2.定义一个数组a<br>
+3.将字符串中所有字符改成小写<br>
+4.如果是小写字符，就按照字符的ascii码，输入到数组a中<br>
+5.假设a[0]是最大值，通过循环找出，最大值，以及对应的字符</p>
+<p>参考代码：</p>
+<pre><code class="language-cpp">#include&lt;iostream&gt;
+#include&lt;cctype&gt;
+#include&lt;string&gt;
+#include&lt;cstdio&gt;
+using namespace std;
+int main()
+{
+    string s;
+    int a[26]={0};
+    getline(cin,s);
+    for(int i=0; i&lt;s.length(); i++)
+        s[i]=tolower(s[i]);
+    for(int i=0; i&lt;s.length(); i++)
+        if(islower(s[i]))
+            a[s[i]-'a']++;
+    int max=a[0],t=0;
+    for(int i=1; i&lt;26; i++)
+    {
+        if(a[i]&gt;max)
+        {
+            max=a[i];
+            t=i;
+        }
+    }
+    printf(&quot;%c %d&quot;,'a'+t,max);
+    return 0;
+}
+
+</code></pre>
+<p>知识总结：</p>
+<blockquote>
+<p>tolower ，toupper， isalpha， isalnum， islower，isupper<br>
+用法</p>
+</blockquote>
+<pre><code class="language-cpp">#include&lt;iostream&gt;
+#include&lt;string&gt;
+#include&lt;cctype&gt;
+using namespace std;
+int main()
+{
+
+    /*tolower将字符改成小写
+    string str=&quot;THIS IS A&quot;;
+    for(int i=0; i&lt;str.length(); i++)
+        str[i]=tolower(str[i]);
+    cout &lt;&lt; str;*/
+
+    /*toupper将字符改成大写
+    string str=&quot;this is a&quot;;
+    for(int i=0; i&lt;str.length(); i++)
+        str[i]=toupper(str[i]);
+    cout &lt;&lt; str;*/
+
+    /*isalpha()判断一个字符是否为子母，如果是字符返回非0，否则返会0
+    cout &lt;&lt; isalpha('2');  //返回0
+    cout &lt;&lt; isalpha('A');   返回非0
+    */
+
+    /*isalnum用来判断是否为数字或者子母，
+    cout &lt;&lt; isalnum('A'); 输出非0
+    cout &lt;&lt; isalnum('2');  输出非0
+    cout &lt;&lt; isalnum('.');  输出0
+    */
+
+    /*islower判断是否为小写字母，是，返回非0；不是，返回0
+    cout &lt;&lt; islower('a');
+    cout &lt;&lt; islower('A');
+    */
+
+    /*isupper判断是否为大写字母，是，返回非0，不是返回0
+    cout &lt;&lt; isupper('A');
+    cout &lt;&lt; isupper('a');
+    */
+}
+
+</code></pre>
+<p>1043<br>
+解题思路1：<br>
+1.首先输入字符串，将字符串中PATest对应的个数分别存放到a数组中，默认a[0]对应字符P,a[1]对应字符A......<br>
+2.用do-while循环，按照PATest的顺序输出字符，每输出一个字符个数减少1，然后循环判断是只要a数组中的数据元素一个不为<br>
+0，就循环，只到所有字符按顺序输出完，这样数组a全是0，然后就结束循环</p>
+<p>参考代码：</p>
+<pre><code class="language-cpp">#include&lt;iostream&gt;
+using namespace std;
+/*
+    解题思路：
+    1.首先输入字符串，将字符串中PATest对应的个数分别存放到a数组中，默认a[0]对应字符P,a[1]对应字符A......
+    2.用do-while循环，按照PATest的顺序输出字符，每输出一个字符个数减少1，然后循环判断是只要a数组中的数据元素一个不为
+    0，就循环，只到所有字符按顺序输出完，这样数组a全是0，然后就结束循环
+*/
+int main()
+{
+    string s;
+    int a[6]={0};
+    char c;
+    int j=0;
+    cin &gt;&gt; s;
+    for(int i=0; i&lt;s.length(); i++)
+    {
+        if(s[i]=='P')
+            a[0]++;
+        if(s[i]=='A')
+            a[1]++;
+        if(s[i]=='T')
+            a[2]++;
+        if(s[i]=='e')
+            a[3]++;
+        if(s[i]=='s')
+            a[4]++;
+        if(s[i]=='t')
+            a[5]++;
+    }
+  do
+  {
+    if(a[0]!=0)
+    {
+        cout &lt;&lt; 'P';
+        a[0]--;
+    }
+
+    if(a[1]!=0)
+    {
+        cout &lt;&lt; 'A';
+        a[1]--;
+    }
+    if(a[2]!=0)
+    {
+       cout &lt;&lt; 'T';
+       a[2]--;
+    }
+    if(a[3]!=0)
+    {
+        cout &lt;&lt; 'e';
+        a[3]--;
+    }
+    if(a[4]!=0)
+    {
+        cout &lt;&lt; 's';
+        a[4]--;
+    }
+    if(a[5]!=0)
+    {
+        cout &lt;&lt; 't';
+        a[5]--;
+    }
+
+  }while(a[0]!=0 || a[1]!=0 || a[2]!=0 || a[3]!=0 || a[4]!=0 || a[5]!=0);
+
+    return 0;
+}
+
+</code></pre>
+<p>解题思路2：<br>
+1.用cin.get()将字符串中的字符保存到其ASCII码下标的数组中<br>
+2.用while+if进行循环</p>
+<p>参考代码：</p>
+<pre><code class="language-cpp">#include &lt;iostream&gt;
+using namespace std;
+/*
+    解题思路：
+
+*/
+int main()
+{
+     int map[128]={0},c;
+     while ((c = cin.get()) != EOF)   //表示没有到文件的结尾，判题的时候输入一个样例，就是到文件的结尾了
+        map[c]++;
+     while (map['P'] &gt; 0 || map['A'] &gt; 0 || map['T'] &gt; 0 || map['e'] &gt; 0 ||map['s'] &gt; 0 || map['t'] &gt; 0)
+     {
+         if (map['P']-- &gt;0)     //对于map['P']-- &gt;0是先比较后自减，对于--map['P'] &gt;0 是先自减后比较
+            cout &lt;&lt; 'P';
+         if (map['A']-- &gt;0)
+           cout &lt;&lt; 'A';
+         if (map['T']-- &gt;0)
+           cout &lt;&lt; 'T';
+         if (map['e']-- &gt;0)
+           cout &lt;&lt; 'e';
+         if (map['s']-- &gt;0)
+           cout &lt;&lt; 's';
+         if (map['t']-- &gt;0)
+           cout &lt;&lt; 't';
+     }
+     return 0;
+ }
+
+
+</code></pre>
+<p>1044<br>
+解题思路：<br>
+1.还是用字符串数组保存参数<br>
+2.设置void func1和void func2函数分别表示将数字转换为火星文，将火星文转化为数字<br>
+3.对于func1而言：<br>
+1.对于t/13的除数放到b数组中查找<br>
+2.如t/13和t%13均不为0，则输出“ ”<br>
+3.对于t%13的数在a数组中查找，同时也要对t为0时，是在a数组中找<br>
+4.对于func2而言：<br>
+1.将str中0--2中的字符串赋值出来，如果字符串长度大于4，则将4--6字符串复制出来<br>
+2.for循环从1开始对于13以内的数字则s1==a[j]或者大于13则s2=a[j]<br>
+3.对于s1再在b数组中找，返回t1*13+t2;</p>
+<p>参考代码：</p>
+<pre><code class="language-cpp">#include &lt;iostream&gt;
+#include &lt;string&gt;
+#include&lt;cstdio&gt;
+using namespace std;
+/*
+    1.还是用字符串数组保存参数
+    2.设置void func1和void func2函数分别表示将数字转换为火星文，将火星文转化为数字
+    3.对于func1而言：
+        1.对于t/13的除数放到b数组中查找
+        2.如t/13和t%13均不为0，则输出“ ”
+        3.对于t%13的数在a数组中查找，同时也要对t为0时，是在a数组中找
+    4.对于func2而言：
+        1.将str中0--2中的字符串赋值出来，如果字符串长度大于4，则将4--6字符串复制出来
+        2.for循环从1开始对于13以内的数字则s1==a[j]或者大于13则s2=a[j]
+        3.对于s1再在b数组中找，返回t1*13+t2;
+*/
+string a[13] = {&quot;tret&quot;, &quot;jan&quot;, &quot;feb&quot;, &quot;mar&quot;, &quot;apr&quot;, &quot;may&quot;, &quot;jun&quot;, &quot;jly&quot;, &quot;aug&quot;,&quot;sep&quot;, &quot;oct&quot;, &quot;nov&quot;, &quot;dec&quot;};
+string b[13] = {&quot;####&quot;, &quot;tam&quot;, &quot;hel&quot;, &quot;maa&quot;, &quot;huh&quot;, &quot;tou&quot;, &quot;kes&quot;, &quot;hei&quot;, &quot;elo&quot;,&quot;syy&quot;, &quot;lok&quot;, &quot;mer&quot;, &quot;jou&quot;};
+//将字符串和长度len设置为全局变量，这样方便调用函数时，不用传入过多的参数
+string s;       
+int len;
+
+void func1(int t)
+{
+ if (t/13)
+    cout &lt;&lt; b[t/13];
+ if ((t/13) &amp;&amp; (t%13))
+    cout &lt;&lt; &quot; &quot;;
+ if (t%13 || t==0)
+    cout &lt;&lt; a[t%13];
+}
+
+void func2()
+{
+     int t1=0, t2=0;
+     string s1=s.substr(0,3),s2;   //substr复制字符串的函数
+     if (len&gt;4)
+        s2 = s.substr(4,3);
+     for (int j = 1; j &lt;= 12; j++)
+     {
+         if (s1==a[j] || s2==a[j])    //为啥要填入s1=a[j]? 答：对于13进制以内的数有用，如feb=5;
+            t2=j;
+         if (s1==b[j])
+            t1=j;
+     }
+     cout &lt;&lt; t1*13+t2;
+ }
+
+int main()
+{
+     int n;
+     cin &gt;&gt; n;
+     getchar();         //清除缓冲区的回车字符，注意以后在循环外和内中都要输入时，不要忘记加上getchar()消除缓冲区的字符
+     for (int i = 0; i &lt; n; i++)
+     {
+         getline(cin, s);
+         len=s.length();
+         if (s[0]&gt;='0' &amp;&amp; s[0]&lt;='9')
+            func1(stoi(s));
+         else
+            func2();
+         cout &lt;&lt; endl;
+     }
+     return 0;
+ }
+
+</code></pre>
+<p>注意事项：<br>
+1.清除缓冲区的回车字符，注意以后在循环外和内中都要输入时，不要忘记加上getchar()消除缓冲区的字符<br>
+2.注意格式，在主函数中每次循环一次输出endl，但在自身的输入时不要加endl</p>
+<p>知识总结：<br>
+stoi（将数字字符串改为整数）+ s.substr(pos,n)（将字符串中的字符复制到另一个字符串中）</p>
+<pre><code class="language-cpp">#include&lt;iostream&gt;
+#include&lt;string&gt;
+using namespace std;
+int main()
+{/*
+    string str=&quot;abcdef&quot;;
+    string a=str.substr(0,11);
+    cout &lt;&lt; a;
+
+0. 用途：一种构造string的方法
+
+1. 形式：s.substr(pos, n)
+
+2. 解释：返回一个string，包含s中从pos开始的n个字符的拷贝（pos的默认值是0，n的默认值是s.size() - pos，即不加参数会默认拷贝整个s）
+
+3. 补充：若pos的值超过了string的大小，则substr函数会抛出一个out_of_range异常；若pos+n的值超过了string的大小，则substr会调整n的值，只拷贝到string的末尾*/
+
+/*字符串转化整数函数
+    string s=&quot;123&quot;;
+    cout &lt;&lt; stoi(s);
+    */
+}
+
+</code></pre>
+<p>1045<br>
+解题思路1：<br>
+解题思路：<br>
+1.设置三个数组：abv分别表示原始数组，sort排列后的数组，主元元素数组<br>
+2.核心思路，找a与b数组中相同的数字，并且该数字大于前的最大值，因为如果a与b的某个数字相同，说明后面的元素<br>
+都比该元素大，故只用说明该数字大于之前的最大值即可<br>
+3.输出数组v<br>
+注意事项：<br>
+1.输出主元元素的个数时，要换行<br>
+2.最后整个数组输出完后，加换行</p>
+<p>参考代码：</p>
+<pre><code class="language-cpp">#include&lt;iostream&gt;
+#include&lt;vector&gt;
+#include&lt;algorithm&gt;
+using namespace std;
+int v[1000000];
+int main()
+{
+    int n,max=-1,cnt=0;
+    cin &gt;&gt; n;
+    vector&lt;int&gt; a(n),b(n);
+    for(int i=0; i&lt;n; i++)
+    {
+        cin &gt;&gt; a[i];
+        b[i]=a[i];
+    }
+    sort(a.begin(),a.end());
+    for(int i=0; i&lt;n; i++)
+    {
+        if(a[i]==b[i] &amp;&amp; b[i]&gt;max)
+        {
+            v[cnt++]=b[i];
+        }
+
+        if(b[i]&gt;max)
+            max=b[i];
+    }
+    cout &lt;&lt; cnt &lt;&lt; endl;
+    for(int i=0; i&lt;cnt; i++)
+    {
+        if(i!=0)
+            cout &lt;&lt; &quot; &quot;;
+        cout &lt;&lt; v[i];
+    }
+    cout &lt;&lt; endl;
+    return 0;
+}
+
+</code></pre>
+<p>解题思路2；<br>
+1.主元的判断条件：左边元素都比其小，右边的元素都比其大，或者换句话说，如果左边的某个数比其大或者右边的某个数比其小，则<br>
+不是主元<br>
+2.可以将合适的数组放到数组中，最后排序输出</p>
+<p>参考代码：</p>
+<pre><code class="language-cpp">#include&lt;iostream&gt;
+#include&lt;algorithm&gt;
+using namespace std;
+/*
+
+*/
+int main()
+{
+    int n,num=0;
+    cin &gt;&gt; n;
+    int a[n],b[n];
+    for(int i=0; i&lt;n; i++)
+    {
+        cin &gt;&gt; a[i];
+        b[i]=a[i];
+    }
+
+    sort(a,&amp;a[n]);
+    for(int i=0; i&lt;n; i++)
+    {
+        if(a[i]==b[i])
+            num++;
+    }
+    cout &lt;&lt; num &lt;&lt; endl;
+    for(int i=0; i&lt;n; i++)
+    {
+        if(a[i]==b[i])
+        {
+            if(i!=0)
+                cout &lt;&lt; &quot; &quot;;
+            cout &lt;&lt; a[i];
+        }
+    }
+    return 0;
+}
+
+
+</code></pre>
+<p>1046<br>
+解题思路：<br>
+1.设置四个，jiahan，jiahua，yihan，yihua, jiahe,yihe<br>
+2.逻辑如下</p>
+<p>参考代码：</p>
+<pre><code class="language-cpp">#include&lt;iostream&gt;
+using namespace std;
+/*
+
+*/
+int main()
+{
+    int n;
+    cin &gt;&gt; n;
+    int jiahan,jiahua,yihan,yihua,jiahe=0,yihe=0;
+    for(int i=0; i&lt;n; i++)
+    {
+        scanf(&quot;%d %d %d %d&quot;,&amp;jiahan,&amp;jiahua,&amp;yihan,&amp;yihua);
+        if(jiahua==jiahan+yihan &amp;&amp; jiahua!=yihua)
+            yihe++;
+        if(yihua==jiahan+yihan &amp;&amp; jiahua!=yihua)
+            jiahe++;
+
+
+    }
+        cout &lt;&lt; jiahe &lt;&lt; &quot; &quot; &lt;&lt; yihe &lt;&lt; endl;
+    return 0;
+}
+
+</code></pre>
+<p>1047<br>
+解题思路：<br>
+1.必然有使用scanf输入<br>
+2.完全可以将最后成绩保存在队伍编号的数组中</p>
+<p>参考代码：</p>
+<pre><code class="language-cpp">#include&lt;iostream&gt;
+using namespace std;
+/*
+
+*/
+
+int main()
+{
+    int n,duiwu,duiyuan,chengji,maxduiwu=0;
+    cin &gt;&gt; n;
+    int a[1001]={0};
+    for(int i=0; i&lt;n; i++)
+    {
+        scanf(&quot;%d-%d %d&quot;,&amp;duiwu,&amp;duiyuan,&amp;chengji);
+        a[duiwu]+=chengji;
+    }
+    for(int i=0; i&lt;1001; i++)
+    {
+        if(a[i]&gt;a[maxduiwu])
+            maxduiwu=i;
+    }
+    cout &lt;&lt; maxduiwu &lt;&lt; &quot; &quot; &lt;&lt; a[maxduiwu];
+    return 0;
+}
+
+</code></pre>
+<p>1048<br>
+解题思路：<br>
+1.将a，b字符串倒转过来<br>
+2.根据比较字符串长度，给较短位补0<br>
+3.设置str保存0,1..J,Q,K<br>
+4.对于原来的数位而言，从个位开始就是奇数位，下一位就是偶数位，如果倒转过来，第一位虽然是偶数位，但是<br>
+还是执行的是原来奇数位的操作。<br>
+5.每次循环时将计算结果累加到字符串c中，最后倒叙输出</p>
+<p>参考代码：</p>
+<pre><code class="language-cpp">#include&lt;iostream&gt;
+#include&lt;algorithm&gt;
+using namespace std;
+int main()
+{
+    string a,b,c;
+    string str=&quot;0123456789JQK&quot;;
+    cin &gt;&gt; a &gt;&gt; b;
+    reverse(a.begin(),a.end());
+    reverse(b.begin(),b.end());
+
+    if(a.length()&gt;b.length())
+        b.append(a.length()-b.length(),'0');
+    else
+        a.append(b.length()-a.length(),'0');
+
+    for(int i=0; i&lt;b.length(); i++)
+    {
+        if(i%2==0)
+            c+=str[(b[i]-'0'+a[i]-'0')%13];
+        else
+        {
+            int tem=b[i]-a[i];
+            if(tem&lt;0)
+                tem+=10;
+            c+=str[tem];       //由于对应的数字位相减，所以最大差值为9，而c是字符串，所以也可以直接用str[tem]来连接
+        }
+    }
+    for(int i=c.length()-1; i&gt;=0; i--)
+        cout &lt;&lt; c[i];
+    return 0;
+}
+
+</code></pre>
+<p>知识总结：<br>
+1.a.append(n,c)表示对字符串a的尾部添加n个字符c<br>
+2.reverse(a.begin(),a.end()) 对字符串a进行倒转</p>
+<p>1049<br>
+解题思路：<br>
+1.通过找规律，其实就是每个数字出现i*(n-i+1)次，<br>
+2.规律如下图：</p>
+<p>参考代码：</p>
+<pre><code class="language-cpp">#include&lt;iostream&gt;
+using namespace std;
+/*
+    解题思路：
+
+*/
+int main()
+{
+    int n;
+    cin &gt;&gt; n;
+    double sum=0.0,tem;
+    for(int i=1; i&lt;=n; i++)
+    {
+        cin &gt;&gt; tem;
+        sum+=tem*i*(n-i+1);
+    }
+    printf(&quot;%.2f&quot;,sum);
+}
+
+</code></pre>
+<figure data-type="image" tabindex="1"><img src="https://img-blog.csdnimg.cn/20200220134238258.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dzZmhkaGpz,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述" loading="lazy"></figure>
+]]></content>
+    </entry>
     <entry>
         <title type="html"><![CDATA[大话数据结构第九章笔记（排序）]]></title>
         <id>https://wsf123sd.github.io/post/da-hua-shu-ju-jie-gou-di-jiu-zhang-bi-ji-pai-xu/</id>
