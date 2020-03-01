@@ -2,7 +2,7 @@
 <feed xmlns="http://www.w3.org/2005/Atom">
     <id>https://wsf123sd.github.io/</id>
     <title>Gridea</title>
-    <updated>2020-03-01T04:17:58.557Z</updated>
+    <updated>2020-03-01T04:20:43.739Z</updated>
     <generator>https://github.com/jpmonette/feed</generator>
     <link rel="alternate" href="https://wsf123sd.github.io/"/>
     <link rel="self" href="https://wsf123sd.github.io/atom.xml"/>
@@ -10,6 +10,1088 @@
     <logo>https://wsf123sd.github.io/images/avatar.png</logo>
     <icon>https://wsf123sd.github.io/favicon.ico</icon>
     <rights>All rights reserved 2020, Gridea</rights>
+    <entry>
+        <title type="html"><![CDATA[大话数据结构第六章笔记（树）]]></title>
+        <id>https://wsf123sd.github.io/post/da-hua-shu-ju-jie-gou-di-liu-zhang-bi-ji-shu/</id>
+        <link href="https://wsf123sd.github.io/post/da-hua-shu-ju-jie-gou-di-liu-zhang-bi-ji-shu/">
+        </link>
+        <updated>2020-03-01T04:20:04.000Z</updated>
+        <content type="html"><![CDATA[<p>6.2树的定义：<br>
+1.树是n个结点的有限集，n=0时称为空树<br>
+2.有且仅有一个特定的根<br>
+3.子树的个数没有限制，但他们一定是不相交，如下图，就不是子树<br>
+<img src="https://img-blog.csdnimg.cn/20191231202354754.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dzZmhkaGpz,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述" loading="lazy"><br>
+4.结点拥有的子树数称为结点的度。度为0的结点称为叶节点；度不为0的结点称为分支结点。除根节点之外，分支节点也称内部结点；树的度是树内各结点的度的最大值，如下图<br>
+<img src="https://img-blog.csdnimg.cn/20191231203344509.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dzZmhkaGpz,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述" loading="lazy"></p>
+<p>6.3结点间的关系：<br>
+1.结点的祖先是从根到该结点所经分支上的所有结点 对于H而言ABD都为他的祖先。其他各种关系见下图<br>
+<img src="https://img-blog.csdnimg.cn/20191231203245223.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dzZmhkaGpz,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述" loading="lazy"><br>
+2.树的相关概念，如下图：<br>
+<img src="https://img-blog.csdnimg.cn/20191231203808831.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dzZmhkaGpz,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述" loading="lazy"><br>
+3.树与线性表之间的差别，如下图：<br>
+<img src="https://img-blog.csdnimg.cn/20191231203824606.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dzZmhkaGpz,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述" loading="lazy"><br>
+6.3树的抽象数据类型，如下图：<br>
+<img src="https://img-blog.csdnimg.cn/20191231204652847.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dzZmhkaGpz,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述" loading="lazy"><br>
+6.4树的存储结构=== 双亲表示法<br>
+1.除了根节点啊外，其余每个结点，它不一定有孩子，但是一定有且仅有一个双亲<br>
+2.以一组连续空间存储树的结点，同时在每个结点中，附设一个指示器指示其双亲结点在数组中的位置，结构如下：</p>
+<pre><code class="language-bash">data parent  //data是数据域，存储结点的数据信息。parent是指针域，存储该结点的双亲在数组中的下标
+</code></pre>
+<p>双亲表示法的结点结构定义代码：</p>
+<pre><code class="language-cpp">//树的双亲表示法结点结构定义
+#define MAX_TREE_SIZE 100
+typedef int TElemType;   //树结点的数据类型，目前暂定位整型
+typedef struct PTNode   //结点结构
+{
+	TElemType data;   //结点数据
+	int parent;        //双亲位置
+}PTNode;
+typedef struct       //树的结构
+{
+	PTNode nodes[MAX_TREE_SIZE];   //结点数组
+	int r,n;         //根的位置和结点数
+}
+</code></pre>
+<p>上面的代码对应下图：<br>
+<img src="https://img-blog.csdnimg.cn/20191231210350239.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dzZmhkaGpz,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述" loading="lazy"><br>
+改进1：在结点中加入左孩子：<br>
+<img src="https://img-blog.csdnimg.cn/20191231210401533.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dzZmhkaGpz,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述" loading="lazy"><br>
+改进2：在结点中加入有兄弟：<br>
+<img src="https://img-blog.csdnimg.cn/20191231210410793.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dzZmhkaGpz,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述" loading="lazy"><br>
+6.4.2孩子表示法：由于树中每个结点可能有多棵子树，可以考虑用多重链表，即每个结点有多个指针域，其中每个指针指向一颗子树的根结点，我们把这种方法叫做多重链表法：如下图，有两种方案：<br>
+方案一：<br>
+指针域的个数就是树的度，树的度是树中各个结点度的最大值，结构如下图：<br>
+<img src="https://img-blog.csdnimg.cn/20191231213303600.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dzZmhkaGpz,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述" loading="lazy"><br>
+方案2：<br>
+每个结点指针域的个数等于该结点的度，专门取一个位置来存储结点指针域的个数，如下图：<br>
+<img src="https://img-blog.csdnimg.cn/20191231213251681.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dzZmhkaGpz,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述" loading="lazy"><br>
+重点是如下：<br>
+孩子表示法：把每个结点的孩子结点排列起来，以单链表做存储结构，则n个结点有n个孩子链表，如果是叶子结点则此单链表为空。然后n个头指针有组成一个线性表，采用顺序存储结构，存放进一个维数组中，如图</p>
+<pre><code class="language-cpp">//树的孩子表示法结构定义：
+#define MAX_TREE_SIZE 100
+typedef struct CTNode   //孩子结点
+{
+	int chile;  //数据域：用来存储某个结点在表头数组中的下标
+	struct CTNode *next;  //指针域：存储指向某结点另一个孩子结点的指针
+}*ChildPtr;
+typedef struct 
+{
+	TElemType data;  //存储某结点的数据信息
+	ChildPtr firstchild; //存储该结点的孩子链表的头指针
+}CTBox;
+typedef struct     //树结构
+{
+	CTBox nodes[MAX_TREE_SIZE];  //结点数组
+	int r,n;        //根的位置和结点数
+}
+
+</code></pre>
+<p><img src="https://img-blog.csdnimg.cn/2019123121443736.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dzZmhkaGpz,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述" loading="lazy"><br>
+双亲表示法和孩子表示法综合，如下图：<br>
+<img src="https://img-blog.csdnimg.cn/20191231214837104.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dzZmhkaGpz,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述" loading="lazy"><br>
+6.4.3孩子兄弟表示法：<br>
+结点结构如下图：<br>
+firstchild 为指针域，存储该结点的第一个孩子存储地址<br>
+<img src="https://img-blog.csdnimg.cn/2019123121564494.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dzZmhkaGpz,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述" loading="lazy"><br>
+结构定义代码如下：</p>
+<pre><code class="language-cpp">//树的孩子兄弟表示法结构定义：
+typedef struct CSNode
+{
+	TElemType data;
+	struct CSNode *fitstchild, *rightsib;
+}CSNode, *CSTree;
+</code></pre>
+<p>上面代码如下图：<br>
+<img src="https://img-blog.csdnimg.cn/20191231215849928.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dzZmhkaGpz,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述" loading="lazy"><br>
+6.5二叉树<br>
+1.如图便是二叉树，不能有3个结点：<br>
+<img src="https://img-blog.csdnimg.cn/20191231220217170.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dzZmhkaGpz,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述" loading="lazy">6.5.1二叉树特点：<br>
+1.每个结点最多有两颗子树<br>
+2.左子树与右子树是有顺序的，次序不能任意颠倒<br>
+3.即使树中某结点只有一颗树，也要区分它是左子书还是右子树</p>
+<p>二叉树的五种基本形态：<br>
+1.空二叉树<br>
+2.只有一个根节点<br>
+3.根结点只有左子树<br>
+4.根结点只有右子树<br>
+5.根结点既有左子树又有右子树</p>
+<p>6.5.2特殊二叉树<br>
+1.斜树，满二叉树，完全二叉树 以及 满二叉树的特点和完全二叉树的特点，：如下图：<br>
+<img src="https://img-blog.csdnimg.cn/20200101205140586.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dzZmhkaGpz,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述" loading="lazy"><br>
+<img src="https://img-blog.csdnimg.cn/20200101205158141.png" alt="在这里插入图片描述" loading="lazy"><br>
+完全二叉树的特点：<br>
+<img src="https://img-blog.csdnimg.cn/20200101205220907.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dzZmhkaGpz,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述" loading="lazy"><br>
+完全二叉树与满二叉树的关系：<br>
+<img src="https://img-blog.csdnimg.cn/20200101205227988.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dzZmhkaGpz,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述" loading="lazy"><img src="https://img-blog.csdnimg.cn/20200101205248318.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dzZmhkaGpz,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述" loading="lazy"><br>
+满二叉树的特点：<br>
+<img src="https://img-blog.csdnimg.cn/20200101205312212.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dzZmhkaGpz,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述" loading="lazy"></p>
+<p>6.6二叉树的性质：<br>
+1.某一层上最多有多少个结点<br>
+<img src="https://img-blog.csdnimg.cn/20200101210138616.png" alt="在这里插入图片描述" loading="lazy"><br>
+2.深度为k的二叉树最多有几个结点：<br>
+<img src="https://img-blog.csdnimg.cn/20200101210128770.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dzZmhkaGpz,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述" loading="lazy"><br>
+3.n0表示度为0的结点个数，n1表示度为1的结点的个数，n2表示度为2的结点的个数<br>
+<img src="https://img-blog.csdnimg.cn/20200101210056806.png" alt="在这里插入图片描述" loading="lazy"><br>
+<img src="https://img-blog.csdnimg.cn/20200101210115437.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dzZmhkaGpz,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述" loading="lazy"><br>
+4.完全二叉树的深度<br>
+<img src="https://img-blog.csdnimg.cn/20200101210030592.png" alt="在这里插入图片描述" loading="lazy"><br>
+5.对于根结点，左孩子，右孩子的判定方法：<br>
+<img src="https://img-blog.csdnimg.cn/20200101210019979.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dzZmhkaGpz,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述" loading="lazy"></p>
+<p>6.7.1二叉树的顺序存储结构：<br>
+用数组存放，没有就像倒V表示，如下图：<br>
+<img src="https://img-blog.csdnimg.cn/20200101210629187.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dzZmhkaGpz,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述" loading="lazy"><br>
+<img src="https://img-blog.csdnimg.cn/20200101210615923.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dzZmhkaGpz,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述" loading="lazy"><br>
+6.7.2二叉链表：<br>
+用链式存储结构来存放二叉树，设计一个数据域，两个指针分别指向左孩子和右孩子，如下图：<br>
+<img src="https://img-blog.csdnimg.cn/20200101211952142.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dzZmhkaGpz,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述" loading="lazy"></p>
+<p>二叉链表的结点结构定义：</p>
+<pre><code class="language-cpp">//二叉树的二叉链表结点结构定义：
+typedef struct BiTNode        //结点结构
+{
+	TElemType data;       //结点数据
+	struct BiTNode *lchild, *rchild;    //左右孩子指针
+}BiTNode, *BiTree;
+</code></pre>
+<p>结构示意图如下：<br>
+<img src="https://img-blog.csdnimg.cn/20200101211934670.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dzZmhkaGpz,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述" loading="lazy"></p>
+<p>6.8.2二叉树4中遍历方法：<br>
+1.前序遍历法<br>
+2.中序遍历法<br>
+3.后序遍历法<br>
+4.层序遍历法</p>
+<p><img src="https://img-blog.csdnimg.cn/20200101212151521.png" alt="在这里插入图片描述" loading="lazy"><br>
+<img src="https://img-blog.csdnimg.cn/20200101212228822.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dzZmhkaGpz,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述" loading="lazy"></p>
+<p>6.8.3前序遍历法：</p>
+<pre><code class="language-cpp">//二叉树的前序遍历递归算法
+void PreOrderTraverse(BiTree T)
+{
+	if(T==NULL)
+		return ;
+	printf(&quot;%c&quot;,T-&gt;data);      //显示结点数据，可以更改为为其它节点的操作
+	PreOrderTraverse(T-&gt;lchild);     //先遍历左子树
+	PreOrderTraverse(T-&gt;rchild);        //最后遍历右子树
+}
+</code></pre>
+<p>按照如下的顺序访问：<br>
+<img src="https://img-blog.csdnimg.cn/20200101212935308.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dzZmhkaGpz,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述" loading="lazy"><br>
+<img src="https://img-blog.csdnimg.cn/2020010121295030.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dzZmhkaGpz,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述" loading="lazy"><br>
+<img src="https://img-blog.csdnimg.cn/20200101213004977.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dzZmhkaGpz,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述" loading="lazy"><br>
+<img src="https://img-blog.csdnimg.cn/20200101213046165.png" alt="在这里插入图片描述" loading="lazy"></p>
+<p>6.8.4中序遍历算法代码：</p>
+<pre><code class="language-cpp">//二叉树的中序遍历递归算法
+void InOrderTraverse(BiTree T)
+{
+	if(T==NULL)
+		return ;
+	InOrderTraverse(T-&gt;lchild);    //中序遍历左子树
+	printf(&quot;%c&quot;,T-&gt;data)         //显示节点数据，可以更改为其他对结点操作
+	InOrderTraverse(T-&gt;rchild);     //最后中序遍历右子树
+}
+</code></pre>
+<p>中序遍历结点示意图：<br>
+<img src="https://img-blog.csdnimg.cn/20200101213810373.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dzZmhkaGpz,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述" loading="lazy"></p>
+<p>6.8.5后续遍历法代码：</p>
+<pre><code class="language-cpp">//二叉树后序遍历递归算法：
+void PostOrderTraverse(BiTree T)
+{
+	if(T==NULL)
+		return ;
+	PostOrderTraverse(T-&gt;lchild);   //先后序遍历左子树
+	PostOrderTraverse(T-&gt;rchild);    //后序遍历右子树
+	printf(&quot;%c&quot;,T-&gt;data);       //显示结点数据，可以更改为对其他结点操作
+}
+</code></pre>
+<p>6.9二叉树的建立：<br>
+1.扩展二叉树：将二叉树中每个结点的空指针引出一个虚节点，其值为以特定值，比如&quot;#&quot;，称这种处理后的二叉树为原二叉树的扩展二叉树。如下图：</p>
+<p>2.把前序遍历序列：AB#D##C##用键盘诶个输入，代码如下：<br>
+也可以用中序或后序遍历的方法实现<br>
+中序：输入顺序为#B#D#A#C#      对应代码顺序为：构造左子树—》生成结点-》构造右子树<br>
+后序：输入顺序为###DB##CA     对应代码顺序为： 构造左子树-》构造右子树-》生成结点</p>
+<pre><code class="language-cpp">//按前序输入二叉树中结点的值（一个字符）
+//#表示空树，构造二叉链表表示二叉树T
+void CreateBiTree(BiTree *T)
+{
+	TElemType ch;
+	scanf(&quot;%c&quot;, &amp;ch);
+	if(ch==&quot;#&quot;)
+		*T=NULL;
+	else
+	{
+		*T=(BiTree)malloc(sizeof(BiTNode));
+		if(!*T)
+			exit(OVERFLOW);
+		(*T)-&gt;data=ch;     //生成根结点
+		CreateBiTree(&amp;(*T)-&gt;lchild);             //构造左子树
+		CreateBitree(&amp;(*T)-&gt;rchild);            //构造右子树
+	}
+}
+
+</code></pre>
+<p>6.10线索二叉树<br>
+以中序遍历为例：下面二叉树中中序遍历的结果为：HDIBJEAFCG<br>
+线索二叉树的实质：将二叉链表中的空指针改为指向前驱或后继的线索。<br>
+<img src="https://img-blog.csdnimg.cn/202001022049073.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dzZmhkaGpz,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述" loading="lazy"><br>
+将rchild改为后继，如下图：<br>
+<img src="https://img-blog.csdnimg.cn/20200102204323143.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dzZmhkaGpz,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述" loading="lazy"><br>
+将lchild改为它的前驱，如下图：<br>
+<img src="https://img-blog.csdnimg.cn/20200102204350104.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dzZmhkaGpz,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述" loading="lazy"><br>
+整个二叉树的中序遍历结果中的前驱后继关系如下图：<br>
+<img src="https://img-blog.csdnimg.cn/20200102204638116.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dzZmhkaGpz,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述" loading="lazy"></p>
+<p>将lchild,ltag,data,rtag,rchild组合成一个结构，如下图：<br>
+具体如下：<br>
+ltag为0表示指向该节点的左孩子，为1表示指向该节点的前驱<br>
+rtag为0表示指向该结点的右孩子，为1指向该结点的后继<br>
+<img src="https://img-blog.csdnimg.cn/20200102204422155.png" alt="在这里插入图片描述" loading="lazy"><br>
+二叉树的搜索存储结构定义</p>
+<pre><code class="language-cpp">//二叉树的二叉搜索存储结构定义
+typedef enum{Link,Thread} PointerTag;         //Link==0表示指向左右孩子指针，Thread==1表示指向前驱或后继的线索
+typedef struct BiThrNode           //二叉搜索存储结点结构
+{
+	TElemType data;
+	struct BiThrNode *lchild, *rchild;        //左右孩子指针
+	PointerTag LTag;                 //左右标志            
+	PointerTag RTag;      
+}BiThrNode, *BiThrTree;
+
+												
+
+</code></pre>
+<figure data-type="image" tabindex="1"><img src="https://img-blog.csdnimg.cn/20200102204454222.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dzZmhkaGpz,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述" loading="lazy"></figure>
+<p>中序遍历线索化递归函数代码：(构建线索二叉树)<br>
+可以根据上图二叉树来理解</p>
+<pre><code class="language-cpp">//中序遍历进行中序线索化
+void InThreading(BiThrTree p)
+{
+	InThreading(p-&gt;lchild);             //递归左子树线索化
+	if(!p-&gt;lchild)                //没有左孩子
+	{
+		p-&gt;LTag=Thread;                   //将LTag改为1
+		p-&gt;lchild=pre;               //左孩子指针指向前驱
+	}
+	if(!pre-&gt;rchild)
+	{
+		pre-&gt;RTag=Thread;                    //将RTag改为1，为了理解见下图
+		pre-&gt;rchild=p;                //前驱右孩子指针指向后继(当前结点p)
+	}
+	pre=p;                       //保持pre指向p的前驱
+	InThreading(p-&gt;rchild);           //递归右子树线索化
+}
+
+</code></pre>
+<p><img src="https://img-blog.csdnimg.cn/20200102214224564.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dzZmhkaGpz,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述" loading="lazy"><br>
+二叉线索树的遍历，见下图：<br>
+<img src="https://img-blog.csdnimg.cn/20200102220110750.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dzZmhkaGpz,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述" loading="lazy"><br>
+遍历代码如下：</p>
+<pre><code class="language-cpp">//T指向头结点，头结点左链lchild指向根结点，头结点右链rchild指向中序遍历的最后一个结点。中序遍历二叉线索链表表示的二叉树T
+Status InOrderTraverse_Thr(BiThTree T)
+{
+	BiThrTree p;
+	p=T-&gt;lchild;             //p指向根结点
+	while(p!=T)               //空树或遍历结束时，p==T
+	{
+		while(p=&gt;LTag==Link)            //当LTag==0时循环到中序序列的第一个结点
+			p=p-&gt;lchild;
+		printf(&quot;%c&quot;,p-&gt;data);           //显示结点数据，可以更改为其他对结点的操作
+		while(p-&gt;RTag==Thread &amp;&amp; p-&gt;rchild!=T)
+		{
+			p=p-&gt;rchild;                  //p中RTag是1表示存放的是他的后继结点
+			printf(&quot;%c&quot;,p-&gt;data); 
+		}
+		p=p-&gt;rchild;            //p中RTag是0表示，p进入他的右子树  区分上面的
+	}
+	return OK;
+}
+
+</code></pre>
+<p>如果所用二叉树需要经常遍历或查找结点时需要某种遍历序列中的前驱和后继，采用线索二叉树的存储结构</p>
+<p>6.11.1树转换为二叉树<br>
+1.加线。在所有兄弟节点之间加一条线<br>
+2.去线。 就是按照你的思路去就对<br>
+3.层次调整。 以树的根结点为轴心，顺时针旋转，注意第一个孩子是二叉树结点的左孩子，兄弟转换过来为结点的右孩子<br>
+如下图：</p>
+<p><img src="https://img-blog.csdnimg.cn/20200103194908705.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dzZmhkaGpz,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述" loading="lazy"><br>
+6.11.2将森林转换为二叉树：<br>
+1.将每个树按照上面的方法转化成二叉树<br>
+2、第一棵树不动，从第二棵二叉树开始，依次把后一棵二叉树的根结点作为前一棵二叉树的根结点的右孩子，用线连接起来。如下图：<br>
+<img src="https://img-blog.csdnimg.cn/20200103195444927.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dzZmhkaGpz,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述" loading="lazy"><br>
+6.11.3二叉树转化为树<br>
+1.将结点的左孩子n个右孩子，用线连接起来<br>
+2.删除原二叉树中所有结点与其右孩子结点的连线<br>
+3.层次调整。  如果只有一个孩子，就直接转化为竖线即可<br>
+如下图：</p>
+<p><img src="https://img-blog.csdnimg.cn/20200103200346330.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dzZmhkaGpz,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述" loading="lazy"><br>
+6.11.4二叉树转化为森林：<br>
+1.从根结点开始，若右孩子存在则删除连线，若右孩子存在则删除连线，只要有右孩子就把连线删了<br>
+2.再将每棵二叉树转化成树<br>
+<img src="https://img-blog.csdnimg.cn/20200103201021824.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dzZmhkaGpz,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述" loading="lazy"><br>
+6.11.5.森林的遍历：<br>
+1.前序遍历：一颗树接着一棵树来，每棵树都用先序遍历法，对于上图的二叉树的遍历结果为：ABCDEFGHJI<br>
+2.后序遍历：还是一棵树接着一棵树来，每棵树都用后序遍历法，对于上图的二叉树的遍历结果为：BCDAFEJHIG<br>
+对于上图而言，森林的前序遍历法和二叉树的前序遍历结果相同，森林的后序遍历和二叉树的中序遍历法相同。</p>
+<p>6.12赫夫曼树及其应用：<br>
+树的路径长度表示从根结点到每一个结点的长度总和，如下图中二叉a的路径长度为1+1+2+2+3+3+4+4=20，二叉树b的路径长度为1+2+2+3+3+1+2+2=16<br>
+<img src="https://img-blog.csdnimg.cn/20200103204819966.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dzZmhkaGpz,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述" loading="lazy"><br>
+带权路径长度wpl最小的二叉树称作赫夫曼树，上图中二叉树a的wpL=5<em>1+15</em>2+40<em>3+30</em>4+10<em>4=315 ，二叉树b的wpl=40</em>2+15<em>3+5</em>3+30<em>2+10</em>2=220</p>
+<p>6.12.2最优赫夫曼树构造方法：<br>
+1.将把有权值的叶子结点按照从小到大的顺序排成一个有序列<br>
+2.取头两个最小权值的结点之和作为一个新的结点，注意较小的为新的结点的左孩子，每次如此重复，直至结束。如下图：<br>
+<img src="https://img-blog.csdnimg.cn/20200103210711134.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dzZmhkaGpz,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述" loading="lazy"><br>
+<img src="https://img-blog.csdnimg.cn/20200103210742955.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dzZmhkaGpz,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述" loading="lazy"><br>
+<img src="https://img-blog.csdnimg.cn/20200103210759426.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dzZmhkaGpz,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述" loading="lazy"><br>
+赫夫曼编码：<br>
+根据赫夫曼树左0右1，对应每个字符编码。这样可以将字符串的长度变少，同样解码也是根据表6-12-3表示，如下图：<br>
+<img src="https://img-blog.csdnimg.cn/20200103213334549.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dzZmhkaGpz,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述" loading="lazy"></p>
+]]></content>
+    </entry>
+    <entry>
+        <title type="html"><![CDATA[大话数据结构第七章笔记（图）]]></title>
+        <id>https://wsf123sd.github.io/post/da-hua-shu-ju-jie-gou-di-qi-zhang-bi-ji-tu/</id>
+        <link href="https://wsf123sd.github.io/post/da-hua-shu-ju-jie-gou-di-qi-zhang-bi-ji-tu/">
+        </link>
+        <updated>2020-03-01T04:18:59.000Z</updated>
+        <content type="html"><![CDATA[<p>1.图的定义G（V,E）其中G表示一个图，V表示图G中顶点集，E表示图G中边的集合<br>
+2.线性表中数据元素叫元素，树中数据元素叫结点，在图中数据元素称为顶点<br>
+3.线性表中没有数据元素称为空表，树中没有数据元素称为空树，在图的结构中，不允许没有顶点<br>
+4.在线性表中相邻的数据元素之间具有线性关系，树结构中，相邻两层的结点具有层次关系，在图中，任意两个顶点可能有关系，顶点之间的逻辑关系用边来表示。</p>
+<p>7.2.1各种图的定义：<br>
+1.如下图 7-2-2是无向图G1=(V1,{E1})，其中顶点集合V1={A,B,C,D}   边集合={(A,B),(B,C),(C,D),(D,A),(A,C)}其中边之间用()来表示<br>
+2.如下图7-2-3，是有向图G2=(V2,{E2})， 顶点集合V2={A,B,C,D}  弧集合E2={&lt;A,D&gt;,&lt;B,A&gt;,&lt;C,A&gt;,&lt;B,C&gt;} A是弧头，D是弧尾 。无向边用()表示，有向边用&lt;&gt;表示<br>
+<img src="https://img-blog.csdnimg.cn/2020010619471683.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dzZmhkaGpz,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述" loading="lazy"><br>
+3.无向完全图：任意两顶点之间都存在边。含有n个顶点的无向完全图有n*(n-1)/2条边<br>
+4.有向完全图：任意两定点之间存在方向相反互为相反的两条弧，含有n个顶点的有向完全图有n*(n-1)条边<br>
+5.无向图：边数就是各顶点度数之和的一半<br>
+6.有向图：某顶点的度数=出度数+入度数；所有顶点的入度数之和=所有顶点的出度数之和=边数；<br>
+7.路径长度：路径上的边或弧的数目，图7-2-9中上方两条路径长度为2，下放两条路径长度为3；图7-2-10中左侧路径长为2，右侧路径长度为3<br>
+<img src="https://img-blog.csdnimg.cn/20200106200638165.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dzZmhkaGpz,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述" loading="lazy"><br>
+8.回路，简单路径，简单回路：<br>
+能从出发点绕了一圈又回到出发点，称为回路或环；<br>
+序列中顶点不重复出现的路径称为简单路径。<br>
+除了第一个顶点和最后一个顶点之外，其余顶点不重复出现的回路，称为简单回路。<br>
+如图7-2-11中，左侧的回路是简单回路，右侧的环是不是简单回路，因为c重复了。<br>
+<img src="https://img-blog.csdnimg.cn/20200106200657617.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dzZmhkaGpz,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述" loading="lazy"><br>
+9.若无重复的边或顶点到自身的边则叫简单图，如下图，就不是简单图：<br>
+<img src="https://img-blog.csdnimg.cn/20200106204054344.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dzZmhkaGpz,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述" loading="lazy"></p>
+<p>7.2.3连通图：任意两点之间都是连通的<br>
+无向图中的极大连通子图称为连通分量：</p>
+<ul>
+<li>要是子图</li>
+<li>子图是连通的</li>
+<li>连通子图含有极大顶点数</li>
+<li>具有极大顶点数的连通子图包含依附于这些顶点的所有边<br>
+如图7-2-12,图1不是连通图，图2，图3都是子图且都连通，但图4不是连通分量，因为他只有3个顶点<br>
+<img src="https://img-blog.csdnimg.cn/20200106201713177.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dzZmhkaGpz,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述" loading="lazy"><br>
+<img src="https://img-blog.csdnimg.cn/20200106201724638.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dzZmhkaGpz,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述" loading="lazy"></li>
+</ul>
+<p>7.2.3.2强连通图：有向+连通图<br>
+图中有子图，若子图极大连通就是连通分量，有向的就是强连通分量，如下图中图1不是强连通图，图2是强连通图，同样图2是图1的强连通分量<br>
+<img src="https://img-blog.csdnimg.cn/20200106202052518.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dzZmhkaGpz,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述" loading="lazy"><br>
+7.2.3.3连通图的生成树：包含图中全部的n个顶点，但只有足以构成一棵树的n-1条边，如图2.图3；如果有n个顶点，但是小于n-1条边则是非连通图；如果边多于n-1，则构成环，如图2,3任意给两个顶点之间一条边，就构成环；不过有n-1条边并不一定是生成树，如图4。<br>
+<img src="https://img-blog.csdnimg.cn/20200106202847268.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dzZmhkaGpz,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述" loading="lazy"><br>
+7.2.3.4<br>
+如果一个有向图恰有一个顶点的入度为0，其余顶点的入度为1，则是一颗有向树。<br>
+一个有向图的生成森林由若干课有向树组成，含有图中全部顶点，但只有足以构成若干棵不相交的有向树的弧，如下图中，图1是有向图，	去掉弧之后，分解为两个有向树，如图2 图3，这两颗就是图1的有向图的生成森林。<br>
+<img src="https://img-blog.csdnimg.cn/20200106203812838.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dzZmhkaGpz,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述" loading="lazy"><br>
+7.3图的抽象数据类型：<br>
+<img src="https://img-blog.csdnimg.cn/20200106204941634.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dzZmhkaGpz,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述" loading="lazy"><br>
+7.4图的五种存储结构：<br>
+一.邻接矩阵：<br>
+1.图的邻接矩阵存储方式用两个数组来表示图，一个一维数组存储图中顶点信息，一个二维数组存储图中的边或弧的信息。<br>
+2.无向图的邻接矩阵的特点：<br>
+a.矩阵是关于主对角线对称的<br>
+b.Vi顶点的度=第i行或者第i列上的元素之和<br>
+c.Vi的所有邻接点就是将矩阵中第i行元素扫描一遍，数组元素为1就是邻接点<br>
+d.主队角线上元素为0<br>
+<img src="https://img-blog.csdnimg.cn/20200106211104874.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dzZmhkaGpz,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述" loading="lazy"><br>
+3.有向图的邻接矩阵的特点：<br>
+a.不是对称矩阵<br>
+b.主队角线上元素为0<br>
+c.顶点Vi的入度为第Vi列各数之和；出度数为第Vi行各数之和<br>
+d.判断Vi到Vj是否存在弧，只需要查找矩阵中元素是否为1<br>
+e.要求Vi的所有邻接点就是将第i行元素扫描一遍，查找矩阵中元素为1的点<br>
+<img src="https://img-blog.csdnimg.cn/20200106211123418.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dzZmhkaGpz,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述" loading="lazy"><br>
+4.对于边上的权值而言，如果不存在则为无穷；自身到自身的度为矩阵元素为0,<br>
+<img src="https://img-blog.csdnimg.cn/20200106211145807.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dzZmhkaGpz,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述" loading="lazy"><br>
+5.图的邻接矩阵存储的结构：</p>
+<pre><code class="language-cpp">typedef char VertexType;              //顶点类型应由用户定义
+typedef int EdgeType;                //边上的权值类型应由用户定义
+#define MAXVEX 100               //最大顶点数
+#define INFINITY 65535          //用65535来表示无穷
+typedef struct 
+{
+	VertexType vexs[MAXVEX];            //顶点表
+	EdgeType arc[MAXVEX][MAXVEX];           //邻接矩阵，
+	int numVertexes, numEdges;         //图中当前顶点数和边数
+}MGraph;
+</code></pre>
+<p>6.构造一个无向图</p>
+<pre><code class="language-cpp">//建立无向图的邻接矩阵
+void CreateMGraph(MGraph *G)
+{
+	int i,j,k,w;
+	printf(&quot;输入顶点数和边数:\n&quot;);
+	scanf(&quot;%d,%d&quot;, &amp;G-&gt;numVertexes,&amp;G-&gt;numEdges);     //输入顶点数，边数
+	for(i=0; i&lt;G-&gt;numVertexes; i++)            //读入顶点信息，建立顶点表
+		scanf(&amp;G-&gt;vexs[i]);
+	for(i=0; i&lt;G-&gt;numVertexes; i++)
+		for(j=0; j&lt;G-&gt;numVertexes; j++)
+			G-&gt;arc[i][j]=INFINITY;            //邻接矩阵初始化
+	for(k=0; k&lt;G-&gt;numEdges; k++)
+	{
+		printf(&quot;输入边(Vi,Vj)上的下标i，下标j和权w:\n&quot;);
+		scanf(&quot;%d,%d,%d&quot;,&amp;i,&amp;j,&amp;w);    //输入边(Vi,Vj)上的权W
+		G-&gt;arc[i][j]=w;
+		G-&gt;arc[i][j]=G-&gt;arc[i][j];      //因为是无向图，矩阵对称
+	}
+//时间复杂度为o(n+n^2+e):n个顶点，e条边 最终为o(n^2)
+}
+</code></pre>
+<p>二.邻接表：<br>
+1.顶点用一维数组来存放，另外，对于顶点数组中，每个数据元素还需要存储指向第一个邻接点的指针；每个顶点的所有邻接点构成一个线性表，用单链表存储<br>
+2.第Vi个顶点的度，就去查这个顶点的边表中结点的个数<br>
+3.要判断Vi与Vj之间是否存在边，只需要测试顶点Vi的边表中是否存在结点Vj的下标j就行<br>
+4.若要求顶点的所有邻接点，就对此顶点的边表进行遍历，得到的就是邻接点。见下图7-4-6<br>
+5.有向图的逆邻接表，就是看谁往这个点里干，如下图7-4-7(2)<br>
+6.有向图的邻接表，如下图7-4-7（1）<br>
+7.带权值的邻接表，如下图7-4-8<br>
+<img src="https://img-blog.csdnimg.cn/20200106215146181.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dzZmhkaGpz,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述" loading="lazy"><br>
+<img src="https://img-blog.csdnimg.cn/2020010621520519.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dzZmhkaGpz,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述" loading="lazy"><br>
+<img src="https://img-blog.csdnimg.cn/2020010621522774.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dzZmhkaGpz,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述" loading="lazy"><br>
+邻接表结点定义的代码：</p>
+<pre><code class="language-cpp">typedef char VertexType;             //顶点类型由用户定义
+typedef int EdgeType;                 //边上的权值类型由用户定义
+
+typedef struct EdgeType          //边表结点
+{
+	int adjvex;               //邻接点域，存储该结点对应的下标
+	EdgeType weight;           //用于存储权值，对于非网图可以不需要
+	struct EdgeNode *next;       //链域，指向下一个邻接点
+}EdgeNode;
+
+typedef struct VertexNode      //顶点表结点
+{
+	VertexType data;           //顶点域，存储顶点信息
+	EdgeNode *firstedge;             //边表头指针
+}VertexNode, AdjList[MAXVEX];
+
+typedef struct
+{
+	AdjList adjList;
+	int numVertexes,numEdges;         //图中当前顶点数和边数
+}GraphAdjList；
+</code></pre>
+<p>无向图的邻接表创建代码：</p>
+<pre><code class="language-cpp">//建立图的邻接表结点
+void CreateALGraph (GraphAdjList *G)
+{
+	int i,j,k;
+	EdgeNode *e;
+	printf(&quot;输入顶点数和边数:\n&quot;);
+	scanf(&quot;%d,%d&quot;,&amp;G-&gt;numVertexes,&amp;G-&gt;numEdges);        //输入顶点数和边数
+	for(i=0; i&lt;G-&gt;numVertexes; i++)          //读入顶点信息，建立顶点表
+	{
+		scanf(&amp;G-&gt;adjList[i].data);       //输入顶点信息
+		G-&gt;adjList[i].firstedge=NULL;        //将指向边表的头结点置为空
+	}
+	for(k=0; k&lt;G-&gt;numEdges; k++)
+	{
+		printf(&quot;输入边(Vi,Vj)上的顶点序号:\n&quot;);
+		scanf(&quot;%d,%d&quot;,&amp;i,&amp;j);          //输入边（vi,vj）上的顶点序号
+		e=(EdgeNode *)malloc(sizeof(EdgeNode));        //向内存申请空间 , 生成边表结点
+		e-&gt;adjvex=j;             //邻接序号为j
+		e-&gt;next=G-&gt;adjList[i].firstedge;       //头插法每次将新的结点连接到顶点表结点的后面的结点
+		G-&gt;adjList[i].firstedge=e;          //把e这个结点在放回头结点 
+
+		e=(EdgeNode *)malloc(sizeof(EdgeNode));        //向内存申请空间 , 生成边表结点
+		e-&gt;adjvex=i;             //邻接序号为j
+		e-&gt;next=G-&gt;adjList[j].firstedge;       //头插法每次将新的结点连接到顶点表结点的后面的结点
+		G-&gt;adjList[j].firstedge=e;          //把e这个结点在放回头结点 
+	}
+}
+时间复杂度为o(n+e)=o(n)  //n个顶点，e条边
+</code></pre>
+<p>第三种：十字链表：就是将邻接表和逆邻接表相结合方便了解结点的出度和入度<br>
+1.重新定义顶点表结点结构，如下图，<br>
+firstin 表示入边表头指针，指向该顶点的入边表中第一个结点<br>
+firstout 表示出边表指针，指向该顶点的出边表中的第一个结点<br>
+<img src="https://img-blog.csdnimg.cn/20200107202857870.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dzZmhkaGpz,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述" loading="lazy"><br>
+2.重新定义边表结点结构，如下图：<br>
+tailvex是指弧起点在顶点表的下标<br>
+headvex是指弧终点在顶点表中的下标<br>
+headlink是指边表指针域，指向终点相同的下一条边<br>
+taillink 是指边表指针域，指向起点相同的下一条边<br>
+<img src="https://img-blog.csdnimg.cn/20200107202912422.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dzZmhkaGpz,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述" loading="lazy"><br>
+<img src="https://img-blog.csdnimg.cn/20200107204325664.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dzZmhkaGpz,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述" loading="lazy"><br>
+v0中firstout指向它自己的边表结点，后面那个边表结点中03表示从0开始走到3；v0中fistrtin表示V1走向它，他犯贱再走向v1，v0再也没有可走的下一个结点，所以taillink为NULL；v0走向v3，没有人与他一样再走向v3所以headlink为NULL<br>
+v1中firstou指向自己的边表结点，后面10 。12分别表示从v1走向V0，从v1走向V2；所以v1第一个边表结点中taillink指向下一个，由于1走向0,2也走向0，所以v1中第一个边表结点走到v2中第一个边表结点；同样V2走向V1，v1犯贱它的fisttin指向V2中第2个边表结点<br>
+v2也是如此，重点强调由于v2走向v0，没有人再走向v0所以v2中第一个边表结点的healink为空</p>
+<p>第四种：邻接多重表<br>
+1.如果要删除边，则对于下图的邻接表而言太复杂对于结点而言改动太多<br>
+<img src="https://img-blog.csdnimg.cn/20200107210841424.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dzZmhkaGpz,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述" loading="lazy"><br>
+2.重新定义如下结构：<br>
+ivex和jvex表示与某条边依附的两个顶点在顶点表中的下标。<br>
+ilink指向依附顶点ivex的下一条边。<br>
+jlink指向依附顶点jvex的下一条边</p>
+<p><img src="https://img-blog.csdnimg.cn/20200107211110577.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dzZmhkaGpz,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述" loading="lazy"><br>
+<img src="https://img-blog.csdnimg.cn/2020010721132679.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dzZmhkaGpz,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述" loading="lazy"><br>
+1-4表示连接它自己的边表结点<br>
+5表示依附于v0的下一条边：v0--v3   6表示依附于v0的下一条边：v0--v2  7表示依附于v1的下一条边：v1--v0<br>
+8表示依附于v2的下一条边：v2--v3  9表示依附于v2的下一条边：v2--v0  10表示依附于v2的下一条边：v3--v2</p>
+<p>第五种：边集数组：<br>
+如下图，就能看懂</p>
+<p><img src="https://img-blog.csdnimg.cn/20200107212244138.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dzZmhkaGpz,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述" loading="lazy"><br>
+7.5.1深度优先遍历：<br>
+1.简称DFS，说白了就是遍历图中每个顶点然后，所有路径都走一遍。遍历过的顶点做好标记就不在遍历<br>
+邻接矩阵的DFS代码如下：</p>
+<pre><code class="language-cpp">typedef int Boolean;        //Boolean是布尔类型，其值是TRUE或FALSE
+Boolean visited[MAX];       //访问标志的数组
+//邻接矩阵的深度优先递归算法
+void DFS(MGraph G, int i)
+{
+	int j;
+	visited[i]=TRUE;
+	printf(&quot;%c&quot;,G.vexs[i]);              //vexs【】表示顶点数组
+	for(j=0; j&lt;G.numVertexes; j++)
+			if(G.arc[i][j]==1 &amp;&amp; !visited[j])   //arc表示边表数组，1表示两个点之间有值
+				DFS(G,j);          //对访问的邻接顶点递归调用
+}
+//邻接矩阵的深度遍历操作
+void DFSTraverse(MGraph G)
+{
+	int i;
+	for(i=0; i&lt;G.numVeretexes; i++)
+		visited[i]=False;          //初始所有顶点都是未访问过的状态
+	for(i=0; i&lt;G.numVertexes; i++)
+		if(!visited[i])            //对未访问过的顶点调用DFS
+			DFS(G,i); 
+}
+时间复杂度是o(n^2)
+</code></pre>
+<p>邻接表的深度优先递归算法：</p>
+<pre><code class="language-cpp">void DFS(GraphAdjList GL, int i)
+{
+	EdgeNode *p;
+	visited[i]=TRUE;
+	printf(&quot;%c &quot;, GL-&gt;adjList[i].data);           //打印顶点，adjLIst表示顶点结构数组，结构成员有data和fistredge指针
+	while(p)
+	{
+		if(!visited[p-&gt;adjvex])
+			DFS(GL,p-&gt;adjvex);          //对访问的邻接顶点递归调用
+		p=p-&gt;next;
+	}
+}
+
+//邻接表的深度遍历操作
+void DFSTraverse(GraphAdjList GL)
+{
+	int i;
+	for(i=0; i&lt;GL-&gt;numVertexes; i++)
+		visited[i]=FALSE:     //初始化所有顶点都是未访问过的
+	for(i=0; i&lt; GL-&gt;numVertexes; i++)
+		if(!visited[i])     //对访问过的顶点调用DFS
+		DFS(GL,i);
+}
+
+时间复杂度是o(n+e);
+</code></pre>
+<p>邻接矩阵的广度遍历算法：简称BFS</p>
+<pre><code class="language-cpp">/*邻接矩阵的广度遍历算法*/
+void BFSTraverse(MGraph G)
+{
+    int i,j;
+    Queue Q;
+    for(i=0; i&lt;G.numVertexes; i++)
+        visited[i]=FALSE;
+    InitQueue(&amp;Q);             //初始化一辅助队列
+    for(i=0; i&lt;G.numVertexes; i++)
+    {
+        if(!visited[i])    //若是未访问过
+        {
+            visited[i]=TRUE; //设置当前顶点访问过
+            printf(&quot;%c &quot;, G.vex[i]);      //打印顶点，也可以其他从操作
+            EnQueue(&amp;Q,i);     //将此顶点入队列
+            while(!QueueEmpty(Q))    //若当前队列不为空
+            {
+                DeQueue (&amp;Q, &amp;i);     //将队中元素出队列，赋值给i
+                for(j=0; j&lt;G.numVertexes; j++)
+                    {
+                        /*判断其他顶点若与当前顶点存在边且未访问过*/
+                        if(G.arc[i][j] == 1 &amp;&amp; !visited[j])
+                        {
+                            visited[j]=TRUE;     //将找到此顶点标记为一访问
+                            printf(&quot;%c&quot;, G.vexs[j]);   //打印顶点
+                            EnQueue(&amp;Q,j);        //将找到的此顶点入队列
+                        }
+                    }
+            }
+        }
+    }
+}
+</code></pre>
+<p>邻接表的广度遍历算法</p>
+<pre><code class="language-cpp">/*邻接表的广度遍历算法*/
+void BFSTraverse(GraphAdjList GL)
+{
+    int i;
+    EdgeNode *p;     //边表结点
+    Queue Q;
+    for(i=0; i&lt;GL-&gt;numVertexes; i++)
+        visited[i]=FALSE;
+    InitQueue(&amp;Q);             //舒适化一辅助队列
+    for(i=0; i&lt;GL-&gt;numVertexes; i++)
+    {
+        if(!visited[i])    //若是未访问过
+        {
+            visited[i]=TRUE; //设置当前顶点访问过
+            printf(&quot;%c &quot;, GL-&gt;adjList[i].data);      //打印顶点，也可以其他从操作
+            EnQueue(&amp;Q,i);     //将此顶点入队列
+            while(!QueueEmpty(Q))    //若当前队列不为空
+            {
+                DeQueue (&amp;Q, &amp;i);     //将队中元素出队列，赋值给i
+                p=GL-&gt;adjList[i].firstedge; //找到当前顶点边表链表表头指针
+                while(p)
+                    {
+                        /*判断其他顶点若与当前顶点存在边且未访问过*/
+                        if(!visited[p-&gt;adjvex])  //若顶点未被访问过
+                        {
+                            visited[p-&gt;adjvex]=TRUE;     //将找到此顶点标记为一访问
+                            printf(&quot;%c&quot;, GL-&gt;adjList[p-&gt;adjvex].data);   //打印顶点
+                            EnQueue(&amp;Q,p-&gt;adjvex);        //将找到的此顶点入队列
+                        }
+                        p=p-&gt;next;     //指针指向下一个邻接点
+                    }
+            }
+        }
+    }
+}
+</code></pre>
+<p>深度优先遍历：更适合目标比较明确，已找到目标为主要目的，类似于前序遍历<br>
+广度优先遍历：更适合在不断扩大遍历范围时找到相对最优解情况 ，类似于层序遍历</p>
+<p>7.6.1Prim算法：<br>
+<img src="https://img-blog.csdnimg.cn/20200108213856363.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dzZmhkaGpz,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述" loading="lazy"><br>
+Prim算法生成最小生成树</p>
+<pre><code class="language-cpp">/*Prim算法生成最小生成树*/
+void MiniSpanTree_Prim(MGraph G)
+{
+    int min,i,j,k;
+    int adjvex[MAXVEX];     //保存相关顶点下标
+    int lowcost[MAXVEX];      //保存相关顶点间边的权值
+    
+    lowcost[0]=0;      //初始化第一个权值为0，即v0加入生成树
+                       //lowcost的值为0，在这里就是此下标的顶点已经加入生成树
+    adjvex[0]=0;        //初始化第一个顶点下标为0
+    
+    for(i=1; i&lt;G.numVertexes; i++)      //循环除下标为0外的全部顶点
+    {
+        lowcost[i]=G.arc[ 0][i];    //将V0顶点与之有边的权值存入数组
+        adjvex[i]=0;     //初始化都为v0的下标
+    }
+    
+    for(i=1; i&lt;G.numVertexes; i++)
+    {
+        min=INFINITY;         //初始化最小权值为无穷
+        j=1;k=0;      //j用来做顶点下标循环的变量，k是用来存储最小权值的顶点下标、
+        
+        //20--29表示找出最小值min和对应的数组下标k
+        while(j&lt;G.numVertexes)    //循环全部顶点
+        {
+            if(lowcost[j]!=0 &amp;&amp; lowcost[j]&lt;min)
+                {
+                    //如果权值不为0且权值小于min
+                    min=lowcost[j];      //则让当前权值称为最小值
+                    k=j;                    //将当前最小值的下标存入k
+                }
+            j++;
+        }
+        
+        printf(&quot;(%d,%d)&quot;,adjvex[k],k);      //打印当前顶点边中权值最小边,比如打印结果为(0,1),表示V0至v1遍为最小生成树的第一条边
+        
+        lowcost[k]=0;     //将当前顶点的权值设置为0，表示此顶点已经完成任务
+        
+        for(j=1; j&lt;G.numVertexes; j++)   //循环所有顶点
+        {
+            if(lowcost[j]!=0 &amp;&amp; G.arc[k][j] &lt; lowcost[j])
+            {
+                //若下标为k顶点各边权值小于此前这些顶点未被加入生成树权值
+                lowcost[j] = G.arc[k][j];   //将较小权值存入lowcost
+                adjvex[j]=k;  //将下表为k的顶点存入adjvex
+            }
+        }
+        
+    }
+}
+
+</code></pre>
+<p>以下便是Prim算法的过程，最终构成n-1条边，遍历完所有顶点，以某顶点为起点，逐步找各顶点上权值最小的边构建最小生成树<br>
+<img src="https://img-blog.csdnimg.cn/20200108214446923.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dzZmhkaGpz,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述" loading="lazy"><br>
+<img src="https://img-blog.csdnimg.cn/20200108214454992.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dzZmhkaGpz,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述" loading="lazy"><br>
+<img src="https://img-blog.csdnimg.cn/20200108214744729.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dzZmhkaGpz,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述" loading="lazy"></p>
+<p>Krskal算法：求最小生成树<br>
+1.将邻接矩阵转化为边集数组：<br>
+如下图<br>
+<img src="https://img-blog.csdnimg.cn/20200109205012741.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dzZmhkaGpz,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述" loading="lazy"></p>
+<pre><code class="language-cpp">/*Kruskal算法*/
+void MiniSpanTree_Kruskal(MGraph G) //生成最小生成树
+{
+    int i,n,m;
+    Edge edges[MAXEDGE];    //定义边集数组
+    int parent[MAXEDGE];   //定义一数组用来判断边与边是否形成环路
+    
+    //此处省略将邻接矩阵G转化为边集数组edges并按权值由小到大排列的代码
+    for(i=0; i&lt;G.numVertexes; i++)
+            parent[i]=0;      //初始化数组为0
+    for(i=0; i&lt;G.numEdges; i++)  //循环每一条边
+    {
+        n=Find(parent,edges[i].begin);
+        m=Find(parent,edges[i].end);
+        if(n!=m)
+            {
+                parent[n]=m;   //将此边的结尾顶点放入下表为起点的parent中
+                                //表示此顶点已经在生成树集合中
+                print(&quot;(%d,%d)&quot;,edges[i].begin,edges[i].end,edges[i].weight);
+            }
+    }
+}
+
+int Find(int *parent, int f)  //查找连线顶点的尾部下标
+{
+    while(parent[f]&gt;0)
+        f=parent[f];
+    return f;
+}
+算法中find函数有e决定，时间复杂度为o(loge)，而外面有一个for循序e次，所以时间复杂度为o(eloge)
+
+</code></pre>
+<p>具体执行过程如下：<br>
+<img src="https://img-blog.csdnimg.cn/20200109205414490.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dzZmhkaGpz,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述" loading="lazy"><br>
+<img src="https://img-blog.csdnimg.cn/20200109205430984.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dzZmhkaGpz,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述" loading="lazy"><br>
+<img src="https://img-blog.csdnimg.cn/20200109205507351.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dzZmhkaGpz,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述" loading="lazy"><br>
+<img src="https://img-blog.csdnimg.cn/20200109205531372.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dzZmhkaGpz,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述" loading="lazy"><br>
+<img src="https://img-blog.csdnimg.cn/20200109205550570.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dzZmhkaGpz,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述" loading="lazy"><br>
+<img src="https://img-blog.csdnimg.cn/20200109205617883.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dzZmhkaGpz,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述" loading="lazy"><br>
+在E中选择最小的边，若该边依附的顶点落在T中不同的连通分量上，则将此加入到T中，否则舍去此边而选择下一条代价最小的边<br>
+k式算法主要针对边来展开，边数少效率非常高，适合稀疏图。p式算法对于稠密图，边数非常多情况会更好<br>
+锋说：就是每次找最小的边，不要形成回路，然后最终能将图中所有顶点连接起来<br>
+总结：p式算法就是以某个顶点开始找与这个点相关的最小 的边，每次这样寻找；而k式算法就是直接上来找最小的边不形成回路，最终将整个点连起来，他俩都是去找连通图的最小生成树</p>
+<p>7.7迪杰斯特拉算法：求最短路径</p>
+<pre><code class="language-cpp">#define MAXVEX 9
+#define INFINITY 65535
+typedef int Patharc[MAXVEX];      //用于存储最短路径下标的数组
+typedef int ShortPathTable[MAXVEX];    //用于存储到各个顶点路径权值和
+//Dijkstra算法，求有向网G的v0顶点到其余顶点V最短路径p[V]即带权长度D[V]
+//P[V]的值为前驱顶点下标，D[V]表示v0到v的最短路径长度和
+void ShortestPath_Dijkstra (MGraph G, int v0, Patharc *p, ShortPathTable *D)
+{
+	int v,w,k,min;
+	int final[MAXVEX];   //final[w]=1 表示求得顶点v0至vw的最短路径
+	for(v=0; v&lt;G.numVertexes; v++)     //初始化数据
+	{
+		final[v]=0;
+		(*D)[V]=G.arc[v0][v];         //将与v0点有连线的顶点加上权值
+		（*p）[v]=0;            //初始化路径数组p为0
+	}
+	(*D)[v0]=0;     //v0至v0的路径为0
+	final[v0]=1;           //v0至v0不需要求路径
+	
+	//开始主循环，每次求得V0到某个顶点v的最短路径
+	for(v=1; v&lt;G.numVertexes; v++)
+	{
+		min=INFNITY;      //当前所知离v0顶点的最近距离
+		
+		for(w=0; w&lt;G.numVertexes; w++)    //寻找离v0最近的顶点
+		{
+			if(!final[W] &amp;&amp; (*D)[W]&lt;min)
+			{
+				k=w;
+				min=(*D)[W];         //w顶点离v0顶点更近
+			}
+		}
+		
+		final[k]=1;      //将目前找到的最近的顶点置位1
+		
+		for(w=0; w&lt;G.numVertexes; w++)    //修改当前最短路径及距离
+		{
+			//如果经过v顶点的路径比现在这条的路径长度短的话
+			if(!final[w] &amp;&amp; (min+G.arc[k][w]&lt;(*D)[W]))
+			{
+				//说明找到了更短的路径，修改D[W]和p[W]
+				（*D)[w]=min+G.arc[k][w];    //修改当前路径长度
+				(*p)[w]=k;
+			}
+		}
+	}
+}
+时间复杂度：o(n^2)
+
+</code></pre>
+<p><img src="https://img-blog.csdnimg.cn/20200110010608603.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dzZmhkaGpz,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述" loading="lazy"><br>
+<img src="https://img-blog.csdnimg.cn/20200110010632915.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dzZmhkaGpz,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述" loading="lazy"><br>
+数组D，数组P含义：上图中比如到v3的最短路径长度是7，比如到v5的最短路径长度是8。。<br>
+数组p表示V0-----&gt;V8的最短路径中，P[8]=7表示V8的前驱节点为V7；P[4]=2表示V4的前驱节点是2.。。<br>
+如果想要知道任意顶点开始到某结点的最短路径，那就没到一个结点就用一次迪杰斯特拉算法，这 样的复杂度为o(n^3)<br>
+<img src="https://img-blog.csdnimg.cn/20200110010656741.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dzZmhkaGpz,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述" loading="lazy"><br>
+锋说：其实迪杰斯特拉算法目的是计算从某个点到某个点的最短路径，思想就是每次找到最短的路径，把他放入到已经找到的路径中，很漂亮的思想</p>
+<p>7.7.2.FLoyd算法：求最短路径</p>
+<pre><code class="language-cpp">typedef int Pathmatirx[MAXVEX][MAXVEX];
+typedef int ShortPathTable [MAXVEX][MAXVEX];
+//FLoyd算法，求网图中G中各顶点v到其余顶点w最短路径P[v][w]及带权长度D[v][w]
+void ShorttestPath_Floyd(MGraph G, Pathmatirx *P, ShortPathTable *D)
+{
+	int v,w,k;
+	for(v=0; v&lt;G.numVertexes; ++w)
+	{
+		for(w=0; w&lt;G.numVertexes; w++)
+		{
+			(*D)[v][w]=G.matirx[v][w];     //D[v][w]值即为对应点间的权值
+			(*p)[v][w]=w;                 //初始化p
+		}
+	}
+	for(k=0; k&lt;G.numVertexes; ++k)     //k相当于每次拐出来的点
+	{
+		for(v=0; v&lt;G.numVertexes; ++v)
+		{
+			for(w=0; w&lt;G.numVertexes; ++w)
+			{
+				if((*D)[v][w] &gt; (*D)[v][k]+(*D)[k][w])
+				{
+					//如果经过下标为k顶点路径比原两点间路径更短
+					//将当前两点间权值设为更小的一个
+					(*D)[v][w]=(*D)[v][k]+(*D)[k][w];
+					(*p)[v][w]=(*p)[v][k];           //路径设置为下标为k的顶点
+				}
+			}
+		}
+	}
+}   时间复杂度o(n^3)
+
+</code></pre>
+<p>最短路径的显示代码</p>
+<pre><code class="language-cpp">for(v=0; v&lt;G.numVertexes; ++v)
+{
+	for(w=v+1; w&lt;G.numvertexes; w++)
+	{
+		printf(&quot;v%d-v%d weight: %d&quot;,v,w,D[v][w]);  //输出从某个点到某个点的路径权值
+		k=p[v][w];       //获得第一个路径顶点的下标
+		printf(&quot; path: %d&quot;,v);         //打印原点
+		while(k!=w)            //如果路径顶点下标不是终点
+		{
+			printf(&quot; -&gt; %d&quot;,k);          //打印路径顶点
+			k=p[k][w];           //获得下一个路径顶点下标，p数组已经设置好了
+		}
+		printf(&quot; -&gt; %d\n&quot;,w);     //打印终点
+	}
+	printf(&quot;\n&quot;);         
+}
+
+</code></pre>
+<p>上面代码图示：<br>
+<img src="https://img-blog.csdnimg.cn/20200110220429452.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dzZmhkaGpz,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述" loading="lazy"><br>
+<img src="https://img-blog.csdnimg.cn/20200110215942248.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dzZmhkaGpz,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述" loading="lazy"><br>
+矩阵D表示从某个点到某个点的最短路径长度<br>
+p矩阵的含义不用知道，只要知道怎么通过此矩阵找到最短路径<br>
+以v0--v8<br>
+首先p[0][8]=1,表示经过v1<br>
+再看v[1][8]=2，表示经过v2<br>
+再看v[2][8]=4, 表示经过v4.。。。。以此类推<br>
+<img src="https://img-blog.csdnimg.cn/20200110220005694.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dzZmhkaGpz,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述" loading="lazy"><br>
+锋说：迪杰斯特拉算法和弗洛伊德算法的相同与不同：<br>
+相同点：<br>
+1.都是求某个点到某个点的最短路径<br>
+2.核心思路都是不断的找最短的路径归并到已经找到的路径集合中<br>
+不同点：<br>
+1.D通过min+下一次的路径和直接到达路径长度比较；而F通过拐点k来表示i--&gt;k---&gt;j要比i---&gt;j路径要短<br>
+2.最终得到的数组D都是表示vi到vj的最短路径，而p不同，其中D中p只能表示以v0为起点，到其余各点的最短路径；比如要想知道v2，v3...到其余各点的最短路径，只能再次将v2，v3当做源头再次使用D式算法。但是F式算法中p可以知道所有顶点到所有顶点的最短路径</p>
+<p>7.8.2拓扑排序：判断工程能否顺利进行<br>
+在一个有向图中，就像拍电影有先后顺序，这样的网图称为AOV图，如下所示：<br>
+下图中的一个拓扑序列是：v0v1v2v3v4v5v6v7v8v9v10v11v12v13v14v15v16<br>
+<img src="https://img-blog.csdnimg.cn/2020011221284919.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dzZmhkaGpz,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述" loading="lazy"><br>
+而且AOV图不存在回路，所以在输出时如果顶点数少了一个，则说明不是回路，如果顶点被全部输出，则说明它不存在回路。</p>
+<p>对AOV网进行拓扑排序的基本思路：<br>
+从AOV网中选择一个入度为0的顶点输出，然后删去此顶点，并删除以此顶点为尾的弧，继续重复此步骤，直到输出全部顶点或者AOV网中不存在入度为0的顶点为止。<br>
+在拓扑排序算法中，涉及的结构代码如下，使用邻接表来构造：</p>
+<pre><code class="language-cpp">​```cpp
+typedef struct EdgeNode          //边表结点
+{
+	int adjvex;               //邻接点域，存储该结点对应的下标
+	EdgeType weight;           //用于存储权值，对于非网图可以不需要
+	struct EdgeNode *next;       //链域，指向下一个邻接点
+}EdgeNode;
+
+typedef struct VertexNode      //顶点表结点
+{
+	int in;
+	VertexType data;           //顶点域，存储顶点信息
+	EdgeNode *firstedge;             //边表头指针
+}VertexNode, AdjList[MAXVEX];
+
+typedef struct
+{
+	AdjList adjList;
+	int numVertexes,numEdges;         //图中当前顶点数和边数
+}graphAdjList,*GraphAdjList；
+
+</code></pre>
+<p><img src="https://img-blog.csdnimg.cn/20200120200549858.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dzZmhkaGpz,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述" loading="lazy"><br>
+in表示入度域，下面的邻接表就是表示上图<br>
+<img src="https://img-blog.csdnimg.cn/20200120200610526.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dzZmhkaGpz,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述" loading="lazy"><br>
+拓扑排序的代码：</p>
+<pre><code class="language-cpp">//拓扑排序
+Status TopologicalSort(GraphAdjList GL)
+{
+	EdgeNode *e;
+	int i,k,gettop;
+	int top=0;           //用于栈指针下标
+	int count=0;          //用于统计输出顶点的个数
+	int *stack;          //建栈存储入度为0的顶点
+	stack=(int *)malloc(GL-&gt;numVertexes * sizeof(int));
+	for(i=0; i&lt;GL-&gt;numVertexes; i++)
+		if(GL-&gt;adjList[i].in==0)
+			stack[++top]=i;                 //将入度为0的顶点入栈
+	
+	while(top!=0)       //表示栈指针为0时循环结束，也就是再也没有入度为0的顶点了
+	{
+		gettop=stack[top--];      //出栈
+		printf(&quot;%d -&gt; &quot;,GL-&gt;adjList[gettop].data);        //打印此顶点
+		count++;              //统计输出顶点数
+		for(e=GL-&gt;adjList[gettop].firstedge;  e;  e=e-&gt;next)   //此循环就是边表的循环
+		{
+			//对此顶点弧表遍历
+			k=e-&gt;adjvex;
+			if(!(--GL-&gt;adjList[k].in))          //将k号顶点的入度域减1
+				stack[++top]=k; 					//如果为0则入栈
+		}
+	}
+	if(count &lt; GL-&gt;numVertexes)    //如果count小于此顶点数，说明存在环
+		return ERROR;
+	else
+		return OK;
+}
+时间复杂度：
+第一个for循环，一共n个顶点，时间复杂度为o(n)
+下面while，从下图6可以看出，最后删除边都没有了，所以时间复杂度为o(e)
+最终时间复杂度为o(n+e)
+
+</code></pre>
+<p>具体过程如下：<br>
+先从v3开始<br>
+<img src="https://img-blog.csdnimg.cn/20200120205711970.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dzZmhkaGpz,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述" loading="lazy"><br>
+打印输出v3<br>
+<img src="https://img-blog.csdnimg.cn/20200120205731362.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dzZmhkaGpz,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述" loading="lazy"><br>
+依次类推，如下所示：<br>
+<img src="https://img-blog.csdnimg.cn/20200120205817307.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dzZmhkaGpz,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述" loading="lazy"><br>
+<img src="https://img-blog.csdnimg.cn/20200120205824667.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dzZmhkaGpz,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述" loading="lazy"><br>
+最终拓扑排序的结果为3-&gt;1-&gt;2-&gt;6-&gt;0-&gt;4-&gt;5-&gt;8-&gt;7-&gt;12-&gt;9-&gt;10-&gt;13-&gt;11，当然这个拓扑排序结果不唯一</p>
+<p>7.9关键路径：求完成工程最短的时间问题，利用求出关键路径算法，求出完成工程的最短时间和关键活动有哪些？<br>
+1.关键路径用AOE表示，AOV表示活动之间以相互制约关系，而AOE是在AOV的基础上来分析完成整个活动所需的最短时间，如下图所示：<br>
+<img src="https://img-blog.csdnimg.cn/20200120210958150.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dzZmhkaGpz,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述" loading="lazy"><br>
+其中每个AOE网图都有一个源点和汇点<br>
+路径长度：路径上各个活动所持续的时间之和称为路径长度<br>
+从源点到汇点的具有最大长度的路径叫关键路径，关键路径上的活动叫关键活动<br>
+<img src="https://img-blog.csdnimg.cn/20200120211017839.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dzZmhkaGpz,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述" loading="lazy"><br>
+7.9.1关键路径的算法原理：<br>
+放学回家到睡觉，一共4个小时。写作业两个小时，最早开始时间是一回来，可以理解为0。最晚开始时间为2个小时之后，可以理解为2。当最早开始时间和最晚开始时间不相同时，表示有空闲时间。当买了很多的习题时，时间全部被占满，则最早和最晚开始时间为都是0，因此他就是关键活动。<br>
+1.事件的最早发生时间etv：即顶点vk的最早发生时间<br>
+2.事件的最晚发生时间ltv：即顶点vk的最晚发生时间，如果超过此时间，就会延误整个工期<br>
+3.活动最早开工时间ete：即弧ak的最早发生时间<br>
+4.活动最晚开工时间lte：即弧ak的最晚发生时间<br>
+通过1,2求得3,4，然后根据ete[k]与lte[k]是否相等来判断ak是否为关键活动</p>
+<p><img src="https://img-blog.csdnimg.cn/20200201213730233.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dzZmhkaGpz,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述" loading="lazy"><br>
+下列代码求etv的过程，与拓扑排序类似</p>
+<pre><code class="language-cpp">int *etv, *ltv;           //时间最早发生时间和最迟发生时间数组
+int *stack2;            //用于存储拓扑排序的栈
+int top2;            //用于stack2的的指针
+
+//拓扑排序，用于关键路径计算
+Status TopologicalSort(GraphAdjList GL)
+{
+	EdgeNode *e;
+	int i,k,gettop;
+	int top=0;           //用于栈指针下标
+	int count=0;          //用于统计输出顶点的个数
+	int *stack;          //建栈存储入度为0的顶点
+	stack=(int *)malloc(GL-&gt;numVertexes * sizeof(int));
+	for(i=0; i&lt;GL-&gt;numVertexes; i++)
+		if(GL-&gt;adjList[i].in==0)
+			stack[++top]=i;                 //将入度为0的顶点入栈
+	
+	top2=0;           //初始化为0
+	etv=(int *)malloc(GL-&gt;numVertexes*sizeof(int));        //事件最早发生的时间
+	for(i=0; i&lt;GL-&gt;numVertexes; i++)
+		etv[i]=0;             //初始化为0
+	stack2=(int *)malloc(GL-&gt;numVertexes*sizeof(int));      //初始化
+	
+	while(top!=0)       //表示栈指针为0时循环结束，也就是再也没有入度为0的顶点了
+	{
+		gettop=stack[top--];      //出栈
+		count++;              //统计输出顶点数
+		stack2[++top2]=gettop;       //将弹出的顶点序号压入拓扑序列的栈
+		for(e=GL-&gt;adjList[gettop].firstedge;  e;  e=e-&gt;next)   //此循环就是边表的循环
+		{
+			//对此顶点弧表遍历
+			k=e-&gt;adjvex;
+			if(!(--GL-&gt;adjList[k].in))          //将k号顶点的入度域减1
+				stack[++top]=k; 					//如果为0则入栈
+			if((etv[gettop]+e-&gt;weight)&gt;etv[k])     //求各顶点事件最早发生时间
+				etv[k]=etv[gettop]+e-&gt;weight;
+		}
+	}
+	if(count &lt; GL-&gt;numVertexes)    //如果count小于此顶点数，说明存在环
+		return ERROR;
+	else
+		return OK;
+}
+
+</code></pre>
+<p>上面代码的例子如下图：<br>
+<img src="https://img-blog.csdnimg.cn/20200201214810950.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dzZmhkaGpz,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述" loading="lazy"><br>
+对于v3来说，4+8&gt;3+5，所以v3=12。以此类推<br>
+<img src="https://img-blog.csdnimg.cn/20200201214925217.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dzZmhkaGpz,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述" loading="lazy"><br>
+关键路径的算法代码：</p>
+<pre><code class="language-cpp">//求关键路径，GL为有向图，输出GL的各项关键活动
+void CriticalPath(GraphAdjList GL)
+{
+	EdgNode *e;
+	int i,gettop,k,j;
+	int ete,lte;             //声明活动最早发生时间和最迟发生时间
+	TopologicalSort(GL);           //求拓扑序列，计算数组etv和stack2
+	ltv=(int *)malloc(GL-&gt;numverteces*sizeof(int));    //事件最晚发生时间
+	for(i=0; i&lt;GL-&gt;numVertexes; i++)
+		ltv[i]=etv[GL-&gt;numVertexes-1];    //初始化ltv
+	while(top2!=0)      //计算ltv
+	{
+		gettop=stack2[top2--];   //将拓扑序列出栈，后进先出
+		for(e=GL-&gt;adjList[gettop].firstedge; e; e=e-&gt;next)
+		{
+			//求各顶点最迟发生时间ltv
+			k=e-&gt;adjvex;
+			if(ltv[k]-e-&gt;weight&lt;ltv[gettop])   //求各顶点事件最晚发生时间
+				ltv[gettop]=ltv[k]-e-&gt;weight;
+		}
+	}
+	for(j=0; j&lt;GL-&gt;numVertexes; j++)    //求ete,lte和关键活动
+	{
+		for(e=GL-adjList[j].firstedge; e; e=e&gt;next)
+		{
+			k=e-&gt;adjvex;        
+			ete=etv[j];       //活动最早发生时间
+			lte=ltv[k]-e-&gt;weight;   //活动最迟发生时间
+			if(ete=lte)                //两者相等即在关键路径上
+				printf(&quot;&lt;v%d,v%d&gt; length: %d , &quot;,GL-&gt;adjList[j].data,GL-&gt;adjList[k].data,e-&gt;weight);
+		}
+	}
+}
+
+
+</code></pre>
+<p>上述代码所求etv和ltv如下所示+关键路径如下所示：<br>
+<img src="https://img-blog.csdnimg.cn/20200201220607841.png" alt="在这里插入图片描述" loading="lazy"><br>
+<img src="https://img-blog.csdnimg.cn/20200201220623475.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dzZmhkaGpz,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述" loading="lazy"><br>
+总结：<br>
+etv通过拓扑排序算出最早发生的时间，每次找权值较大的<br>
+ltv相当于从后向前算出最晚发生时间，每次找权值较小的<br>
+ete=etv[j]表示当事件发生时，最早开工时间（当然必须事件发生，才开工）<br>
+lte=ltv[k]-e-&gt;weight表示事件最晚发生的时间-要完成工作的时间（比如23点睡觉，写作业2h，可以23点才开始写但要睡觉所以最晚开工时间是21点，最晚21点开始写，就是这意思，有点牵强，理解即可）</p>
+]]></content>
+    </entry>
     <entry>
         <title type="html"><![CDATA[大话数据结构第8章笔记（查找）]]></title>
         <id>https://wsf123sd.github.io/post/da-hua-shu-ju-jie-gou-di-8-zhang-bi-ji-cha-zhao/</id>
