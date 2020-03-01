@@ -2,7 +2,7 @@
 <feed xmlns="http://www.w3.org/2005/Atom">
     <id>https://wsf123sd.github.io/</id>
     <title>Gridea</title>
-    <updated>2020-03-01T15:29:56.643Z</updated>
+    <updated>2020-03-01T15:36:18.649Z</updated>
     <generator>https://github.com/jpmonette/feed</generator>
     <link rel="alternate" href="https://wsf123sd.github.io/"/>
     <link rel="self" href="https://wsf123sd.github.io/atom.xml"/>
@@ -164,32 +164,175 @@ int main()
         <link href="https://wsf123sd.github.io/post/c-yu-yan-wang-di-yi-er-zhang-bi-ji/">
         </link>
         <updated>2020-03-01T15:27:07.000Z</updated>
-        <content type="html"><![CDATA[<p>#include<iostream>       头文件<br>
-using namespace std;        std名称空间</p>
-<p>int main(int argc, char** argv)<br>
-{<br>
-int a=5;<br>
-char b='N';<br>
-float c=3.14;<br>
-double d=56.789;</p>
-<pre><code>bool e;  //布尔值 
+        <content type="html"><![CDATA[<p>1.开始介绍c++</p>
+<pre><code class="language-cpp">#include&lt;iostream&gt;       头文件   
+using namespace std;        std名称空间
 
-e=true;
-cout &lt;&lt; e &lt;&lt; endl;
-e=false;
-cout &lt;&lt; e &lt;&lt; endl;
+int main(int argc, char** argv)
+{
+	int a=5;
+	char b='N';
+	float c=3.14;
+	double d=56.789;
+	
+	bool e;  //布尔值 
+	
+	e=true;
+	cout &lt;&lt; e &lt;&lt; endl;
+	e=false;
+	cout &lt;&lt; e &lt;&lt; endl;
+	
+	/*
+	cout &lt;&lt; a &lt;&lt; endl;
+	cout &lt;&lt; '\n' &lt;&lt; endl;
+	cout &lt;&lt; b &lt;&lt; endl;
+	cout &lt;&lt; c &lt;&lt; endl;
+	cout &lt;&lt; d &lt;&lt; endl; 
+	*/
 
-/*
-cout &lt;&lt; a &lt;&lt; endl;
-cout &lt;&lt; '\n' &lt;&lt; endl;
-cout &lt;&lt; b &lt;&lt; endl;
-cout &lt;&lt; c &lt;&lt; endl;
-cout &lt;&lt; d &lt;&lt; endl; 
-*/
-
-return 0;
+	return 0;
+} 
 </code></pre>
-<p>}</p>
+<p>2.各种运算符：</p>
+<pre><code class="language-cpp">#include&lt;iostream&gt;       
+#include&lt;iomanip&gt;   
+using namespace std;        
+
+int main(int argc, char** argv)
+{
+	//赋值运算符 从右至左
+	int a=10;
+	a=98; 
+	//算术运算符
+	//+ - * / % (双目运算符)  ++ -- (单目运算符) 
+	//关系运算符
+	//&gt; &lt; &lt;= &gt;= == != (双目运算符) 
+	//逻辑运算符
+	//&amp;&amp;(左右都为真，则为真) //(有一个为真，就为真) !
+	//位运算符 
+	//&lt;&lt;(将数字变为2进制，左移右补0) &gt;&gt; &amp; / ^ (将数字转变为2进制计算) 
+	//&amp;:两个结果都为1，则值为1  
+	// /:有一个为1，则为1
+	// ^:两个相同则为0，不同为1 
+	//三目运算符
+	//?:
+	//  1&gt;2? 5:6 
+	//逗号运算符  2+3,9  这个表示一个式子，结果是最后一个值 
+	//求字节运算符:sizeof()
+	
+	
+	//逗号运算符：整个逗号表达式的值为系列中最后一个表达式的值。 
+
+
+	int i,j;
+	
+	j=10;
+	i=(j++,j+100,999+j);   //j自增1，完了j加上100变为111， 最后j再加上999， 结果为1010 
+	
+	cout &lt;&lt; i;
+ 
+	return 0;
+} 
+</code></pre>
+<p>3.cout的输出（位数的控制的输出，数字输出的位置，数字输出的填充...）</p>
+<pre><code class="language-cpp">#include&lt;iostream&gt;
+#include &lt;iomanip&gt;      //使用setprecision的头文件 
+using namespace std;
+
+int main(int argc, char** argv)
+{
+	double a=356.1415926535897932;    //默认为保存6位 
+	double b=25.2222365; 
+	//cout &lt;&lt; setprecision(6) &lt;&lt; a &lt;&lt; endl;   //  setprecision(保存的位数) 设置整体的位数 
+	//cout &lt;&lt; setiosflags(ios::fixed)&lt;&lt;setprecision(2)&lt;&lt;a&lt;&lt;endl; // 只设置小数点后的位数 
+	//cout &lt;&lt; setiosflags(ios::fixed)&lt;&lt;setprecision(2)&lt;&lt;setiosflags(ios::right)&lt;&lt;setw(10)&lt;&lt;a&lt;&lt;endl;   //设置数字向右靠，一共设置10位 
+	
+	/* 在第14行设置好，下面a，b输出都按照要求输出，主要若将setw(10)写在第14行，只有a的是保留10位靠右输出 
+    cout &lt;&lt; setiosflags(ios::fixed)&lt;&lt;setprecision(2)&lt;&lt;setiosflags(ios::right);
+	cout &lt;&lt;setw(10) &lt;&lt; setfill('0') &lt;&lt; a &lt;&lt; endl;
+	cout &lt;&lt;setw(10) &lt;&lt; b &lt;&lt; endl;
+	*/
+	
+	//使用字符&amp;来补充，setfill(要填充的内容) 
+	cout &lt;&lt; setiosflags(ios::fixed)&lt;&lt;setprecision(2)&lt;&lt;setiosflags(ios::right) &lt;&lt; setfill('&amp;') ;
+	cout &lt;&lt;setw(10) &lt;&lt; a &lt;&lt; endl;
+	cout &lt;&lt;setw(10) &lt;&lt; b &lt;&lt; endl;
+	
+	return 0;
+}
+</code></pre>
+<p>‘A’65<br>
+‘Z’90<br>
+'0'48</p>
+<p>swith结构</p>
+<pre><code class="language-cpp">#include&lt;iostream&gt;
+#include&lt;iomanip&gt;
+using namespace std;
+int main(int argc, char** argv)
+{
+    int a;
+    cin &gt;&gt; a;
+    switch(a)
+    {
+        case 1:
+        case 2:
+        case 3: cout &lt;&lt; &quot;spring&quot; &lt;&lt; endl;break;
+        case 4:
+        case 5:
+        case 6: cout &lt;&lt; &quot;summer&quot; &lt;&lt; endl;break;
+        case 7:
+        case 8:
+        case 9: cout &lt;&lt; &quot;autumn&quot; &lt;&lt; endl;break;
+        case 10:
+        case 11:
+        case 12: cout &lt;&lt; &quot;winter&quot; &lt;&lt; endl;break;
+        default:cout &lt;&lt; &quot;others&quot; &lt;&lt; endl;break;
+
+    }
+    return 0;
+}
+</code></pre>
+<p>打印水仙花数的两种算法</p>
+<pre><code class="language-cpp">#include&lt;iostream&gt;
+#include&lt;iomanip&gt;
+using namespace std;
+int main()
+{
+    /*
+    int i=100;
+    int a,b,c;
+     while(i&lt;1000)
+     {
+         a=i/100;
+         b=i%100/10;
+         c=i%10;
+         if(a*a*a+b*b*b+c*c*c==i)
+            cout &lt;&lt; i &lt;&lt; endl;
+         i++;
+     }
+     return 0;
+     */
+/*
+    下面的三次循环效率比上面高，因为while循环内部运算次数远远大于下面，上面每次都要计算出a,b,c的值，而下没有一步是要算出确切的值
+*/     
+     
+     int a=1,b=1,c=1;
+     for(a=1; a&lt;10; a++)
+     {
+         for(b=0; b&lt;10; b++)
+         {
+             for(c=0; c&lt;10; c++)
+             {
+                 if(a*a*a+b*b*b+c*c*c == a*100+b*10+c)
+                        cout &lt;&lt; a*100+b*10+c &lt;&lt; endl;
+             }
+         }
+     }
+     return 0;
+}
+
+
+</code></pre>
 ]]></content>
     </entry>
     <entry>
@@ -198,26 +341,160 @@ return 0;
         <link href="https://wsf123sd.github.io/post/c-yu-yan-wang-di-san-zhang-bi-ji/">
         </link>
         <updated>2020-03-01T15:26:37.000Z</updated>
-        <content type="html"><![CDATA[<p>#include<iostream><br>
-#include<iomanip><br>
-using namespace std;<br>
-int fun(int a, int b, int c);<br>
-/*<br>
-函数定义：返回值类型 函数名 形参表<br>
-函数定义顺序：函数声明-&gt;主函数-&gt;函数定义<br>
-函数的思想：低耦合，高为聚（函数之间耦合度要低，高维聚表示函数的功能尽可能集中）<br>
-*/<br>
-int main()<br>
-{<br>
-int a,b,c;<br>
-cin &gt;&gt; a &gt;&gt; b &gt;&gt; c;<br>
-cout &lt;&lt; fun(a,b,c);<br>
-return 0;<br>
-}<br>
-int fun(int a, int b, int c)<br>
-{<br>
-return a&gt;b?a&gt;c?a:c:b&gt;c?b:c;<br>
-}</p>
+        <content type="html"><![CDATA[<p>函数定义：返回abc中最大值</p>
+<pre><code class="language-cpp">#include&lt;iostream&gt;
+#include&lt;iomanip&gt;
+using namespace std;
+int fun(int a, int b, int c);
+/*
+   函数定义：返回值类型 函数名 形参表
+   函数定义顺序：函数声明-&gt;主函数-&gt;函数定义
+   函数的思想：低耦合，高为聚（函数之间耦合度要低，高维聚表示函数的功能尽可能集中）
+*/
+int main()
+{
+    int a,b,c;
+    cin &gt;&gt; a &gt;&gt; b &gt;&gt; c;
+    cout &lt;&lt; fun(a,b,c);
+    return 0;
+}
+int fun(int a, int b, int c)
+{
+   return a&gt;b?a&gt;c?a:c:b&gt;c?b:c;
+}
+
+</code></pre>
+<p>函数重载</p>
+<pre><code class="language-cpp">#include&lt;iostream&gt;
+using namespace std;
+//函数重载:一物多用
+
+/*
+    1.保证函数名形同，形参的个数或类型不同,函数的类型也可以不同
+    2.对于调用时，若两个数就使用第2个判断，若3个数就使用第一个判断
+*/
+
+int fun(int a,int b,int c);
+int fun(int a, int b);
+double fun(double a, double b, double c);
+int main()
+{
+    cout &lt;&lt; fun(5.0,1.0,11.11) &lt;&lt; endl;
+    return 0;
+}
+
+int fun(int a,int b)
+{
+    return a&gt;b?a:b;
+}
+
+int fun(int a, int b, int c)
+{
+    if(b&gt;a)
+        a=b;
+    if(c&gt;a)
+        a=c;
+    cout &lt;&lt; &quot;int&quot; &lt;&lt; endl;
+    return a;
+}
+
+double fun(double a,double b, double c)
+{
+    if(b&gt;a)
+        a=b;
+    if(c&gt;a)
+        a=c;
+    cout &lt;&lt; &quot;double&quot; &lt;&lt; endl;
+    return a;
+}
+
+</code></pre>
+<p>带默认参数函数和一个函数不能即是带默认参数函数又是函数重载：</p>
+<pre><code class="language-cpp">#include&lt;iostream&gt;
+using namespace std;
+/*
+    带默认参数的函数使用
+    1.在函数声明的过程中，就放上参数，而在函数定义和函数调用过程的过程中不要放参数
+    这样最后的结果就是参数的函数值
+    2.如果函数调用中，传部分值也可以
+    3.给函数申明赋初值时，优先从右至左
+    4.函数调用时将实参赋值给形参的顺序是从左至右
+    5.有实参用实参没实参用形参
+    6.特别注意一个函数不能即做函数重载又做带默认值函数
+*/
+int fun(int a=1, int b=1, int c=2);
+int fun(int a,int b);  //6.函数调用时是用上面还是用下面？
+int main()
+{
+    cout &lt;&lt; fun(5,2) &lt;&lt; endl;
+    return 0;
+}
+
+int fun(int a, int b, int c)
+{
+    if(b&gt;a)
+        a=b;
+    if(c&gt;a)
+        a=c;
+    cout &lt;&lt; &quot;int&quot; &lt;&lt; endl;
+    return a;
+}
+
+
+</code></pre>
+<p>变量的使用</p>
+<pre><code class="language-cpp">#include&lt;iostream&gt;
+#include&lt;iomanip&gt;
+using namespace std;
+int a=15;     //全局变量,函数外部，作用范围： 全局变量的生命周期是整个程序
+/*
+
+*/
+int fun()
+{
+    int a;
+    a=20;
+}
+int main()
+{
+    auto int b;   //auto动态存储类别，不写也可以就是平时用的
+    static int a;  //静态类型，只初始化一次
+    int a;      //局部变量，就在它自身的函数内可用,如果全局变量和局部变量重名时，以函数内的局部变量为准
+    a=10;          //当函数运行完，局部变量生命周期就结束
+    cout &lt;&lt; a &lt;&lt; endl;
+    return 0;
+}
+
+</code></pre>
+<p>register和static</p>
+<pre><code class="language-cpp">#include&lt;iostream&gt;
+#include&lt;iomanip&gt;
+using namespace std;
+
+int fun()
+{
+   static a=10;  //只初始化一次，第2次调用此函数值为12不是11
+   register int a=10;   //把变量设置为register可以高效的读取该变量,建议性的动作
+   extern 
+   for(a=10; a&lt;1000; a++)
+   {
+       
+   }
+    a++;
+    cout &lt;&lt; a &lt;&lt; endl;
+    return 0;
+}
+
+
+int main()
+{
+    fun();
+    fun();
+    return 0;
+}
+
+</code></pre>
+<p>关键字extern：扩大作用域的范围</p>
 ]]></content>
     </entry>
     <entry>
@@ -698,29 +975,261 @@ int main()
         <link href="https://wsf123sd.github.io/post/c-yu-yan-wang-di-wu-zhang-bi-ji/">
         </link>
         <updated>2020-03-01T15:24:37.000Z</updated>
-        <content type="html"><![CDATA[<p>#include<iostream><br>
-#include<string><br>
-#include<algorithm></p>
-<p>using namespace std;<br>
-//STL(标准模板库):容器（链表，堆，栈....），迭代器（类似于指针），算法<br>
-//sort<br>
-//reverse<br>
-//accumulate</p>
-<p>int main()<br>
-{<br>
-int a[5]={1,3,5,4,2};</p>
-<pre><code>//sort排序中要放两个指针，第一个是起始地址，第二个是结束地址，但是要给数组最后一个元素的下一个地址,sort默认为升序排列
-sort(&amp;a[0],&amp;a[5]);     
-for(int i=0; i&lt;=4; i++)
-    cout &lt;&lt; a[i] &lt;&lt; endl;
+        <content type="html"><![CDATA[<p>1.sort和reverse函数</p>
+<pre><code class="language-cpp">#include&lt;iostream&gt;
+#include&lt;string&gt;
+#include&lt;algorithm&gt;
 
-//reverse用法：sort+reverse可以降序排列
-reverse(&amp;a[0],&amp;a[5]);
-for(int i=0; i&lt;=4; i++)
-    cout &lt;&lt; a[i] &lt;&lt; endl;
-return 0;
+using namespace std;
+//STL(标准模板库):容器（链表，堆，栈....），迭代器（类似于指针），算法
+//sort
+//reverse
+//accumulate
+
+int main()
+{
+    int a[5]={1,3,5,4,2};
+    
+    //sort排序中要放两个指针，第一个是起始地址，第二个是结束地址，但是要给数组最后一个元素的下一个地址,sort默认为升序排列
+    sort(&amp;a[0],&amp;a[5]);     
+    for(int i=0; i&lt;=4; i++)
+        cout &lt;&lt; a[i] &lt;&lt; endl;
+
+    //reverse用法：sort+reverse可以降序排列
+    reverse(&amp;a[0],&amp;a[5]);
+    for(int i=0; i&lt;=4; i++)
+        cout &lt;&lt; a[i] &lt;&lt; endl;
+    return 0;
+}
+
 </code></pre>
-<p>}</p>
+<p>2.accumulate函数</p>
+<pre><code class="language-cpp">#include&lt;iostream&gt;
+#include&lt;string&gt;
+#include&lt;numeric&gt;
+
+using namespace std;
+//accumulate
+
+int main()
+{
+    int a[5]={1,3,5,4,2};
+    /*
+        1.accumulate里面有三个值：第一个还是数组的第一个地址，第二个是最后一个元素的下一个地址，第三个如果累加和就写0
+        2.accumulate是以参数的形式返回
+        3.要加头文件numeric
+    */
+    int i=accumulate(&amp;a[0],&amp;a[4],0);
+
+    cout &lt;&lt; i;
+    return 0;
+}
+
+</code></pre>
+<p>3.find函数</p>
+<pre><code class="language-cpp">#include&lt;iostream&gt;
+#include&lt;string&gt;
+#include&lt;algorithm&gt;
+
+using namespace std;
+//find
+
+int main()
+{
+    int *i;
+    int a[5]={1,3,5,4,2};
+    /*
+        1.find中有三个值：第一个数组的地址，第二个是数组中最后一个元素的下一个地址，第三个是要查找的数字
+        2.如果数组中有要找的数字，则返回该数字的地址；如果没有则返回数组中最后一个元素的下一个地址
+        3.头文件algorithm
+    */
+    i=find(&amp;a[0],&amp;a[5],1);
+    if(i==&amp;a[5])
+        cout &lt;&lt; &quot;can't find!&quot;;
+    else
+        cout &lt;&lt; &quot;success!&quot;;
+    return 0;
+}
+
+</code></pre>
+<p>4.vector用法+push_back()输入+迭代器输出</p>
+<pre><code class="language-cpp">#include&lt;iostream&gt;
+#include&lt;vector&gt;
+#include&lt;algorithm&gt;
+using namespace std;
+int main()
+{
+    int a;
+    vector&lt;int&gt; v; //自动调整数组的大小
+    vector&lt;int&gt;::iterator it;      //迭代器，指向vector的int类型的指针
+    for(int i=0; i&lt;5; i++)
+    {
+        cin &gt;&gt; a;
+        v.push_back(a);      //用v.push_back()对vector进行输入
+    }
+    
+    sort(v.begin(),v.end());     //使用vector和sort结合使用其中v.end()表示最后一个元素的下一个地址
+    
+    //使用迭代器的方式进行数组访问
+    for(it=v.begin(); it!=v.end(); it++)
+    {
+        cout &lt;&lt; *it &lt;&lt; endl;
+    }
+
+    
+    return 0;
+}
+
+</code></pre>
+<p>5.vector中v.front()返回首元素和v.back()返回尾元素</p>
+<pre><code class="language-cpp">#include&lt;iostream&gt;
+#include&lt;vector&gt;
+#include&lt;algorithm&gt;
+using namespace std;
+int main()
+{
+    int a;
+    vector&lt;int&gt; v;
+    vector&lt;int&gt;::iterator it;
+    v.push_back(10);
+    v.push_back(20);
+    v.push_back(30);
+    /*
+        1.v.front()返回首元素
+        2.v.back()返回尾元素
+    */
+    cout &lt;&lt; v.front() &lt;&lt; endl;
+    cout &lt;&lt; v.back() &lt;&lt; endl;
+    return 0;
+}
+
+</code></pre>
+<p>6.vector中v.empty()函数（判断vector是否为空）</p>
+<pre><code class="language-cpp">#include&lt;iostream&gt;
+#include&lt;vector&gt;
+#include&lt;algorithm&gt;
+using namespace std;
+int main()
+{
+    int a;
+    vector&lt;int&gt; v;
+    vector&lt;int&gt;::iterator it;
+
+    if(v.empty()==true)
+        cout &lt;&lt; &quot;yes&quot;;
+    else
+        cout &lt;&lt; &quot;no&quot;;
+    return 0;
+}
+
+</code></pre>
+<p>7.v.size()+删除某个元素v.erase()+清空整个vector：v.clear()+删除最后一个元素v.pop_back()<br>
+注意事项：<br>
+1.v.erase()删除某个指定元素后再读取此位置的数字则是下一个位置的数字;<br>
+如果要删除其他位置元素：<br>
+1.使用迭代器    vector<int>::iterator it<br>
+2.it=v.begin()+1; 表示删除v[1]这个元素<br>
+3.it=v.begin()+2; 表示删除v[2]这个元素<br>
+2.v.pop_back()删除最后一个元素，但是读取的话仍能读取，但是vector的长度会变小</p>
+<pre><code class="language-cpp">#include&lt;iostream&gt;
+#include&lt;vector&gt;
+#include&lt;algorithm&gt;
+using namespace std;
+int main()
+{
+    int a;
+    vector&lt;int&gt; v;
+    vector&lt;int&gt;::iterator it;
+    v.push_back(10);
+    v.push_back(20);
+    v.push_back(30);
+
+    cout &lt;&lt; v.size(); //判断vector的大小
+
+    it=v.begin();
+    v.erase(it);    //删除指定的元素
+    cout &lt;&lt; *v.begin();
+
+    v.pop_back();    //删除最后一个元素
+
+    v.clear();    //清空vector数组
+    cout &lt;&lt; v.size();
+    return 0;
+}
+
+</code></pre>
+<p>1033<br>
+解题思路：<br>
+1.字符串bad，should<br>
+2.以should为主循环遍历，如果bad字符串中含有should中的字符就跳过；如果should中的字符是大写，并且有上档键则跳过<br>
+参考代码：</p>
+<pre><code class="language-cpp">#include&lt;iostream&gt;
+using namespace std;
+int main()
+{
+    string bad,should;
+    getline(cin,bad);
+    getline(cin,should);
+    for(int i=0; i&lt;should.length(); i++)
+    {
+        if(bad.find(toupper(should[i]))!=string::npos)
+            continue;
+        if(isupper(should[i])&amp;&amp;bad.find('+')!=string::npos)
+            continue;
+        cout &lt;&lt; should[i];
+    }
+    return 0;
+}
+
+
+</code></pre>
+<p>我的代码：</p>
+<pre><code class="language-cpp">#include&lt;iostream&gt;
+using namespace std;
+string a,b;
+bool isTrue(char c)
+{
+    for(int i=0; i&lt;a.length(); i++)
+    {
+        /*如果a中有上档键且字符是大写则不输出*/
+        if(a[i]=='+')
+            if('A'&lt;=c &amp;&amp; c&lt;='Z')
+                return false;
+        /*a[i]==c包含两种情况，一种数数字字符+一种是大写字符*/
+        if(a[i]==c || (a[i]-'A'==c-'a'))
+            return false;
+    }
+    return true;
+}
+int main()
+{
+    cin &gt;&gt; a &gt;&gt; b;
+    for(int i=0; i&lt;b.length(); i++)
+    {
+        if(isTrue(b[i]))
+            cout &lt;&lt; b[i];
+    }
+    return 0;
+}
+
+
+/*
+    解题思路：
+    1.设置一个函数里面包含上档键坏掉，返回false和坏掉的键返回false
+*/
+
+</code></pre>
+<p>注意事项：<br>
+1.在输入字符串时可能会有空格，所以用getline<br>
+2.如果改掉字符串的输入方式，我的代码只能得到17分，剩下的3分看不出来</p>
+<p>知识总结：<br>
+1.getline()与cin的区别：<br>
+cin在输入字符串时，遇到空格、制表符或换行符就结束<br>
+getline()可以输入时敲入空格，回车，制表符<br>
+2.isupper(k)含义：<br>
+判断字符k是否为大写字母，是返回1，否则返回0<br>
+3.string中find含义：<br>
+bad.find('+')表示在字符串bad中找是否含有+这个字符，有，返会+所在的字符串下标，否则，返回npos</p>
 ]]></content>
     </entry>
     <entry>

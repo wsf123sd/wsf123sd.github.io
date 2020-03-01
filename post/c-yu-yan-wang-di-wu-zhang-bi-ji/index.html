@@ -50,30 +50,262 @@
                         <div class="mdui-col-md-8 mdui-col-offset-md-2 ">
                                 <article class="mdui-p-a-2 post animated fadeIn" style="animation-delay: 0.8s;animation-duration: 2s">
                                     <div class="post-title  mdui-m-b-1">c语言网第五章笔记</div>
-                                    <div class="mdui-typo-body-2 mdui-m-b-2" datetime="2020-03-01 23:24:37">2020-03-01 / 1 min read</div>
-                                    <div class="mdui-m-b-2 mdui-typo post-neirong"><p>#include<iostream><br>
-#include<string><br>
-#include<algorithm></p>
-<p>using namespace std;<br>
-//STL(标准模板库):容器（链表，堆，栈....），迭代器（类似于指针），算法<br>
-//sort<br>
-//reverse<br>
-//accumulate</p>
-<p>int main()<br>
-{<br>
-int a[5]={1,3,5,4,2};</p>
-<pre><code>//sort排序中要放两个指针，第一个是起始地址，第二个是结束地址，但是要给数组最后一个元素的下一个地址,sort默认为升序排列
-sort(&amp;a[0],&amp;a[5]);     
-for(int i=0; i&lt;=4; i++)
-    cout &lt;&lt; a[i] &lt;&lt; endl;
+                                    <div class="mdui-typo-body-2 mdui-m-b-2" datetime="2020-03-01 23:24:37">2020-03-01 / 7 min read</div>
+                                    <div class="mdui-m-b-2 mdui-typo post-neirong"><p>1.sort和reverse函数</p>
+<pre><code class="language-cpp">#include&lt;iostream&gt;
+#include&lt;string&gt;
+#include&lt;algorithm&gt;
 
-//reverse用法：sort+reverse可以降序排列
-reverse(&amp;a[0],&amp;a[5]);
-for(int i=0; i&lt;=4; i++)
-    cout &lt;&lt; a[i] &lt;&lt; endl;
-return 0;
+using namespace std;
+//STL(标准模板库):容器（链表，堆，栈....），迭代器（类似于指针），算法
+//sort
+//reverse
+//accumulate
+
+int main()
+{
+    int a[5]={1,3,5,4,2};
+    
+    //sort排序中要放两个指针，第一个是起始地址，第二个是结束地址，但是要给数组最后一个元素的下一个地址,sort默认为升序排列
+    sort(&amp;a[0],&amp;a[5]);     
+    for(int i=0; i&lt;=4; i++)
+        cout &lt;&lt; a[i] &lt;&lt; endl;
+
+    //reverse用法：sort+reverse可以降序排列
+    reverse(&amp;a[0],&amp;a[5]);
+    for(int i=0; i&lt;=4; i++)
+        cout &lt;&lt; a[i] &lt;&lt; endl;
+    return 0;
+}
+
 </code></pre>
-<p>}</p>
+<p>2.accumulate函数</p>
+<pre><code class="language-cpp">#include&lt;iostream&gt;
+#include&lt;string&gt;
+#include&lt;numeric&gt;
+
+using namespace std;
+//accumulate
+
+int main()
+{
+    int a[5]={1,3,5,4,2};
+    /*
+        1.accumulate里面有三个值：第一个还是数组的第一个地址，第二个是最后一个元素的下一个地址，第三个如果累加和就写0
+        2.accumulate是以参数的形式返回
+        3.要加头文件numeric
+    */
+    int i=accumulate(&amp;a[0],&amp;a[4],0);
+
+    cout &lt;&lt; i;
+    return 0;
+}
+
+</code></pre>
+<p>3.find函数</p>
+<pre><code class="language-cpp">#include&lt;iostream&gt;
+#include&lt;string&gt;
+#include&lt;algorithm&gt;
+
+using namespace std;
+//find
+
+int main()
+{
+    int *i;
+    int a[5]={1,3,5,4,2};
+    /*
+        1.find中有三个值：第一个数组的地址，第二个是数组中最后一个元素的下一个地址，第三个是要查找的数字
+        2.如果数组中有要找的数字，则返回该数字的地址；如果没有则返回数组中最后一个元素的下一个地址
+        3.头文件algorithm
+    */
+    i=find(&amp;a[0],&amp;a[5],1);
+    if(i==&amp;a[5])
+        cout &lt;&lt; &quot;can't find!&quot;;
+    else
+        cout &lt;&lt; &quot;success!&quot;;
+    return 0;
+}
+
+</code></pre>
+<p>4.vector用法+push_back()输入+迭代器输出</p>
+<pre><code class="language-cpp">#include&lt;iostream&gt;
+#include&lt;vector&gt;
+#include&lt;algorithm&gt;
+using namespace std;
+int main()
+{
+    int a;
+    vector&lt;int&gt; v; //自动调整数组的大小
+    vector&lt;int&gt;::iterator it;      //迭代器，指向vector的int类型的指针
+    for(int i=0; i&lt;5; i++)
+    {
+        cin &gt;&gt; a;
+        v.push_back(a);      //用v.push_back()对vector进行输入
+    }
+    
+    sort(v.begin(),v.end());     //使用vector和sort结合使用其中v.end()表示最后一个元素的下一个地址
+    
+    //使用迭代器的方式进行数组访问
+    for(it=v.begin(); it!=v.end(); it++)
+    {
+        cout &lt;&lt; *it &lt;&lt; endl;
+    }
+
+    
+    return 0;
+}
+
+</code></pre>
+<p>5.vector中v.front()返回首元素和v.back()返回尾元素</p>
+<pre><code class="language-cpp">#include&lt;iostream&gt;
+#include&lt;vector&gt;
+#include&lt;algorithm&gt;
+using namespace std;
+int main()
+{
+    int a;
+    vector&lt;int&gt; v;
+    vector&lt;int&gt;::iterator it;
+    v.push_back(10);
+    v.push_back(20);
+    v.push_back(30);
+    /*
+        1.v.front()返回首元素
+        2.v.back()返回尾元素
+    */
+    cout &lt;&lt; v.front() &lt;&lt; endl;
+    cout &lt;&lt; v.back() &lt;&lt; endl;
+    return 0;
+}
+
+</code></pre>
+<p>6.vector中v.empty()函数（判断vector是否为空）</p>
+<pre><code class="language-cpp">#include&lt;iostream&gt;
+#include&lt;vector&gt;
+#include&lt;algorithm&gt;
+using namespace std;
+int main()
+{
+    int a;
+    vector&lt;int&gt; v;
+    vector&lt;int&gt;::iterator it;
+
+    if(v.empty()==true)
+        cout &lt;&lt; &quot;yes&quot;;
+    else
+        cout &lt;&lt; &quot;no&quot;;
+    return 0;
+}
+
+</code></pre>
+<p>7.v.size()+删除某个元素v.erase()+清空整个vector：v.clear()+删除最后一个元素v.pop_back()<br>
+注意事项：<br>
+1.v.erase()删除某个指定元素后再读取此位置的数字则是下一个位置的数字;<br>
+如果要删除其他位置元素：<br>
+1.使用迭代器    vector<int>::iterator it<br>
+2.it=v.begin()+1; 表示删除v[1]这个元素<br>
+3.it=v.begin()+2; 表示删除v[2]这个元素<br>
+2.v.pop_back()删除最后一个元素，但是读取的话仍能读取，但是vector的长度会变小</p>
+<pre><code class="language-cpp">#include&lt;iostream&gt;
+#include&lt;vector&gt;
+#include&lt;algorithm&gt;
+using namespace std;
+int main()
+{
+    int a;
+    vector&lt;int&gt; v;
+    vector&lt;int&gt;::iterator it;
+    v.push_back(10);
+    v.push_back(20);
+    v.push_back(30);
+
+    cout &lt;&lt; v.size(); //判断vector的大小
+
+    it=v.begin();
+    v.erase(it);    //删除指定的元素
+    cout &lt;&lt; *v.begin();
+
+    v.pop_back();    //删除最后一个元素
+
+    v.clear();    //清空vector数组
+    cout &lt;&lt; v.size();
+    return 0;
+}
+
+</code></pre>
+<p>1033<br>
+解题思路：<br>
+1.字符串bad，should<br>
+2.以should为主循环遍历，如果bad字符串中含有should中的字符就跳过；如果should中的字符是大写，并且有上档键则跳过<br>
+参考代码：</p>
+<pre><code class="language-cpp">#include&lt;iostream&gt;
+using namespace std;
+int main()
+{
+    string bad,should;
+    getline(cin,bad);
+    getline(cin,should);
+    for(int i=0; i&lt;should.length(); i++)
+    {
+        if(bad.find(toupper(should[i]))!=string::npos)
+            continue;
+        if(isupper(should[i])&amp;&amp;bad.find('+')!=string::npos)
+            continue;
+        cout &lt;&lt; should[i];
+    }
+    return 0;
+}
+
+
+</code></pre>
+<p>我的代码：</p>
+<pre><code class="language-cpp">#include&lt;iostream&gt;
+using namespace std;
+string a,b;
+bool isTrue(char c)
+{
+    for(int i=0; i&lt;a.length(); i++)
+    {
+        /*如果a中有上档键且字符是大写则不输出*/
+        if(a[i]=='+')
+            if('A'&lt;=c &amp;&amp; c&lt;='Z')
+                return false;
+        /*a[i]==c包含两种情况，一种数数字字符+一种是大写字符*/
+        if(a[i]==c || (a[i]-'A'==c-'a'))
+            return false;
+    }
+    return true;
+}
+int main()
+{
+    cin &gt;&gt; a &gt;&gt; b;
+    for(int i=0; i&lt;b.length(); i++)
+    {
+        if(isTrue(b[i]))
+            cout &lt;&lt; b[i];
+    }
+    return 0;
+}
+
+
+/*
+    解题思路：
+    1.设置一个函数里面包含上档键坏掉，返回false和坏掉的键返回false
+*/
+
+</code></pre>
+<p>注意事项：<br>
+1.在输入字符串时可能会有空格，所以用getline<br>
+2.如果改掉字符串的输入方式，我的代码只能得到17分，剩下的3分看不出来</p>
+<p>知识总结：<br>
+1.getline()与cin的区别：<br>
+cin在输入字符串时，遇到空格、制表符或换行符就结束<br>
+getline()可以输入时敲入空格，回车，制表符<br>
+2.isupper(k)含义：<br>
+判断字符k是否为大写字母，是返回1，否则返回0<br>
+3.string中find含义：<br>
+bad.find('+')表示在字符串bad中找是否含有+这个字符，有，返会+所在的字符串下标，否则，返回npos</p>
 </div>
                                     <div class="mdui-divider mdui-m-b-2"></div>
                                     <div class="mdui-row-xs-2 post-fenye">
