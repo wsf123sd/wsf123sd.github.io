@@ -2,7 +2,7 @@
 <feed xmlns="http://www.w3.org/2005/Atom">
     <id>https://wsf123sd.github.io/</id>
     <title>Gridea</title>
-    <updated>2020-03-01T15:27:43.495Z</updated>
+    <updated>2020-03-01T15:28:55.998Z</updated>
     <generator>https://github.com/jpmonette/feed</generator>
     <link rel="alternate" href="https://wsf123sd.github.io/"/>
     <link rel="self" href="https://wsf123sd.github.io/atom.xml"/>
@@ -10,6 +10,154 @@
     <logo>https://wsf123sd.github.io/images/avatar.png</logo>
     <icon>https://wsf123sd.github.io/favicon.ico</icon>
     <rights>All rights reserved 2020, Gridea</rights>
+    <entry>
+        <title type="html"><![CDATA[Markdown语法]]></title>
+        <id>https://wsf123sd.github.io/post/markdown-yu-fa/</id>
+        <link href="https://wsf123sd.github.io/post/markdown-yu-fa/">
+        </link>
+        <updated>2020-03-01T15:28:08.000Z</updated>
+        <content type="html"><![CDATA[<h1 id="一级标题ctrl1">一级标题（Ctrl+1）</h1>
+<p>快速生成目录（[toc]+回车）</p>
+<p>[toc]</p>
+<h2 id="二级标题ctrl2">二级标题（Ctrl+2）</h2>
+<h3 id="三级标题ctrl3">三级标题（Ctrl+3）</h3>
+<p><u>这是下划线（Ctrl+u）</u></p>
+<p><s>这是删除线(alt+shift+5)</s></p>
+<p><strong>字体加粗（ctrl+b）</strong></p>
+<p><em>字体倾斜（Ctrl+i）</em></p>
+<ul>
+<li>牛奶（先输入-再输入空格就是无序列表）</li>
+<li>面包</li>
+<li>蛋糕
+<ul>
+<li>包子（再输入-和空格都是无序列表的嵌套）</li>
+<li>鸡蛋</li>
+</ul>
+</li>
+</ul>
+<ol>
+<li>你好（数字+.+空格）</li>
+<li>我好</li>
+<li>他也好
+<ol>
+<li>电脑（再输入数字+.+空格就是有序列表嵌套）</li>
+<li>鼠标</li>
+</ol>
+</li>
+</ol>
+<blockquote>
+<p>引用（&gt;+空格）</p>
+</blockquote>
+<p><a href="https://wsf123sad.github.io/">这是链接</a></p>
+<p>直接粘贴复制</p>
+<figure data-type="image" tabindex="1"><img src="C:%5CUsers%5CAdministrator%5CAppData%5CRoaming%5CTypora%5Ctypora-user-images%5Cimage-20200228122119497.png" alt="image-20200228122119497" loading="lazy"></figure>
+<pre><code class="language-c++">//ctrl+shift+k(代码块)
+#include&lt;iostream&gt;
+using namespace std;
+int main()
+{
+    int a,int b;
+}
+</code></pre>
+<p>home family 沙墟（ctrl+d选中英文单词或者中文）</p>
+<p>asdkjklj(ctrl+l按行选中)</p>
+<p>快速搜索（ctrl+f）</p>
+<p>替换（ctrl+h）</p>
+<p>快速生成表格（ctrl+t）</p>
+<table>
+<thead>
+<tr>
+<th style="text-align:center">asd</th>
+<th style="text-align:center">ds</th>
+<th></th>
+<th></th>
+<th></th>
+<th></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:center">sdfasd</td>
+<td style="text-align:center">sdaf</td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td style="text-align:center"></td>
+<td style="text-align:center"></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td style="text-align:center"></td>
+<td style="text-align:center"></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td style="text-align:center"></td>
+<td style="text-align:center"></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td style="text-align:center"></td>
+<td style="text-align:center"></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td style="text-align:center"></td>
+<td style="text-align:center"></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td style="text-align:center"></td>
+<td style="text-align:center"></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+</tbody>
+</table>
+<p>快速打开文件（ctrl+p）</p>
+<p><code>关键字</code>爱神的箭（ctrl+shift+tab键上面的反引号）</p>
+<p>表情符号：（在微软的输入法下，ctrl+shift+b）</p>
+<p>😍❤</p>
+<p>ctrl+n创建新文件，ctrl+w关闭文件</p>
+<p>ctrl+shift+l显示和隐藏侧边栏</p>
+<p>f11全屏</p>
+<p>三个---+回车是分割线</p>
+<hr>
+<p><mark>高亮</mark> (俩个=+文字+俩个=)</p>
+<p>爱是考虑到（ctrl+0段落标签）</p>
+<p>脚注：</p>
+<p>Jobs<sup class="footnote-ref"><a href="#fn1" id="fnref1">[1]</a></sup></p>
+<p>先输入Jobs+[]+中括号内写^1,然后回车后有自动提示</p>
+<p>文件导出：文件-&gt;导出（选择格式）</p>
+<hr class="footnotes-sep">
+<section class="footnotes">
+<ol class="footnotes-list">
+<li id="fn1" class="footnote-item"><p>苹果公司的创始人 <a href="#fnref1" class="footnote-backref">↩︎</a></p>
+</li>
+</ol>
+</section>
+]]></content>
+    </entry>
     <entry>
         <title type="html"><![CDATA[c语言网第一，二章笔记]]></title>
         <id>https://wsf123sd.github.io/post/c-yu-yan-wang-di-yi-er-zhang-bi-ji/</id>
@@ -5156,700 +5304,6 @@ etv通过拓扑排序算出最早发生的时间，每次找权值较大的<br>
 ltv相当于从后向前算出最晚发生时间，每次找权值较小的<br>
 ete=etv[j]表示当事件发生时，最早开工时间（当然必须事件发生，才开工）<br>
 lte=ltv[k]-e-&gt;weight表示事件最晚发生的时间-要完成工作的时间（比如23点睡觉，写作业2h，可以23点才开始写但要睡觉所以最晚开工时间是21点，最晚21点开始写，就是这意思，有点牵强，理解即可）</p>
-]]></content>
-    </entry>
-    <entry>
-        <title type="html"><![CDATA[大话数据结构第8章笔记（查找）]]></title>
-        <id>https://wsf123sd.github.io/post/da-hua-shu-ju-jie-gou-di-8-zhang-bi-ji-cha-zhao/</id>
-        <link href="https://wsf123sd.github.io/post/da-hua-shu-ju-jie-gou-di-8-zhang-bi-ji-cha-zhao/">
-        </link>
-        <updated>2020-03-01T04:12:42.000Z</updated>
-        <content type="html"><![CDATA[<p><a href="#jump">8.1开场白+8.2查找概论</a><br>
-<a href="#jump1">8.3顺序表查找</a><br>
-      <a href="#jump2">8.3.1顺序查找算法</a><br>
-      <a href="#jump3">8.3.2顺序表查找优化</a><br>
-<a href="#jump4">8.4有序表查找</a><br>
-      <a href="#jump5">8.4.1折半查找</a><br>
-      <a href="#jump6">8.4.2插值查找</a><br>
-      <a href="#jump7">8.4.7裴波那契查找</a><br>
-<a href="#jump8">8.5线性索引查找</a><br>
-      <a href="#jump9">8.5.1稠密索引</a><br>
-      <a href="#jump10">8.5.2分块索引</a><br>
-      <a href="#jump11">8.5.3倒排索引</a></p>
-<p><a href="#jump12">8.6二叉排序树</a><br>
-      <a href="#jump13">8.6.1二叉排序树查找操作</a><br>
-      <a href="#jump14">8.6.2二叉排序数插入操作</a><br>
-      <a href="#jump15">8.6.3二叉排序树删除操作</a><br>
-      <a href="#jump16">8.6.4二叉排序树总结</a><br>
-<a href="#jump17">8.7（平衡二叉树）AVL树</a><br>
-      <a href="#jump18">8.7.1平衡二叉树实现原理</a><br>
-      <a href="#jump19">8.7.2平衡二叉树实现算法</a><br>
-<a href="#jump20">8.8多路查找树</a><br>
-<a href="#jump21">8.9散列表查找（哈希表）概述</a><br>
-<a href="#jump22">8.10散列函数的构造方法</a><br>
-<a href="#jump23">8.11处理散列冲突的方法</a><br>
-<a href="#jump24">8.12散列表查找实现</a><br>
-      <a href="#jump25">8.12.1散列表查找算法实现</a><br>
-      <a href="#jump26">8.12.2散列表查找性能分析</a></p>
-<p><span id="jump">8.1开场白+8.2查找概论</span><br>
-<strong>1.查找表</strong>：静态查找表+动态查找表<br>
-a.静态查找表：查询某个特定的数据元素是否在查找表中+检索某个特定的数据元素和各种属性<br>
-b.动态查找表：查找时插入元素，查找时删除元素<br>
-<strong>2.静态查找</strong>----线性结构组织数据+顺序查找法+对于主关键字排序可以使用折半查找<br>
-<strong>3.动态查找</strong>----二叉排序树的查找技术</p>
-<p><span id="jump1">8.3顺序表查找</span></p>
-<ul>
-<li>顺序查找过程：从表中第一个开始，逐个进行记录的关键字和给定值比较，若某个记录关键字和给定值相同则查找成功，如果找到最后一个，其关键字和给定值都不同，则查找失败</li>
-<li><span id="jump2">8.3.1顺序查找算法代码</span></li>
-</ul>
-<pre><code class="language-cpp">/*顺序查找，a为数组，n为要查找的数组长度，key为要查找的关键字*/
-int Sequential_Search(int *a,int n, int key)
-{
-	int i;
-	for(i=1;i&lt;=n;i++)
-	{
-		if(a[i]==key)
-		{
-			return i;
-		}
-	}
-	return 0;
-}
-</code></pre>
-<blockquote>
-<p>由于上面的查找中每次都要i&lt;=n的判断，实际上设置一个哨兵即可，如下代码</p>
-</blockquote>
-<ul>
-<li><span id="jump3">8.3.2顺序表查找优化</span></li>
-</ul>
-<pre><code class="language-cpp">/*有哨兵顺序查找*/
-int Sequential_Search2(int *a,int n,int key)
-{
-	int i;
-	a[0]=key;        //设置a[0]为关键字值，称为“哨兵”
-	i=n;             //循环从数组尾部开始
-	while(a[i]!=key)
-	{
-		i--;
-	}
-	return i;    //返回0则查找失败
-}
-</code></pre>
-<blockquote>
-<p>此代码从尾部开始查找，a[0]=key，如果在a[i]中有key则返回i值，查找成功。否则一定在最终的a[0]处等于key，此时返回0，说明查找失败</p>
-</blockquote>
-<p><span id="jump4">8.4有序表查找</span></p>
-<ul>
-<li><span id="jump5">8.4.1折半查找</span></li>
-</ul>
-<blockquote>
-<p>思想：折半查找的前提是线性表中的记录必须是关键码有序（通常从小到大）。在有序表中，取中间记录作为比较对象，若给定值与中间记录的关键字相等，则查找成功；若给定值小于中间记录的关键字，则在中间记录的左半区继续查找；若给定值大于中间记录的关键字，则在中间记录的右边区继续查找。不断重复上述过程，直到查找成功，或查找区域无记录，查找失败</p>
-</blockquote>
-<p>参考代码：<strong>折半查找时间复杂度o(logn)</strong></p>
-<pre><code class="language-cpp">/*折半查找*/
-int Binary_Search(int *a,int n, int key)
-{
-	int low,high,mid;
-	low=1;                  //定义最低下标为记录首位
-	high=n;                  //定义最高下标为记录末位
-	while(low&lt;=high)
-	{
-		mid=(low+high)/2;         //折半
-		if(key&lt;a[mid])        //若查找值比中指小
-			high=mid-1;
-		else if(key&gt;a[mid])     //若查找值比中指大
-			low=mid+1;         //最底下标调整到中位下标大一位
-		else 
-			return mid;         //若相等则说明mid即为查找到的位置
-	}
-	return 0;
-}
-</code></pre>
-<p>查找过程如下：<br>
-<img src="https://img-blog.csdnimg.cn/2020020322192170.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dzZmhkaGpz,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述" loading="lazy"><br>
-<img src="https://img-blog.csdnimg.cn/20200203221858846.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dzZmhkaGpz,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述" loading="lazy"><br>
-用二叉树示意如下图：<br>
-<img src="https://img-blog.csdnimg.cn/20200203221500884.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dzZmhkaGpz,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述" loading="lazy"></p>
-<ul>
-<li><span id="jump6">8.4.2插值查找</span></li>
-</ul>
-<blockquote>
-<p>插值查找时根据要找的关键字key与查找表中最大最小的关键字比较后的查找方法，其核心在于插值公式如下图：<br>
-<img src="https://img-blog.csdnimg.cn/20200204210604921.png" alt="在这里插入图片描述" loading="lazy"></p>
-</blockquote>
-<pre><code class="language-cpp">将折半查找的第8行代码改为：mid=low+(high-low)*(key-a[low])/(a[high]-a[low]); 
-</code></pre>
-<ul>
-<li><span id="jump7">8.4.3裴波那契查找</span></li>
-</ul>
-<p>参考代码：</p>
-<pre><code class="language-cpp">//裴波那契查找
-int Fibonacci_Search(int *a,int n,int key)
-{
-	int low,high,mid,i,k;
-	low=1;           //定义最低下标为记录首位
-	high=n;            //定义最高下标为记录末位
-	k=0;           
-	while(n&gt;F[k]-1)     //计算n位于裴波那契数列的位置，F[k]就是裴波那契数列，a[n]就是要查找的数列
-		k++;
-	for(i=n; i&lt;F[k]-1; i++)    //将不满的数值补全
-		a[i]=a[n];
-	while(low&lt;=high)
-	{
-		mid=low+F[k-1]-1;       //计算当前分隔的下标
-		if(key&lt;a[mid])         //若查找记录小于当前分隔记录
-		{
-			high=mid-1;          //最高下标调整到分隔下标mid-1处
-			k=k-1;          //裴波那且数列下标减一位
-		}
-		else if(key&gt;a[mid])     //若查找记录大于当前分隔记录
-		{
-			low=mid+1;          //最低下标调整到分隔下标mid+1处
-			k=k-2;         //裴波那契数列下标减2位
-		}
-		else 
-		{
-			if(mid&lt;=n)
-				return mid;        //若相等则说明mid即为查找到的位置
-			else 
-				return n;       //若mid&gt;n说明是补全数值，返回n
-		}
-	}
-	return 0;
-}
-
-</code></pre>
-<p>代码过程如下图：<br>
-<img src="https://img-blog.csdnimg.cn/2020020421202886.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dzZmhkaGpz,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述" loading="lazy"><br>
-<img src="https://img-blog.csdnimg.cn/20200204212039617.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dzZmhkaGpz,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述" loading="lazy"></p>
-<blockquote>
-<p>时间复杂度为o(logn)，但就平均性能而言要优于折半查找</p>
-</blockquote>
-<p><span id="jump8">8.5线性表的索引查找</span></p>
-<ul>
-<li><span id="jump9">8.5.1稠密索引</span></li>
-</ul>
-<blockquote>
-<p>1.稠密索引是指在线性索引中，将数据集中的每个记录对应一个索引项，索引项一定是按照关键码的有序排列<br>
-2.查找关键字可以用折半查找，插值，裴波那契...查找方法<br>
-3.如果对于右边的表进行查找，只能进行顺序查找<br>
-如下图所示</p>
-</blockquote>
-<figure data-type="image" tabindex="1"><img src="https://img-blog.csdnimg.cn/20200204214358391.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dzZmhkaGpz,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述" loading="lazy"></figure>
-<ul>
-<li><span id="jump10">8.5.2分块索引</span></li>
-</ul>
-<blockquote>
-<p>分块索引的条件：<br>
-1.块内无序：<br>
-2.块间有序：要求后一块中所记录的关键字都大于第一块中所有记录的关键字，并且无序排列（如下图）</p>
-</blockquote>
-<blockquote>
-<p>分块索引的数据项：<br>
-1.最大关键码：记录块间中的最大关键字<br>
-2.存储块中记录的个数，便于循环使用<br>
-3.用于指向块首数据元素的指针，便于进行遍历</p>
-</blockquote>
-<blockquote>
-<p>分块索引的步骤：<br>
-1.在块内进行折半查找，插值查找...比如找62， 57&lt;62&lt;96在第三个块中<br>
-2.根据块首指针找到相应的块，然后只能进行顺序查获</p>
-</blockquote>
-<p>分块索引的平均查找长度是根号N+1，时间复杂度为o(n)<br>
-<img src="https://img-blog.csdnimg.cn/20200204215835239.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dzZmhkaGpz,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述" loading="lazy"></p>
-<ul>
-<li><span id="jump11">8.5.3倒排序索引</span><br>
-1.根据句子中单词，做一张单词表，然后在搜索框中，输入book，就能对应编号为1,2的文章地址，如下图：<br>
-<img src="https://img-blog.csdnimg.cn/20200204220611135.png" alt="在这里插入图片描述" loading="lazy"><br>
-<img src="https://img-blog.csdnimg.cn/20200204220624233.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dzZmhkaGpz,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述" loading="lazy"></li>
-</ul>
-<blockquote>
-<p>索引项的通用结构是：<br>
-1.次关键码：英文单词，相当于属性<br>
-2.记录号表：文章编号，相当于记录的地址<br>
-根据属性来找地址，称为倒排</p>
-</blockquote>
-<ul>
-<li><span id="jump12">8.6二叉排序树</span></li>
-</ul>
-<blockquote>
-<p>1.查找时插入或删除的查找表称为动态查找表，用二叉排序树这样的数据结构进行存储</p>
-</blockquote>
-<p>比如下图中将58插入进去，对于线性表而言还要进行移位，但对于二叉树结构而言直接将58插入到62的左子树。这就是二叉排序树的方便之处。<br>
-<img src="https://img-blog.csdnimg.cn/20200206215810741.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dzZmhkaGpz,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述" loading="lazy"></p>
-<blockquote>
-<p>2.二叉树性质：<br>
-    若他的左子树不空，则左子树上所有的结点的值小于它的根结构的值<br>
-    若他的右子树不空，则右子树上所有的结点的值大于它的根结构的值<br>
-3.对于数列{35,37,47,51,58,62,73,88,93,99}而言，具体的二叉排序树如下图所示</p>
-</blockquote>
-<figure data-type="image" tabindex="2"><img src="https://img-blog.csdnimg.cn/20200206220326298.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dzZmhkaGpz,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述" loading="lazy"></figure>
-<p>      <span id="jump13">8.6.1二叉排序树查找操作</span></p>
-<pre><code class="language-cpp">//二叉树的二叉链表结点结构定义：
-typedef struct BiTNode              //结点结构
-{
-	int data;                         //结点数据
-	struct BiTNode *lchild,*rchild;     //左右孩子指针
-}
-</code></pre>
-<pre><code class="language-cpp">//递归查找二叉排序树T中是否存在key
-//指针f指向T的双亲，其初始调用值为NULL
-//若查找成功，则指针p指向该数据元素结点，并返回TRUE
-//否则指针p指向查找路径上访问的最后一个结点并返回false
-Status SearchBST(BiTree T, int key, BiTree f, BiTree *p)
-{	
-	if(!T)    //查找不成功
-	{
-		*p=f;
-		return FALSE;
-	}
-	else if(key==T-&gt;data)   //查找成功
-	{
-		*p=T;
-		rerturn TRUE;
-	}
-	else if(key&lt;T-&gt;data)
-		return SearchBST(T-lchild,key,T,p);   //在左子树继续查找
-	else
-		return SearchBST(T-&gt;rchild,key,T,p);    //在右子树继续查找
-}
-
-</code></pre>
-<p>详细过程见下图：</p>
-<p><img src="https://img-blog.csdnimg.cn/20200210205514299.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dzZmhkaGpz,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述" loading="lazy"><br>
-<img src="https://img-blog.csdnimg.cn/20200210205524491.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dzZmhkaGpz,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述" loading="lazy"><br>
-      <span id="jump14">8.6.2二叉排序数插入操作</span></p>
-<pre><code class="language-cpp">//当前二叉排序树T中不存在关键字等于key的数据元素
-//插入key并返回TRUE，否则返回FALSE
-Status InsertBST(BiTree *T,int key)
-{
-	BiTree p,s;
-	if(!SearchBST(*T,key,NULL,&amp;p))     //查找不成功
-	{
-		s=(BiTree)malloc(sizeof(BiTNode));
-		s-&gt;data=key;
-		s-&gt;lchild=s-&gt;rchild=NULL;
-		if(!p)
-			*T=s;          //插入s为新的根结点
-		else if(key&lt;p-&gt;data)    //插入s为左孩子
-			p-&gt;lchild=s;    
-		else
-			p-&gt;rchild=s;    //插入s为右孩子
-		return TRUE;
-	}
-	else
-		return FALSE;    //树中已有关键字相同的结点，不再插入
-}
-</code></pre>
-<p>下面代码展示如何将数组a[10]={62,88,58,47,35,73,51,99,37,93}，插入到一颗二叉树中</p>
-<pre><code class="language-cpp">int i;
-int a[10]={62,88,58,47,35,73,51,99,37,93};
-BiTree T=NULL;
-for(i=0; i&lt;10; i++)
-	InsertBST(&amp;T,a[i);
-
-</code></pre>
-<p>上述代码如下图：<br>
-<img src="https://img-blog.csdnimg.cn/20200210220504209.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dzZmhkaGpz,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述" loading="lazy"><br>
-     <span id="jump15">8.6.3二叉排序树删除操作</span><br>
-分为3 种情况：</p>
-<ul>
-<li>叶子结点：直接删除就行</li>
-<li>仅有左或右子树的结点：<br>
-删除结点后，将他的左子树或右子树整个移动到删除结点的位置即可，如下图所示：<br>
-<img src="https://img-blog.csdnimg.cn/20200210215813523.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dzZmhkaGpz,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述" loading="lazy"><br>
-<img src="https://img-blog.csdnimg.cn/20200210215741243.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dzZmhkaGpz,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述" loading="lazy"></li>
-<li>左右子树均有结点：<br>
-找到需要删除结点p的直接前驱或者直接后继s，将s来替换结点p，然后在删除结点s，如下图所示：<br>
-<img src="https://img-blog.csdnimg.cn/20200210215902234.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dzZmhkaGpz,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述" loading="lazy"><img src="https://img-blog.csdnimg.cn/2020021021584512.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dzZmhkaGpz,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述" loading="lazy"></li>
-</ul>
-<table><tr><td bgcolor=GreenYellow>下面代码这个算法是递归方式对二叉排序树T查找key，查找时删除</td></tr></table>
-<pre><code class="language-cpp">//若二叉排序树T中存在关键字等于key的数据元素时，则删除该数据元素的结点
-//并返回TRUE，否则返回FALSE
-Status DeleteBST(BiTree *T,int key)
-{
-	if(!*T)    //不存在关键字等于key的数据元素
-		return FALSE;
-	else
-	{
-		if(key==(*T)-&gt;data)    //找到关键字等于key的数据元素
-			return FALSE;
-		else if(key&lt;(*T)-&gt;data)   
-			return DeleteBST(&amp;(*T)-&gt;lchild,key);
-		else
-			return DeleteBST(&amp;(*T)-&gt;rchild,key);
-	}
-}
-
-</code></pre>
-<table><tr><td bgcolor=GreenYellow>Delete代码</td></tr></table>
-<pre><code class="language-cpp">//从二叉排序树中删除结点p，并重接他的左或者右子树
-Status Delete(BiTree *p)
-{
-	BiTree q,s;
-	//下if和else if只适合只有左或者右子树的结点
-	if((*p)-&gt;rchild==NULL)        //右子树空则只需重接它的左子树
-	{
-		q=*p;
-		*p=(*p)-&gt;lchild;
-		free(q);
-	}
-	else if((*p)-&gt;lchild==NULL)  //只需连接他的右子树
-	{
-		q=*p;
-		*p=(*p)-&gt;rchild;
-		free(q);
-	}
-	else  //左右子树均不为空
-	{
-		q=*p;
-		s=(*p)-&gt;lchild;   
-		while(s-&gt;rchild)        //转左，然后向右到尽头（找到待删除结点的前驱）
-		{
-			q=s;
-			s=s-&gt;rchild;
-		}
-		(*p)-&gt;data=s-&gt;data;       //s指向被删除结点的直接前驱
-		if(q!=*p)
-			q-&gt;rchild=s-&gt;lchild;   //重接q的右子树
-		else
-			q-&gt;lchild=s-&gt;lchild;     //重接q的左子树
-	}
-	return TRUE;
-}
-
-</code></pre>
-<p>上述代码的详细过程，如下：<br>
-<img src="https://img-blog.csdnimg.cn/20200210220324278.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dzZmhkaGpz,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述" loading="lazy"><br>
-<img src="https://img-blog.csdnimg.cn/20200210220344448.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dzZmhkaGpz,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述" loading="lazy"><br>
-<img src="https://img-blog.csdnimg.cn/2020021022035938.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dzZmhkaGpz,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述" loading="lazy"><br>
-<img src="https://img-blog.csdnimg.cn/20200210220420698.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dzZmhkaGpz,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述" loading="lazy"><br>
-     <span id="jump16">8.6.4二叉排序树总结</span><br>
-1.优点：插入时小的数字插入到结点左子树，大的数字插入到结点的右子树，操作时不用移动元素的优点，只要找到合适的插入和删除位置后，仅需修改链接指针即可。<br>
-2.对于二叉树的查找，走的就是从根结点到要查找的结点的路径，其比较次数等于给定值的结点在二叉排序树的层数。<br>
-3.极端情况就是，最少为1次，即根结点就是要找到的结点，最多不会超过树的深度<br>
-4.如下图中，左边的图查找99要2次，右边的图查找99要10次。左图的时间复杂度就是o(logn)，右图的时间复杂度为o(n)<br>
-<img src="https://img-blog.csdnimg.cn/20200210215629904.png" alt="在这里插入图片描述" loading="lazy"></p>
-<p>     <span id="jump17">8.7平衡二叉树（AVL树）</span></p>
-<blockquote>
-<p>AVL树相关概念：<br>
-·1.定义：平衡二叉树是一种二叉排序树，其中每一个节点的左子树和右子树的高度差至多等于1，也就是高度差的绝对值&lt;=1<br>
-2.平衡因子（BF）：将二叉树的左子树深度---右子树深度的值称为平衡因子<br>
-3.平衡二叉树上所有结点的平衡因子只可能是-1,0，1。只要二叉树上有一个结点的平衡因子的绝对值&gt;1，则该树就是不平衡的，<br>
-4.平衡二叉树首先是一个二叉排序树（即小的值在左子树，大的值在右子树上）。详见下图中的几个例子：</p>
-</blockquote>
-<figure data-type="image" tabindex="3"><img src="https://img-blog.csdnimg.cn/2020021122325486.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dzZmhkaGpz,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述" loading="lazy"></figure>
-<blockquote>
-<p>最小不平衡子树：距离插入结点最近的，且平衡因子的绝对值大于1的结点为根的子树，我们称为最小不平衡子树，如下图所示：<br>
-<img src="https://img-blog.csdnimg.cn/20200211223952222.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dzZmhkaGpz,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述" loading="lazy"></p>
-</blockquote>
-<p>     <span id="jump18">8.7.1 平衡二叉树实现原理</span></p>
-<blockquote>
-<p>平衡二叉树构建的基本思想：每当插入一个结点时，先检查是够因插入而破坏了树的平衡性，若是，则找出最小不平衡子树。在保持二叉排序树特性的前提下，调整最小不平衡子树中各结点之间的链接关系，进行相应的旋转，使之成为新的平衡子树。（详细见下图）<br>
-<img src="https://img-blog.csdnimg.cn/20200211225134137.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dzZmhkaGpz,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述" loading="lazy"><br>
-<img src="https://img-blog.csdnimg.cn/20200211225154389.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dzZmhkaGpz,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述" loading="lazy"><br>
-<img src="https://img-blog.csdnimg.cn/2020021122520626.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dzZmhkaGpz,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述" loading="lazy"><br>
-<img src="https://img-blog.csdnimg.cn/20200211225217518.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dzZmhkaGpz,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述" loading="lazy"></p>
-</blockquote>
-<p>     <span id="jump19">8.7.2 平衡二叉树实现算法</span><br>
-1.首先是需要改进二叉排序树的结点结构，增加一个bf值，用来存储平衡因子，参考代码如下：</p>
-<pre><code class="language-cpp">//二叉树的二叉链表结点结构定义
-typedef struct BiTNode        //结点结构
-{
-	int data;            //结点数据
-	int bf;					//结点的平衡因子
-	struct BiTNode *lchild, *rchild;   //左右孩子指针
-}BiTNode,*BiTree;
-
-</code></pre>
-<p>对于右旋转，代码如下：</p>
-<pre><code class="language-cpp">/*
-	对以p为根的二叉排序树做右旋处理，处理之后p指向新的树根结点，即旋转处理之前的右子树的根结点
-*/
-void R_Rotate(BiTree *p)
-{
-	BiTree L;
-	L=(*p)-&gt;lchild;       //L指向p的左子树的根结点
-	(*p)-&gt;lchild=L-&gt;rchild;   //L的右子树挂接为p的左子树
-	L-&gt;rchild=(*p);
-	*p=L;          //p指向新的根结点
-}
-//详见如下图:
-
-</code></pre>
-<p><img src="https://img-blog.csdnimg.cn/20200211230510573.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dzZmhkaGpz,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述" loading="lazy"><br>
-左旋代码操作如下：</p>
-<pre><code class="language-cpp">//对以p为根的二叉排序树做左旋处理，处理之后p指向新的树根结点，即旋转处理之前的右子树根结点
-void L_Rotate(BiTree *P)
-{
-	BiTree R;
-	R=(*P)-&gt;rchild;     //R指向p的右子树根结点
-	(*P)-&gt;rchild=R-&gt;lchild;       //R的左子树挂接为p的右子树
-	R-&gt;lchild=(*P); 
-	*P=R;                       //P指向新的根结点
-}
-//详见下图：
-
-</code></pre>
-<p><img src="https://img-blog.csdnimg.cn/20200212204441135.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dzZmhkaGpz,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述" loading="lazy"><br>
-左平衡旋转处理的函数代码：</p>
-<pre><code class="language-cpp">#define LH +1     //左高
-#define EH 0         //等高
-#define RH -1     //右高
-//对以指针T所指结点为根的二叉树做左平衡旋转处理，本算法结束时，指针T指向新的根结点
-void LeftBalance(BiTree *T)
-{
-	BiTree L,Lr;
-	L=(*T)-&gt;lchild;    //L指向T的左子树根结点
-	switch(L-&gt;bf)
-	{
-		//检查T的左子树的平衡度，并做相应的平衡处理
-		case LH:          //新结点插入在T的左孩子的左子树上，要做单右旋转处理
-			(*T)-&gt;bf=L-&gt;bf=EH;
-			R_Rotate(T);
-			break;
-		case RH:          //新结点插入在T的左孩子的左子树上，要做单右旋处理
-			Lr=L-&gt;rchild;    //Lr指向T的左孩子的右子树根
-			switch(Lr-&gt;bf)        //修改T及其左孩子的平衡因子
-			{
-				case LH:   
-					(*T)-&gt;bf=RH;
-					L-&gt;bf=EH;
-					break;
-				case EH:
-					(*T)-&gt;bf=L-&gt;bf=EH;
-					break;
-				case RH:
-					(*T)-&gt;bf=EH;
-					break;
-			}
-			Lr-&gt;bf=EH;
-			L_Rotate(&amp;(*T)-&gt;lchild);       //对T的左子树做左旋平衡处理
-			R_Rotate(T);          //对T做右旋平衡处理
-	}
-}   //详见代码如下图所示：
-
-</code></pre>
-<p><img src="https://img-blog.csdnimg.cn/2020021220570528.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dzZmhkaGpz,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述" loading="lazy"><br>
-对于先右旋后左旋的代码类似上面，过程如下图：<br>
-<img src="https://img-blog.csdnimg.cn/2020021220590779.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dzZmhkaGpz,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述" loading="lazy"><br>
-主函数：</p>
-<pre><code class="language-cpp">//若在平衡的二叉排序树T中不存在和e有相同关键字的结点，则插入一个
-//数据元素为e的新结点并返回1，否则返回0。若因插入而使二叉排序树失去平衡，则做平衡旋转处理，布尔变量taller反映T长高与否
-Status InsertAVL(BiTree *T, int e, Status *taller)
-{
-	if(!*T)           //不存在与e有相同关键字的结点
-	{
-		*T=(BiTree)malloc(sizeof(BiTNode));   
-		(*T)-&gt;data=e;
-		(*T)-&gt;lchild=(*T)-&gt;rchild=NULL;
-		(*T)-&gt;bf=EH;
-		*taller=TRUE;
-	}
-	else
-	{
-		if(e==(*T)-&gt;data)
-		{
-			//树中已存在和e有相同关键字的结点则不再插入
-			*taller=FALSE;
-			return FALSE;
-		}
-		if(e&lt;(*T)-&gt;data)
-		{
-			//应继续在T的左子树中进行搜索
-			if(!InsertAVL(&amp;(*T)-&gt;lchild,e,taller))    //未插入
-				return FALSE;
-			if(*taller)          //已插入到T的左子树中且左子树长高
-			{
-				switch((*T)-&gt;bf)   //检查T的平衡度
-				{
-					case LH:    //原本左子树比右子树高，需要做左平衡处理
-						LeftBalance(T);
-						*taller=FALSE;
-						break;
-					case EH:     //原本左右子树等高，现因左子树增高而树增高
-						(*T)-&gt;bf=LH;
-						*taller=TRUE;
-						break;
-					case RH:      //原本右子树比左子树高，现左右子树等高
-						(*T)-&gt;bf=EH;
-						*taller=FALSE;
-						break;
-				}
-			}
-		}
-		else
-		{     //应继续在T的右子树中进行搜索
-			if(!InsertAVL(&amp;(*T)-&gt;rchild,e,taller))   //未插入
-				return FALSE;
-			if(*taller)    //已插入到T的右子树且右子树“长高”
-			{
-				switch(((*T)-&gt;bf)   //检查T的平衡度
-				{
-					case LH:    //原本左子树比右子树高，现左右子树的等高
-						(*T)-&gt;bf=EH;
-						*taller=FALSE;
-						break;
-					case EH:        //原本左右子树等高，现因右子树增高而树增高
-						(*T)-&gt;bf=RH;
-						*taller=TRUE;
-						break;
-					case RH:     //原本右子树比左子树高，需要做右平衡处理
-						RightBalance(T);
-						*taller=FALSE;
-						break;
-				}
-
-			}
-			 
-		}
-	}
-	return TRUE;
-}//具体过程如下图：
-
-</code></pre>
-<figure data-type="image" tabindex="4"><img src="https://img-blog.csdnimg.cn/2020021221205438.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dzZmhkaGpz,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述" loading="lazy"></figure>
-<blockquote>
-<p>构建一个数组为a[10]={3,2,1,4,5,6,7,10,9,8}  代码如下：</p>
-</blockquote>
-<pre><code class="language-cpp">int i;
-int a[10]={3,2,1,4,5,6,7,10,9,8};
-BiTree T=NULL;
-Status taller;
-for(i=0; i&lt;10; i++)
-	InsertAVL(&amp;T,a[i],&amp;taller);
-
-</code></pre>
-<table><tr><td bgcolor=GreenYellow>如果二叉排序树是平衡二叉排序树，查找+插入+删除 时间复杂度为o(logn)</td></tr></table>
-<p><span id="jump20">8.8多路查找树</span></p>
-<blockquote>
-<p>1.多路查找树出现的原因：我们之前谈的树，都是一个结点可以有很多孩子，但是它自身只存储一个元素。二叉树限制更多，结点最多只能有两个孩子。一个结点只能存储一个元素，在元素非常多的时候，就使得要么树的度（结点拥有子树的个数最大值）非常大，要么树的度非常高，甚至两者都必须足够大才行。这就使得内存存取次数非常多，这显然成立时间效率上的瓶颈，这迫使我们要打破每一个结点只存储一个元素的限制</p>
-</blockquote>
-<p>2.多路查找树的定义：<br>
-<img src="https://img-blog.csdnimg.cn/20200214212049283.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dzZmhkaGpz,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述" loading="lazy"><br>
-3.2-3树定义，插入，查找：<br>
-<img src="https://img-blog.csdnimg.cn/20200214212354645.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dzZmhkaGpz,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述" loading="lazy"><br>
-<img src="https://img-blog.csdnimg.cn/20200214212427427.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dzZmhkaGpz,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述" loading="lazy"><br>
-<img src="https://img-blog.csdnimg.cn/202002142124465.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dzZmhkaGpz,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述" loading="lazy"><br>
-<img src="https://img-blog.csdnimg.cn/20200214212507804.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dzZmhkaGpz,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述" loading="lazy"><br>
-<img src="https://img-blog.csdnimg.cn/20200214212521593.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dzZmhkaGpz,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述" loading="lazy"><br>
-<img src="https://img-blog.csdnimg.cn/20200214212543599.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dzZmhkaGpz,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述" loading="lazy"><br>
-<img src="https://img-blog.csdnimg.cn/20200214212601599.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dzZmhkaGpz,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述" loading="lazy"><br>
-4 2-3-4树<br>
-<img src="https://img-blog.csdnimg.cn/20200214212808329.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dzZmhkaGpz,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述" loading="lazy"><br>
-<img src="https://img-blog.csdnimg.cn/20200214212740345.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dzZmhkaGpz,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述" loading="lazy"><br>
-5.B树的定义+属性+最坏的查找次数：<br>
-<img src="https://img-blog.csdnimg.cn/20200214213101512.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dzZmhkaGpz,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述" loading="lazy"><br>
-<img src="https://img-blog.csdnimg.cn/20200214213126322.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dzZmhkaGpz,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述" loading="lazy"><br>
-6.B+树的引用+定义+m阶B+树和B树的差异+B+树的优点：<br>
-<img src="https://img-blog.csdnimg.cn/20200214213652902.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dzZmhkaGpz,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述" loading="lazy"><br>
-、<img src="https://img-blog.csdnimg.cn/20200214213701920.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dzZmhkaGpz,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述" loading="lazy"><br>
-<span id="jump21">8.9散列表查找（哈希表）概述</span><br>
-1.散列表查找定义+查找步骤+散列技术适用于什么+散列表缺点+冲突：<br>
-<img src="https://img-blog.csdnimg.cn/20200214215354439.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dzZmhkaGpz,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述" loading="lazy"><br>
-<img src="https://img-blog.csdnimg.cn/20200214215411824.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dzZmhkaGpz,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述" loading="lazy"><br>
-<img src="https://img-blog.csdnimg.cn/20200214215437361.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dzZmhkaGpz,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述" loading="lazy"></p>
-<p><span id="jump">8.10散列函数的构造方法</span><br>
-1.构造散列函数的原则：<br>
-<img src="https://img-blog.csdnimg.cn/20200214221453690.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dzZmhkaGpz,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述" loading="lazy"><br>
-<img src="https://img-blog.csdnimg.cn/20200214221513780.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dzZmhkaGpz,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述" loading="lazy"><br>
-2.直接定址法：<br>
-<img src="https://img-blog.csdnimg.cn/20200214221543178.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dzZmhkaGpz,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述" loading="lazy"><br>
-3.数字分析法：<br>
-<img src="https://img-blog.csdnimg.cn/20200214221601823.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dzZmhkaGpz,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述" loading="lazy"><br>
-4.平方取中法：<br>
-<img src="https://img-blog.csdnimg.cn/20200214221622361.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dzZmhkaGpz,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述" loading="lazy"><br>
-5.折叠法：<br>
-<img src="https://img-blog.csdnimg.cn/20200214221639252.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dzZmhkaGpz,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述" loading="lazy"><br>
-6.除留余数法：<br>
-<img src="https://img-blog.csdnimg.cn/20200214221656696.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dzZmhkaGpz,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述" loading="lazy"><br>
-<img src="https://img-blog.csdnimg.cn/20200214221716657.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dzZmhkaGpz,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述" loading="lazy"><br>
-7.随机数法：<br>
-<img src="https://img-blog.csdnimg.cn/2020021422173735.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dzZmhkaGpz,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述" loading="lazy"><br>
-8.采用不同散列函数考虑的因素：<br>
-<img src="https://img-blog.csdnimg.cn/20200214221754125.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dzZmhkaGpz,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述" loading="lazy"></p>
-<p><span id="jump23">8.11处理散列冲突的方法</span><br>
-1.开放地址法+二次探测法+随机探测法：<br>
-<img src="https://img-blog.csdnimg.cn/20200214225545630.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dzZmhkaGpz,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述" loading="lazy"><br>
-<img src="https://img-blog.csdnimg.cn/20200214225603825.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dzZmhkaGpz,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述" loading="lazy"></p>
-<figure data-type="image" tabindex="5"><img src="https://img-blog.csdnimg.cn/20200214225631821.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dzZmhkaGpz,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述" loading="lazy"></figure>
-<p>2.再散列函数法：<br>
-<img src="https://img-blog.csdnimg.cn/20200214225831308.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dzZmhkaGpz,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述" loading="lazy"><br>
-3.链地址法：<br>
-<img src="https://img-blog.csdnimg.cn/20200214225846786.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dzZmhkaGpz,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述" loading="lazy"><br>
-<img src="https://img-blog.csdnimg.cn/20200214225902904.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dzZmhkaGpz,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述" loading="lazy"><br>
-4.公共溢出区法：<br>
-<img src="https://img-blog.csdnimg.cn/20200214225920224.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dzZmhkaGpz,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述" loading="lazy"><br>
-<img src="https://img-blog.csdnimg.cn/20200214225934127.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dzZmhkaGpz,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述" loading="lazy"><br>
-除留<br>
-<span id="jump24">8.12 散列表查找实现</span><br>
-     <span id="jump25">8.12.1 散列表查找算法实现</span><br>
-                1.散列表结构和一些相关常数。其中HashTable是散列表结构，结构中的elem为一个动态数组</p>
-<pre><code class="language-cpp">#define SUCCESS 1
-#define UNSUCCESS 0
-#define HASHSIZE 12       //定义散列表长为数组长度
-#define NULLKEY -32768
-typedef struct 
-{
-	int *elem;           //数据元素存储基址，动态分配数组，就是数组的初始地址
-	int count;			//当前数据元素的个数
-}HashTable;
-int m=0;              //散列表表长，全局变量
-
-</code></pre>
-<p>对散列表进行初始化</p>
-<pre><code class="language-cpp">Status InitHashTable(HashTable *H)
-{
-	int i;
-	m=HASHSIZE;
-	H-&gt;count=m;
-	H-&gt;elem=(int *)malloc(m*sizeof(int));
-	for(i=0; i&lt;m; i++)
-		H-&gt;elem[i]=NULLKEY;
-	return OK;
-}
-
-</code></pre>
-<p>散列函数：</p>
-<pre><code class="language-cpp">int Hash(int key)
-{
-	return key%m;       //除留余数法
-}
-
-</code></pre>
-<p>对散列表的插入操作</p>
-<pre><code class="language-cpp">//插入关键字进散列表
-void InsertHash(HashTable *H, int key)
-{
-	int addr=Hash(key);   //求散列地址
-	while(H-&gt;elem[addr]!=NULLKEY)   //如果不为空，则冲突
-		addr=(addr+1)%m;       //开放地址法的线性探测
-	H-&gt;elem[addr]=key;             //直到有空位后插入关键字
-}
-
-</code></pre>
-<p>对散列表的查找记录的操作</p>
-<pre><code class="language-cpp">//散列表查找关键字
-Status SearchHash(HashTable H, int key, int *addr)
-{
-	*addr=Hash(key);    //求关键字的散列地址
-	while(H.elem[*addr]!=key)    //如果不为key，则继续循环查找
-	{
-		*addr=(*addr+1)%m;            //开放地址法线性探测
-		if(H.elem[*addr]==NULLKEY || *addr=Hash(key))     //前面表示压根数组中就没有要查找的key，或者循环找了一圈，又回到起点
-			return UNSUCCESS;                 
-	}
-	return SUCCESS;
-}
-
-</code></pre>
-<p>     <span id="jump26">8.12.2 散列表查找性能分析</span><br>
-            1.时间复杂度是O(1)<br>
-            2.散列查找的平均查找长度取决于哪些因素？<br>
-                  1.散列函数是否均匀：散列函数的好坏直接影响出现冲突的频繁程度<br>
-                  2.处理冲突的方法：相同的关键字，相同的散列函数，但处理冲突的方法不同，会使得平均查找长度不同。比如线性探测处理冲突可能会产生堆积，显然就没有二次探测法好，而链地址法处理冲突不会产生任何堆积，因而具有更佳的平均查找性能<br>
-                  3.散列表的装填因子：装填因子α=填入表中的记录个数/散列表长度。α标志着散列表的装满程度，当然α越大表示装满程度越高，也就是产生冲突的可能性越大。也就是说，散列表的平均查找长度取决于装填因子，而不是取决于查找集合中的记录个数。不管记录个数n有多大，总可以选择一个合适的装填因子以便将平均查找长度限定在一个范围，此时散列表的复杂度为O(1)，通常将散列表的空间设置得比查找集合大，虽然浪费空间，但效率提升。</p>
-<p>​</p>
 ]]></content>
     </entry>
 </feed>
