@@ -1,0 +1,711 @@
+<!DOCTYPE html>
+<html>
+        <head>
+        <meta name="viewport" content="width=device-width,minimum-scale=1,maximum-scale=1,initial-scale=1,user-scalable=no" />
+        <meta charset="utf-8">
+        <title>大话数据结构第九章笔记（排序） | Gridea</title>
+        <link rel="stylesheet" href="https://wsf123sd.github.io//styles/main.css">
+        <link rel="stylesheet" href="https://at.alicdn.com/t/font_1306644_jwtuc2zzbrd.css">
+        <link href="https://cdn.bootcss.com/animate.css/3.7.2/animate.min.css" rel="stylesheet">
+         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.10.0/katex.min.css">
+        <script src="https://cdn.staticfile.org/jquery/3.4.1/jquery.min.js"></script>
+         <script src="https://cdn.bootcss.com/highlight.js/9.15.10/highlight.min.js"></script>
+         <script >hljs.initHighlightingOnLoad();</script>
+
+    </head>
+    <body>
+              <header class="header mdui-m-b-5">      
+            <div class="container  ">
+                <div class="index-title animated fadeInDown mdui-text-center mdui-text-color-white mdui-m-b-2" style="animation-delay: 0.2s"><a href="https://wsf123sd.github.io/">Gridea</a></div>
+                <div class="mdui-text-color-white animated fadeInDown mdui-text-center  mdui-m-b-3" style="animation-delay: 0.4s">温故而知新</div>
+           
+            <nav id="nav" class="mdui-text-center animated fadeInDown" style="animation-delay: 0.6s">
+                   
+                            <li><a href="/">首页</a>
+                                <span class="nav-style top"></span>
+                                <span class="nav-style bottom"></span>
+                                <span class="nav-style left"></span>
+                                <span class="nav-style right"></span>
+                                </li>
+                    
+                  </nav>
+                </div>
+        </header>
+        <div class="mdui-container ">
+                <div class="mdui-row">
+                        <div class="mdui-col-md-8 mdui-col-offset-md-2 ">
+                                <article class="mdui-p-a-2 post animated fadeIn" style="animation-delay: 0.8s;animation-duration: 2s">
+                                    <div class="post-title  mdui-m-b-1">大话数据结构第九章笔记（排序）</div>
+                                    <div class="mdui-typo-body-2 mdui-m-b-2" datetime="2020-03-01 12:22:20">2020-03-01 / 20 min read</div>
+                                    <div class="mdui-m-b-2 mdui-typo post-neirong"><p><a href="#jump1">9.1开场白</a><br>
+<a href="#jump2">9.2排序的基本概念和分类</a><br>
+      <a href="#jump3">9.2.1排序的稳定性</a><br>
+      <a href="#jump4">9.2.2内排序与外排序</a><br>
+      <a href="#jump5">9.2.3排序用到的结构与函数</a><br>
+<a href="#jump6">9.3冒泡排序</a><br>
+      <a href="#jump7">9.3.1最简单排序实现</a><br>
+      <a href="#jump8">9.3.2冒泡排序算法</a><br>
+      <a href="#jump9">9.3.3冒泡排序优化</a><br>
+      <a href="#jump10">9.3.4冒泡排序复杂度分析</a></p>
+<p><a href="#jump11">9.4简单选择排序</a><br>
+      <a href="#jump12">9.4.1简单选择排序算法</a><br>
+      <a href="#jump13">9.4.2简单选择排序复杂度分析</a></p>
+<p><a href="#jump14">9.5直接插入排序</a><br>
+      <a href="#jump15">9.5.1直接插入排序算法</a><br>
+      <a href="#jump16">9.5.2直接插入排序复杂度分析</a></p>
+<p><a href="#jump17">9.6直接插入排序</a><br>
+      <a href="#jump18">9.6.1希尔排序原理</a><br>
+      <a href="#jump19">9.6.2希尔排序算法</a><br>
+      <a href="#jump20">9.6.3希尔排序复杂度分析</a></p>
+<p><a href="#jump21">9.8 归并排序</a><br>
+      <a href="#jump22">9.8.1归并排序算法</a><br>
+      <a href="#jump23">9.8.2归并排序复杂度分析</a><br>
+      <a href="#jump24">9.8.3非递归实现归并排序</a></p>
+<p><a href="#jump25">9.7堆排序</a><br>
+      <a href="#jump26">9.7.1堆排序算法</a><br>
+      <a href="#jump27">9.7.2堆排序复杂度分析</a></p>
+<p><a href="#jump28">9.9快速排序</a><br>
+      <a href="#jump29">9.9.1快速排序算法</a><br>
+      <a href="#jump30">9.9.2快速排序复杂度分析</a><br>
+      <a href="#jump31">9.9.3快速排序优化</a></p>
+<p><span id="jump2">9.2排序的基本概念和分类</span><br>
+1.排序就是将无序的数据集合，按照某一定顺序进行排列<br>
+2.对于有很多关键字的排序，可以将多个关键字的排序转化成单个关键字的排序，如下图所示：<br>
+<img src="https://img-blog.csdnimg.cn/20200216211522213.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dzZmhkaGpz,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述" loading="lazy"><br>
+<img src="https://img-blog.csdnimg.cn/2020021621153480.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dzZmhkaGpz,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述" loading="lazy"><br>
+<span id="jump3">9.2.1排序的稳定性</span><br>
+如图：<br>
+<img src="https://img-blog.csdnimg.cn/20200216211947313.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dzZmhkaGpz,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述" loading="lazy"></p>
+<p><span id="jump4">9.2.2内排序与外排序</span><br>
+     1.什么叫内排序，外排序：（如下图）</p>
+<p><img src="https://img-blog.csdnimg.cn/20200216212209422.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dzZmhkaGpz,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述" loading="lazy"><br>
+     2.排序算法的性能主要是受3个方面影响：</p>
+<p>            1.时间性能：（如下图）<br>
+<img src="https://img-blog.csdnimg.cn/20200216212512766.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dzZmhkaGpz,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述" loading="lazy"><br>
+            2.辅助空间：（如下图）<br>
+<img src="https://img-blog.csdnimg.cn/2020021621252762.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dzZmhkaGpz,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述" loading="lazy"><br>
+            3.算法的复杂性：（如下图） <img src="https://img-blog.csdnimg.cn/20200216212540588.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dzZmhkaGpz,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述" loading="lazy"></p>
+<p><span id="jump5">9.2.3排序用到的结构与函数</span><br>
+1.排序用到的顺序表结构：</p>
+<pre><code class="language-cpp">#define MAXSIZE 10     //用于要排序数组个数最大值，可根据需要修改
+typedef struct         
+{
+	int r[MAXSIZE+1];     //用于存储要排序的数组，r[0]用作哨兵或临时变量
+	int length;           //用于记录顺序表长度
+}SqList;    
+</code></pre>
+<p>2.排序所用到的交换函数</p>
+<pre><code class="language-cpp">//交换L中数组r的下标为i和j的值
+void swap(SqList *L,int i,int j)
+{
+	int temp=L-&gt;r[i];
+	L-&gt;r[i]=L-&gt;r[j];
+	L-&gt;r[j]=temp;
+}
+</code></pre>
+<p><span id="jump6">9.3冒泡排序</span><br>
+      <span id="jump7">9.3.1最简单的排序实现</span></p>
+<blockquote>
+<p>冒泡排序一种交换排序，它的基本思想：两两比较相邻记录的关键字，如果反序则交换，直到没有反序的记录为止</p>
+</blockquote>
+<pre><code class="language-cpp">//对顺序表L做交换排序（冒泡排序初级版）
+void BubbleSort0(SqList *L)
+{
+	int i,j;
+	for(i=1; i&lt;L-&gt;length; i++)
+	{
+		for(j=i+1; j&lt;=L-&gt;length; j++)
+		{
+			if(L-&gt;r[i]&gt;L-&gt;r[j])
+			{
+				swap(L,i,j);    //交换L-&gt;r[i]与L-&gt;r[j]的值
+			}
+		}
+	}
+}//详见代码如下图
+</code></pre>
+<blockquote>
+<p>上述代码的思路：让每一关键字，都和它后面的每一个关键字比较，如果前面的大于后面的，则交换，这样第一位置的关键字在一次循环后一定是最小的<br>
+上述代码缺陷：每次只能一个一个去排列，这样对其余关键字没有任何帮助<br>
+<img src="https://img-blog.csdnimg.cn/20200218214434373.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dzZmhkaGpz,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述" loading="lazy"></p>
+</blockquote>
+<p>      <span id="jump8">9.3.2冒泡排序算法</span></p>
+<blockquote>
+<p>此冒泡排序的思想：i从第一个位置开始，然后j从最后向前冒泡，不断地将小的值放到前面，这样不断的循环下去，便于将一部分小的数值移动一些位置</p>
+</blockquote>
+<pre><code class="language-cpp">//对顺序表L做冒泡排序
+void BubbleSort(SqList *L)
+{
+	int i,j;
+	for(i=1; i&lt;L-&gt;length; i++)
+	{
+		for(j=L-&gt;length-1; j&gt;=i; j--)     //注意j是从后往前循环
+		{
+			if(L-&gt;r[j]&gt;L-&gt;r[j+1])   //若前者大于后者
+			{
+				swap(L,j,j+1);   //交换L-&gt;r[j]与L-&gt;r[j+1]的值
+			}
+		}
+	}
+}//详见代码如下图：
+</code></pre>
+<p><img src="https://img-blog.csdnimg.cn/20200218214549665.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dzZmhkaGpz,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述" loading="lazy"><br>
+<img src="https://img-blog.csdnimg.cn/20200218214604810.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dzZmhkaGpz,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述" loading="lazy"></p>
+<p>      <span id="jump9">9.3.3冒泡排序优化</span></p>
+<blockquote>
+<p>为什么要有冒泡排序的优化？如下图中，如果不优化，还要不断地进行比较，浪费时间</p>
+</blockquote>
+<figure data-type="image" tabindex="1"><img src="https://img-blog.csdnimg.cn/20200218215111503.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dzZmhkaGpz,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述" loading="lazy"></figure>
+<pre><code class="language-cpp">//对顺序表L做改进冒泡算法
+void BubbleSort2(SqList *L)
+{
+	int i,j;
+	Status flag=TRUE;     //flag用来作为标记
+	for(i=1; i&lt;L-&gt;length &amp;&amp; flag; i++)    //若flag为false则循环结束
+	{
+		flag=FALSE;    //初始为false
+		for(j=L-&gt;length-1; j&gt;=i; j--)
+		{
+			if(L-&gt;r[j] &gt; L-&gt;[j+1])
+			{
+				swap(L,j,j+1);    //交换L-&gt;r[j]与L-&gt;r[j+1]的值
+				flag=TRUE;       //如果有数据交换，则flag改true
+			}
+		}
+	}
+}//详见如下图：
+</code></pre>
+<blockquote>
+<p>此代码的思想是：加入一个flag判断，flag初始值为TRUE，进入循环后如果后面循环中一但有交换则改flag值为TRUE，再次循环；如果循环中已经是升序排列，不会有前面的值大于后面的值，则flag为false，循环结束</p>
+</blockquote>
+<figure data-type="image" tabindex="2"><img src="https://img-blog.csdnimg.cn/20200218215911799.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dzZmhkaGpz,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述" loading="lazy"></figure>
+<p><span id="jump10">9.3.4冒泡排序复杂度分析</span><br>
+最好情况是o(n)<br>
+最坏情况是o(n^2)</p>
+<p><span id="jump11">9.4简单选择排序</span></p>
+<p>      <span id="jump12">9.4.1简单选择排序算法</span></p>
+<blockquote>
+<p>简单选择排序的思想：从第一个位置开始，循环找到后面的最小值，然后与第一个位置的值进行交换，如此进行下去，则就是简单选择排序</p>
+</blockquote>
+<pre><code class="language-cpp">//对顺序表L做简单选择排序
+void SelectSort(SqList *L)
+{
+	int i,j,min;
+	for(i=1; i&lt;L-&gt;length; i++)
+	{
+		min=i;       //将当前下标定义为最小值下标
+		for(j=i+1; j&lt;=L-&gt;length; j++)   //循环之后的数据
+		{	
+			if(L-&gt;r[min]&gt;L-&gt;r[j])   //如果有小于当前最小值的关键字
+				min=j;         //将此关键字的下标赋值给min
+		}
+		if(i!=min)                     //若min不等于i，说明找到最小值了，交换
+			swap(L,i,min);    //交换L-&gt;r[i]与L-&gt;r[min]的值
+	}
+}
+</code></pre>
+<figure data-type="image" tabindex="3"><img src="https://img-blog.csdnimg.cn/20200218221732154.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dzZmhkaGpz,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述" loading="lazy"></figure>
+<p>      <span id="jump13">9.4.2简单选择排序复杂度分析</span></p>
+<blockquote>
+<p>1.对上面代码中第二层的for（就是找最小值下标）的那个代码而言，对第一个值其比较次数为n-1，对于第2个值而言，其比较次数为n-2，则一共的比较次数为n(n-1)/2，后面中就是交换次序的代码，最坏情况需要交换n-1次，则一共的时间复杂度为o(n^2)</p>
+</blockquote>
+<p><span id="jump14">9.5直接插入排序</span><br>
+      <span id="jump15">9.5.1 直接插入排序算法</span></p>
+<blockquote>
+<p>直接插入排序的基本操作是将一个记录插入到已经排好序的有序表中，从而得到一个新的，记录数增1的有序表</p>
+</blockquote>
+<pre><code class="language-cpp">//对顺序表L作直接插入操作
+void InsertSort(SqList *L)
+{
+	int i,j;
+	for(i=2; i&lt;=L-&gt;length; i++)
+	{
+		if(L-&gt;r[i]&lt;L-&gt;r[i-1])          //需将L-&gt;r[i]插入有序子表
+		{
+			L-&gt;r[0]=L-&gt;r[i];            //设置哨兵
+			for(j=i-1; L-&gt;r[j]&gt;L-&gt;r[0]; j--)
+				L-&gt;r[j+1]=L-&gt;r[j];              //记录后移
+			L-&gt;r[j+1]=L-&gt;r[0];            //插入到正确位置
+		}
+	}
+}
+</code></pre>
+<p><img src="https://img-blog.csdnimg.cn/20200220223032274.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dzZmhkaGpz,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述" loading="lazy"><br>
+<img src="https://img-blog.csdnimg.cn/2020022022305317.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dzZmhkaGpz,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述" loading="lazy"></p>
+<p>      <span id="jump16">9.5.2直接插入排序复杂度分析</span><br>
+<img src="https://img-blog.csdnimg.cn/20200220224148149.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dzZmhkaGpz,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述" loading="lazy"><br>
+<img src="https://img-blog.csdnimg.cn/20200220224207118.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dzZmhkaGpz,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述" loading="lazy"><br>
+<span id="jump17">9.6希尔排序</span></p>
+<p>      <span id="jump18">9.6.1希尔排序原理</span></p>
+<blockquote>
+<p>1.希尔排序就是为了突破O(n^2)的时间复杂度，思想就是每次循环一次后都将原来的数组排序成基本有序（P.S.基本有序就是大的数字基本在后面，小的数字基本在前面，不大不小的基本在中间）<br>
+2.采用的是跳跃分割的策略：将相距某个“增量”的记录组成一个子序列，这样才能保证在自序列内分别进行直接插入排序后得到的结果时基本有序而不是局部有序</p>
+</blockquote>
+<figure data-type="image" tabindex="4"><img src="https://img-blog.csdnimg.cn/20200223211404857.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dzZmhkaGpz,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述" loading="lazy"></figure>
+<p>      <span id="jump19">9.6.2 希尔排序算法</span></p>
+<pre><code class="language-cpp">//对顺序表L做希尔排序
+void ShellSort(SqList *L)
+{
+	int i,j;
+	int increment=L-&gt;length;
+	do
+	{
+		increment=increment/3+1;    //增量序列
+		for(i=increment+1; i&lt;=L-&gt;length; i++)
+		{
+			if(L-&gt;r[i]&lt;L-&gt;r[i-increment])
+			{//需将L-&gt;r[i]插入有序增量子表中
+				L-&gt;r[0]=L-&gt;r[i];          //暂存到L-&gt;r[0]
+				for(j=i-increment; j&gt;0 &amp;&amp; L-&gt;r[0]&lt;L-&gt;r[j]; j-=increment)
+					L-&gt;r[j+increment]=L-&gt;r[j];        //记录向后移，查找插入位置
+				L-&gt;r[j+increment]=L-&gt;r[0];          //插入
+			}
+		}
+	}while(increment&gt;1);
+}//详见如下图
+</code></pre>
+<p>1.待排数组<br>
+<img src="https://img-blog.csdnimg.cn/20200223212218854.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dzZmhkaGpz,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述" loading="lazy"><br>
+<img src="https://img-blog.csdnimg.cn/20200223212236540.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dzZmhkaGpz,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述" loading="lazy"><br>
+<img src="https://img-blog.csdnimg.cn/20200223212256717.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dzZmhkaGpz,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述" loading="lazy"><br>
+<img src="https://img-blog.csdnimg.cn/20200223212313899.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dzZmhkaGpz,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述" loading="lazy"><br>
+<img src="https://img-blog.csdnimg.cn/2020022321294273.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dzZmhkaGpz,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述" loading="lazy"></p>
+<p>      <span id="jump20">9.6.3希尔排序时间复杂度分析</span></p>
+<blockquote>
+<p>1.时间复杂度为O(n^3/2)，要直接好于O(n的平方)<br>
+2.增量序列的最后一个增量值必须等于1才行</p>
+</blockquote>
+<p><span id="jump21">9.8归并排序</span></p>
+<blockquote>
+<p>说白了就是对数组进行两两合并，详见下图</p>
+</blockquote>
+<p><img src="https://img-blog.csdnimg.cn/20200224212407189.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dzZmhkaGpz,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述" loading="lazy"><br>
+      <span id="jump22">9.8.1归并排序算法</span></p>
+<blockquote>
+<p>归并排序的原理，见下图：</p>
+</blockquote>
+<figure data-type="image" tabindex="5"><img src="https://img-blog.csdnimg.cn/2020022421255582.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dzZmhkaGpz,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述" loading="lazy"></figure>
+<p>总的归并排序代码：</p>
+<pre><code class="language-cpp">//对顺序表L做归并排序
+void MergeSort(SqList *L)
+{
+	MSort(L-&gt;r, L-&gt;r, 1, L-&gt;length);
+}
+
+</code></pre>
+<blockquote>
+<p>上述代码，为了和前面的排序算法统一，用了同样的参数定义SqList *L，MSort的代码实现如下：</p>
+</blockquote>
+<p>递归拆分代码：</p>
+<pre><code class="language-cpp">void MSort(int SR[], int TR1[], int s, int t)  //SR[]数组相当于原始数组，TR1[]相当于排好序的数组
+{
+	int m;
+	int TR2[MAXSIZE+1];
+	if(s==t)
+		TR1[s]=SR[s];    
+	else
+	{
+		m=(s+t)/2;     //相当于从中间开始分
+		MSort(SR,TR2,s,m);    //将原始数组SR[]的前半部分递归到TR2[]中
+		MSort(SR,TR2,m+1,t);     //将原始数组SR的后半部分放到TR2[]中
+		Merge(TR2,TR1,s,m,t);   //将TR2[]递归到已排好序的数组TR1[]中
+	}
+}//详见如下图
+
+</code></pre>
+<p><img src="https://img-blog.csdnimg.cn/20200224213548144.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dzZmhkaGpz,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述" loading="lazy"><br>
+<img src="https://img-blog.csdnimg.cn/20200224213607291.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dzZmhkaGpz,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述" loading="lazy"><br>
+<img src="https://img-blog.csdnimg.cn/2020022421364571.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dzZmhkaGpz,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述" loading="lazy"></p>
+<p>Merge函数如何实现（归并算法）：</p>
+<pre><code class="language-cpp">//将数组直接归并为有序的
+void Merge(int SR[], int TR[], int i,int m,int n)
+{
+	int j,k,l;
+	for(j=m+1,k=i; i&lt;=m &amp;&amp; j&lt;=n; k++)   //将SR中记录有小到大归并入TR中
+	{
+		if(SR[i]&lt;SR[j])
+			TR[k]=SR[i++];
+		else
+			TR[k]=SR[j++];
+	}
+	if(i&lt;=m)                                 //将剩余的归并到TR中
+	{
+		for(l=0; l&lt;=m-i; l++)
+			TR[K+l]=SR[i+1];
+	}
+	if(j&lt;=n)                                 //将剩余的归并到TR中
+	{
+		for(l=0; l&lt;=n-j; l++)
+			TR[k+l]=SR[j+l];
+	}
+} //详见如下图：
+
+</code></pre>
+<p><img src="https://img-blog.csdnimg.cn/20200224214436361.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dzZmhkaGpz,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述" loading="lazy"><br>
+<img src="https://img-blog.csdnimg.cn/20200224214448493.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dzZmhkaGpz,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述" loading="lazy"></p>
+<p>      <span id="jump23">9.8.2 归并排序复杂度分析</span></p>
+<blockquote>
+<p>1.时间复杂度分析：<br>
+对于上面那个merge函数中，将原始数列SR[]放入到TR1[]中，由于要遍历循环所有的记录所以时间复杂度为O(n)，而由完全二叉树的深度可知，整个总的归并排序需要进行log2n次，总的时间复杂度为O(nlogn)<br>
+2.空间复杂度分析：<br>
+由于归并排序在归并过程中需要与原始记录序列同样数量的存储空间存放归并结果，所以空间复杂度为o(n)。同时还有递归时深度为log2n的栈空间，因此空间复杂度为O(n+logn)<br>
+3.Merge函数中有if(SR[i]&lt;SR[j])语句，这就说明他需要两两比较，不存在跳跃，因此归并排序是一种稳定的排序算法</p>
+</blockquote>
+<p>      <span id="jump24">9.8.3 非递归实现归并排序</span></p>
+<p>直接进行归并排序代码如下：</p>
+<pre><code class="language-cpp">//对顺序表L作归并非递归排序
+void MergeSort2(SqList *L)
+{
+	int* TR=(int *) malloc (L-&gt;length*sizeof(int));    //申请额外空间
+	int k=1;
+	while(k&lt;L-&gt;length)
+	{
+		MergePass(L-&gt;r,TR,k,L-&gt;length);
+		k=2*k;                           //子序列长度加倍
+		MergePass(TR,L-&gt;r,k,L-&gt;length);
+	    k=2*k;                    	//子序列长度加倍
+	}
+} //详见代码如下图：
+
+</code></pre>
+<figure data-type="image" tabindex="6"><img src="https://img-blog.csdnimg.cn/20200224215853578.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dzZmhkaGpz,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述" loading="lazy"></figure>
+<table><tr><td bgcolor=GreenYellow>非递归算法和递归算法的区别</td></tr></table>
+<blockquote>
+<p>1.非递归算法：对数组直接归并<br>
+2.递归算法： 先递归拆分数组然后再归并退出递归</p>
+</blockquote>
+<p>上面的MergePass（归并排序）代码如下：</p>
+<pre><code class="language-cpp">void MergePass(int SR[],int TR[],int s,int n)
+{
+	int i=1;
+	int j;
+	while(i&lt;=n-2*s+1)
+	{
+		Merge(SR,TR,i,i+s-1,i+2*s-1);       //两两归并
+		i=i+2*s;
+	}
+	if(i&lt;n-s+1)         //归并最后两个序列
+		Merge(SR,TR,i,i+s-1,n);
+	else
+		for(j=i; j&lt;=n; j++)
+			TR[j]=SR[j];
+}//详见如下图：
+
+</code></pre>
+<p><img src="https://img-blog.csdnimg.cn/20200224220712223.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dzZmhkaGpz,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述" loading="lazy"><br>
+<img src="https://img-blog.csdnimg.cn/20200224220724375.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dzZmhkaGpz,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述" loading="lazy"></p>
+<p>非递归归并排序的时间复杂度如下图：</p>
+<figure data-type="image" tabindex="7"><img src="https://img-blog.csdnimg.cn/20200224220803431.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dzZmhkaGpz,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述" loading="lazy"></figure>
+<p><span id="jump25">9.7堆排序算法</span></p>
+<blockquote>
+<p>大顶堆+小顶堆如下图：</p>
+</blockquote>
+<figure data-type="image" tabindex="8"><img src="https://img-blog.csdnimg.cn/202002242213116.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dzZmhkaGpz,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述" loading="lazy"></figure>
+<blockquote>
+<p>如果按照层序遍历的方式给结点从1开始编号，有如下关系：</p>
+</blockquote>
+<p><img src="https://img-blog.csdnimg.cn/20200224221455607.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dzZmhkaGpz,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述" loading="lazy"><br>
+<img src="https://img-blog.csdnimg.cn/20200224221554850.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dzZmhkaGpz,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述" loading="lazy"></p>
+<blockquote>
+<p>将大顶堆和小顶堆用层序遍历存入数组，如下图：</p>
+</blockquote>
+<figure data-type="image" tabindex="9"><img src="https://img-blog.csdnimg.cn/20200224221707148.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dzZmhkaGpz,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述" loading="lazy"></figure>
+<p>      <span id="jump26">9.7.1堆排序算法</span></p>
+<blockquote>
+<p>堆排序的基本思想如下：</p>
+</blockquote>
+<p><img src="https://img-blog.csdnimg.cn/2020022422185751.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dzZmhkaGpz,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述" loading="lazy"><br>
+<img src="https://img-blog.csdnimg.cn/2020022422191275.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dzZmhkaGpz,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述" loading="lazy"><br>
+堆排序的整体代码：</p>
+<pre><code class="language-cpp">//对顺序表L进行堆排序
+void HeapSort(SqList *L)
+{
+	int i;
+	for(i=L-&gt;length/2; i&gt;0; i--)         //将原来的数组构建为一个大顶堆
+		HeapAdjust(L,i,L-&gt;length);
+	
+	for(i=L-&gt;length; i&gt;1; i--)
+	{
+		swap(L,1,i);          //将堆顶记录和当前未经排序子序列的最后一个记录交换
+		HeapAdjust(L,1,i-1);       //将其重新调整为大顶堆
+	}
+}//详见如下图
+
+</code></pre>
+<p><img src="https://img-blog.csdnimg.cn/20200224222615378.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dzZmhkaGpz,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述" loading="lazy"><br>
+<img src="https://img-blog.csdnimg.cn/20200224222629819.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dzZmhkaGpz,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述" loading="lazy"><br>
+上述代码中HeapAdjust函数如何实现：</p>
+<pre><code class="language-cpp">void HeapAdjust(SqList *L,int s,int m)
+{
+	int temp,j;
+	temp=L-&gt;r[s];
+	for(j=2*s; j&lt;=m; j*=2)   //沿关键字较大的孩子结点向下筛选
+	{
+		if(j&lt;m &amp;&amp; L-&gt;r[j]&lt;L-&gt;r[j+1])
+			++j;            //j为关键字中较大的记录的下标
+		if(temp&gt;L-&gt;r[j])
+			break;
+		L-&gt;r[s]=L-&gt;r[j];
+		s=j;
+	}
+	L-&gt;r[s]=temp;   //插入
+}//详见如下图
+
+</code></pre>
+<p><img src="https://img-blog.csdnimg.cn/20200224223320292.png" alt="在这里插入图片描述" loading="lazy"><br>
+<img src="https://img-blog.csdnimg.cn/20200224223337424.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dzZmhkaGpz,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述" loading="lazy"><br>
+<img src="https://img-blog.csdnimg.cn/20200224223348267.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dzZmhkaGpz,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述" loading="lazy"><br>
+<img src="https://img-blog.csdnimg.cn/20200224223402125.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dzZmhkaGpz,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述" loading="lazy"><br>
+接下来就是HeapSort函数中正式的排序过程</p>
+<pre><code class="language-cpp">	for(i=L-&gt;length; i&gt;1; i--)
+	{
+		swap(L,1,i);          //将堆顶记录和当前未经排序子序列的最后一个记录交换
+		HeapAdjust(L,1,i-1);       //将其重新调整为大顶堆
+	}//详见如下图：
+
+</code></pre>
+<figure data-type="image" tabindex="10"><img src="https://img-blog.csdnimg.cn/20200224223738871.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dzZmhkaGpz,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述" loading="lazy"></figure>
+<p>      <span id="jump27">9.7.2堆排序复杂度分析</span></p>
+<blockquote>
+<p>1.在第一次构建堆的过程中，时间复杂度如下图：</p>
+</blockquote>
+<p><img src="https://img-blog.csdnimg.cn/20200224224117512.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dzZmhkaGpz,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述" loading="lazy"><br>
+<img src="https://img-blog.csdnimg.cn/20200224224130379.png" alt="在这里插入图片描述" loading="lazy"></p>
+<blockquote>
+<p>2.在正式排序的过程中，时间复杂度如下：</p>
+</blockquote>
+<figure data-type="image" tabindex="11"><img src="https://img-blog.csdnimg.cn/20200224224223924.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dzZmhkaGpz,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述" loading="lazy"></figure>
+<p><span id="jump28">9.9快速排序</span></p>
+<blockquote>
+<p>1.希尔排序相当于直接插入排序的升级，他们都属于插入排序类<br>
+2.堆排序相当于简单选择排序的升级，他们都属于选择排序类<br>
+3.快速排序就是冒泡排序的升级，他们都属于交换排序类</p>
+</blockquote>
+<p>       <span id="jump29">9.9.1快速排序算法</span></p>
+<blockquote>
+<p>快速思想的思想，如下图：</p>
+</blockquote>
+<p><img src="https://img-blog.csdnimg.cn/20200225113932704.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dzZmhkaGpz,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述" loading="lazy"><br>
+快速排序的代码：</p>
+<pre><code class="language-cpp">void QuickSort(SqList *L)
+{
+	QSort(L,1,L-&gt;length);
+}
+
+</code></pre>
+<p>QSort函数的代码：</p>
+<pre><code class="language-cpp">//对顺序表L中的子序列做快速排序
+void QSort(SqList *L,int low,int high)
+{
+	int pivot;
+	if(low&lt;high)
+	{
+		pivot=Partition(L,low,high);        //将原来数组一分为2，算出枢轴pivot
+		QSort(L,low,pivot-1);             //对低字表递归排序
+		QSort(L,pivot+1,high);            //对高子表递归排序
+	}
+}//详见如下图
+
+</code></pre>
+<figure data-type="image" tabindex="12"><img src="https://img-blog.csdnimg.cn/20200225114522383.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dzZmhkaGpz,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述" loading="lazy"></figure>
+<p>上述代码中Partition函数（将原始数组一分为2的数组）如下：</p>
+<pre><code class="language-cpp">//交换顺序表L中子表的记录，使枢轴记录到位，并返回其所在位置
+//此时在他之前的记录均不大于他，在后面的记录均不小于他
+int Partition(SqList *L,int low,int high)
+{
+	int pivotkey;                          //用子表的第一个记录做枢轴记录
+	pivotkey=L-&gt;r[low];					//从表的两端交替向中间扫描
+	while(low&lt;high)
+	{
+		while(low&lt;high &amp;&amp; L-&gt;r[high]&gt;=pivotkey)
+			high--;
+		swap(L,low,high);                 //将比枢轴记录小的记录交换到低端
+		while(low&lt;high &amp;&amp; L-&gt;r[low]&lt;=pivotkey)
+			low++;
+		swap(L,low,high);                      //将比枢轴记录大的记录交换到高端
+	}
+	return low;              //返回枢轴所在位置
+}//详见如下图
+
+</code></pre>
+<p><img src="https://img-blog.csdnimg.cn/20200225115335261.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dzZmhkaGpz,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述" loading="lazy"><br>
+<img src="https://img-blog.csdnimg.cn/20200225115345893.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dzZmhkaGpz,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述" loading="lazy"><br>
+<img src="https://img-blog.csdnimg.cn/20200225115359275.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dzZmhkaGpz,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述" loading="lazy"></p>
+<p>       <span id="jump30">9.9.2快速排序复杂度分析</span><br>
+<img src="https://img-blog.csdnimg.cn/202002251156198.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dzZmhkaGpz,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述" loading="lazy"><br>
+<img src="https://img-blog.csdnimg.cn/20200225115918926.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dzZmhkaGpz,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述" loading="lazy"><br>
+<img src="https://img-blog.csdnimg.cn/202002251159399.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dzZmhkaGpz,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述" loading="lazy"></p>
+<p>       <span id="jump31">9.9.3快速排序优化</span><br>
+               1.优化选取枢轴<br>
+                         1.为啥要优化选取枢轴？<br>
+<img src="https://img-blog.csdnimg.cn/20200225120248306.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dzZmhkaGpz,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述" loading="lazy"><br>
+<img src="https://img-blog.csdnimg.cn/20200225120308181.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dzZmhkaGpz,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述" loading="lazy"></p>
+<p>                         2.三数取中法：</p>
+<p><img src="https://img-blog.csdnimg.cn/20200225120455867.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dzZmhkaGpz,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述" loading="lazy"><br>
+在Partition函数中的第3行与第4行之间加上如下代码：</p>
+<pre><code class="language-csharp">3 int Pivotkey;
+	int m=low+(high-low)/2;           //计算数组中间的元素的下标
+	if(L-&gt;r[low]&gt;L-&gt;r[high])
+		swap(L,low,high);        //交换左端与右端，保证左端较小
+	if(L-&gt;r[m]&gt;L-&gt;r[high])
+		swap(L,high,m);             //交换中间与右端数据，保证中间较小
+	if(L-&gt;r[m]&gt;L-&gt;r[low])
+		swap(L,m,low);               //交换中间与左端数据，保证左端较小
+	//此时L.r[low]已经是整个序列做左中右三个关键字的中间值
+4 pivotkey=L-&gt;r[low];          //还是用子表的第一个记录做枢轴记录
+//详见如下图
+
+</code></pre>
+<p><img src="https://img-blog.csdnimg.cn/2020022512114547.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dzZmhkaGpz,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述" loading="lazy"><br>
+                         3.优化不必要的交换：<br>
+1.原因如下图：<br>
+<img src="https://img-blog.csdnimg.cn/20200225121325776.png" alt="在这里插入图片描述" loading="lazy"><br>
+2.详细代码：</p>
+<pre><code class="language-cpp">//快速排序优化算法
+int Partition1(SqList *L,int low,int high)
+{
+	int pivotkey;                          //用子表的第一个记录做枢轴记录
+	//这里省略三数取中的代码
+	pivotkey=L-&gt;r[low];					//从表的两端交替向中间扫描
+	L-r[0]=L-&gt;r[high];              //增加1：叫枢轴关键字备份到L-&gt;r[0]
+	while(low&lt;high)
+	{
+		while(low&lt;high &amp;&amp; L-&gt;r[high]&gt;=pivotkey)
+			high--;
+		L-&gt;r[low]=L-&gt;r[high];              //增加2：采用的是替换而不是交换
+		while(low&lt;high &amp;&amp; L-&gt;r[low]&lt;=pivotkey)
+			low++;
+		L-&gt;r[high]=L-&gt;r[low];        //增加3：采用的是替换而不是交换
+	}
+	L-&gt;r[low]=L-&gt;r[0];              //增加4：将枢轴数值替换回L.r[low]
+	return low;              //返回枢轴所在位置
+
+</code></pre>
+<figure data-type="image" tabindex="13"><img src="https://img-blog.csdnimg.cn/20200225122008154.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dzZmhkaGpz,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述" loading="lazy"></figure>
+<p>                         4.优化小数组的排序方案<br>
+1.原因如下：<br>
+<img src="https://img-blog.csdnimg.cn/20200225122148402.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dzZmhkaGpz,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述" loading="lazy"><br>
+2.详见代码：</p>
+<pre><code class="language-cpp">#define MAX_LENGTH_INSERT_SORT 7            //数组长度阈值
+void QSort(SqList *L,int low,int high)
+{
+	int pivot;
+	if((high-low)&gt;MAX_LENGTH_INSERT_SORT)
+	{//当high-low大于常数时用快速排序
+		pivot=Partition(L,low,high);        //将原来数组一分为2，算出枢轴pivot
+		QSort(L,low,pivot-1);             //对低字表递归排序
+		QSort(L,pivot+1,high);            //对高子表递归排序
+	}
+	else
+		InsertSort(L);       //当high-low小于等于常数时用直接插入排序
+}//详见如下图
+
+</code></pre>
+<figure data-type="image" tabindex="14"><img src="https://img-blog.csdnimg.cn/20200225122542336.png" alt="在这里插入图片描述" loading="lazy"></figure>
+<p>                         5.优化递归的操作<br>
+1.原因如下图：<br>
+<img src="https://img-blog.csdnimg.cn/20200225122706361.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dzZmhkaGpz,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述" loading="lazy"><br>
+于是对QSort进行尾递归操作：</p>
+<pre><code class="language-cpp">void QSort1(SqList *L,int low,int high)
+{
+	int pivot;
+	if((high-low)&gt;MAX_LENGTH_INSERT_SORT)
+	{//当high-low大于常数时用快速排序
+		while(low&lt;high)
+		{
+			pivot=Partition(L,low,high);        //将原来数组一分为2，算出枢轴pivot
+			QSort1(L,low,pivot-1);             //对低字表递归排序
+			low=pivot+1;              //尾递归			
+		}
+
+	}
+	else
+		InsertSort(L);       //当high-low小于等于常数时用直接插入排序
+}//详见如下图
+
+</code></pre>
+<figure data-type="image" tabindex="15"><img src="https://img-blog.csdnimg.cn/20200225123002786.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dzZmhkaGpz,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述" loading="lazy"></figure>
+</div>
+                                    <div class="mdui-divider mdui-m-b-2"></div>
+                                    <div class="mdui-row-xs-2 post-fenye">
+                                       
+                                        <div class="mdui-col"> </div>
+                                        
+
+                                        
+                                        <div class="mdui-col"><div class="mdui-text-right "><a href="https://wsf123sd.github.io/post/da-hua-shu-ju-jie-gou-di-wu-zhang-bi-ji-chuan/">大话数据结构第五章笔记（串）</a></div> </div>
+                                       
+                                      </div>
+                                   
+                                    <div class="mdui-divider mdui-m-t-2 mdui-m-b-2"></div>
+                                    
+                                     <script src="https://wsf123sd.github.io//media/scripts/Valine.min.js"></script>
+ <div class="comment"></div>
+
+<script>
+      new Valine({
+            el: '.comment',
+
+
+
+            path: window.location.pathname,
+            pageSize: 30,
+            avatar:'mm', 
+       })
+    </script> 
+<script>
+    if(window.location.hash){
+        var checkExist = setInterval(function() {
+           if ($(window.location.hash).length) {
+              $('html, body').animate({scrollTop: $(window.location.hash).offset().top-90}, 1000);
+              clearInterval(checkExist);
+           }
+        }, 100);
+    }
+</script>
+                                </article>
+
+                                    
+                        </div>
+                      </div>
+    
+                
+
+              </div>
+                    <footer class="footer mdui-m-t-5 mdui-text-center">
+               <nav class="social-links">
+                      <ul>
+                      
+                      
+                           
+                      
+                           
+                      
+                           
+                      
+                           
+                      
+                           
+                      
+                           
+                      
+                           
+                      
+                           
+                      
+                           
+                      
+                           
+                      
+                           
+                      
+                           
+                      </ul>
+                    </nav>
+                    <div class="copyright">
+                      <p>Powered by <a href="https://github.com/getgridea/gridea" target="_blank">Gridea</a> <br/> Theme <a href="https://github.com/shanbufun/gridea-theme-song" target="_blank"  title="宋"  >Song</a> by <a href="https://shanbu.fun/" target="_blank"  title="山卜方" >shanbufun</a> </p>
+                  </div>
+                  
+              </footer>
+    </body>
+</html>
