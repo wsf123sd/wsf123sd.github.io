@@ -1,22 +1,43 @@
-<?xml version="1.0" encoding="utf-8"?>
-<feed xmlns="http://www.w3.org/2005/Atom">
-    <id>https://wsf123sd.github.io/</id>
-    <title>Gridea</title>
-    <updated>2020-03-01T04:14:43.799Z</updated>
-    <generator>https://github.com/jpmonette/feed</generator>
-    <link rel="alternate" href="https://wsf123sd.github.io/"/>
-    <link rel="self" href="https://wsf123sd.github.io/atom.xml"/>
-    <subtitle>温故而知新</subtitle>
-    <logo>https://wsf123sd.github.io/images/avatar.png</logo>
-    <icon>https://wsf123sd.github.io/favicon.ico</icon>
-    <rights>All rights reserved 2020, Gridea</rights>
-    <entry>
-        <title type="html"><![CDATA[大话数据结构第8章笔记（查找）]]></title>
-        <id>https://wsf123sd.github.io/post/da-hua-shu-ju-jie-gou-di-8-zhang-bi-ji-cha-zhao/</id>
-        <link href="https://wsf123sd.github.io/post/da-hua-shu-ju-jie-gou-di-8-zhang-bi-ji-cha-zhao/">
-        </link>
-        <updated>2020-03-01T04:12:42.000Z</updated>
-        <content type="html"><![CDATA[<p><a href="#jump">8.1开场白+8.2查找概论</a><br>
+<!DOCTYPE html>
+<html>
+        <head>
+        <meta name="viewport" content="width=device-width,minimum-scale=1,maximum-scale=1,initial-scale=1,user-scalable=no" />
+        <meta charset="utf-8">
+        <title>大话数据结构第8章笔记（查找） | Gridea</title>
+        <link rel="stylesheet" href="https://wsf123sd.github.io//styles/main.css">
+        <link rel="stylesheet" href="https://at.alicdn.com/t/font_1306644_jwtuc2zzbrd.css">
+        <link href="https://cdn.bootcss.com/animate.css/3.7.2/animate.min.css" rel="stylesheet">
+         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.10.0/katex.min.css">
+        <script src="https://cdn.staticfile.org/jquery/3.4.1/jquery.min.js"></script>
+         <script src="https://cdn.bootcss.com/highlight.js/9.15.10/highlight.min.js"></script>
+         <script >hljs.initHighlightingOnLoad();</script>
+
+    </head>
+    <body>
+              <header class="header mdui-m-b-5">      
+            <div class="container  ">
+                <div class="index-title animated fadeInDown mdui-text-center mdui-text-color-white mdui-m-b-2" style="animation-delay: 0.2s"><a href="https://wsf123sd.github.io/">Gridea</a></div>
+                <div class="mdui-text-color-white animated fadeInDown mdui-text-center  mdui-m-b-3" style="animation-delay: 0.4s">温故而知新</div>
+           
+            <nav id="nav" class="mdui-text-center animated fadeInDown" style="animation-delay: 0.6s">
+                   
+                            <li><a href="/">首页</a>
+                                <span class="nav-style top"></span>
+                                <span class="nav-style bottom"></span>
+                                <span class="nav-style left"></span>
+                                <span class="nav-style right"></span>
+                                </li>
+                    
+                  </nav>
+                </div>
+        </header>
+        <div class="mdui-container ">
+                <div class="mdui-row">
+                        <div class="mdui-col-md-8 mdui-col-offset-md-2 ">
+                                <article class="mdui-p-a-2 post animated fadeIn" style="animation-delay: 0.8s;animation-duration: 2s">
+                                    <div class="post-title  mdui-m-b-1">大话数据结构第8章笔记（查找）</div>
+                                    <div class="mdui-typo-body-2 mdui-m-b-2" datetime="2020-03-01 12:12:42">2020-03-01 / 23 min read</div>
+                                    <div class="mdui-m-b-2 mdui-typo post-neirong"><p><a href="#jump">8.1开场白+8.2查找概论</a><br>
 <a href="#jump1">8.3顺序表查找</a><br>
       <a href="#jump2">8.3.1顺序查找算法</a><br>
       <a href="#jump3">8.3.2顺序表查找优化</a><br>
@@ -702,6 +723,87 @@ Status SearchHash(HashTable H, int key, int *addr)
                   2.处理冲突的方法：相同的关键字，相同的散列函数，但处理冲突的方法不同，会使得平均查找长度不同。比如线性探测处理冲突可能会产生堆积，显然就没有二次探测法好，而链地址法处理冲突不会产生任何堆积，因而具有更佳的平均查找性能<br>
                   3.散列表的装填因子：装填因子α=填入表中的记录个数/散列表长度。α标志着散列表的装满程度，当然α越大表示装满程度越高，也就是产生冲突的可能性越大。也就是说，散列表的平均查找长度取决于装填因子，而不是取决于查找集合中的记录个数。不管记录个数n有多大，总可以选择一个合适的装填因子以便将平均查找长度限定在一个范围，此时散列表的复杂度为O(1)，通常将散列表的空间设置得比查找集合大，虽然浪费空间，但效率提升。</p>
 <p>​</p>
-]]></content>
-    </entry>
-</feed>
+</div>
+                                    <div class="mdui-divider mdui-m-b-2"></div>
+                                    <div class="mdui-row-xs-2 post-fenye">
+                                       
+                                        <div class="mdui-col"> </div>
+                                        
+
+                                        
+                                        <div class="mdui-col"></div>
+                                       
+                                      </div>
+                                   
+                                    <div class="mdui-divider mdui-m-t-2 mdui-m-b-2"></div>
+                                    
+                                     <script src="https://wsf123sd.github.io//media/scripts/Valine.min.js"></script>
+ <div class="comment"></div>
+
+<script>
+      new Valine({
+            el: '.comment',
+
+
+
+            path: window.location.pathname,
+            pageSize: 30,
+            avatar:'mm', 
+       })
+    </script> 
+<script>
+    if(window.location.hash){
+        var checkExist = setInterval(function() {
+           if ($(window.location.hash).length) {
+              $('html, body').animate({scrollTop: $(window.location.hash).offset().top-90}, 1000);
+              clearInterval(checkExist);
+           }
+        }, 100);
+    }
+</script>
+                                </article>
+
+                                    
+                        </div>
+                      </div>
+    
+                
+
+              </div>
+                    <footer class="footer mdui-m-t-5 mdui-text-center">
+               <nav class="social-links">
+                      <ul>
+                      
+                      
+                           
+                      
+                           
+                      
+                           
+                      
+                           
+                      
+                           
+                      
+                           
+                      
+                           
+                      
+                           
+                      
+                           
+                      
+                           
+                      
+                           
+                      
+                           
+                      </ul>
+                    </nav>
+                    <div class="copyright">
+                      <p>Powered by <a href="https://github.com/getgridea/gridea" target="_blank">Gridea</a> <br/> Theme <a href="https://github.com/shanbufun/gridea-theme-song" target="_blank"  title="宋"  >Song</a> by <a href="https://shanbu.fun/" target="_blank"  title="山卜方" >shanbufun</a> </p>
+                  </div>
+                  
+              </footer>
+    </body>
+</html>
