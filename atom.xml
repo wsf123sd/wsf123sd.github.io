@@ -2,7 +2,7 @@
 <feed xmlns="http://www.w3.org/2005/Atom">
     <id>https://wsf123sd.github.io/</id>
     <title>Gridea</title>
-    <updated>2020-03-16T17:12:55.619Z</updated>
+    <updated>2020-03-16T17:17:16.835Z</updated>
     <generator>https://github.com/jpmonette/feed</generator>
     <link rel="alternate" href="https://wsf123sd.github.io/"/>
     <link rel="self" href="https://wsf123sd.github.io/atom.xml"/>
@@ -27,6 +27,87 @@
 <h3 id="1jkcasf-dlk">1.jkcasf dlk</h3>
 <h3 id="1jkcjj-klm">1.jkcjj klm</h3>
 <h3 id="1jkcjjklrjklw">1.jkcjjklrjklw</h3>
+<pre><code class="language-cpp">#include&lt;iostream&gt;
+using namespace std;
+
+/*
+    构造结点：
+    1.两个int类型
+    2.还有一个next指针
+*/
+struct LinkList
+{
+    int z;
+    int fu;
+    LinkList *next;
+};
+
+/*
+    构造链表：
+    1.定义一个LinkList的头指针
+    2.定义两个临时变量存放每次的输入
+    3.while循环：
+        1.输入两个值
+        2.动态分配一个结点空间
+        3.如果结点空间分配失败，
+*/
+LinkList *BuildList(int n)
+{
+    LinkList *head=NULL;
+    int zheng,fushu;
+    while(n--)
+    {
+       cin &gt;&gt; zheng &gt;&gt; fushu;
+       LinkList *new_node=(LinkList *)malloc(sizeof(LinkList));
+        if(new_node==NULL)
+        {
+            cout &lt;&lt; &quot;filed!&quot;;
+            return head;
+        }
+        new_node-&gt;z=zheng;
+        new_node-&gt;fu=fushu;
+        LinkList *p;
+    if(head==NULL)
+    {
+        new_node-&gt;next=NULL;
+        head=new_node;
+        p=head;
+    }
+    else
+    {
+
+        p-&gt;next=new_node;
+        new_node-&gt;next=NULL;
+        p=new_node;
+    }
+  }
+    return head;
+}
+
+//对构造的链表进行相加
+void CountList(LinkList *head)
+{
+    LinkList *p=head;
+    int zheng=0,fu=0;
+    while(p)
+    {
+        zheng+=p-&gt;z;
+        fu+=p-&gt;fu;
+        p=p-&gt;next;
+    }
+    cout&lt;&lt;zheng&lt;&lt;&quot;+&quot;&lt;&lt;fu&lt;&lt;&quot;i&quot;&lt;&lt;endl;
+}
+
+int main()
+{
+    int n;
+    cin&gt;&gt;n;
+    LinkList *head=BuildList(n);
+    CountList(head);
+    return 0;
+}
+
+</code></pre>
 ]]></content>
     </entry>
     <entry>
