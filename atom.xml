@@ -2,7 +2,7 @@
 <feed xmlns="http://www.w3.org/2005/Atom">
     <id>https://wsf123sd.github.io/</id>
     <title>Gridea</title>
-    <updated>2020-03-16T13:06:44.475Z</updated>
+    <updated>2020-03-16T13:19:45.181Z</updated>
     <generator>https://github.com/jpmonette/feed</generator>
     <link rel="alternate" href="https://wsf123sd.github.io/"/>
     <link rel="self" href="https://wsf123sd.github.io/atom.xml"/>
@@ -823,7 +823,18 @@ int main()
         <link href="https://wsf123sd.github.io/post/c-yu-yan-wang-di-si-zhang-bi-ji/">
         </link>
         <updated>2020-03-01T15:25:40.000Z</updated>
-        <content type="html"><![CDATA[<p>1.二维数组</p>
+        <content type="html"><![CDATA[<p><a href="#jump1">1.二维数组</a><br>
+<a href="#jump2">2.字符串的strlen（长度），strcmp（比较），strcpy（复制），strcat（拼接）</a><br>
+<a href="#jump3">3.string类的字符串翻转</a><br>
+<a href="#jump4">4.字符串的使用</a><br>
+<a href="#jump5">5.指针的使用</a><br>
+<a href="#jump6">6.输出字符数组的三种写法+二维数组的指针使用</a><br>
+<a href="#jump7">7.二维数组指针作为函数参数的使用</a><br>
+<a href="#jump8">8.引用+引用作为参数进行数字交换</a><br>
+<a href="#jump9">9.new和delete分配和释放空间</a><br>
+<a href="#jump7">7.二维数组指针作为函数参数的使用</a></p>
+<p>8.引用+引用作为参数进行数字交换8.引用+引用作为参数进行数字交换</p>
+<p><span id="jump1">1.二维数组</span></p>
 <pre><code class="language-cpp">#include&lt;iostream&gt;
 #include&lt;iomanip&gt;
 using namespace std;
@@ -844,7 +855,7 @@ int main()
 }
 
 </code></pre>
-<p>2.字符串的strlen（长度），strcmp（比较），strcpy（复制），strcat（拼接）</p>
+<p><span id="jump2">2.字符串的strlen（长度），strcmp（比较），strcpy（复制），strcat（拼接）</span></p>
 <pre><code class="language-cpp">#include &lt;iostream&gt;
 #include &lt;cstring&gt;  //一定是cstring不是string
 #include&lt;iomanip&gt;
@@ -888,7 +899,7 @@ int main ()
 }
 
 </code></pre>
-<p>3.string类的字符串翻转</p>
+<p><span id="jump3">3.string类的字符串翻转</span></p>
 <pre><code class="language-cpp">#include &lt;algorithm&gt;
 #include&lt;iostream&gt;
 using namespace std;
@@ -901,7 +912,7 @@ int main()
 }
 
 </code></pre>
-<p>字符串使用：</p>
+<p><span id="jump4">4.字符串的使用</span></p>
 <pre><code class="language-cpp">#include&lt;iostream&gt;
 #include&lt;string&gt;
 using namespace std;
@@ -948,7 +959,7 @@ int main()
 
 
 </code></pre>
-<p>指针的使用：<br>
+<p><span id="jump5">5.指针的使用</span><br>
 1.指针基本使用<br>
 2.数组的指针的使用<br>
 3.指针作为函数参数</p>
@@ -996,7 +1007,7 @@ int main()
 }
 
 </code></pre>
-<p>输出字符数组的三种写法+二维数组的指针使用</p>
+<p><span id="jump6">6.输出字符数组的三种写法+二维数组的指针使用</span></p>
 <pre><code class="language-cpp">#include&lt;iostream&gt;
 #include&lt;cstring&gt;
 using namespace std;
@@ -1033,7 +1044,7 @@ int main()
 }
 
 </code></pre>
-<p>二维数组指针作为函数参数的使用</p>
+<p><span id="jump7">7.二维数组指针作为函数参数的使用</span></p>
 <pre><code class="language-cpp">#include&lt;iostream&gt;
 #include&lt;cstring&gt;
 using namespace std;
@@ -1058,7 +1069,7 @@ int main()
 }
 
 </code></pre>
-<p>引用+引用作为参数进行数字交换</p>
+<p><span id="jump8">8.引用+引用作为参数进行数字交换</span></p>
 <pre><code class="language-cpp">#include&lt;iostream&gt;
 #include&lt;vector&gt;
 using namespace std;
@@ -1090,7 +1101,7 @@ int main()
 
 
 </code></pre>
-<p>new和delete分配和释放空间</p>
+<p><span id="jump9">9.new和delete分配和释放空间</span></p>
 <pre><code class="language-cpp">1.普通变量的使用
 #include&lt;iostream&gt;
 using namespace std;
