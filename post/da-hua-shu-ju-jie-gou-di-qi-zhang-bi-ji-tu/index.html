@@ -50,12 +50,46 @@
                         <div class="mdui-col-md-8 mdui-col-offset-md-2 ">
                                 <article class="mdui-p-a-2 post animated fadeIn" style="animation-delay: 0.8s;animation-duration: 2s">
                                     <div class="post-title  mdui-m-b-1">大话数据结构第七章笔记（图）</div>
-                                    <div class="mdui-typo-body-2 mdui-m-b-2" datetime="2020-03-01 12:18:59">2020-03-01 / 34 min read</div>
-                                    <div class="mdui-m-b-2 mdui-typo post-neirong"><p>1.图的定义G（V,E）其中G表示一个图，V表示图G中顶点集，E表示图G中边的集合<br>
+                                    <div class="mdui-typo-body-2 mdui-m-b-2" datetime="2020-03-01 12:18:59">2020-03-01 / 35 min read</div>
+                                    <div class="mdui-m-b-2 mdui-typo post-neirong"><p><a href="#jump1">7.1图的定义：</a><br>
+<a href="#jump2">7.2.1各种图的定义：</a><br>
+<a href="#jump3">7.2.3连通图：</a><br>
+<a href="#jump4">7.2.3.2强连通图：有向+连通图</a><br>
+<a href="#jump5">7.2.3.3连通图的生成树：</a><br>
+<a href="#jump6">7.2.3.4</a><br>
+<a href="#jump7">7.3图的抽象数据类型：</a><br>
+<a href="#jump8">7.4图的五种存储结构：</a><br>
+<a href="#jump9">一.邻接矩阵：</a><br>
+<a href="#jump11"> 3.有向图的邻接矩阵的特点：</a><br>
+<a href="#jump12"> 4.对于边上的权值而言，如果不存在则为无穷；自身到自身的度为矩阵元素为0,</a><br>
+<a href="#jump13"> 5.图的邻接矩阵存储的结构：</a><br>
+<a href="#jump14">6.构造一个无向图</a><br>
+<a href="#jump15">二.邻接表：</a><br>
+<a href="#jump16">邻接表结点定义的代码：</a><br>
+<a href="#jump17">无向图的邻接表创建代码：</a><br>
+<a href="#jump18">第三种：十字链表：</a><br>
+<a href="#jump19">第四种：邻接多重表</a><br>
+<a href="#jump20">7.5.1深度优先遍历：</a><br>
+<a href="#jump21">邻接表的深度优先递归算法：</a><br>
+<a href="#jump22">邻接矩阵的广度遍历算法：简称BFS</a><br>
+<a href="#jump23">邻接表的广度遍历算法</a><br>
+<a href="#jump24">7.6.1Prim算法：</a><br>
+<a href="#jump25">Prim算法生成最小生成树</a><br>
+<a href="#jump26">Krskal算法：求最小生成树</a><br>
+<a href="#jump27">7.7迪杰斯特拉算法：求最短路径</a><br>
+<a href="#jump28">7.7.2.FLoyd算法：求最短路径</a><br>
+<a href="#jump29">锋说：迪杰斯特拉算法和弗洛伊德算法的相同与不同：</a><br>
+<a href="#jump30">7.8.2拓扑排序：判断工程能否顺利进行</a><br>
+<a href="#jump31">拓扑排序的代码：</a><br>
+<a href="#jump32">7.9关键路径：</a><br>
+<a href="#jump33">7.9.1关键路径的算法原理：</a><br>
+<a href="#jump34">关键路径的算法代码：</a></p>
+<p><span id="jump1">7.1图的定义：</span><br>
+1.图的定义G（V,E）其中G表示一个图，V表示图G中顶点集，E表示图G中边的集合<br>
 2.线性表中数据元素叫元素，树中数据元素叫结点，在图中数据元素称为顶点<br>
 3.线性表中没有数据元素称为空表，树中没有数据元素称为空树，在图的结构中，不允许没有顶点<br>
 4.在线性表中相邻的数据元素之间具有线性关系，树结构中，相邻两层的结点具有层次关系，在图中，任意两个顶点可能有关系，顶点之间的逻辑关系用边来表示。</p>
-<p>7.2.1各种图的定义：<br>
+<p><span id="jump2">7.2.1各种图的定义：</span><br>
 1.如下图 7-2-2是无向图G1=(V1,{E1})，其中顶点集合V1={A,B,C,D}   边集合={(A,B),(B,C),(C,D),(D,A),(A,C)}其中边之间用()来表示<br>
 2.如下图7-2-3，是有向图G2=(V2,{E2})， 顶点集合V2={A,B,C,D}  弧集合E2={&lt;A,D&gt;,&lt;B,A&gt;,&lt;C,A&gt;,&lt;B,C&gt;} A是弧头，D是弧尾 。无向边用()表示，有向边用&lt;&gt;表示<br>
 <img src="https://img-blog.csdnimg.cn/2020010619471683.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dzZmhkaGpz,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述" loading="lazy"><br>
@@ -73,7 +107,8 @@
 <img src="https://img-blog.csdnimg.cn/20200106200657617.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dzZmhkaGpz,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述" loading="lazy"><br>
 9.若无重复的边或顶点到自身的边则叫简单图，如下图，就不是简单图：<br>
 <img src="https://img-blog.csdnimg.cn/20200106204054344.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dzZmhkaGpz,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述" loading="lazy"></p>
-<p>7.2.3连通图：任意两点之间都是连通的<br>
+<p><span id="jump3">7.2.3连通图：</span><br>
+任意两点之间都是连通的<br>
 无向图中的极大连通子图称为连通分量：</p>
 <ul>
 <li>要是子图</li>
@@ -84,36 +119,36 @@
 <img src="https://img-blog.csdnimg.cn/20200106201713177.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dzZmhkaGpz,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述" loading="lazy"><br>
 <img src="https://img-blog.csdnimg.cn/20200106201724638.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dzZmhkaGpz,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述" loading="lazy"></li>
 </ul>
-<p>7.2.3.2强连通图：有向+连通图<br>
+<p><span id="jump4">7.2.3.2强连通图：有向+连通图</span><br>
 图中有子图，若子图极大连通就是连通分量，有向的就是强连通分量，如下图中图1不是强连通图，图2是强连通图，同样图2是图1的强连通分量<br>
-<img src="https://img-blog.csdnimg.cn/20200106202052518.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dzZmhkaGpz,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述" loading="lazy"><br>
-7.2.3.3连通图的生成树：包含图中全部的n个顶点，但只有足以构成一棵树的n-1条边，如图2.图3；如果有n个顶点，但是小于n-1条边则是非连通图；如果边多于n-1，则构成环，如图2,3任意给两个顶点之间一条边，就构成环；不过有n-1条边并不一定是生成树，如图4。<br>
-<img src="https://img-blog.csdnimg.cn/20200106202847268.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dzZmhkaGpz,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述" loading="lazy"><br>
-7.2.3.4<br>
+<img src="https://img-blog.csdnimg.cn/20200106202052518.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dzZmhkaGpz,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述" loading="lazy"></p>
+<p><span id="jump5">7.2.3.3连通图的生成树：</span><br>
+包含图中全部的n个顶点，但只有足以构成一棵树的n-1条边，如图2.图3；如果有n个顶点，但是小于n-1条边则是非连通图；如果边多于n-1，则构成环，如图2,3任意给两个顶点之间一条边，就构成环；不过有n-1条边并不一定是生成树，如图4。<br>
+<img src="https://img-blog.csdnimg.cn/20200106202847268.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dzZmhkaGpz,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述" loading="lazy"></p>
+<p><span id="jump6">7.2.3.4</span><br>
 如果一个有向图恰有一个顶点的入度为0，其余顶点的入度为1，则是一颗有向树。<br>
 一个有向图的生成森林由若干课有向树组成，含有图中全部顶点，但只有足以构成若干棵不相交的有向树的弧，如下图中，图1是有向图，	去掉弧之后，分解为两个有向树，如图2 图3，这两颗就是图1的有向图的生成森林。<br>
-<img src="https://img-blog.csdnimg.cn/20200106203812838.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dzZmhkaGpz,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述" loading="lazy"><br>
-7.3图的抽象数据类型：<br>
-<img src="https://img-blog.csdnimg.cn/20200106204941634.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dzZmhkaGpz,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述" loading="lazy"><br>
-7.4图的五种存储结构：<br>
-一.邻接矩阵：<br>
+<img src="https://img-blog.csdnimg.cn/20200106203812838.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dzZmhkaGpz,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述" loading="lazy"></p>
+<p><span id="jump7">7.3图的抽象数据类型：</span><br>
+<img src="https://img-blog.csdnimg.cn/20200106204941634.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dzZmhkaGpz,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述" loading="lazy"></p>
+<p><span id="jump8">7.4图的五种存储结构：</span><br>
+<span id="jump9">一.邻接矩阵：</span><br>
 1.图的邻接矩阵存储方式用两个数组来表示图，一个一维数组存储图中顶点信息，一个二维数组存储图中的边或弧的信息。<br>
 2.无向图的邻接矩阵的特点：<br>
 a.矩阵是关于主对角线对称的<br>
 b.Vi顶点的度=第i行或者第i列上的元素之和<br>
 c.Vi的所有邻接点就是将矩阵中第i行元素扫描一遍，数组元素为1就是邻接点<br>
 d.主队角线上元素为0<br>
-<img src="https://img-blog.csdnimg.cn/20200106211104874.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dzZmhkaGpz,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述" loading="lazy"><br>
-3.有向图的邻接矩阵的特点：<br>
+<img src="https://img-blog.csdnimg.cn/20200106211104874.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dzZmhkaGpz,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述" loading="lazy"></p>
+<p><span id="jump11"> 3.有向图的邻接矩阵的特点：</span><br>
 a.不是对称矩阵<br>
 b.主队角线上元素为0<br>
 c.顶点Vi的入度为第Vi列各数之和；出度数为第Vi行各数之和<br>
 d.判断Vi到Vj是否存在弧，只需要查找矩阵中元素是否为1<br>
 e.要求Vi的所有邻接点就是将第i行元素扫描一遍，查找矩阵中元素为1的点<br>
-<img src="https://img-blog.csdnimg.cn/20200106211123418.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dzZmhkaGpz,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述" loading="lazy"><br>
-4.对于边上的权值而言，如果不存在则为无穷；自身到自身的度为矩阵元素为0,<br>
-<img src="https://img-blog.csdnimg.cn/20200106211145807.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dzZmhkaGpz,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述" loading="lazy"><br>
-5.图的邻接矩阵存储的结构：</p>
+<img src="https://img-blog.csdnimg.cn/20200106211123418.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dzZmhkaGpz,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述" loading="lazy"></p>
+<p><span id="jump12">  4.对于边上的权值而言，如果不存在则为无穷；自身到自身的度为矩阵元素为0,</span><img src="https://img-blog.csdnimg.cn/20200106211145807.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dzZmhkaGpz,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述" loading="lazy"></p>
+<p><span id="jump13">  5.图的邻接矩阵存储的结构：</span></p>
 <pre><code class="language-cpp">typedef char VertexType;              //顶点类型应由用户定义
 typedef int EdgeType;                //边上的权值类型应由用户定义
 #define MAXVEX 100               //最大顶点数
@@ -125,7 +160,7 @@ typedef struct
 	int numVertexes, numEdges;         //图中当前顶点数和边数
 }MGraph;
 </code></pre>
-<p>6.构造一个无向图</p>
+<p><span id="jump14">  6.构造一个无向图</span></p>
 <pre><code class="language-cpp">//建立无向图的邻接矩阵
 void CreateMGraph(MGraph *G)
 {
@@ -147,7 +182,7 @@ void CreateMGraph(MGraph *G)
 //时间复杂度为o(n+n^2+e):n个顶点，e条边 最终为o(n^2)
 }
 </code></pre>
-<p>二.邻接表：<br>
+<p><span id="jump15">二.邻接表：</span><br>
 1.顶点用一维数组来存放，另外，对于顶点数组中，每个数据元素还需要存储指向第一个邻接点的指针；每个顶点的所有邻接点构成一个线性表，用单链表存储<br>
 2.第Vi个顶点的度，就去查这个顶点的边表中结点的个数<br>
 3.要判断Vi与Vj之间是否存在边，只需要测试顶点Vi的边表中是否存在结点Vj的下标j就行<br>
@@ -157,8 +192,8 @@ void CreateMGraph(MGraph *G)
 7.带权值的邻接表，如下图7-4-8<br>
 <img src="https://img-blog.csdnimg.cn/20200106215146181.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dzZmhkaGpz,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述" loading="lazy"><br>
 <img src="https://img-blog.csdnimg.cn/2020010621520519.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dzZmhkaGpz,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述" loading="lazy"><br>
-<img src="https://img-blog.csdnimg.cn/2020010621522774.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dzZmhkaGpz,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述" loading="lazy"><br>
-邻接表结点定义的代码：</p>
+<img src="https://img-blog.csdnimg.cn/2020010621522774.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dzZmhkaGpz,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述" loading="lazy"></p>
+<p><span id="jump16">邻接表结点定义的代码：</span></p>
 <pre><code class="language-cpp">typedef char VertexType;             //顶点类型由用户定义
 typedef int EdgeType;                 //边上的权值类型由用户定义
 
@@ -181,7 +216,7 @@ typedef struct
 	int numVertexes,numEdges;         //图中当前顶点数和边数
 }GraphAdjList；
 </code></pre>
-<p>无向图的邻接表创建代码：</p>
+<p><span id="jump17">无向图的邻接表创建代码：</span></p>
 <pre><code class="language-cpp">//建立图的邻接表结点
 void CreateALGraph (GraphAdjList *G)
 {
@@ -211,7 +246,8 @@ void CreateALGraph (GraphAdjList *G)
 }
 时间复杂度为o(n+e)=o(n)  //n个顶点，e条边
 </code></pre>
-<p>第三种：十字链表：就是将邻接表和逆邻接表相结合方便了解结点的出度和入度<br>
+<p><span id="jump18">第三种：十字链表：</span><br>
+就是将邻接表和逆邻接表相结合方便了解结点的出度和入度<br>
 1.重新定义顶点表结点结构，如下图，<br>
 firstin 表示入边表头指针，指向该顶点的入边表中第一个结点<br>
 firstout 表示出边表指针，指向该顶点的出边表中的第一个结点<br>
@@ -226,7 +262,7 @@ taillink 是指边表指针域，指向起点相同的下一条边<br>
 v0中firstout指向它自己的边表结点，后面那个边表结点中03表示从0开始走到3；v0中fistrtin表示V1走向它，他犯贱再走向v1，v0再也没有可走的下一个结点，所以taillink为NULL；v0走向v3，没有人与他一样再走向v3所以headlink为NULL<br>
 v1中firstou指向自己的边表结点，后面10 。12分别表示从v1走向V0，从v1走向V2；所以v1第一个边表结点中taillink指向下一个，由于1走向0,2也走向0，所以v1中第一个边表结点走到v2中第一个边表结点；同样V2走向V1，v1犯贱它的fisttin指向V2中第2个边表结点<br>
 v2也是如此，重点强调由于v2走向v0，没有人再走向v0所以v2中第一个边表结点的healink为空</p>
-<p>第四种：邻接多重表<br>
+<p><span id="jump19">第四种：邻接多重表</span><br>
 1.如果要删除边，则对于下图的邻接表而言太复杂对于结点而言改动太多<br>
 <img src="https://img-blog.csdnimg.cn/20200107210841424.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dzZmhkaGpz,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述" loading="lazy"><br>
 2.重新定义如下结构：<br>
@@ -240,8 +276,8 @@ jlink指向依附顶点jvex的下一条边</p>
 8表示依附于v2的下一条边：v2--v3  9表示依附于v2的下一条边：v2--v0  10表示依附于v2的下一条边：v3--v2</p>
 <p>第五种：边集数组：<br>
 如下图，就能看懂</p>
-<p><img src="https://img-blog.csdnimg.cn/20200107212244138.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dzZmhkaGpz,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述" loading="lazy"><br>
-7.5.1深度优先遍历：<br>
+<figure data-type="image" tabindex="1"><img src="https://img-blog.csdnimg.cn/20200107212244138.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dzZmhkaGpz,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述" loading="lazy"></figure>
+<p><span id="jump20">7.5.1深度优先遍历：</span><br>
 1.简称DFS，说白了就是遍历图中每个顶点然后，所有路径都走一遍。遍历过的顶点做好标记就不在遍历<br>
 邻接矩阵的DFS代码如下：</p>
 <pre><code class="language-cpp">typedef int Boolean;        //Boolean是布尔类型，其值是TRUE或FALSE
@@ -268,7 +304,7 @@ void DFSTraverse(MGraph G)
 }
 时间复杂度是o(n^2)
 </code></pre>
-<p>邻接表的深度优先递归算法：</p>
+<p><span id="jump21">邻接表的深度优先递归算法：</span></p>
 <pre><code class="language-cpp">void DFS(GraphAdjList GL, int i)
 {
 	EdgeNode *p;
@@ -295,7 +331,7 @@ void DFSTraverse(GraphAdjList GL)
 
 时间复杂度是o(n+e);
 </code></pre>
-<p>邻接矩阵的广度遍历算法：简称BFS</p>
+<p><span id="jump22">邻接矩阵的广度遍历算法：简称BFS</span></p>
 <pre><code class="language-cpp">/*邻接矩阵的广度遍历算法*/
 void BFSTraverse(MGraph G)
 {
@@ -329,7 +365,7 @@ void BFSTraverse(MGraph G)
     }
 }
 </code></pre>
-<p>邻接表的广度遍历算法</p>
+<p><span id="jump23">邻接表的广度遍历算法</span></p>
 <pre><code class="language-cpp">/*邻接表的广度遍历算法*/
 void BFSTraverse(GraphAdjList GL)
 {
@@ -368,9 +404,9 @@ void BFSTraverse(GraphAdjList GL)
 </code></pre>
 <p>深度优先遍历：更适合目标比较明确，已找到目标为主要目的，类似于前序遍历<br>
 广度优先遍历：更适合在不断扩大遍历范围时找到相对最优解情况 ，类似于层序遍历</p>
-<p>7.6.1Prim算法：<br>
-<img src="https://img-blog.csdnimg.cn/20200108213856363.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dzZmhkaGpz,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述" loading="lazy"><br>
-Prim算法生成最小生成树</p>
+<p><span id="jump24">7.6.1Prim算法：</span><br>
+<img src="https://img-blog.csdnimg.cn/20200108213856363.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dzZmhkaGpz,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述" loading="lazy"></p>
+<p><span id="jump25">Prim算法生成最小生成树</span></p>
 <pre><code class="language-cpp">/*Prim算法生成最小生成树*/
 void MiniSpanTree_Prim(MGraph G)
 {
@@ -427,7 +463,7 @@ void MiniSpanTree_Prim(MGraph G)
 <img src="https://img-blog.csdnimg.cn/20200108214446923.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dzZmhkaGpz,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述" loading="lazy"><br>
 <img src="https://img-blog.csdnimg.cn/20200108214454992.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dzZmhkaGpz,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述" loading="lazy"><br>
 <img src="https://img-blog.csdnimg.cn/20200108214744729.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dzZmhkaGpz,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述" loading="lazy"></p>
-<p>Krskal算法：求最小生成树<br>
+<p><span id="jump26">Krskal算法：求最小生成树</span><br>
 1.将邻接矩阵转化为边集数组：<br>
 如下图<br>
 <img src="https://img-blog.csdnimg.cn/20200109205012741.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dzZmhkaGpz,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述" loading="lazy"></p>
@@ -474,7 +510,7 @@ int Find(int *parent, int f)  //查找连线顶点的尾部下标
 k式算法主要针对边来展开，边数少效率非常高，适合稀疏图。p式算法对于稠密图，边数非常多情况会更好<br>
 锋说：就是每次找最小的边，不要形成回路，然后最终能将图中所有顶点连接起来<br>
 总结：p式算法就是以某个顶点开始找与这个点相关的最小 的边，每次这样寻找；而k式算法就是直接上来找最小的边不形成回路，最终将整个点连起来，他俩都是去找连通图的最小生成树</p>
-<p>7.7迪杰斯特拉算法：求最短路径</p>
+<p><span id="jump27">7.7迪杰斯特拉算法：求最短路径</span></p>
 <pre><code class="language-cpp">#define MAXVEX 9
 #define INFINITY 65535
 typedef int Patharc[MAXVEX];      //用于存储最短路径下标的数组
@@ -532,7 +568,7 @@ void ShortestPath_Dijkstra (MGraph G, int v0, Patharc *p, ShortPathTable *D)
 如果想要知道任意顶点开始到某结点的最短路径，那就没到一个结点就用一次迪杰斯特拉算法，这 样的复杂度为o(n^3)<br>
 <img src="https://img-blog.csdnimg.cn/20200110010656741.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dzZmhkaGpz,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述" loading="lazy"><br>
 锋说：其实迪杰斯特拉算法目的是计算从某个点到某个点的最短路径，思想就是每次找到最短的路径，把他放入到已经找到的路径中，很漂亮的思想</p>
-<p>7.7.2.FLoyd算法：求最短路径</p>
+<p><span id="jump28">7.7.2.FLoyd算法：求最短路径</span></p>
 <pre><code class="language-cpp">typedef int Pathmatirx[MAXVEX][MAXVEX];
 typedef int ShortPathTable [MAXVEX][MAXVEX];
 //FLoyd算法，求网图中G中各顶点v到其余顶点w最短路径P[v][w]及带权长度D[v][w]
@@ -594,15 +630,15 @@ p矩阵的含义不用知道，只要知道怎么通过此矩阵找到最短路�
 首先p[0][8]=1,表示经过v1<br>
 再看v[1][8]=2，表示经过v2<br>
 再看v[2][8]=4, 表示经过v4.。。。。以此类推<br>
-<img src="https://img-blog.csdnimg.cn/20200110220005694.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dzZmhkaGpz,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述" loading="lazy"><br>
-锋说：迪杰斯特拉算法和弗洛伊德算法的相同与不同：<br>
+<img src="https://img-blog.csdnimg.cn/20200110220005694.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dzZmhkaGpz,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述" loading="lazy"></p>
+<p><span id="jump29">锋说：迪杰斯特拉算法和弗洛伊德算法的相同与不同：</span><br>
 相同点：<br>
 1.都是求某个点到某个点的最短路径<br>
 2.核心思路都是不断的找最短的路径归并到已经找到的路径集合中<br>
 不同点：<br>
 1.D通过min+下一次的路径和直接到达路径长度比较；而F通过拐点k来表示i--&gt;k---&gt;j要比i---&gt;j路径要短<br>
 2.最终得到的数组D都是表示vi到vj的最短路径，而p不同，其中D中p只能表示以v0为起点，到其余各点的最短路径；比如要想知道v2，v3...到其余各点的最短路径，只能再次将v2，v3当做源头再次使用D式算法。但是F式算法中p可以知道所有顶点到所有顶点的最短路径</p>
-<p>7.8.2拓扑排序：判断工程能否顺利进行<br>
+<p><span id="jump30">7.8.2拓扑排序：判断工程能否顺利进行</span><br>
 在一个有向图中，就像拍电影有先后顺序，这样的网图称为AOV图，如下所示：<br>
 下图中的一个拓扑序列是：v0v1v2v3v4v5v6v7v8v9v10v11v12v13v14v15v16<br>
 <img src="https://img-blog.csdnimg.cn/2020011221284919.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dzZmhkaGpz,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述" loading="lazy"><br>
@@ -634,8 +670,8 @@ typedef struct
 </code></pre>
 <p><img src="https://img-blog.csdnimg.cn/20200120200549858.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dzZmhkaGpz,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述" loading="lazy"><br>
 in表示入度域，下面的邻接表就是表示上图<br>
-<img src="https://img-blog.csdnimg.cn/20200120200610526.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dzZmhkaGpz,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述" loading="lazy"><br>
-拓扑排序的代码：</p>
+<img src="https://img-blog.csdnimg.cn/20200120200610526.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dzZmhkaGpz,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述" loading="lazy"></p>
+<p><span id="jump31">拓扑排序的代码：</span></p>
 <pre><code class="language-cpp">//拓扑排序
 Status TopologicalSort(GraphAdjList GL)
 {
@@ -682,14 +718,15 @@ Status TopologicalSort(GraphAdjList GL)
 <img src="https://img-blog.csdnimg.cn/20200120205817307.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dzZmhkaGpz,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述" loading="lazy"><br>
 <img src="https://img-blog.csdnimg.cn/20200120205824667.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dzZmhkaGpz,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述" loading="lazy"><br>
 最终拓扑排序的结果为3-&gt;1-&gt;2-&gt;6-&gt;0-&gt;4-&gt;5-&gt;8-&gt;7-&gt;12-&gt;9-&gt;10-&gt;13-&gt;11，当然这个拓扑排序结果不唯一</p>
-<p>7.9关键路径：求完成工程最短的时间问题，利用求出关键路径算法，求出完成工程的最短时间和关键活动有哪些？<br>
+<p><span id="jump32">7.9关键路径：</span><br>
+求完成工程最短的时间问题，利用求出关键路径算法，求出完成工程的最短时间和关键活动有哪些？<br>
 1.关键路径用AOE表示，AOV表示活动之间以相互制约关系，而AOE是在AOV的基础上来分析完成整个活动所需的最短时间，如下图所示：<br>
 <img src="https://img-blog.csdnimg.cn/20200120210958150.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dzZmhkaGpz,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述" loading="lazy"><br>
 其中每个AOE网图都有一个源点和汇点<br>
 路径长度：路径上各个活动所持续的时间之和称为路径长度<br>
 从源点到汇点的具有最大长度的路径叫关键路径，关键路径上的活动叫关键活动<br>
-<img src="https://img-blog.csdnimg.cn/20200120211017839.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dzZmhkaGpz,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述" loading="lazy"><br>
-7.9.1关键路径的算法原理：<br>
+<img src="https://img-blog.csdnimg.cn/20200120211017839.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dzZmhkaGpz,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述" loading="lazy"></p>
+<p><span id="jump33">7.9.1关键路径的算法原理：</span><br>
 放学回家到睡觉，一共4个小时。写作业两个小时，最早开始时间是一回来，可以理解为0。最晚开始时间为2个小时之后，可以理解为2。当最早开始时间和最晚开始时间不相同时，表示有空闲时间。当买了很多的习题时，时间全部被占满，则最早和最晚开始时间为都是0，因此他就是关键活动。<br>
 1.事件的最早发生时间etv：即顶点vk的最早发生时间<br>
 2.事件的最晚发生时间ltv：即顶点vk的最晚发生时间，如果超过此时间，就会延误整个工期<br>
@@ -746,8 +783,8 @@ Status TopologicalSort(GraphAdjList GL)
 <p>上面代码的例子如下图：<br>
 <img src="https://img-blog.csdnimg.cn/20200201214810950.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dzZmhkaGpz,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述" loading="lazy"><br>
 对于v3来说，4+8&gt;3+5，所以v3=12。以此类推<br>
-<img src="https://img-blog.csdnimg.cn/20200201214925217.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dzZmhkaGpz,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述" loading="lazy"><br>
-关键路径的算法代码：</p>
+<img src="https://img-blog.csdnimg.cn/20200201214925217.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dzZmhkaGpz,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述" loading="lazy"></p>
+<p><span id="jump34">关键路径的算法代码：</span></p>
 <pre><code class="language-cpp">//求关键路径，GL为有向图，输出GL的各项关键活动
 void CriticalPath(GraphAdjList GL)
 {
