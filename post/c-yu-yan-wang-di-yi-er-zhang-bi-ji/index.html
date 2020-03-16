@@ -50,166 +50,342 @@
                         <div class="mdui-col-md-8 mdui-col-offset-md-2 ">
                                 <article class="mdui-p-a-2 post animated fadeIn" style="animation-delay: 0.8s;animation-duration: 2s">
                                     <div class="post-title  mdui-m-b-1">c语言网第一，二章笔记</div>
-                                    <div class="mdui-typo-body-2 mdui-m-b-2" datetime="2020-03-01 23:27:07">2020-03-01 / 5 min read</div>
+                                    <div class="mdui-typo-body-2 mdui-m-b-2" datetime="2020-03-01 23:27:07">2020-03-01 / 6 min read</div>
                                     <div class="mdui-m-b-2 mdui-typo post-neirong"><p><a href="#jump1">1.开始介绍c++</a></p>
 <p><a href="#jump2">2.各种云算符</a></p>
 <p><a href="#jump3">3.cout的输出（位数的控制的输出，数字输出的位置，数字输出的填充...）</a></p>
 <p><a href="#jump4">4.swith结构</a></p>
 <p><a href="#jump5">5.打印水仙花的两种算法</a></p>
 <p><span id="jump1">1.开始介绍c++</span></p>
-<p>```cpp</p>
-<p>#include<iostream>       头文件</p>
-<p>using namespace std;        std名称空间</p>
-<p>int main(int argc, char** argv)</p>
-<p>{</p>
-<p>int a=5;</p>
-<p>char b='N';</p>
-<p>float c=3.14;</p>
-<p>double d=56.789;</p>
-<p>bool e;  //布尔值</p>
-<p>e=true;</p>
-<p>cout &lt;&lt; e &lt;&lt; endl;</p>
-<p>e=false;</p>
-<p>cout &lt;&lt; e &lt;&lt; endl;</p>
-<p>/*</p>
-<p>cout &lt;&lt; a &lt;&lt; endl;</p>
-<p>cout &lt;&lt; '\n' &lt;&lt; endl;</p>
-<p>cout &lt;&lt; b &lt;&lt; endl;</p>
-<p>cout &lt;&lt; c &lt;&lt; endl;</p>
-<p>cout &lt;&lt; d &lt;&lt; endl;</p>
-<p>*/</p>
-<p>return 0;</p>
-<p>}</p>
-<p>```</p>
+<pre><code class="language-cpp">
+\#include&lt;iostream&gt;       头文件   
+
+using namespace std;        std名称空间
+
+
+
+int main(int argc, char** argv)
+
+{
+
+  int a=5;
+
+  char b='N';
+
+  float c=3.14;
+
+  double d=56.789;
+
+  
+
+  bool e;  //布尔值 
+
+  
+
+  e=true;
+
+  cout &lt;&lt; e &lt;&lt; endl;
+
+  e=false;
+
+  cout &lt;&lt; e &lt;&lt; endl;
+
+  
+
+  /*
+
+  cout &lt;&lt; a &lt;&lt; endl;
+
+  cout &lt;&lt; '\n' &lt;&lt; endl;
+
+  cout &lt;&lt; b &lt;&lt; endl;
+
+  cout &lt;&lt; c &lt;&lt; endl;
+
+  cout &lt;&lt; d &lt;&lt; endl; 
+
+  */
+
+
+
+  return 0;
+
+} 
+
+</code></pre>
 <p><span id="jump2">2.各种运算符</span></p>
-<p>```cpp</p>
-<p>#include<iostream></p>
-<p>#include<iomanip></p>
-<p>using namespace std;</p>
-<p>int main(int argc, char** argv)</p>
-<p>{</p>
-<p>//赋值运算符 从右至左</p>
-<p>int a=10;</p>
-<p>a=98;</p>
-<p>//算术运算符</p>
-<p>//+ - * / % (双目运算符)  ++ -- (单目运算符)</p>
-<p>//关系运算符</p>
-<p>//&gt; &lt; &lt;= &gt;= == != (双目运算符)</p>
-<p>//逻辑运算符</p>
-<p>//&amp;&amp;(左右都为真，则为真) //(有一个为真，就为真) !</p>
-<p>//位运算符</p>
-<p>//&lt;&lt;(将数字变为2进制，左移右补0) &gt;&gt; &amp; / ^ (将数字转变为2进制计算)</p>
-<p>//&amp;:两个结果都为1，则值为1</p>
-<p>// /:有一个为1，则为1</p>
-<p>// ^:两个相同则为0，不同为1</p>
-<p>//三目运算符</p>
-<p>//?:</p>
-<p>//  1&gt;2? 5:6</p>
-<p>//逗号运算符  2+3,9  这个表示一个式子，结果是最后一个值</p>
-<p>//求字节运算符:sizeof()</p>
-<p>//逗号运算符：整个逗号表达式的值为系列中最后一个表达式的值。</p>
-<p>int i,j;</p>
-<p>j=10;</p>
-<p>i=(j++,j+100,999+j);   //j自增1，完了j加上100变为111， 最后j再加上999， 结果为1010</p>
-<p>cout &lt;&lt; i;</p>
-<p>return 0;</p>
-<p>}</p>
-<p>```</p>
+<pre><code class="language-cpp">
+\#include&lt;iostream&gt;       
+
+\#include&lt;iomanip&gt;   
+
+using namespace std;        
+
+
+
+int main(int argc, char** argv)
+
+{
+
+  //赋值运算符 从右至左
+
+  int a=10;
+
+  a=98; 
+
+  //算术运算符
+
+  //+ - * / % (双目运算符)  ++ -- (单目运算符) 
+
+  //关系运算符
+
+  //&gt; &lt; &lt;= &gt;= == != (双目运算符) 
+
+  //逻辑运算符
+
+  //&amp;&amp;(左右都为真，则为真) //(有一个为真，就为真) !
+
+  //位运算符 
+
+  //&lt;&lt;(将数字变为2进制，左移右补0) &gt;&gt; &amp; / ^ (将数字转变为2进制计算) 
+
+  //&amp;:两个结果都为1，则值为1  
+
+  // /:有一个为1，则为1
+
+  // ^:两个相同则为0，不同为1 
+
+  //三目运算符
+
+  //?:
+
+  //  1&gt;2? 5:6 
+
+  //逗号运算符  2+3,9  这个表示一个式子，结果是最后一个值 
+
+  //求字节运算符:sizeof()
+
+  
+
+  
+
+  //逗号运算符：整个逗号表达式的值为系列中最后一个表达式的值。 
+
+
+
+
+
+  int i,j;
+
+  
+
+  j=10;
+
+  i=(j++,j+100,999+j);   //j自增1，完了j加上100变为111， 最后j再加上999， 结果为1010 
+
+  
+
+  cout &lt;&lt; i;
+
+ 
+
+  return 0;
+
+} 
+
+</code></pre>
 <p><span id="jump3">3.cout的输出（位数的控制的输出，数字输出的位置，数字输出的填充...）</span></p>
-<p>```cpp</p>
-<p>#include<iostream></p>
-<p>#include <iomanip>      //使用setprecision的头文件</p>
-<p>using namespace std;</p>
-<p>int main(int argc, char** argv)</p>
-<p>{</p>
-<p>double a=356.1415926535897932;    //默认为保存6位</p>
-<p>double b=25.2222365;</p>
-<p>//cout &lt;&lt; setprecision(6) &lt;&lt; a &lt;&lt; endl;   //  setprecision(保存的位数) 设置整体的位数</p>
-<p>//cout &lt;&lt; setiosflags(ios::fixed)&lt;&lt;setprecision(2)&lt;&lt;a&lt;&lt;endl; // 只设置小数点后的位数</p>
-<p>//cout &lt;&lt; setiosflags(ios::fixed)&lt;&lt;setprecision(2)&lt;&lt;setiosflags(ios::right)&lt;&lt;setw(10)&lt;&lt;a&lt;&lt;endl;   //设置数字向右靠，一共设置10位</p>
-<p>/* 在第14行设置好，下面a，b输出都按照要求输出，主要若将setw(10)写在第14行，只有a的是保留10位靠右输出</p>
-<p>​    cout &lt;&lt; setiosflags(ios::fixed)&lt;&lt;setprecision(2)&lt;&lt;setiosflags(ios::right);</p>
-<p>cout &lt;&lt;setw(10) &lt;&lt; setfill('0') &lt;&lt; a &lt;&lt; endl;</p>
-<p>cout &lt;&lt;setw(10) &lt;&lt; b &lt;&lt; endl;</p>
-<p>*/</p>
-<p>//使用字符&amp;来补充，setfill(要填充的内容)</p>
-<p>cout &lt;&lt; setiosflags(ios::fixed)&lt;&lt;setprecision(2)&lt;&lt;setiosflags(ios::right) &lt;&lt; setfill('&amp;') ;</p>
-<p>cout &lt;&lt;setw(10) &lt;&lt; a &lt;&lt; endl;</p>
-<p>cout &lt;&lt;setw(10) &lt;&lt; b &lt;&lt; endl;</p>
-<p>return 0;</p>
-<p>}</p>
-<p>```</p>
+<pre><code class="language-cpp">
+\#include&lt;iostream&gt;
+
+\#include &lt;iomanip&gt;      //使用setprecision的头文件 
+
+using namespace std;
+
+
+
+int main(int argc, char** argv)
+
+{
+
+  double a=356.1415926535897932;    //默认为保存6位 
+
+  double b=25.2222365; 
+
+  //cout &lt;&lt; setprecision(6) &lt;&lt; a &lt;&lt; endl;   //  setprecision(保存的位数) 设置整体的位数 
+
+  //cout &lt;&lt; setiosflags(ios::fixed)&lt;&lt;setprecision(2)&lt;&lt;a&lt;&lt;endl; // 只设置小数点后的位数 
+
+  //cout &lt;&lt; setiosflags(ios::fixed)&lt;&lt;setprecision(2)&lt;&lt;setiosflags(ios::right)&lt;&lt;setw(10)&lt;&lt;a&lt;&lt;endl;   //设置数字向右靠，一共设置10位 
+
+  
+
+  /* 在第14行设置好，下面a，b输出都按照要求输出，主要若将setw(10)写在第14行，只有a的是保留10位靠右输出 
+
+​    cout &lt;&lt; setiosflags(ios::fixed)&lt;&lt;setprecision(2)&lt;&lt;setiosflags(ios::right);
+
+  cout &lt;&lt;setw(10) &lt;&lt; setfill('0') &lt;&lt; a &lt;&lt; endl;
+
+  cout &lt;&lt;setw(10) &lt;&lt; b &lt;&lt; endl;
+
+  */
+
+  
+
+  //使用字符&amp;来补充，setfill(要填充的内容) 
+
+  cout &lt;&lt; setiosflags(ios::fixed)&lt;&lt;setprecision(2)&lt;&lt;setiosflags(ios::right) &lt;&lt; setfill('&amp;') ;
+
+  cout &lt;&lt;setw(10) &lt;&lt; a &lt;&lt; endl;
+
+  cout &lt;&lt;setw(10) &lt;&lt; b &lt;&lt; endl;
+
+  
+
+  return 0;
+
+}
+
+</code></pre>
 <p>‘A’65</p>
 <p>‘Z’90</p>
 <p>'0'48</p>
 <p><span id="jump4">4.swith结构</span></p>
-<p>```cpp</p>
-<p>#include<iostream></p>
-<p>#include<iomanip></p>
-<p>using namespace std;</p>
-<p>int main(int argc, char** argv)</p>
-<p>{</p>
-<p>​    int a;</p>
-<p>​    cin &gt;&gt; a;</p>
-<p>​    switch(a)</p>
-<p>​    {</p>
-<p>​        case 1:</p>
-<p>​        case 2:</p>
-<p>​        case 3: cout &lt;&lt; &quot;spring&quot; &lt;&lt; endl;break;</p>
-<p>​        case 4:</p>
-<p>​        case 5:</p>
-<p>​        case 6: cout &lt;&lt; &quot;summer&quot; &lt;&lt; endl;break;</p>
-<p>​        case 7:</p>
-<p>​        case 8:</p>
-<p>​        case 9: cout &lt;&lt; &quot;autumn&quot; &lt;&lt; endl;break;</p>
-<p>​        case 10:</p>
-<p>​        case 11:</p>
-<p>​        case 12: cout &lt;&lt; &quot;winter&quot; &lt;&lt; endl;break;</p>
-<p>​        default:cout &lt;&lt; &quot;others&quot; &lt;&lt; endl;break;</p>
-<p>​    }</p>
-<p>​    return 0;</p>
-<p>}</p>
-<p>```</p>
+<pre><code class="language-cpp">
+\#include&lt;iostream&gt;
+
+\#include&lt;iomanip&gt;
+
+using namespace std;
+
+int main(int argc, char** argv)
+
+{
+
+​    int a;
+
+​    cin &gt;&gt; a;
+
+​    switch(a)
+
+​    {
+
+​        case 1:
+
+​        case 2:
+
+​        case 3: cout &lt;&lt; &quot;spring&quot; &lt;&lt; endl;break;
+
+​        case 4:
+
+​        case 5:
+
+​        case 6: cout &lt;&lt; &quot;summer&quot; &lt;&lt; endl;break;
+
+​        case 7:
+
+​        case 8:
+
+​        case 9: cout &lt;&lt; &quot;autumn&quot; &lt;&lt; endl;break;
+
+​        case 10:
+
+​        case 11:
+
+​        case 12: cout &lt;&lt; &quot;winter&quot; &lt;&lt; endl;break;
+
+​        default:cout &lt;&lt; &quot;others&quot; &lt;&lt; endl;break;
+
+
+
+​    }
+
+​    return 0;
+
+}
+
+</code></pre>
 <p><span id="jump5">5.打印水仙花数的两种算法</span></p>
-<p>```cpp</p>
-<p>#include<iostream></p>
-<p>#include<iomanip></p>
-<p>using namespace std;</p>
-<p>int main()</p>
-<p>{</p>
-<p>​    /*</p>
-<p>​    int i=100;</p>
-<p>​    int a,b,c;</p>
-<p>​     while(i&lt;1000)</p>
-<p>​     {</p>
-<p>​         a=i/100;</p>
-<p>​         b=i%100/10;</p>
-<p>​         c=i%10;</p>
-<p>​         if(a<em>a</em>a+b<em>b</em>b+c<em>c</em>c==i)</p>
-<p>​            cout &lt;&lt; i &lt;&lt; endl;</p>
-<p>​         i++;</p>
-<p>​     }</p>
-<p>​     return 0;</p>
-<p>​     */</p>
-<p>/*</p>
-<p>​    下面的三次循环效率比上面高，因为while循环内部运算次数远远大于下面，上面每次都要计算出a,b,c的值，而下没有一步是要算出确切的值</p>
-<p>*/</p>
-<p>​</p>
-<p>​     int a=1,b=1,c=1;</p>
-<p>​     for(a=1; a&lt;10; a++)</p>
-<p>​     {</p>
-<p>​         for(b=0; b&lt;10; b++)</p>
-<p>​         {</p>
-<p>​             for(c=0; c&lt;10; c++)</p>
-<p>​             {</p>
-<p>​                 if(a<em>a</em>a+b<em>b</em>b+c<em>c</em>c == a<em>100+b</em>10+c)</p>
-<p>​                        cout &lt;&lt; a<em>100+b</em>10+c &lt;&lt; endl;</p>
-<p>​             }</p>
-<p>​         }</p>
-<p>​     }</p>
-<p>​     return 0;</p>
-<p>}</p>
-<p>```</p>
+<pre><code class="language-cpp">
+\#include&lt;iostream&gt;
+
+\#include&lt;iomanip&gt;
+
+using namespace std;
+
+int main()
+
+{
+
+​    /*
+
+​    int i=100;
+
+​    int a,b,c;
+
+​     while(i&lt;1000)
+
+​     {
+
+​         a=i/100;
+
+​         b=i%100/10;
+
+​         c=i%10;
+
+​         if(a*a*a+b*b*b+c*c*c==i)
+
+​            cout &lt;&lt; i &lt;&lt; endl;
+
+​         i++;
+
+​     }
+
+​     return 0;
+
+​     */
+
+/*
+
+​    下面的三次循环效率比上面高，因为while循环内部运算次数远远大于下面，上面每次都要计算出a,b,c的值，而下没有一步是要算出确切的值
+
+*/     
+
+​     
+
+​     int a=1,b=1,c=1;
+
+​     for(a=1; a&lt;10; a++)
+
+​     {
+
+​         for(b=0; b&lt;10; b++)
+
+​         {
+
+​             for(c=0; c&lt;10; c++)
+
+​             {
+
+​                 if(a*a*a+b*b*b+c*c*c == a*100+b*10+c)
+
+​                        cout &lt;&lt; a*100+b*10+c &lt;&lt; endl;
+
+​             }
+
+​         }
+
+​     }
+
+​     return 0;
+
+}
+
+
+
+
+
+</code></pre>
 </div>
                                     <div class="mdui-divider mdui-m-b-2"></div>
                                     <div class="mdui-row-xs-2 post-fenye">
