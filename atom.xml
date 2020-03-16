@@ -2,7 +2,7 @@
 <feed xmlns="http://www.w3.org/2005/Atom">
     <id>https://wsf123sd.github.io/</id>
     <title>Gridea</title>
-    <updated>2020-03-16T14:04:11.108Z</updated>
+    <updated>2020-03-16T14:54:31.868Z</updated>
     <generator>https://github.com/jpmonette/feed</generator>
     <link rel="alternate" href="https://wsf123sd.github.io/"/>
     <link rel="self" href="https://wsf123sd.github.io/atom.xml"/>
@@ -1310,7 +1310,15 @@ int main()
         <link href="https://wsf123sd.github.io/post/c-yu-yan-wang-di-wu-zhang-bi-ji/">
         </link>
         <updated>2020-03-01T15:24:37.000Z</updated>
-        <content type="html"><![CDATA[<p>1.sort和reverse函数</p>
+        <content type="html"><![CDATA[<p><a href="#jump1">1.sort和reverse函数</a><br>
+<a href="#jump2">2.accumulate函数</a><br>
+<a href="#jump3">3.find函数</a><br>
+<a href="#jump4">4.vector用法+push_back()输入+迭代器输出</a><br>
+<a href="#jump5">5.vector中v.front()返回首元素和v.back()返回尾元素</a><br>
+<a href="#jump6">6.vector中v.empty()函数（判断vector是否为空）</a><br>
+<a href="#jump7">7.v.size()+删除某个元素v.erase()+清空整个vector：v.clear()+删除最后一个元素v.pop_back()</a><br>
+<a href="#jump8">1033</a></p>
+<p><span id="jump1">1.sort和reverse函数</span></p>
 <pre><code class="language-cpp">#include&lt;iostream&gt;
 #include&lt;string&gt;
 #include&lt;algorithm&gt;
@@ -1338,7 +1346,7 @@ int main()
 }
 
 </code></pre>
-<p>2.accumulate函数</p>
+<p><span id="jump2">2.accumulate函数</span></p>
 <pre><code class="language-cpp">#include&lt;iostream&gt;
 #include&lt;string&gt;
 #include&lt;numeric&gt;
@@ -1361,7 +1369,7 @@ int main()
 }
 
 </code></pre>
-<p>3.find函数</p>
+<p><span id="jump3">3.find函数</span></p>
 <pre><code class="language-cpp">#include&lt;iostream&gt;
 #include&lt;string&gt;
 #include&lt;algorithm&gt;
@@ -1387,7 +1395,7 @@ int main()
 }
 
 </code></pre>
-<p>4.vector用法+push_back()输入+迭代器输出</p>
+<p><span id="jump4">4.vector用法+push_back()输入+迭代器输出</span></p>
 <pre><code class="language-cpp">#include&lt;iostream&gt;
 #include&lt;vector&gt;
 #include&lt;algorithm&gt;
@@ -1416,7 +1424,7 @@ int main()
 }
 
 </code></pre>
-<p>5.vector中v.front()返回首元素和v.back()返回尾元素</p>
+<p><span id="jump5">5.vector中v.front()返回首元素和v.back()返回尾元素</span></p>
 <pre><code class="language-cpp">#include&lt;iostream&gt;
 #include&lt;vector&gt;
 #include&lt;algorithm&gt;
@@ -1439,7 +1447,7 @@ int main()
 }
 
 </code></pre>
-<p>6.vector中v.empty()函数（判断vector是否为空）</p>
+<p><span id="jump6">6.vector中v.empty()函数（判断vector是否为空）</span></p>
 <pre><code class="language-cpp">#include&lt;iostream&gt;
 #include&lt;vector&gt;
 #include&lt;algorithm&gt;
@@ -1458,7 +1466,7 @@ int main()
 }
 
 </code></pre>
-<p>7.v.size()+删除某个元素v.erase()+清空整个vector：v.clear()+删除最后一个元素v.pop_back()<br>
+<p><span id="jump7">7.v.size()+删除某个元素v.erase()+清空整个vector：v.clear()+删除最后一个元素v.pop_back()</span><br>
 注意事项：<br>
 1.v.erase()删除某个指定元素后再读取此位置的数字则是下一个位置的数字;<br>
 如果要删除其他位置元素：<br>
@@ -1493,7 +1501,7 @@ int main()
 }
 
 </code></pre>
-<p>1033<br>
+<p><span id="jump8">1033</span><br>
 解题思路：<br>
 1.字符串bad，should<br>
 2.以should为主循环遍历，如果bad字符串中含有should中的字符就跳过；如果should中的字符是大写，并且有上档键则跳过<br>
