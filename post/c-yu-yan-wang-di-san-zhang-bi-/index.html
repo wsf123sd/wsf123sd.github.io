@@ -3,7 +3,7 @@
         <head>
         <meta name="viewport" content="width=device-width,minimum-scale=1,maximum-scale=1,initial-scale=1,user-scalable=no" />
         <meta charset="utf-8">
-        <title>Markdown语法 | Gridea</title>
+        <title>c语言网第三章笔记 | Gridea</title>
         <link rel="stylesheet" href="https://wsf123sd.github.io//styles/main.css">
         <link rel="stylesheet" href="https://at.alicdn.com/t/font_1306644_jwtuc2zzbrd.css">
         <link href="https://cdn.bootcss.com/animate.css/3.7.2/animate.min.css" rel="stylesheet">
@@ -49,157 +49,325 @@
                 <div class="mdui-row">
                         <div class="mdui-col-md-8 mdui-col-offset-md-2 ">
                                 <article class="mdui-p-a-2 post animated fadeIn" style="animation-delay: 0.8s;animation-duration: 2s">
-                                    <div class="post-title  mdui-m-b-1">Markdown语法</div>
-                                    <div class="mdui-typo-body-2 mdui-m-b-2" datetime="2020-03-01 23:28:08">2020-03-01 / 2 min read</div>
-                                    <div class="mdui-m-b-2 mdui-typo post-neirong"><h1 id="一级标题ctrl1">一级标题（Ctrl+1）</h1>
-<p>快速生成目录（[toc]+回车）</p>
-<p>[toc]</p>
-<h2 id="二级标题ctrl2">二级标题（Ctrl+2）</h2>
-<h3 id="三级标题ctrl3">三级标题（Ctrl+3）</h3>
-<p><u>这是下划线（Ctrl+u）</u></p>
-<p><s>这是删除线(alt+shift+5)</s></p>
-<p><strong>字体加粗（ctrl+b）</strong></p>
-<p><em>字体倾斜（Ctrl+i）</em></p>
-<ul>
-<li>牛奶（先输入-再输入空格就是无序列表）</li>
-<li>面包</li>
-<li>蛋糕
-<ul>
-<li>包子（再输入-和空格都是无序列表的嵌套）</li>
-<li>鸡蛋</li>
-</ul>
-</li>
-</ul>
-<ol>
-<li>你好（数字+.+空格）</li>
-<li>我好</li>
-<li>他也好
-<ol>
-<li>电脑（再输入数字+.+空格就是有序列表嵌套）</li>
-<li>鼠标</li>
-</ol>
-</li>
-</ol>
-<blockquote>
-<p>引用（&gt;+空格）</p>
-</blockquote>
-<p><a href="https://wsf123sad.github.io/">这是链接</a></p>
-<p>直接粘贴复制</p>
-<figure data-type="image" tabindex="1"><img src="C:%5CUsers%5CAdministrator%5CAppData%5CRoaming%5CTypora%5Ctypora-user-images%5Cimage-20200228122119497.png" alt="image-20200228122119497" loading="lazy"></figure>
-<pre><code class="language-c++">//ctrl+shift+k(代码块)
-#include&lt;iostream&gt;
+                                    <div class="post-title  mdui-m-b-1">c语言网第三章笔记</div>
+                                    <div class="mdui-typo-body-2 mdui-m-b-2" datetime="2020-03-16 21:03:54">2020-03-16 / 5 min read</div>
+                                    <div class="mdui-m-b-2 mdui-typo post-neirong"><p><a href="#jump1">1.函数定义：返回abc中最大值</a></p>
+<p><a href="#jump2">2.函数重载</a></p>
+<p><a href="#jump3">3.带默认参数函数和一个函数不能即是带默认参数函数又是函数重载</a></p>
+<p><a href="#jump4">4.变量的使用</a></p>
+<p><a href="#jump5">5.register和static</a></p>
+<p><a href="#jump6">6.关键字extern：扩大作用域的范围</a></p>
+<p><span id="jump1">1.函数定义：返回abc中最大值</span></p>
+<pre><code class="language-cpp">
+\#include&lt;iostream&gt;
+
+\#include&lt;iomanip&gt;
+
 using namespace std;
+
+int fun(int a, int b, int c);
+
+/*
+
+   函数定义：返回值类型 函数名 形参表
+
+   函数定义顺序：函数声明-&gt;主函数-&gt;函数定义
+
+   函数的思想：低耦合，高为聚（函数之间耦合度要低，高维聚表示函数的功能尽可能集中）
+
+*/
+
 int main()
+
 {
-    int a,int b;
+
+​    int a,b,c;
+
+​    cin &gt;&gt; a &gt;&gt; b &gt;&gt; c;
+
+​    cout &lt;&lt; fun(a,b,c);
+
+​    return 0;
+
 }
+
+int fun(int a, int b, int c)
+
+{
+
+   return a&gt;b?a&gt;c?a:c:b&gt;c?b:c;
+
+}
+
+
+
 </code></pre>
-<p>home family 沙墟（ctrl+d选中英文单词或者中文）</p>
-<p>asdkjklj(ctrl+l按行选中)</p>
-<p>快速搜索（ctrl+f）</p>
-<p>替换（ctrl+h）</p>
-<p>快速生成表格（ctrl+t）</p>
-<table>
-<thead>
-<tr>
-<th style="text-align:center">asd</th>
-<th style="text-align:center">ds</th>
-<th></th>
-<th></th>
-<th></th>
-<th></th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td style="text-align:center">sdfasd</td>
-<td style="text-align:center">sdaf</td>
-<td></td>
-<td></td>
-<td></td>
-<td></td>
-</tr>
-<tr>
-<td style="text-align:center"></td>
-<td style="text-align:center"></td>
-<td></td>
-<td></td>
-<td></td>
-<td></td>
-</tr>
-<tr>
-<td style="text-align:center"></td>
-<td style="text-align:center"></td>
-<td></td>
-<td></td>
-<td></td>
-<td></td>
-</tr>
-<tr>
-<td style="text-align:center"></td>
-<td style="text-align:center"></td>
-<td></td>
-<td></td>
-<td></td>
-<td></td>
-</tr>
-<tr>
-<td style="text-align:center"></td>
-<td style="text-align:center"></td>
-<td></td>
-<td></td>
-<td></td>
-<td></td>
-</tr>
-<tr>
-<td style="text-align:center"></td>
-<td style="text-align:center"></td>
-<td></td>
-<td></td>
-<td></td>
-<td></td>
-</tr>
-<tr>
-<td style="text-align:center"></td>
-<td style="text-align:center"></td>
-<td></td>
-<td></td>
-<td></td>
-<td></td>
-</tr>
-</tbody>
-</table>
-<p>快速打开文件（ctrl+p）</p>
-<p><code>关键字</code>爱神的箭（ctrl+shift+tab键上面的反引号）</p>
-<p>表情符号：（在微软的输入法下，ctrl+shift+b）</p>
-<p>😍❤</p>
-<p>ctrl+n创建新文件，ctrl+w关闭文件</p>
-<p>ctrl+shift+l显示和隐藏侧边栏</p>
-<p>f11全屏</p>
-<p>三个---+回车是分割线</p>
-<hr>
-<p><mark>高亮</mark> (俩个=+文字+俩个=)</p>
-<p>爱是考虑到（ctrl+0段落标签）</p>
-<p>脚注：</p>
-<p>Jobs<sup class="footnote-ref"><a href="#fn1" id="fnref1">[1]</a></sup></p>
-<p>先输入Jobs+[]+中括号内写^1,然后回车后有自动提示</p>
-<p>文件导出：文件-&gt;导出（选择格式）</p>
-<hr class="footnotes-sep">
-<section class="footnotes">
-<ol class="footnotes-list">
-<li id="fn1" class="footnote-item"><p>苹果公司的创始人 <a href="#fnref1" class="footnote-backref">↩︎</a></p>
-</li>
-</ol>
-</section>
+<p><span id="jump2">2.函数重载</span></p>
+<pre><code class="language-cpp">
+\#include&lt;iostream&gt;
+
+using namespace std;
+
+//函数重载:一物多用
+
+
+
+/*
+
+​    1.保证函数名形同，形参的个数或类型不同,函数的类型也可以不同
+
+​    2.对于调用时，若两个数就使用第2个判断，若3个数就使用第一个判断
+
+*/
+
+
+
+int fun(int a,int b,int c);
+
+int fun(int a, int b);
+
+double fun(double a, double b, double c);
+
+int main()
+
+{
+
+​    cout &lt;&lt; fun(5.0,1.0,11.11) &lt;&lt; endl;
+
+​    return 0;
+
+}
+
+
+
+int fun(int a,int b)
+
+{
+
+​    return a&gt;b?a:b;
+
+}
+
+
+
+int fun(int a, int b, int c)
+
+{
+
+​    if(b&gt;a)
+
+​        a=b;
+
+​    if(c&gt;a)
+
+​        a=c;
+
+​    cout &lt;&lt; &quot;int&quot; &lt;&lt; endl;
+
+​    return a;
+
+}
+
+
+
+double fun(double a,double b, double c)
+
+{
+
+​    if(b&gt;a)
+
+​        a=b;
+
+​    if(c&gt;a)
+
+​        a=c;
+
+​    cout &lt;&lt; &quot;double&quot; &lt;&lt; endl;
+
+​    return a;
+
+}
+
+
+
+</code></pre>
+<p><span id="jump3">3.带默认参数函数和一个函数不能即是带默认参数函数又是函数重载</span></p>
+<pre><code class="language-cpp">
+\#include&lt;iostream&gt;
+
+using namespace std;
+
+/*
+
+​    带默认参数的函数使用
+
+​    1.在函数声明的过程中，就放上参数，而在函数定义和函数调用过程的过程中不要放参数
+
+​    这样最后的结果就是参数的函数值
+
+​    2.如果函数调用中，传部分值也可以
+
+​    3.给函数申明赋初值时，优先从右至左
+
+​    4.函数调用时将实参赋值给形参的顺序是从左至右
+
+​    5.有实参用实参没实参用形参
+
+​    6.特别注意一个函数不能即做函数重载又做带默认值函数
+
+*/
+
+int fun(int a=1, int b=1, int c=2);
+
+int fun(int a,int b);  //6.函数调用时是用上面还是用下面？
+
+int main()
+
+{
+
+​    cout &lt;&lt; fun(5,2) &lt;&lt; endl;
+
+​    return 0;
+
+}
+
+
+
+int fun(int a, int b, int c)
+
+{
+
+​    if(b&gt;a)
+
+​        a=b;
+
+​    if(c&gt;a)
+
+​        a=c;
+
+​    cout &lt;&lt; &quot;int&quot; &lt;&lt; endl;
+
+​    return a;
+
+}
+
+
+
+
+
+</code></pre>
+<p><span id="jump4">4.变量的使用</span></p>
+<pre><code class="language-cpp">
+\#include&lt;iostream&gt;
+
+\#include&lt;iomanip&gt;
+
+using namespace std;
+
+int a=15;     //全局变量,函数外部，作用范围： 全局变量的生命周期是整个程序
+
+/*
+
+
+
+*/
+
+int fun()
+
+{
+
+​    int a;
+
+​    a=20;
+
+}
+
+int main()
+
+{
+
+​    auto int b;   //auto动态存储类别，不写也可以就是平时用的
+
+​    static int a;  //静态类型，只初始化一次
+
+​    int a;      //局部变量，就在它自身的函数内可用,如果全局变量和局部变量重名时，以函数内的局部变量为准
+
+​    a=10;          //当函数运行完，局部变量生命周期就结束
+
+​    cout &lt;&lt; a &lt;&lt; endl;
+
+​    return 0;
+
+}
+
+
+
+</code></pre>
+<p><span id="jump5">5.register和static</span></p>
+<pre><code class="language-cpp">
+#include&lt;iostream&gt;
+
+#include&lt;iomanip&gt;
+
+using namespace std;
+
+
+
+int fun()
+
+{
+
+   static int a=10;  //只初始化一次，第2次调用此函数值为12不是11
+
+   register int a=10;   //把变量设置为register可以高效的读取该变量,建议性的动作，每次调用函数后都会重新设置a=10，即两次调用的结果都为11
+
+   extern 
+
+   for(a=10; a&lt;1000; a++)
+
+   {
+
+​       
+
+   }
+
+​    a++;
+
+​    cout &lt;&lt; a &lt;&lt; endl;
+
+​    return 0;
+
+}
+
+
+
+
+
+int main()
+
+{
+
+​    fun();
+
+​    fun();
+
+​    return 0;
+
+}
+
+
+
+</code></pre>
+<p><span id="jump6">6.关键字extern：扩大作用域的范围</span></p>
 </div>
                                     <div class="mdui-divider mdui-m-b-2"></div>
                                     <div class="mdui-row-xs-2 post-fenye">
                                        
-                                        <div class="mdui-col"> <div class="mdui-text-left"><a href="https://wsf123sd.github.io/post/c-yu-yan-wang-di-san-zhang-bi-/">c语言网第三章笔记</a></div></div>
+                                        <div class="mdui-col"> </div>
                                         
 
                                         
-                                        <div class="mdui-col"><div class="mdui-text-right "><a href="https://wsf123sd.github.io/post/c-yu-yan-wang-di-yi-er-zhang-bi-ji/">c语言网第一，二章笔记</a></div> </div>
+                                        <div class="mdui-col"><div class="mdui-text-right "><a href="https://wsf123sd.github.io/post/markdown-yu-fa/">Markdown语法</a></div> </div>
                                        
                                       </div>
                                    
