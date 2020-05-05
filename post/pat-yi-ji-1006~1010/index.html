@@ -6,7 +6,7 @@
 <meta HTTP-EQUIV="pragma" CONTENT="no-cache"> 
 <meta HTTP-EQUIV="Cache-Control" CONTENT="no-cache, must-revalidate"> 
 <meta HTTP-EQUIV="expires" CONTENT="0"> 
-<title>pat 乙级 1001~1005 | Gridea</title>	
+<title>pat 乙级 1006~1010 | Gridea</title>	
 
 <link rel="stylesheet" href="https://wsf123sd.github.io//styles/main.css">
 <script type="text/javascript">
@@ -136,10 +136,10 @@ window.onload=getCSS();
 	
 	                      
 		<div class="entry-content">
-			<h1 class="wow swing entry-title">pat 乙级 1001~1005</h1>
+			<h1 class="wow swing entry-title">pat 乙级 1006~1010</h1>
 <div class="entry-meta">
 <div class="wow bounce">
-	<i class="iconfont icon-rili"> <time class="lately-a" datetime="2020-05-05 22:10:47" itemprop="datePublished" pubdate="">2020-05-05</time></i>
+	<i class="iconfont icon-rili"> <time class="lately-a" datetime="2020-05-05 22:22:05" itemprop="datePublished" pubdate="">2020-05-05</time></i>
 	          </div>
 			
 </span>
@@ -147,222 +147,143 @@ window.onload=getCSS();
 		</div>
                   
 			<div class="wow slideInLeft entry-summary song">
-				<h2 id="1001">1001</h2>
+				<h2 id="1006">1006</h2>
 <h3 id="解题思路">解题思路：</h3>
-<p><font color=\#7FFF00 size=3 face="黑体">用while+if-else来控制循环次数（砍得的次数）和判断奇数偶数</font></p>
+<p><font color=\#7FFF00 size=3 face="黑体">就是取百位然后循环输出B，求出十位循环输出S，求出个位循环输出1--n</font></p>
 <h3 id="参考代码">参考代码：</h3>
-<pre><code class="language-c++">#include &lt;iostream&gt; 
+<pre><code class="language-c++">#include&lt;iostream&gt;
 using namespace std;
-
+/*
+    思路就是取百位然后循环输出B，求出十位循环输出S，求出个位循环输出1--n
+*/
 int main()
 {
-	int n,step=0;
-	cin &gt;&gt; n;
-	while(n!=1)
-	{ 
-		if(n%2==0)
-			n/=2;
-		else
-			n=(3*n+1)/2;
-		step++;
-	} 
-	cout &lt;&lt; step;
-	return 0;
+    int n;
+    cin &gt;&gt; n;
+    for(int i=1; i&lt;=n/100; i++)
+        cout &lt;&lt; 'B';
+    for(int j=1; j&lt;=n%100/10; j++)
+            cout &lt;&lt; 'S';
+    for(int k=1; k&lt;=n%10; k++)
+            cout &lt;&lt; k;
+    return 0;
 }
+
 </code></pre>
-<h3 id="别人代码">别人代码：</h3>
-<pre><code class="language-c++">#include &lt;iostream&gt;
-using namespace std;
-int main() {
- int n, count = 0;
- cin &gt;&gt; n;
- while (n != 1)
-  {
-	 if (n % 2 != 0)      //这个循环就是判断奇数的，n为奇数*3+1完了，在下一句除2 这样就省掉了加括号的麻烦 抓住了不管奇数还是偶数                         
-//都有除2的特点 如果n为偶数不执行此语句，直接再下面除2
-		 n = 3 * n + 1;   
-	 n = n / 2;
-	 count++;
- }
- cout &lt;&lt; count;
- return 0; }
-</code></pre>
-<h2 id="1002">1002</h2>
+<h2 id="1007">1007</h2>
 <h3 id="解题思路-2">解题思路：</h3>
-<p><font color=\#7FFF00 size=3 face="黑体">1.用string类来存储数据，不然的话double，long long类型的长度不够</font></p>
-<p><font color=\#7FFF00 size=3 face="黑体">2.用for循环来计算各位数字之和</font></p>
-<p><font color=\#7FFF00 size=3 face="黑体">3.用string类定义一个数组，其中成员是数字的拼音</font></p>
-<p><font color=\#7FFF00 size=3 face="黑体">4.将数字和变量改为字符串类型，方便调用每个位数字，不用对数字除或求余</font></p>
-<p><font color=\#7FFF00 size=3 face="黑体">5.通过循环从数字和的字符串中对应找到string类的数字拼音</font></p>
+<p><font color=\#7FFF00 size=3 face="黑体">ans表示有多少对数字<br>
+遍历从0--n相邻且相差2的数字，然后判断是否为素数</font></p>
 <h3 id="参考代码-2">参考代码：</h3>
 <pre><code class="language-c++">#include&lt;iostream&gt;
 using namespace std;
-
+/*
+  解题思路：ans表示有多少对数字
+        遍历从0--n相邻且相差2的数字，然后判断是否为素数
+*/
+int f(int n)
+{
+    for(int i=2; i*i&lt;=n; i++)
+        if(n%i==0)
+            return 0;
+    return 1;
+}
 int main()
 {
-	string s;
-	cin &gt;&gt; s;
-	int i,sum=0;
-	for(i=0; i&lt;s.length(); i++)     //s.length()计算字符串长度 
-	{
-		sum+=s[i]-'0';
-	}
-	string name[10]={&quot;ling&quot;,&quot;yi&quot;,&quot;er&quot;,&quot;san&quot;,&quot;si&quot;,&quot;wu&quot;,&quot;liu&quot;,&quot;qi&quot;,&quot;ba&quot;,&quot;jiu&quot;};  //字符串用双引号括起来，字符用单引号括起来 
-	
-	string a = to_string(sum);
-	
-	for(i=0; i&lt;a.length(); i++)
-	{
-		cout &lt;&lt; name[a[i]-'0'];   //将数字转变为字符去存储方便调用每个位置上的数字，不用再除或求余啥的 
-		if (i != a.length()-1)
-			cout &lt;&lt; ' ';
-	}
-	
-
-	return 0;
+    int n,ans=0;
+    cin &gt;&gt; n;
+    for(int i=2; i&lt;=n-2; i++)
+    {
+        if(f(i) &amp;&amp; f(i+2))
+            ans++;
+    }
+    cout &lt;&lt; ans;
+    return 0;
 }
+
 </code></pre>
-<h3 id="别人代码-2">别人代码：</h3>
-<pre><code class="language-c++">#include &lt;iostream&gt;
-#include &lt;string&gt;
-using namespace std;
-int main() 
-{
-	 string s;
-	 cin &gt;&gt; s;
-	 int sum = 0;
-	 string str[10] = {&quot;ling&quot;, &quot;yi&quot;, &quot;er&quot;, &quot;san&quot;, &quot;si&quot;, &quot;wu&quot;, &quot;liu&quot;, &quot;qi&quot;,&quot;ba&quot;, &quot;jiu&quot;};   //
-	 for (int i = 0; i &lt; s.length(); i++)
-	 	sum += (s[i] - '0');
-	 	
-	 string num = to_string(sum);
-	 
-	 for (int i = 0; i &lt; num.length(); i++)
-	 {
-		 if (i != 0)        //题目要求最后一个拼音不能有空格，所以是先输出拼音，后输出空格，提前加一个if判断，当输入完最后一个拼音，循环都已经结束了
-		 	cout &lt;&lt; &quot; &quot;;
-		 cout &lt;&lt; str[num[i] - '0'];
-	 }
-	 
-	 return 0; 
- }
-</code></pre>
-<h2 id="1003">1003</h2>
+<h2 id="1008">1008</h2>
 <h3 id="解题思路-3">解题思路：</h3>
-<p><font color=\#7FFF00 size=3 face="黑体">1.本题难点在于找规律，首先明确一点不是AAA...AAPAA...AATAA...AA这么简单的规律。</font></p>
-<p><font color=\#7FFF00 size=3 face="黑体">2.突破点在于aPbTc正确和aPbATca正确，显然第二个在P与A之间多加了一个A，后面多了一个a，而a又是第一个的P之前的部分，其实这里a,b,c均是狗（宇哥替换）。观察例子：AAPATAA与AAPAATAAAA，这里a相当于AA，b相当于A，c相当于AA。在第二个中P,T之间多加了A，则后面多加AA。所以规律是在P,T之间多加一个A，则原来字符串T后面多 补充 原来字符串P之前的部分。比如对于AAPAATAAAA而言，AAPAAATAAAAAA也是对的，AAPAAATAAAAAAAA也是对的。</font></p>
-<p><font color=\#7FFF00 size=3 face="黑体">3.如果P之前没有A，则无论在P,T之间加多少的A，T之后也不会有A,所以形如PAAA...AAAT都对</font></p>
-<p><font color=\#7FFF00 size=3 face="黑体">4.xPATx这种形式告诉我们，AAA...AAAPATAAA...AAA是可以的，只要PAT前和后的AAA对称。二一个当x为空格是PAT也是正确。</font></p>
-<p><font color=\#7FFF00 size=3 face="黑体">5.通过例子可知有且仅有P,A,T三种字符，其中P,T的个数只能为1，而A的个数不能0，P,T之间至少一个A，对于APAAATAA我们可知可以由APAATA得来，但是例子表示APAAATAA是错误，所以APAATA也是错误</font></p>
-<p><font color=\#7FFF00 size=3 face="黑体">6.总之，就是P之前A的个数*P与T之间A的个数等于T之后A的个数 （这规律我估计也不是他想出来的，或者就是偶然想到的</font></p>
+<p><font color=\#7FFF00 size=3 face="黑体">先把数组倒叙，再把前m为倒叙，再把后面的倒叙即可。（客观规律，记住即可）<br>
+之前的思路是向后移数组，在把超出部分放到前面，但这样部分正确。我分析是：使用太多的数组，因为题目要求程序移动的次数竟可能少</font></p>
 <h3 id="参考代码-3">参考代码：</h3>
 <pre><code class="language-c++">#include&lt;iostream&gt;
-#include&lt;map&gt;
+#include&lt;algorithm&gt;  //reverse()使用此头件
+#include&lt;vector&gt;  //vector使用此头文件
+using namespace std;
+int main()
+{
+    int n,m;
+    cin &gt;&gt; n &gt;&gt; m;
+    vector&lt;int &gt; a(n);
+    for(int i=0; i&lt;n; i++)
+        cin &gt;&gt; a[i];
+    m%=n;
+    if(m!=0)
+    {
+        reverse(a.begin(),a.end());  //a.begin()是指针，指向数组第一个元素；a.end()也是指针，指向a[6]
+        reverse(a.begin(),begin(a)+m);  //reverse中不会将第2部分的值也倒转，而是把他之前的值倒转
+        reverse(begin(a)+m,a.end());  //从上一位置开始
+    }
+    for(int i=0; i&lt;n-1; i++)
+        cout &lt;&lt; a[i] &lt;&lt; &quot; &quot;;
+    cout &lt;&lt; a[n-1];
+    return 0;
+}
+
+</code></pre>
+<h2 id="1009">1009</h2>
+<h3 id="解题思路-4">解题思路：</h3>
+<p><font color=\#7FFF00 size=3 face="黑体">利用栈先进后出的思想来倒叙输出字符串<br>
+首先，将字符串压入栈，访问栈顶元素，弹出当前栈顶元素。<br>
+由于题目要求，字符串之间有空格并且最后一个字符串没有空格，下面就循环先输出空格再输出字符串然后弹出</font></p>
+<h3 id="参考代码-4">参考代码：</h3>
+<pre><code class="language-c++">#include&lt;iostream&gt;
+#include&lt;stack&gt;
 using namespace std;
 
 int main()
 {
-	int n,i,j,p,t;
-	cin &gt;&gt; n;
-	string s;
-	for(i=0; i&lt;n; i++)
-	{
-		cin &gt;&gt; s;
-		map&lt;char, int &gt; m;
-		for(j=0; j&lt;s.length(); j++)
-		{
-			m[s[j]]++;
-			if(s[j]=='P')
-				p=j;
-			if(s[j]=='T')
-				t=j;
-		}
-		if(m['P']==1 &amp;&amp; m['A']!=0 &amp;&amp; m['T']==1 &amp;&amp; m.size()==3 &amp;&amp; t-p!=1 &amp;&amp; p*(t-p-1)==s.length()-t-1)
-			cout &lt;&lt; &quot;YES&quot; &lt;&lt; endl;
-		else
-			cout &lt;&lt; &quot;NO&quot; &lt;&lt; endl;
-	}
-	return 0;
+    stack&lt;string&gt; v;
+    string s;
+    while(cin &gt;&gt; s)
+        v.push(s);
+    cout &lt;&lt; v.top();
+    v.pop();
+    while(!v.empty())
+    {
+        cout &lt;&lt; &quot; &quot; &lt;&lt; v.top();
+        v.pop();
+    }
+    return 0;
 }
 </code></pre>
-<h2 id="1004">1004</h2>
-<h3 id="解题思路-4">解题思路：</h3>
-<p><font color=\#7FFF00 size=3 face="黑体">1.首先根本不用存储每次输入的学生的信息，重点是要知道成绩最值的学生的姓名和学号，所以用变量来存储这些信息。“铁打的营盘流水的兵”恰如其分描述铁打的营盘类似成绩最值的姓名和学号，而流水类似不断敲入的学生成绩，姓名和学号</font></p>
-<h3 id="参考代码-4">参考代码：</h3>
-<pre><code class="language-c++">#include &lt;iostream&gt;
-using namespace std;
-int main() {
- int n, max = -1, min = 101, score;
- cin &gt;&gt; n;
- string maxname, minname, maxnum, minnum, name, num;
- for (int i = 0; i &lt; n; i++) {
- cin &gt;&gt; name &gt;&gt; num &gt;&gt; score;
- if (max &lt; score) {
- max = score;
- maxname = name;
- maxnum = num;
- }
- if (min &gt; score) {
- min = score;
- minname = name;
- minnum = num;
- }
- }
- cout &lt;&lt; maxname &lt;&lt; &quot; &quot; &lt;&lt; maxnum &lt;&lt; endl &lt;&lt; minname &lt;&lt; &quot; &quot; &lt;&lt; minnum;
-    return 0; }
-</code></pre>
-<h2 id="1005">1005</h2>
+<h2 id="1010">1010</h2>
 <h3 id="解题思路-5">解题思路：</h3>
-<p><font color=\#7FFF00 size=3 face="黑体">1.设置一个数组arr[]其中表示对输入数字进行c式处理后对应下标为1<br>
-比如：输入5 ，第一次c式处理后为8，则将arr[8]的值为1<br>
-先判断arr值是否为1，是则退出循环，输入下一个值判断，不是另其值为1</font></p>
-<p><font color=\#7FFF00 size=3 face="黑体">2.注意arr数组的空间大小为10000否则只是部分正确</font></p>
+<p><font color=\#7FFF00 size=3 face="黑体"> 1.每次输入两个变量，不用存放到数组中，规律是每次输出第一个变量*第二个变量；第二个变量-1</font></p>
+<p><font color=\#7FFF00 size=3 face="黑体"> 2.对于上面规律使用前提是第二个变量不为0，若为0，不执行语句，进入下一次循环，看，在这里并不是</font></p>
+<p><font color=\#7FFF00 size=3 face="黑体"> 3. 使用continue，而是循环中嵌套一个if，这样当条件不满足时，自动不执行if中的语句，直接进入下一次循环</font></p>
+<p><font color=\#7FFF00 size=3 face="黑体">4.对于先输出数值，后输出空格，但在最后不能有空格的套路是用flag标记（你懂的）</font></p>
+<p><font color=\#7FFF00 size=3 face="黑体"> 5.对于零项多项式和全部都是常数项而言，当整个循环结束后还是用flag==0判断，并输出0 0</font></p>
 <h3 id="参考代码-5">参考代码：</h3>
 <pre><code class="language-c++">#include&lt;iostream&gt;
-#include&lt;vector&gt;
-#include&lt;algorithm&gt;
 using namespace std;
-int arr[10000];
-bool cmp(int a, int b)
-{
-    return a&gt;b;
-}
-
 int main()
 {
-    int k,n,flag=0;
-    cin &gt;&gt; k;
-    vector&lt;int&gt; v(k);//定义一个数组
-    //for中嵌套while，外面一共循环k次，里面就是对数字处理并且标记对应arr数组中的值为1
-    //如果在while中判断数字有1则直接输入下一个数
-    for(int i=0; i&lt;k; i++)
+    int flag=0;
+    int a,b;
+    while(cin &gt;&gt; a &gt;&gt; b)
     {
-        cin &gt;&gt; n;
-        v[i]=n;   //数组存放对应的数字
-        while(n!=1)
-        {
-            if(n%2!=0)
-                n=3*n+1;
-            n/=2;
-            /*?*/
-            if(arr[n]==1)
-                break;
-            arr[n]=1;
-        }
-    }
-    sort(v.begin(), v.end(), cmp); //将数组按照从大到小的顺序排列
-    for(int i=0; i&lt; v.size(); i++)
-    {
-        if(arr[v[i]]==0) //表示
+        if(b!=0)
         {
             if(flag==1)
                 cout &lt;&lt; &quot; &quot;;
-            cout &lt;&lt; v[i];
+            cout &lt;&lt; a*b &lt;&lt; &quot; &quot; &lt;&lt; b-1;
             flag=1;
-
         }
     }
-    return 0;
+    if(flag==0)
+        cout &lt;&lt; &quot;0 0&quot;;
 }
 
 </code></pre>
@@ -377,10 +298,8 @@ int main()
 		
 		<div class="nav-links3">
       
-		<div class="wow bounceInLeft nav-previous3"><a href="https://wsf123sd.github.io/post/pat-yi-ji-1006~1010/" rel="prev"> pat 乙级 1006~1010</a></div>
 		 
-		 
-		<div class="wow bounceInRight nav-next3"><a href="https://wsf123sd.github.io/post/ce-shi/" rel="next"> 测试</a></div>
+		<div class="wow bounceInRight nav-next3"><a href="https://wsf123sd.github.io/post/pat-yi-ji-1001~1005/" rel="next"> pat 乙级 1001~1005</a></div>
 		
 		</div>
 	</nav>

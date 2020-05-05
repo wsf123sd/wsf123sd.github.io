@@ -2,7 +2,7 @@
 <feed xmlns="http://www.w3.org/2005/Atom">
     <id>https://wsf123sd.github.io/</id>
     <title>Gridea</title>
-    <updated>2020-05-05T14:12:09.201Z</updated>
+    <updated>2020-05-05T14:22:55.977Z</updated>
     <generator>https://github.com/jpmonette/feed</generator>
     <link rel="alternate" href="https://wsf123sd.github.io/"/>
     <link rel="self" href="https://wsf123sd.github.io/atom.xml"/>
@@ -10,6 +10,154 @@
     <logo>https://wsf123sd.github.io/images/avatar.png</logo>
     <icon>https://wsf123sd.github.io/favicon.ico</icon>
     <rights>All rights reserved 2020, Gridea</rights>
+    <entry>
+        <title type="html"><![CDATA[pat 乙级 1006~1010]]></title>
+        <id>https://wsf123sd.github.io/post/pat-yi-ji-1006~1010/</id>
+        <link href="https://wsf123sd.github.io/post/pat-yi-ji-1006~1010/">
+        </link>
+        <updated>2020-05-05T14:22:05.000Z</updated>
+        <content type="html"><![CDATA[<h2 id="1006">1006</h2>
+<h3 id="解题思路">解题思路：</h3>
+<p><font color=\#7FFF00 size=3 face="黑体">就是取百位然后循环输出B，求出十位循环输出S，求出个位循环输出1--n</font></p>
+<h3 id="参考代码">参考代码：</h3>
+<pre><code class="language-c++">#include&lt;iostream&gt;
+using namespace std;
+/*
+    思路就是取百位然后循环输出B，求出十位循环输出S，求出个位循环输出1--n
+*/
+int main()
+{
+    int n;
+    cin &gt;&gt; n;
+    for(int i=1; i&lt;=n/100; i++)
+        cout &lt;&lt; 'B';
+    for(int j=1; j&lt;=n%100/10; j++)
+            cout &lt;&lt; 'S';
+    for(int k=1; k&lt;=n%10; k++)
+            cout &lt;&lt; k;
+    return 0;
+}
+
+</code></pre>
+<h2 id="1007">1007</h2>
+<h3 id="解题思路-2">解题思路：</h3>
+<p><font color=\#7FFF00 size=3 face="黑体">ans表示有多少对数字<br>
+遍历从0--n相邻且相差2的数字，然后判断是否为素数</font></p>
+<h3 id="参考代码-2">参考代码：</h3>
+<pre><code class="language-c++">#include&lt;iostream&gt;
+using namespace std;
+/*
+  解题思路：ans表示有多少对数字
+        遍历从0--n相邻且相差2的数字，然后判断是否为素数
+*/
+int f(int n)
+{
+    for(int i=2; i*i&lt;=n; i++)
+        if(n%i==0)
+            return 0;
+    return 1;
+}
+int main()
+{
+    int n,ans=0;
+    cin &gt;&gt; n;
+    for(int i=2; i&lt;=n-2; i++)
+    {
+        if(f(i) &amp;&amp; f(i+2))
+            ans++;
+    }
+    cout &lt;&lt; ans;
+    return 0;
+}
+
+</code></pre>
+<h2 id="1008">1008</h2>
+<h3 id="解题思路-3">解题思路：</h3>
+<p><font color=\#7FFF00 size=3 face="黑体">先把数组倒叙，再把前m为倒叙，再把后面的倒叙即可。（客观规律，记住即可）<br>
+之前的思路是向后移数组，在把超出部分放到前面，但这样部分正确。我分析是：使用太多的数组，因为题目要求程序移动的次数竟可能少</font></p>
+<h3 id="参考代码-3">参考代码：</h3>
+<pre><code class="language-c++">#include&lt;iostream&gt;
+#include&lt;algorithm&gt;  //reverse()使用此头件
+#include&lt;vector&gt;  //vector使用此头文件
+using namespace std;
+int main()
+{
+    int n,m;
+    cin &gt;&gt; n &gt;&gt; m;
+    vector&lt;int &gt; a(n);
+    for(int i=0; i&lt;n; i++)
+        cin &gt;&gt; a[i];
+    m%=n;
+    if(m!=0)
+    {
+        reverse(a.begin(),a.end());  //a.begin()是指针，指向数组第一个元素；a.end()也是指针，指向a[6]
+        reverse(a.begin(),begin(a)+m);  //reverse中不会将第2部分的值也倒转，而是把他之前的值倒转
+        reverse(begin(a)+m,a.end());  //从上一位置开始
+    }
+    for(int i=0; i&lt;n-1; i++)
+        cout &lt;&lt; a[i] &lt;&lt; &quot; &quot;;
+    cout &lt;&lt; a[n-1];
+    return 0;
+}
+
+</code></pre>
+<h2 id="1009">1009</h2>
+<h3 id="解题思路-4">解题思路：</h3>
+<p><font color=\#7FFF00 size=3 face="黑体">利用栈先进后出的思想来倒叙输出字符串<br>
+首先，将字符串压入栈，访问栈顶元素，弹出当前栈顶元素。<br>
+由于题目要求，字符串之间有空格并且最后一个字符串没有空格，下面就循环先输出空格再输出字符串然后弹出</font></p>
+<h3 id="参考代码-4">参考代码：</h3>
+<pre><code class="language-c++">#include&lt;iostream&gt;
+#include&lt;stack&gt;
+using namespace std;
+
+int main()
+{
+    stack&lt;string&gt; v;
+    string s;
+    while(cin &gt;&gt; s)
+        v.push(s);
+    cout &lt;&lt; v.top();
+    v.pop();
+    while(!v.empty())
+    {
+        cout &lt;&lt; &quot; &quot; &lt;&lt; v.top();
+        v.pop();
+    }
+    return 0;
+}
+</code></pre>
+<h2 id="1010">1010</h2>
+<h3 id="解题思路-5">解题思路：</h3>
+<p><font color=\#7FFF00 size=3 face="黑体"> 1.每次输入两个变量，不用存放到数组中，规律是每次输出第一个变量*第二个变量；第二个变量-1</font></p>
+<p><font color=\#7FFF00 size=3 face="黑体"> 2.对于上面规律使用前提是第二个变量不为0，若为0，不执行语句，进入下一次循环，看，在这里并不是</font></p>
+<p><font color=\#7FFF00 size=3 face="黑体"> 3. 使用continue，而是循环中嵌套一个if，这样当条件不满足时，自动不执行if中的语句，直接进入下一次循环</font></p>
+<p><font color=\#7FFF00 size=3 face="黑体">4.对于先输出数值，后输出空格，但在最后不能有空格的套路是用flag标记（你懂的）</font></p>
+<p><font color=\#7FFF00 size=3 face="黑体"> 5.对于零项多项式和全部都是常数项而言，当整个循环结束后还是用flag==0判断，并输出0 0</font></p>
+<h3 id="参考代码-5">参考代码：</h3>
+<pre><code class="language-c++">#include&lt;iostream&gt;
+using namespace std;
+int main()
+{
+    int flag=0;
+    int a,b;
+    while(cin &gt;&gt; a &gt;&gt; b)
+    {
+        if(b!=0)
+        {
+            if(flag==1)
+                cout &lt;&lt; &quot; &quot;;
+            cout &lt;&lt; a*b &lt;&lt; &quot; &quot; &lt;&lt; b-1;
+            flag=1;
+        }
+    }
+    if(flag==0)
+        cout &lt;&lt; &quot;0 0&quot;;
+}
+
+</code></pre>
+]]></content>
+    </entry>
     <entry>
         <title type="html"><![CDATA[pat 乙级 1001~1005]]></title>
         <id>https://wsf123sd.github.io/post/pat-yi-ji-1001~1005/</id>
@@ -8956,217 +9104,6 @@ void QSort(SqList *L,int low,int high)
 
 </code></pre>
 <figure data-type="image" tabindex="15"><img src="https://img-blog.csdnimg.cn/20200225123002786.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dzZmhkaGpz,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述" loading="lazy"></figure>
-]]></content>
-    </entry>
-    <entry>
-        <title type="html"><![CDATA[大话数据结构第五章笔记（串）]]></title>
-        <id>https://wsf123sd.github.io/post/da-hua-shu-ju-jie-gou-di-wu-zhang-bi-ji-chuan/</id>
-        <link href="https://wsf123sd.github.io/post/da-hua-shu-ju-jie-gou-di-wu-zhang-bi-ji-chuan/">
-        </link>
-        <updated>2020-03-01T04:20:53.000Z</updated>
-        <content type="html"><![CDATA[<p><a href="#jump1">5.2 串的相关概念</a><br>
-<a href="#jump2">5.3串的比较：</a><br>
-<a href="#jump3">5.4串的数据结构</a><br>
-<a href="#jump4">5.4.1index的操作（取主串中，与子串相同的字符串的第一个字符的位置）</a><br>
-<a href="#jump5">串的顺序存储结构：</a><br>
-<a href="#jump6">串的链式存储结构：没有占满的位置，可以用其他非字符替代</a><br>
-<a href="#jump7">5.6朴素的模式匹配法：</a><br>
-<a href="#jump8">朴素算法的时间复杂度：</a><br>
-<a href="#jump9">5.7KMP模式匹配法</a><br>
-<a href="#jump10">kmp算法的时间复杂度分析：</a><br>
-<a href="#jump11">5.7.4kmp模式匹配算法的改进</a><br>
-<a href="#jump12">5.7.4 kmp算法的改进</a></p>
-<p><span id="jump1">5.2 串的相关概念</span><br>
-1.串是由零个或多个字符组成的有限序列，又名叫字符串。<br>
-2.串中的字符数目n称为串的长度。<br>
-3.零个字符的串称为空串，它的长度为0，也可以直接用双引号&quot;&quot;直接括起来。<br>
-4.空格串，是包含空格的串。空格串是有长度的，而且可以不止一个空格。<br>
-5.子串与主串，串中任意个数的连续字符组成的子序列称为该串的子串，包含子串的串称为主串。<br>
-6.子串在主串中的位置就是子串的第一个字符在主串中的序号</p>
-<p><span id="jump2">5.3串的比较：</span><br>
-1.将两个字符串都从左至右对齐，然后开始比较，字符串的数量可以不同，比较字符串时一一对应，按照ascii码的方式，字母在前的小，到第一个不同字母比较完之后就完。</p>
-<p><span id="jump3">5.4串的数据结构：</span></p>
-<pre><code class="language-cpp">ADT 串（string）
-Data 
-	串中元素仅有一个字符组成，相邻的元素具有前驱和后继关系
-Operation
-	StrAssign (T,*chars): 生成一个其值等于字符串的常量chars的串T
-	StrCopy (T,S):串S存在，由串S复制得到串
-	ClearString(S): 串s存在，将串清空
-	StringEmpty(S):若串S为空，返回true，否则返回false
-	StrLength(S):返回串中的元素个数，即串的长度
-	StrCompare(S,T):若S&gt;T,返回值&gt;0,若S=T，返回0，若S&lt;T,返回值&lt;0
-	Concat(T,S1,S2):用T返回又S1和S2链接而成的新串
-	SubString (Sub,S,pos,len):  串s存在，1&lt;=pos&lt;=StrLength(S),且0&lt;=len&lt;=StrLength(S)-pos+1,用Sub返回串S的第pos个字符起长度为len的子串
-	Index (S,T,pos): 串S和T存在，T是非空串, 1&lt;=pos&lt;=StrLength(S)
-					若主串S中存在和串T值相同的子串，则返回它在主串S中
-					 第pos个字符之后第一次出现的位置，否则返回0
-	Replace(S,T,V):  串S,T和V存在，T是非空串。用V替换主串S中出现的所有与T相等的不重复的子串
-	StrInsert(S,pos,T):  串S和T存在，1&lt;=pos&lt;=Strlength(S)+1
-						在串S的第pos个字符之前插入串T
-	Strlength(S,pos,len): 串S存在，1&lt;=pos&lt;=Strlength(S)-len+1
-						`  从串S中删除第pos个字符起长度为len的子串
-endADT
-</code></pre>
-<p><span id="jump4">5.4.1index的操作（取主串中，与子串相同的字符串的第一个字符的位置）</span></p>
-<pre><code class="language-cpp">/*T为非空串。若主串s中第pos个字符之后存在于T相等的子串*/
-/*则返回第一个这样的子串在S中的位置，否则返回0*/
-int Index(String S, String T, int pos)
-{
-	int n,m,i;
-	String sub;
-	if(pos&gt;0)
-	{
-		n=StrLength(S);
-		m=Strlength(T);
-		i=pos;           //刚开始这个pos不是要所要的位置，不知道也不必说
-		while(i &lt;= n-m+1)   //见下图有这代码的解释
-		{
-			SubString(sub,S,i,m);     //取主串第i个位置
-										//长度与T相等子串给sub
-			if(StrCompare(sub, T) !=0 )   //如果两个串不相等
-				++i;
-			else                  //如果两串相等
-				return i;  			//则返回i值
-		}
-		
-	}
-	return 0;    //若无子串与T相等，返回0
-}
-</code></pre>
-<figure data-type="image" tabindex="1"><img src="https://img-blog.csdnimg.cn/20191227210942916.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dzZmhkaGpz,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述" loading="lazy"></figure>
-<p><span id="jump5">串的顺序存储结构：</span><br>
-<img src="https://img-blog.csdnimg.cn/20191227211456716.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dzZmhkaGpz,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述" loading="lazy"></p>
-<p><span id="jump6">串的链式存储结构：没有占满的位置，可以用其他非字符替代</span><br>
-<img src="https://img-blog.csdnimg.cn/20191227211514657.png" alt="在这里插入图片描述" loading="lazy"><br>
-、</p>
-<p><span id="jump7">5.6朴素的模式匹配法：</span></p>
-<pre><code class="language-cpp">//返回子串T在主串S中第pos个字符之后的位置。若不存在，则函数返回值为0
-//T非空，1&lt;=pos&lt;=Strlength(S)
-int Index(String S, String T, int pos)
-{
-	int i=pos;        //i主要用于主串s中当前位置的下标，若pos不为1
-						//则从pos位置开始匹配
-	int	j=1;					 //j用于子串T中当前位置下标值
-	while(i &lt;= S[0] &amp;&amp; j &lt;= T[0])    //若i小于s长度且j小于T的长度时循环
-	{
-		if(S[i] == T[j])      //两个字母相等则继续
-		{
-			++i;
-			++j;
-		}
-		else        //指针后退重新开始匹配
-		{
-			i=i-j+2;    //i退回到上次匹配首位的下一位,详细看下图1处
-			j=1;     //j退回到子串T的首位
-		}
-	}
-	if(j&gt;T[0])   //上面的while结束有两种情况，i&gt;S[0] 或者  j&gt;T[0] 当i&gt;S[0]一定没有对应的字符串匹配，当j&gt;T[0]时，表示走完了字串，找到了相对应的
-		return i-T[0];      //详细看下图2处
-	else
-		return 0;
-}
-</code></pre>
-<figure data-type="image" tabindex="2"><img src="https://img-blog.csdnimg.cn/20191227220444240.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dzZmhkaGpz,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述" loading="lazy"></figure>
-<p><span id="jump8">朴素算法的时间复杂度：</span><br>
-<img src="https://img-blog.csdnimg.cn/20191229233628356.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dzZmhkaGpz,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述" loading="lazy"><br>
-<img src="https://img-blog.csdnimg.cn/20191229233657400.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dzZmhkaGpz,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述" loading="lazy"></p>
-<p><span id="jump9">5.7KMP模式匹配法</span><br>
-1.kmp算法的普遍理解：如下图，kmp算法的使用前提是T串中的首字符a与后面的均不相等，由于a到e子串T与主串S都对应相同，所以下一次直接比较a与f即可，这便是kmp的引入<br>
-<img src="https://img-blog.csdnimg.cn/20191230202900263.png" alt="在这里插入图片描述" loading="lazy"><br>
-2.实际上，j的回溯位置的变化与主串S没有什么关系，主要是看子串T中是否有相同的字符，如下图中不用在比较a,b,<br>
-j从6回溯到j=3<br>
-<img src="https://img-blog.csdnimg.cn/20191230203551303.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dzZmhkaGpz,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述" loading="lazy"><br>
-关于j的回溯的数组next的原理：如下图<br>
-<img src="https://img-blog.csdnimg.cn/20191230203909316.png" alt="在这里插入图片描述" loading="lazy"><br>
-这里对于5这个位置下要看前4个字符，第一个a与最后一个a相同，相同字母只有一个，所以5下就写2<br>
-这里对于6这个位置下要看前5个字符，前两个字符ab与最后两个字符ab完全相同，所以6下就写3<br>
-如下图：<br>
-<img src="https://img-blog.csdnimg.cn/20191230204256407.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dzZmhkaGpz,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述" loading="lazy"><br>
-j回溯位置下标的数组：</p>
-<pre><code class="language-cpp">//通过计算返回子串T的next数组
-void get_next (String T, int *next)
-{
-	int i,j;
-	i=1;             
-	j=0;               
-	next[1]=0;
-	while(i&lt;T[0])        //此处T[0]表示串的长度
-	{
-		if(j==0 || T[i]==T[j])
-		{
-			++i;
-			++j;
-			next[i]=j;       //将j回溯的位置保存到next中
-		}
-		else
-			j=next[j];          //j回溯到对应位置
-	}
-}
-</code></pre>
-<p>下面是KMP的整体代码：</p>
-<pre><code class="language-cpp">//返回子串T在主串S中第pos个字符之后的位置。若不存在，则函数返回值为0
-int Index_KMP(String S, String T, int pos)
-{
-	int i=pos;       //i就是那里的代码值不同就从哪里开始，如图5-7-3 i为6就从6开始
-	int j=1;       //j用于当前位置中下标值
-	int next[255];    //定义一next数组
-	get_next(T,next);   //对串做分析，得到next数组
-	while(i &lt;= s[0] &amp;&amp; j &lt;= T[0])   //若i小于s的长度且j小于且小于T的长度时，循环继续
-	{
-		if(j==0 || s[i]==T[j])    //两个字母相等则继续，相对于朴素算法增加了j=0判断
-		{
-			++i;
-			++j;
-		}
-		else
-		{
-			j=next[j];    //如果字母不相同，则j的值回溯
-		}
-	}
-	
-//后面两行代码和朴素算法相同
-	if(j&gt;T[0])    
-		return i-T[0];
-	else
-		return 0;
-	
-}
-</code></pre>
-<p><span id="jump10">kmp算法的时间复杂度分析：</span><br>
-在这里，创建next数组时间复杂度为o(m)，后面的时间复杂度为o(n)，则整体的时间复杂度为o(m+n)<br>
-kmp的核心思路：如果子串中一前一后有相同的字符，后面的字符不管与主串中是相同还是不同，对于前面的字符在往后走时不用在与之前</p>
-<p><span id="jump11">5.7.4kmp模式匹配算法的改进</span></p>
-<pre><code class="language-cpp">//求模式串T的next函数修正值并存入数组nextval，整个nextval还是以计算next的方法来构建，区别在于数值不同，目的就是减少j的回溯次数，以减少复杂度
-void get_nextval(String T, int *nextval)
-{
-	int i,j;
-	i=1;
-	j=0;
-	nextval[1]=0;
-	while(i&lt;T[0])           //T[0]表示串的长度
-	{
-		if(j==0 || T[i]==T[j])       //T[i]表示后缀的单个字符，T[j]表示前缀的单个字符
-		{
-			++i;
-			++j;
-/* 这里的代码是改进后不同于之前的next算法
-			if(T[i]!=T[j])   //若当前字符与前缀字符不同
-				nextval[i]=j;		//就将next中的值给nextval
-			else
-				nextval[i]=nextval[j];  //字符相同,nextval与之前相同字符所对应的nextval值相同
-*/
-		}
-		else
-			j=nextval[j];      //相当于计算next数组中的值，只是改了个名，就这样理解
-	}
-}
-</code></pre>
-<p><span id="jump12">5.7.4 kmp算法的改进</span><br>
-1.相对于之前的kmp算法j的回溯位置变化太多，而改进后，j回溯的变化位置不多，这里应该是T中有太多连续字符相同的情况下<br>
-next数组中，数字不同的程度与j回溯到不同位置的次数成正比，数字越复杂，回溯的次数越多，时间复杂度越大。<br>
-2.nextval[]数组变化是：第一数组值为0，往后每一个数组值，如果串中的字符与next数组中对应位置的字符相同，则nextval中的值也与对应位置的nextval相同，如果不同则nextval值就是next值<br>
-<img src="https://img-blog.csdnimg.cn/20191230223215549.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dzZmhkaGpz,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述" loading="lazy"></p>
 ]]></content>
     </entry>
 </feed>
