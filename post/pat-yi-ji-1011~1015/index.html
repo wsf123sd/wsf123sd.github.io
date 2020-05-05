@@ -6,7 +6,7 @@
 <meta HTTP-EQUIV="pragma" CONTENT="no-cache"> 
 <meta HTTP-EQUIV="Cache-Control" CONTENT="no-cache, must-revalidate"> 
 <meta HTTP-EQUIV="expires" CONTENT="0"> 
-<title>pat 乙级 1006~1010 | Gridea</title>	
+<title>pat 乙级 1011~1015 | Gridea</title>	
 
 <link rel="stylesheet" href="https://wsf123sd.github.io//styles/main.css">
 <script type="text/javascript">
@@ -136,10 +136,10 @@ window.onload=getCSS();
 	
 	                      
 		<div class="entry-content">
-			<h1 class="wow swing entry-title">pat 乙级 1006~1010</h1>
+			<h1 class="wow swing entry-title">pat 乙级 1011~1015</h1>
 <div class="entry-meta">
 <div class="wow bounce">
-	<i class="iconfont icon-rili"> <time class="lately-a" datetime="2020-05-05 22:22:05" itemprop="datePublished" pubdate="">2020-05-05</time></i>
+	<i class="iconfont icon-rili"> <time class="lately-a" datetime="2020-05-05 22:35:49" itemprop="datePublished" pubdate="">2020-05-05</time></i>
 	          </div>
 			
 </span>
@@ -147,145 +147,369 @@ window.onload=getCSS();
 		</div>
                   
 			<div class="wow slideInLeft entry-summary song">
-				<h2 id="1006">1006</h2>
+				<h2 id="1011">1011</h2>
 <h3 id="解题思路">解题思路：</h3>
-<p><font color=\#7FFF00 size=3 face="黑体">就是取百位然后循环输出B，求出十位循环输出S，求出个位循环输出1--n</font></p>
 <h3 id="参考代码">参考代码：</h3>
-<pre><code class="language-c++">#include&lt;iostream&gt;
+<pre><code class="language-c++">#include &lt;iostream&gt;
 using namespace std;
-/*
-    思路就是取百位然后循环输出B，求出十位循环输出S，求出个位循环输出1--n
-*/
-int main()
-{
-    int n;
-    cin &gt;&gt; n;
-    for(int i=1; i&lt;=n/100; i++)
-        cout &lt;&lt; 'B';
-    for(int j=1; j&lt;=n%100/10; j++)
-            cout &lt;&lt; 'S';
-    for(int k=1; k&lt;=n%10; k++)
-            cout &lt;&lt; k;
-    return 0;
-}
+int main() {
+ int n;
+ scanf(&quot;%d&quot;, &amp;n);
+ for (int i = 0; i &lt; n; i++) {
+ long long int a, b, c;
+ scanf(&quot;%lld%lld%lld&quot;, &amp;a, &amp;b, &amp;c);
+ printf(&quot;Case #%d: %s\n&quot;, i + 1, a + b &gt; c ? &quot;true&quot; : &quot;false&quot;);
+ }
+ return 0; }
 
 </code></pre>
-<h2 id="1007">1007</h2>
+<h2 id="1012">1012</h2>
 <h3 id="解题思路-2">解题思路：</h3>
-<p><font color=\#7FFF00 size=3 face="黑体">ans表示有多少对数字<br>
-遍历从0--n相邻且相差2的数字，然后判断是否为素数</font></p>
+<p><font color=\#7FFF00 size=3 face="黑体">    1.将输入的数字存放到对5求余对应下标的二维数组中</font></p>
+<p><font color=\#7FFF00 size=3 face="黑体">2.计算A1--A5<br>
+1.A2：就是下标为偶数的加 - 下标为奇数的和</font></p>
+<p><font color=\#7FFF00 size=3 face="黑体">3.输出，用printf简单</font></p>
 <h3 id="参考代码-2">参考代码：</h3>
 <pre><code class="language-c++">#include&lt;iostream&gt;
+#include&lt;vector&gt;
 using namespace std;
-/*
-  解题思路：ans表示有多少对数字
-        遍历从0--n相邻且相差2的数字，然后判断是否为素数
-*/
-int f(int n)
-{
-    for(int i=2; i*i&lt;=n; i++)
-        if(n%i==0)
-            return 0;
-    return 1;
-}
 int main()
 {
-    int n,ans=0;
+    int n,digit,A1=0,A2=0,A3=0,A5=-1;   //对应的变量注意设置出来
+    double A4=0.0;
     cin &gt;&gt; n;
-    for(int i=2; i&lt;=n-2; i++)
+    vector&lt;int&gt; a[5];
+
+    for(int i=0; i&lt;n; i++)
     {
-        if(f(i) &amp;&amp; f(i+2))
-            ans++;
+        cin &gt;&gt; digit;
+        a[digit%5].push_back(digit);      //这里使用push_back就是将数字压入，自动生成一个二维数组
+                                        //注意写法：数组[下标].push_back(要填入的数字);
     }
-    cout &lt;&lt; ans;
+
+    for(int i=0; i&lt;5; i++)
+        for(int j=0; j&lt;a[i].size(); j++)
+        {
+            if(i==0 &amp;&amp; a[i][j]%2==0)
+                A1+=a[i][j];
+            if(i==1 &amp;&amp; j%2==0)
+                A2+=a[i][j];
+            if(i==1 &amp;&amp; j%2!=0)
+                A2-=a[i][j];
+            if(i==2)
+                A3++;
+            if(i==3)
+                A4+=a[i][j];
+            if(i==4 &amp;&amp; a[i][j]&gt;A5)     //一定要是大于A5
+                A5=a[i][j];
+        }
+    for(int i=0; i&lt;5; i++)
+    {
+        if(i!=0)
+            cout &lt;&lt; &quot; &quot;;
+        if(i==0 &amp;&amp; A1==0 || i!=0 &amp;&amp; a[i].size()==0)
+        {
+            cout &lt;&lt; &quot;N&quot;;
+            continue;
+        }
+        if(i==0)
+            printf(&quot;%d&quot;,A1);
+        if(i==1)
+            printf(&quot;%d&quot;, A2);  //计算出结果为何不直接输出值？因为每一次输出都有条件限制，对于不存在的数输出N，
+                            //为了保证思路的理解，就设置成循环，如果不满足条件就输出N，否则按照对应的值输出
+        if(i==2)
+            printf(&quot;%d&quot;,A3);
+        if(i==3)
+            printf(&quot;%.1f&quot;,A4/a[i].size());
+        if(i==4)
+            printf(&quot;%d&quot;,A5);
+    }
     return 0;
 }
-
 </code></pre>
-<h2 id="1008">1008</h2>
+<h2 id="1013">1013</h2>
 <h3 id="解题思路-3">解题思路：</h3>
-<p><font color=\#7FFF00 size=3 face="黑体">先把数组倒叙，再把前m为倒叙，再把后面的倒叙即可。（客观规律，记住即可）<br>
-之前的思路是向后移数组，在把超出部分放到前面，但这样部分正确。我分析是：使用太多的数组，因为题目要求程序移动的次数竟可能少</font></p>
+<p><font color=\#7FFF00 size=3 face="黑体"> 将从第M个素数到第N个素数放到数组中</font></p>
 <h3 id="参考代码-3">参考代码：</h3>
 <pre><code class="language-c++">#include&lt;iostream&gt;
-#include&lt;algorithm&gt;  //reverse()使用此头件
-#include&lt;vector&gt;  //vector使用此头文件
-using namespace std;
-int main()
-{
-    int n,m;
-    cin &gt;&gt; n &gt;&gt; m;
-    vector&lt;int &gt; a(n);
-    for(int i=0; i&lt;n; i++)
-        cin &gt;&gt; a[i];
-    m%=n;
-    if(m!=0)
-    {
-        reverse(a.begin(),a.end());  //a.begin()是指针，指向数组第一个元素；a.end()也是指针，指向a[6]
-        reverse(a.begin(),begin(a)+m);  //reverse中不会将第2部分的值也倒转，而是把他之前的值倒转
-        reverse(begin(a)+m,a.end());  //从上一位置开始
-    }
-    for(int i=0; i&lt;n-1; i++)
-        cout &lt;&lt; a[i] &lt;&lt; &quot; &quot;;
-    cout &lt;&lt; a[n-1];
-    return 0;
-}
-
-</code></pre>
-<h2 id="1009">1009</h2>
-<h3 id="解题思路-4">解题思路：</h3>
-<p><font color=\#7FFF00 size=3 face="黑体">利用栈先进后出的思想来倒叙输出字符串<br>
-首先，将字符串压入栈，访问栈顶元素，弹出当前栈顶元素。<br>
-由于题目要求，字符串之间有空格并且最后一个字符串没有空格，下面就循环先输出空格再输出字符串然后弹出</font></p>
-<h3 id="参考代码-4">参考代码：</h3>
-<pre><code class="language-c++">#include&lt;iostream&gt;
-#include&lt;stack&gt;
+#include&lt;vector&gt;
 using namespace std;
 
-int main()
+bool isprime(int a)
 {
-    stack&lt;string&gt; v;
-    string s;
-    while(cin &gt;&gt; s)
-        v.push(s);
-    cout &lt;&lt; v.top();
-    v.pop();
-    while(!v.empty())
-    {
-        cout &lt;&lt; &quot; &quot; &lt;&lt; v.top();
-        v.pop();
-    }
-    return 0;
+    for(int i=2; i*i&lt;=a; i++)
+        if(a%i == 0)
+            return false;
+    return true;
 }
-</code></pre>
-<h2 id="1010">1010</h2>
-<h3 id="解题思路-5">解题思路：</h3>
-<p><font color=\#7FFF00 size=3 face="黑体"> 1.每次输入两个变量，不用存放到数组中，规律是每次输出第一个变量*第二个变量；第二个变量-1</font></p>
-<p><font color=\#7FFF00 size=3 face="黑体"> 2.对于上面规律使用前提是第二个变量不为0，若为0，不执行语句，进入下一次循环，看，在这里并不是</font></p>
-<p><font color=\#7FFF00 size=3 face="黑体"> 3. 使用continue，而是循环中嵌套一个if，这样当条件不满足时，自动不执行if中的语句，直接进入下一次循环</font></p>
-<p><font color=\#7FFF00 size=3 face="黑体">4.对于先输出数值，后输出空格，但在最后不能有空格的套路是用flag标记（你懂的）</font></p>
-<p><font color=\#7FFF00 size=3 face="黑体"> 5.对于零项多项式和全部都是常数项而言，当整个循环结束后还是用flag==0判断，并输出0 0</font></p>
-<h3 id="参考代码-5">参考代码：</h3>
-<pre><code class="language-c++">#include&lt;iostream&gt;
-using namespace std;
+
 int main()
 {
-    int flag=0;
-    int a,b;
-    while(cin &gt;&gt; a &gt;&gt; b)
+    int M,N,num=2,cnt=0;
+    cin &gt;&gt; M &gt;&gt; N;
+    vector&lt;int&gt; v;
+    /*
+        1.从素数列中找到第m个到第n个放到数组中
+        2.用while循环，含义是循环至少执行N次，也就是M=5，N=27，循环至少执行27次，表示
+          从第一素数到第27个素数，而且cnt必须从0开始，因为num初值为2，进入到isprime函数中，
+          cnt++表示1与2为第一个素数相对应
+        3.num++与循环的判断条件无关，循环的判断条件是第几个素数，其中cnt为N-1就表示第N个素数
+          因为cnt从0开始
+    */
+    while(cnt &lt; N)       //cnt的值从0开始，自然要小于N
     {
-        if(b!=0)
+        if(isprime(num))
+        {
+            cnt++;
+            if(cnt &gt;= M)
+                v.push_back(num);
+        }
+        num++;
+    }
+    cnt=0;
+    /*
+        对于每次先输出数字再输出空格，且最后一个不为空格，且每行10个的思想:
+        1.将输出空格代码放前面，用if的一个条件判断（避开第一次输出空格），
+          然后紧接着输出数字，依次循环
+        2.对于每次换行，都希望能与1中的if语句相关联。这样保证每次换行时不会先输出一个空格，
+          再输出数值，对于每次输出10个，那么每行的第一个就是1,11，21,31.....求余为1
+          这样在if中可以设置%10!=1输出空格，当然在最后要有如果求余10就输出换行
+    */
+    for(int i=0; i&lt;v.size(); i++)
+    {
+        cnt++;
+        if(cnt%10 != 1)
+            cout &lt;&lt; &quot; &quot;;
+        cout &lt;&lt; v[i];
+        if(cnt%10 == 0)
+            cout &lt;&lt; endl;
+    }
+}
+
+
+/**********我的代码但是超时**********/
+/*
+    解题思路：
+    1.素数公式判断
+    2.从第m个素数到第n个素数
+    主要是找到第一个
+        1.用while，条件是k==n;k=0
+*/
+#include&lt;iostream&gt;
+using namespace std;
+bool f(int n)
+{
+
+    for(int i=2; i*i&lt;=n; i++)
+        if(n%i==0)
+           return false;
+    return true;
+}
+
+int s(int n)  //找到第n个素数
+{
+    int k=1,i=3;
+    if(n==1)
+    {
+        return 2;
+    }
+    while(k!=n)
+    {
+        if(f(i))
+            k++;
+        i+=2;
+    }
+    return i-=2;
+}
+
+int main()
+{
+
+    int m,n,now=0,flag=0;
+    cin &gt;&gt; m &gt;&gt; n;
+    for(int i=s(m); i&lt;=s(n); i++)
+    {
+        if(f(i))
         {
             if(flag==1)
                 cout &lt;&lt; &quot; &quot;;
-            cout &lt;&lt; a*b &lt;&lt; &quot; &quot; &lt;&lt; b-1;
+            cout &lt;&lt; i;
             flag=1;
+            now++;
+    /*
+        之前是换行后，先输出空格然后再输出值，我改为每次换行后，将flag的值修改，这样进入
+        下次循环时，就不会输出空格，并且按照最后一个不为空格的方式输出
+    */
+            if(now%10==0)
+            {
+                cout &lt;&lt; endl;
+                flag=0;
+            }
         }
+
     }
-    if(flag==0)
-        cout &lt;&lt; &quot;0 0&quot;;
+
+
+    return 0;
+}
+</code></pre>
+<h2 id="1014">1014</h2>
+<h3 id="解题思路-4">解题思路：</h3>
+<p><font color=\#7FFF00 size=3 face="黑体">    1.用两次while分别找出a,b字符串中第一个和第二个相同字符</font></p>
+<p><font color=\#7FFF00 size=3 face="黑体">2.同样也用while遍历循环c，d两个字符串</font></p>
+<h3 id="参考代码-4">参考代码：</h3>
+<pre><code class="language-c++">#include&lt;iostream&gt;
+#include&lt;string&gt;
+using namespace std;
+/*
+    解题思路：
+    1.用两次while分别找出a,b字符串中第一个和第二个相同字符
+    2.同样也用while遍历循环c，d两个字符串
+*/
+int main()
+{
+    string a,b,c,d;
+    char t[2];
+    cin &gt;&gt; a &gt;&gt; b &gt;&gt; c &gt;&gt; d;
+    int i=0,j=0,e=0;
+    //找到第一个相同的字符
+    while(i&lt;a.length() &amp;&amp; i&lt;b.length())
+    {
+        if(a[i]==b[i] &amp;&amp; ('A'&lt;=a[i] &amp;&amp; a[i]&lt;='G'))
+        {
+            t[0]=a[i];
+            break;
+        }
+        i++;
+    }
+    i++;
+
+    //找到第二个相同的字符
+    while(i&lt;a.length() &amp;&amp; i&lt;b.length())
+    {
+        if(a[i]==b[i])
+        {
+            if(isdigit(a[i]) || ('A'&lt;=a[i] &amp;&amp; a[i]&lt;='N'))  //isdigit(a[i])判断a[i]是否为数字字符
+            {
+                t[1]=a[i];
+                break;
+            }
+        }
+        i++;
+    }
+
+    //找到第三个字符
+    while(j&lt;c.length() &amp;&amp; j&lt;d.length())
+    {
+        if(c[j]==d[j] &amp;&amp; isalpha(c[j]))          //isalpha(c[j])判断c[j]是否为字母
+        {
+            e=j;
+            break;
+        }
+        j++;
+    }
+
+
+    char sa[7][5]={&quot;MON &quot;,&quot;TUE &quot;,&quot;WED &quot;,&quot;THU &quot;,&quot;FRI &quot;,&quot;SAT &quot;,&quot;SUN &quot;};
+    cout &lt;&lt; sa[t[0]-'A'];
+    int m=isdigit(t[1])? t[1]-'0': t[1]- 'A' + 10;    //切记这里用一个整形变量m来接受条件判断的结果，最后在输出
+    printf(&quot;%02d:%02d&quot;,m,j);       //采用c的方式输出，是为了当数字为1位时，前面有0补充；否则直接输出2位数
+
+    return 0;
 }
 
+</code></pre>
+<h3 id="知识总结">知识总结：</h3>
+<pre><code class="language-c++">isdigit(A)   //判断A是否为数字字符
+isalpha(A)   //判断A是否为字母
+</code></pre>
+<h2 id="1015">1015</h2>
+<h3 id="解题思路-5">解题思路：</h3>
+<p><font color=\#7FFF00 size=3 face="黑体"> 1.用一个结构stu来存放数据信息</font></p>
+<p><font color=\#7FFF00 size=3 face="黑体">2.设置一个排序函数，总分不同按照从大到小排列，总分相同，按照按照德分从大到小排列；德分相同，按照<br>
+学号从小到大输出</font></p>
+<p><font color=\#7FFF00 size=3 face="黑体"> 3.设置1个结构数组，一个临时变量结构用来存放每次的输入；循环中嵌套if判断，将对应的结构压入栈中，也就形成了二维数组</font></p>
+<p><font color=\#7FFF00 size=3 face="黑体">4.最后压栈进行排序后并输出</font></p>
+<h3 id="参考代码-5">参考代码：</h3>
+<pre><code class="language-c++">#include&lt;iostream&gt;
+#include&lt;algorithm&gt;
+#include&lt;vector&gt;
+using namespace std;
+/*
+    解题思路：
+
+*/
+struct node
+{
+    int num,de,cai;
+};
+
+int cmp(struct node a, struct node b)
+{
+    if((a.de+a.cai)!=(b.de+b.cai))
+        return (a.de+a.cai) &gt; (b.de+b.cai);   //如果总分数不同，就按照最大到小的顺序排列
+    else if(a.de!=b.de)                    //如果总分数相同，但德分不同，按照德分从大到小排列
+        return a.de&gt;b.de;         //从大到小
+    else
+        return a.num&lt;b.num;            //从小到大
+}
+
+
+int main()
+{
+    int low,high,n;
+    cin &gt;&gt; n &gt;&gt; low &gt;&gt; high;
+    node temp;
+    vector&lt;node&gt; v[4];
+    int total=n;
+    for(int i=0; i&lt;n; i++)
+    {
+        scanf(&quot;%d %d %d&quot;, &amp;temp.num,&amp;temp.de, &amp;temp.cai);
+        if(temp.de &lt; low || temp.cai &lt; low)
+            total--;
+        else if(temp.de &gt;= high &amp;&amp; temp.cai &gt;= high)
+            v[0].push_back(temp);
+        else if(temp.de &gt;= high &amp;&amp; temp.cai &lt; high)
+            v[1].push_back(temp);
+        else if(temp.de &lt; high &amp;&amp; temp.cai &lt; high &amp;&amp; temp.de &gt;= temp.cai)
+            v[2].push_back(temp);
+        else
+            v[3].push_back(temp);
+
+    }
+    cout &lt;&lt; total &lt;&lt; endl;
+    for(int i=0; i&lt;4; i++)
+    {
+        sort(v[i].begin(),v[i].end(),cmp);
+        for(int j=0; j&lt;v[i].size(); j++)
+            cout &lt;&lt; v[i][j].num &lt;&lt; &quot; &quot; &lt;&lt; v[i][j].de &lt;&lt; &quot; &quot; &lt;&lt; v[i][j].cai &lt;&lt;endl;
+    }
+    return 0;
+
+}
+
+</code></pre>
+<pre><code class="language-c++">
+</code></pre>
+<h3 id="注意事项">注意事项：</h3>
+<blockquote>
+<p>在输入时，用scanf格式控制字符来输入，不会超时</p>
+</blockquote>
+<h3 id="知识总结-2">知识总结：</h3>
+<h4 id="1自定义排序">1.自定义排序</h4>
+<pre><code class="language-c++">struct stu
+{
+	int mark,num;
+};
+bool cmp(stu a, stu b)
+{
+	if(a.mark != b.mark)
+		return a.mark &gt; b.mark  //降序排列
+	else
+		return a.num&lt;b.num      //mark相同按照num的升序排列
+}
+vector&lt;stu&gt; v[4];   //结构数组
+sort(v[i].begin(),v[i].end(),cmp);  //对数组进行相应的排序
 </code></pre>
 
 							</div>
@@ -298,10 +522,8 @@ int main()
 		
 		<div class="nav-links3">
       
-		<div class="wow bounceInLeft nav-previous3"><a href="https://wsf123sd.github.io/post/pat-yi-ji-1011~1015/" rel="prev"> pat 乙级 1011~1015</a></div>
 		 
-		 
-		<div class="wow bounceInRight nav-next3"><a href="https://wsf123sd.github.io/post/pat-yi-ji-1001~1005/" rel="next"> pat 乙级 1001~1005</a></div>
+		<div class="wow bounceInRight nav-next3"><a href="https://wsf123sd.github.io/post/pat-yi-ji-1006~1010/" rel="next"> pat 乙级 1006~1010</a></div>
 		
 		</div>
 	</nav>
