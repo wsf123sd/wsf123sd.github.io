@@ -2,7 +2,7 @@
 <feed xmlns="http://www.w3.org/2005/Atom">
     <id>https://wsf123sd.github.io/</id>
     <title>Gridea</title>
-    <updated>2020-05-05T13:29:52.054Z</updated>
+    <updated>2020-05-05T14:12:09.201Z</updated>
     <generator>https://github.com/jpmonette/feed</generator>
     <link rel="alternate" href="https://wsf123sd.github.io/"/>
     <link rel="self" href="https://wsf123sd.github.io/atom.xml"/>
@@ -10,6 +10,233 @@
     <logo>https://wsf123sd.github.io/images/avatar.png</logo>
     <icon>https://wsf123sd.github.io/favicon.ico</icon>
     <rights>All rights reserved 2020, Gridea</rights>
+    <entry>
+        <title type="html"><![CDATA[pat 乙级 1001~1005]]></title>
+        <id>https://wsf123sd.github.io/post/pat-yi-ji-1001~1005/</id>
+        <link href="https://wsf123sd.github.io/post/pat-yi-ji-1001~1005/">
+        </link>
+        <updated>2020-05-05T14:10:47.000Z</updated>
+        <content type="html"><![CDATA[<h2 id="1001">1001</h2>
+<h3 id="解题思路">解题思路：</h3>
+<p><font color=\#7FFF00 size=3 face="黑体">用while+if-else来控制循环次数（砍得的次数）和判断奇数偶数</font></p>
+<h3 id="参考代码">参考代码：</h3>
+<pre><code class="language-c++">#include &lt;iostream&gt; 
+using namespace std;
+
+int main()
+{
+	int n,step=0;
+	cin &gt;&gt; n;
+	while(n!=1)
+	{ 
+		if(n%2==0)
+			n/=2;
+		else
+			n=(3*n+1)/2;
+		step++;
+	} 
+	cout &lt;&lt; step;
+	return 0;
+}
+</code></pre>
+<h3 id="别人代码">别人代码：</h3>
+<pre><code class="language-c++">#include &lt;iostream&gt;
+using namespace std;
+int main() {
+ int n, count = 0;
+ cin &gt;&gt; n;
+ while (n != 1)
+  {
+	 if (n % 2 != 0)      //这个循环就是判断奇数的，n为奇数*3+1完了，在下一句除2 这样就省掉了加括号的麻烦 抓住了不管奇数还是偶数                         
+//都有除2的特点 如果n为偶数不执行此语句，直接再下面除2
+		 n = 3 * n + 1;   
+	 n = n / 2;
+	 count++;
+ }
+ cout &lt;&lt; count;
+ return 0; }
+</code></pre>
+<h2 id="1002">1002</h2>
+<h3 id="解题思路-2">解题思路：</h3>
+<p><font color=\#7FFF00 size=3 face="黑体">1.用string类来存储数据，不然的话double，long long类型的长度不够</font></p>
+<p><font color=\#7FFF00 size=3 face="黑体">2.用for循环来计算各位数字之和</font></p>
+<p><font color=\#7FFF00 size=3 face="黑体">3.用string类定义一个数组，其中成员是数字的拼音</font></p>
+<p><font color=\#7FFF00 size=3 face="黑体">4.将数字和变量改为字符串类型，方便调用每个位数字，不用对数字除或求余</font></p>
+<p><font color=\#7FFF00 size=3 face="黑体">5.通过循环从数字和的字符串中对应找到string类的数字拼音</font></p>
+<h3 id="参考代码-2">参考代码：</h3>
+<pre><code class="language-c++">#include&lt;iostream&gt;
+using namespace std;
+
+int main()
+{
+	string s;
+	cin &gt;&gt; s;
+	int i,sum=0;
+	for(i=0; i&lt;s.length(); i++)     //s.length()计算字符串长度 
+	{
+		sum+=s[i]-'0';
+	}
+	string name[10]={&quot;ling&quot;,&quot;yi&quot;,&quot;er&quot;,&quot;san&quot;,&quot;si&quot;,&quot;wu&quot;,&quot;liu&quot;,&quot;qi&quot;,&quot;ba&quot;,&quot;jiu&quot;};  //字符串用双引号括起来，字符用单引号括起来 
+	
+	string a = to_string(sum);
+	
+	for(i=0; i&lt;a.length(); i++)
+	{
+		cout &lt;&lt; name[a[i]-'0'];   //将数字转变为字符去存储方便调用每个位置上的数字，不用再除或求余啥的 
+		if (i != a.length()-1)
+			cout &lt;&lt; ' ';
+	}
+	
+
+	return 0;
+}
+</code></pre>
+<h3 id="别人代码-2">别人代码：</h3>
+<pre><code class="language-c++">#include &lt;iostream&gt;
+#include &lt;string&gt;
+using namespace std;
+int main() 
+{
+	 string s;
+	 cin &gt;&gt; s;
+	 int sum = 0;
+	 string str[10] = {&quot;ling&quot;, &quot;yi&quot;, &quot;er&quot;, &quot;san&quot;, &quot;si&quot;, &quot;wu&quot;, &quot;liu&quot;, &quot;qi&quot;,&quot;ba&quot;, &quot;jiu&quot;};   //
+	 for (int i = 0; i &lt; s.length(); i++)
+	 	sum += (s[i] - '0');
+	 	
+	 string num = to_string(sum);
+	 
+	 for (int i = 0; i &lt; num.length(); i++)
+	 {
+		 if (i != 0)        //题目要求最后一个拼音不能有空格，所以是先输出拼音，后输出空格，提前加一个if判断，当输入完最后一个拼音，循环都已经结束了
+		 	cout &lt;&lt; &quot; &quot;;
+		 cout &lt;&lt; str[num[i] - '0'];
+	 }
+	 
+	 return 0; 
+ }
+</code></pre>
+<h2 id="1003">1003</h2>
+<h3 id="解题思路-3">解题思路：</h3>
+<p><font color=\#7FFF00 size=3 face="黑体">1.本题难点在于找规律，首先明确一点不是AAA...AAPAA...AATAA...AA这么简单的规律。</font></p>
+<p><font color=\#7FFF00 size=3 face="黑体">2.突破点在于aPbTc正确和aPbATca正确，显然第二个在P与A之间多加了一个A，后面多了一个a，而a又是第一个的P之前的部分，其实这里a,b,c均是狗（宇哥替换）。观察例子：AAPATAA与AAPAATAAAA，这里a相当于AA，b相当于A，c相当于AA。在第二个中P,T之间多加了A，则后面多加AA。所以规律是在P,T之间多加一个A，则原来字符串T后面多 补充 原来字符串P之前的部分。比如对于AAPAATAAAA而言，AAPAAATAAAAAA也是对的，AAPAAATAAAAAAAA也是对的。</font></p>
+<p><font color=\#7FFF00 size=3 face="黑体">3.如果P之前没有A，则无论在P,T之间加多少的A，T之后也不会有A,所以形如PAAA...AAAT都对</font></p>
+<p><font color=\#7FFF00 size=3 face="黑体">4.xPATx这种形式告诉我们，AAA...AAAPATAAA...AAA是可以的，只要PAT前和后的AAA对称。二一个当x为空格是PAT也是正确。</font></p>
+<p><font color=\#7FFF00 size=3 face="黑体">5.通过例子可知有且仅有P,A,T三种字符，其中P,T的个数只能为1，而A的个数不能0，P,T之间至少一个A，对于APAAATAA我们可知可以由APAATA得来，但是例子表示APAAATAA是错误，所以APAATA也是错误</font></p>
+<p><font color=\#7FFF00 size=3 face="黑体">6.总之，就是P之前A的个数*P与T之间A的个数等于T之后A的个数 （这规律我估计也不是他想出来的，或者就是偶然想到的</font></p>
+<h3 id="参考代码-3">参考代码：</h3>
+<pre><code class="language-c++">#include&lt;iostream&gt;
+#include&lt;map&gt;
+using namespace std;
+
+int main()
+{
+	int n,i,j,p,t;
+	cin &gt;&gt; n;
+	string s;
+	for(i=0; i&lt;n; i++)
+	{
+		cin &gt;&gt; s;
+		map&lt;char, int &gt; m;
+		for(j=0; j&lt;s.length(); j++)
+		{
+			m[s[j]]++;
+			if(s[j]=='P')
+				p=j;
+			if(s[j]=='T')
+				t=j;
+		}
+		if(m['P']==1 &amp;&amp; m['A']!=0 &amp;&amp; m['T']==1 &amp;&amp; m.size()==3 &amp;&amp; t-p!=1 &amp;&amp; p*(t-p-1)==s.length()-t-1)
+			cout &lt;&lt; &quot;YES&quot; &lt;&lt; endl;
+		else
+			cout &lt;&lt; &quot;NO&quot; &lt;&lt; endl;
+	}
+	return 0;
+}
+</code></pre>
+<h2 id="1004">1004</h2>
+<h3 id="解题思路-4">解题思路：</h3>
+<p><font color=\#7FFF00 size=3 face="黑体">1.首先根本不用存储每次输入的学生的信息，重点是要知道成绩最值的学生的姓名和学号，所以用变量来存储这些信息。“铁打的营盘流水的兵”恰如其分描述铁打的营盘类似成绩最值的姓名和学号，而流水类似不断敲入的学生成绩，姓名和学号</font></p>
+<h3 id="参考代码-4">参考代码：</h3>
+<pre><code class="language-c++">#include &lt;iostream&gt;
+using namespace std;
+int main() {
+ int n, max = -1, min = 101, score;
+ cin &gt;&gt; n;
+ string maxname, minname, maxnum, minnum, name, num;
+ for (int i = 0; i &lt; n; i++) {
+ cin &gt;&gt; name &gt;&gt; num &gt;&gt; score;
+ if (max &lt; score) {
+ max = score;
+ maxname = name;
+ maxnum = num;
+ }
+ if (min &gt; score) {
+ min = score;
+ minname = name;
+ minnum = num;
+ }
+ }
+ cout &lt;&lt; maxname &lt;&lt; &quot; &quot; &lt;&lt; maxnum &lt;&lt; endl &lt;&lt; minname &lt;&lt; &quot; &quot; &lt;&lt; minnum;
+    return 0; }
+</code></pre>
+<h2 id="1005">1005</h2>
+<h3 id="解题思路-5">解题思路：</h3>
+<p><font color=\#7FFF00 size=3 face="黑体">1.设置一个数组arr[]其中表示对输入数字进行c式处理后对应下标为1<br>
+比如：输入5 ，第一次c式处理后为8，则将arr[8]的值为1<br>
+先判断arr值是否为1，是则退出循环，输入下一个值判断，不是另其值为1</font></p>
+<p><font color=\#7FFF00 size=3 face="黑体">2.注意arr数组的空间大小为10000否则只是部分正确</font></p>
+<h3 id="参考代码-5">参考代码：</h3>
+<pre><code class="language-c++">#include&lt;iostream&gt;
+#include&lt;vector&gt;
+#include&lt;algorithm&gt;
+using namespace std;
+int arr[10000];
+bool cmp(int a, int b)
+{
+    return a&gt;b;
+}
+
+int main()
+{
+    int k,n,flag=0;
+    cin &gt;&gt; k;
+    vector&lt;int&gt; v(k);//定义一个数组
+    //for中嵌套while，外面一共循环k次，里面就是对数字处理并且标记对应arr数组中的值为1
+    //如果在while中判断数字有1则直接输入下一个数
+    for(int i=0; i&lt;k; i++)
+    {
+        cin &gt;&gt; n;
+        v[i]=n;   //数组存放对应的数字
+        while(n!=1)
+        {
+            if(n%2!=0)
+                n=3*n+1;
+            n/=2;
+            /*?*/
+            if(arr[n]==1)
+                break;
+            arr[n]=1;
+        }
+    }
+    sort(v.begin(), v.end(), cmp); //将数组按照从大到小的顺序排列
+    for(int i=0; i&lt; v.size(); i++)
+    {
+        if(arr[v[i]]==0) //表示
+        {
+            if(flag==1)
+                cout &lt;&lt; &quot; &quot;;
+            cout &lt;&lt; v[i];
+            flag=1;
+
+        }
+    }
+    return 0;
+}
+
+</code></pre>
+]]></content>
+    </entry>
     <entry>
         <title type="html"><![CDATA[测试]]></title>
         <id>https://wsf123sd.github.io/post/ce-shi/</id>
@@ -8940,374 +9167,6 @@ void get_nextval(String T, int *nextval)
 next数组中，数字不同的程度与j回溯到不同位置的次数成正比，数字越复杂，回溯的次数越多，时间复杂度越大。<br>
 2.nextval[]数组变化是：第一数组值为0，往后每一个数组值，如果串中的字符与next数组中对应位置的字符相同，则nextval中的值也与对应位置的nextval相同，如果不同则nextval值就是next值<br>
 <img src="https://img-blog.csdnimg.cn/20191230223215549.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dzZmhkaGpz,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述" loading="lazy"></p>
-]]></content>
-    </entry>
-    <entry>
-        <title type="html"><![CDATA[大话数据结构第六章笔记（树）]]></title>
-        <id>https://wsf123sd.github.io/post/da-hua-shu-ju-jie-gou-di-liu-zhang-bi-ji-shu/</id>
-        <link href="https://wsf123sd.github.io/post/da-hua-shu-ju-jie-gou-di-liu-zhang-bi-ji-shu/">
-        </link>
-        <updated>2020-03-01T04:20:04.000Z</updated>
-        <content type="html"><![CDATA[<p><a href="#jump1">6.2树的定义：</a><br>
-<a href="#jump2">6.3结点间的关系：</a><br>
-<a href="#jump3">6.3树的抽象数据类型，如下图：</a><br>
-<a href="#jump4">6.4树的存储结构=== 双亲表示法</a><br>
-<a href="#jump5">6.4.2孩子表示法：</a><br>
-<a href="#jump6">6.4.3孩子兄弟表示法：</a><br>
-<a href="#jump7">6.5二叉树</a><br>
-<a href="#jump8">6.5.1二叉树特点：</a><br>
-<a href="#jump9">二叉树的五种基本形态：</a><br>
-<a href="#jump10">6.5.2特殊二叉树</a><br>
-<a href="#jump11">完全二叉树的特点：</a><br>
-<a href="#jump12">完全二叉树与满二叉树的关系：</a><br>
-<a href="#jump13">满二叉树的特点：</a><br>
-<a href="#jump14">6.6二叉树的性质：</a><br>
-<a href="#jump15">6.7.1二叉树的顺序存储结构：</a><br>
-<a href="#jump16">6.7.2二叉链表：</a><br>
-<a href="#jump17">6.8.2二叉树4中遍历方法：</a><br>
-<a href="#jump18">6.8.3前序遍历法：</a><br>
-<a href="#jump19">6.8.4中序遍历算法代码：</a><br>
-<a href="#jump20">6.8.5后续遍历法代码：</a><br>
-<a href="#jump21">6.9二叉树的建立：</a><br>
-<a href="#jump22">6.10线索二叉树</a><br>
-<a href="#jump23">二叉树的搜索存储结构定义</a><br>
-<a href="#jump24">中序遍历线索化递归函数代码：(构建线索二叉树)</a><br>
-<a href="#jump25">二叉线索树的遍历，见下图：</a><br>
-<a href="#jump26">6.11.1树转换为二叉树</a><br>
-<a href="#jump27">6.11.2将森林转换为二叉树：</a><br>
-<a href="#jump28">6.11.3二叉树转化为树</a><br>
-<a href="#jump29">6.11.4二叉树转化为森林：</a><br>
-<a href="#jump30">6.11.5.森林的遍历：</a><br>
-<a href="#jump31">6.12赫夫曼树及其应用：</a><br>
-<a href="#jump32">6.12.2最优赫夫曼树构造方法：</a><br>
-<a href="#jump33">赫夫曼编码</a></p>
-<p><span id="jump1">6.2树的定义：</span></p>
-<p>1.树是n个结点的有限集，n=0时称为空树<br>
-2.有且仅有一个特定的根<br>
-3.子树的个数没有限制，但他们一定是不相交，如下图，就不是子树<br>
-<img src="https://img-blog.csdnimg.cn/20191231202354754.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dzZmhkaGpz,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述" loading="lazy"><br>
-4.结点拥有的子树数称为结点的度。度为0的结点称为叶节点；度不为0的结点称为分支结点。除根节点之外，分支节点也称内部结点；树的度是树内各结点的度的最大值，如下图<br>
-<img src="https://img-blog.csdnimg.cn/20191231203344509.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dzZmhkaGpz,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述" loading="lazy"></p>
-<p><span id="jump2">6.3结点间的关系：</span><br>
-1.结点的祖先是从根到该结点所经分支上的所有结点 对于H而言ABD都为他的祖先。其他各种关系见下图<br>
-<img src="https://img-blog.csdnimg.cn/20191231203245223.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dzZmhkaGpz,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述" loading="lazy"><br>
-2.树的相关概念，如下图：<br>
-<img src="https://img-blog.csdnimg.cn/20191231203808831.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dzZmhkaGpz,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述" loading="lazy"><br>
-3.树与线性表之间的差别，如下图：<br>
-<img src="https://img-blog.csdnimg.cn/20191231203824606.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dzZmhkaGpz,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述" loading="lazy"></p>
-<p><span id="jump3">6.3树的抽象数据类型，如下图：</span><br>
-<img src="https://img-blog.csdnimg.cn/20191231204652847.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dzZmhkaGpz,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述" loading="lazy"></p>
-<p><span id="jump4">6.4树的存储结构=== 双亲表示法</span><br>
-1.除了根节点啊外，其余每个结点，它不一定有孩子，但是一定有且仅有一个双亲<br>
-2.以一组连续空间存储树的结点，同时在每个结点中，附设一个指示器指示其双亲结点在数组中的位置，结构如下：</p>
-<pre><code class="language-bash">data parent  //data是数据域，存储结点的数据信息。parent是指针域，存储该结点的双亲在数组中的下标
-</code></pre>
-<p>双亲表示法的结点结构定义代码：</p>
-<pre><code class="language-cpp">//树的双亲表示法结点结构定义
-#define MAX_TREE_SIZE 100
-typedef int TElemType;   //树结点的数据类型，目前暂定位整型
-typedef struct PTNode   //结点结构
-{
-	TElemType data;   //结点数据
-	int parent;        //双亲位置
-}PTNode;
-typedef struct       //树的结构
-{
-	PTNode nodes[MAX_TREE_SIZE];   //结点数组
-	int r,n;         //根的位置和结点数
-}
-</code></pre>
-<p>上面的代码对应下图：<br>
-<img src="https://img-blog.csdnimg.cn/20191231210350239.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dzZmhkaGpz,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述" loading="lazy"><br>
-改进1：在结点中加入左孩子：<br>
-<img src="https://img-blog.csdnimg.cn/20191231210401533.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dzZmhkaGpz,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述" loading="lazy"><br>
-改进2：在结点中加入有兄弟：<br>
-<img src="https://img-blog.csdnimg.cn/20191231210410793.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dzZmhkaGpz,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述" loading="lazy"></p>
-<p><span id="jump5">6.4.2孩子表示法：</span><br>
-由于树中每个结点可能有多棵子树，可以考虑用多重链表，即每个结点有多个指针域，其中每个指针指向一颗子树的根结点，我们把这种方法叫做多重链表法：如下图，有两种方案：<br>
-方案一：<br>
-指针域的个数就是树的度，树的度是树中各个结点度的最大值，结构如下图：<br>
-<img src="https://img-blog.csdnimg.cn/20191231213303600.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dzZmhkaGpz,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述" loading="lazy"><br>
-方案2：<br>
-每个结点指针域的个数等于该结点的度，专门取一个位置来存储结点指针域的个数，如下图：<br>
-<img src="https://img-blog.csdnimg.cn/20191231213251681.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dzZmhkaGpz,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述" loading="lazy"><br>
-重点是如下：<br>
-孩子表示法：把每个结点的孩子结点排列起来，以单链表做存储结构，则n个结点有n个孩子链表，如果是叶子结点则此单链表为空。然后n个头指针有组成一个线性表，采用顺序存储结构，存放进一个维数组中，如图</p>
-<pre><code class="language-cpp">//树的孩子表示法结构定义：
-#define MAX_TREE_SIZE 100
-typedef struct CTNode   //孩子结点
-{
-	int chile;  //数据域：用来存储某个结点在表头数组中的下标
-	struct CTNode *next;  //指针域：存储指向某结点另一个孩子结点的指针
-}*ChildPtr;
-typedef struct 
-{
-	TElemType data;  //存储某结点的数据信息
-	ChildPtr firstchild; //存储该结点的孩子链表的头指针
-}CTBox;
-typedef struct     //树结构
-{
-	CTBox nodes[MAX_TREE_SIZE];  //结点数组
-	int r,n;        //根的位置和结点数
-}
-
-</code></pre>
-<p><img src="https://img-blog.csdnimg.cn/2019123121443736.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dzZmhkaGpz,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述" loading="lazy"><br>
-双亲表示法和孩子表示法综合，如下图：<br>
-<img src="https://img-blog.csdnimg.cn/20191231214837104.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dzZmhkaGpz,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述" loading="lazy"></p>
-<p><span id="jump6">6.4.3孩子兄弟表示法：</span><br>
-结点结构如下图：<br>
-firstchild 为指针域，存储该结点的第一个孩子存储地址<br>
-<img src="https://img-blog.csdnimg.cn/2019123121564494.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dzZmhkaGpz,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述" loading="lazy"><br>
-结构定义代码如下：</p>
-<pre><code class="language-cpp">//树的孩子兄弟表示法结构定义：
-typedef struct CSNode
-{
-	TElemType data;
-	struct CSNode *fitstchild, *rightsib;
-}CSNode, *CSTree;
-</code></pre>
-<p>上面代码如下图：<br>
-<img src="https://img-blog.csdnimg.cn/20191231215849928.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dzZmhkaGpz,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述" loading="lazy"></p>
-<p><span id="jump7">6.5二叉树</span><br>
-1.如图便是二叉树，不能有3个结点：<br>
-<img src="https://img-blog.csdnimg.cn/20191231220217170.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dzZmhkaGpz,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述" loading="lazy"><br>
-<span id="jump8">6.5.1二叉树特点：</span><br>
-1.每个结点最多有两颗子树<br>
-2.左子树与右子树是有顺序的，次序不能任意颠倒<br>
-3.即使树中某结点只有一颗树，也要区分它是左子书还是右子树</p>
-<p><span id="jump9">二叉树的五种基本形态：</span><br>
-1.空二叉树<br>
-2.只有一个根节点<br>
-3.根结点只有左子树<br>
-4.根结点只有右子树<br>
-5.根结点既有左子树又有右子树</p>
-<p><span id="jump10">6.5.2特殊二叉树</span><br>
-1.斜树，满二叉树，完全二叉树 以及 满二叉树的特点和完全二叉树的特点，：如下图：<br>
-<img src="https://img-blog.csdnimg.cn/20200101205140586.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dzZmhkaGpz,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述" loading="lazy"><br>
-<img src="https://img-blog.csdnimg.cn/20200101205158141.png" alt="在这里插入图片描述" loading="lazy"></p>
-<p><span id="jump11">完全二叉树的特点：</span><br>
-<img src="https://img-blog.csdnimg.cn/20200101205220907.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dzZmhkaGpz,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述" loading="lazy"></p>
-<p><span id="jump12">完全二叉树与满二叉树的关系：</span><br>
-<img src="https://img-blog.csdnimg.cn/20200101205227988.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dzZmhkaGpz,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述" loading="lazy"><img src="https://img-blog.csdnimg.cn/20200101205248318.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dzZmhkaGpz,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述" loading="lazy"></p>
-<p><span id="jump13">满二叉树的特点：</span><br>
-<img src="https://img-blog.csdnimg.cn/20200101205312212.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dzZmhkaGpz,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述" loading="lazy"></p>
-<p><span id="jump14">6.6二叉树的性质：</span><br>
-1.某一层上最多有多少个结点<br>
-<img src="https://img-blog.csdnimg.cn/20200101210138616.png" alt="在这里插入图片描述" loading="lazy"><br>
-2.深度为k的二叉树最多有几个结点：<br>
-<img src="https://img-blog.csdnimg.cn/20200101210128770.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dzZmhkaGpz,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述" loading="lazy"><br>
-3.n0表示度为0的结点个数，n1表示度为1的结点的个数，n2表示度为2的结点的个数<br>
-<img src="https://img-blog.csdnimg.cn/20200101210056806.png" alt="在这里插入图片描述" loading="lazy"><br>
-<img src="https://img-blog.csdnimg.cn/20200101210115437.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dzZmhkaGpz,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述" loading="lazy"></p>
-<p>4.完全二叉树的深度<br>
-<img src="https://img-blog.csdnimg.cn/20200101210030592.png" alt="在这里插入图片描述" loading="lazy"><br>
-5.对于根结点，左孩子，右孩子的判定方法：<br>
-<img src="https://img-blog.csdnimg.cn/20200101210019979.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dzZmhkaGpz,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述" loading="lazy"><br>
-<span id="jump15">6.7.1二叉树的顺序存储结构：</span><br>
-用数组存放，没有就像倒V表示，如下图：<br>
-<img src="https://img-blog.csdnimg.cn/20200101210629187.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dzZmhkaGpz,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述" loading="lazy"><br>
-<img src="https://img-blog.csdnimg.cn/20200101210615923.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dzZmhkaGpz,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述" loading="lazy"></p>
-<p><span id="jump16">6.7.2二叉链表：</span><br>
-用链式存储结构来存放二叉树，设计一个数据域，两个指针分别指向左孩子和右孩子，如下图：<br>
-<img src="https://img-blog.csdnimg.cn/20200101211952142.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dzZmhkaGpz,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述" loading="lazy"></p>
-<p>二叉链表的结点结构定义：</p>
-<pre><code class="language-cpp">//二叉树的二叉链表结点结构定义：
-typedef struct BiTNode        //结点结构
-{
-	TElemType data;       //结点数据
-	struct BiTNode *lchild, *rchild;    //左右孩子指针
-}BiTNode, *BiTree;
-</code></pre>
-<p>结构示意图如下：<br>
-<img src="https://img-blog.csdnimg.cn/20200101211934670.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dzZmhkaGpz,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述" loading="lazy"></p>
-<p><span id="jump17">6.8.2二叉树4中遍历方法：</span><br>
-1.前序遍历法<br>
-2.中序遍历法<br>
-3.后序遍历法<br>
-4.层序遍历法</p>
-<p><img src="https://img-blog.csdnimg.cn/20200101212151521.png" alt="在这里插入图片描述" loading="lazy"><br>
-<img src="https://img-blog.csdnimg.cn/20200101212228822.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dzZmhkaGpz,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述" loading="lazy"></p>
-<p><span id="jump18">6.8.3前序遍历法：</span></p>
-<pre><code class="language-cpp">//二叉树的前序遍历递归算法
-void PreOrderTraverse(BiTree T)
-{
-	if(T==NULL)
-		return ;
-	printf(&quot;%c&quot;,T-&gt;data);      //显示结点数据，可以更改为为其它节点的操作
-	PreOrderTraverse(T-&gt;lchild);     //先遍历左子树
-	PreOrderTraverse(T-&gt;rchild);        //最后遍历右子树
-}
-</code></pre>
-<p>按照如下的顺序访问：<br>
-<img src="https://img-blog.csdnimg.cn/20200101212935308.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dzZmhkaGpz,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述" loading="lazy"><br>
-<img src="https://img-blog.csdnimg.cn/2020010121295030.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dzZmhkaGpz,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述" loading="lazy"><br>
-<img src="https://img-blog.csdnimg.cn/20200101213004977.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dzZmhkaGpz,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述" loading="lazy"><br>
-<img src="https://img-blog.csdnimg.cn/20200101213046165.png" alt="在这里插入图片描述" loading="lazy"></p>
-<p><span id="jump19">6.8.4中序遍历算法代码：</span></p>
-<pre><code class="language-cpp">//二叉树的中序遍历递归算法
-void InOrderTraverse(BiTree T)
-{
-	if(T==NULL)
-		return ;
-	InOrderTraverse(T-&gt;lchild);    //中序遍历左子树
-	printf(&quot;%c&quot;,T-&gt;data)         //显示节点数据，可以更改为其他对结点操作
-	InOrderTraverse(T-&gt;rchild);     //最后中序遍历右子树
-}
-</code></pre>
-<p>中序遍历结点示意图：<br>
-<img src="https://img-blog.csdnimg.cn/20200101213810373.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dzZmhkaGpz,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述" loading="lazy"></p>
-<p><span id="jump20">6.8.5后续遍历法代码：</span></p>
-<pre><code class="language-cpp">//二叉树后序遍历递归算法：
-void PostOrderTraverse(BiTree T)
-{
-	if(T==NULL)
-		return ;
-	PostOrderTraverse(T-&gt;lchild);   //先后序遍历左子树
-	PostOrderTraverse(T-&gt;rchild);    //后序遍历右子树
-	printf(&quot;%c&quot;,T-&gt;data);       //显示结点数据，可以更改为对其他结点操作
-}
-</code></pre>
-<p><span id="jump21">6.9二叉树的建立：</span><br>
-1.扩展二叉树：将二叉树中每个结点的空指针引出一个虚节点，其值为以特定值，比如&quot;#&quot;，称这种处理后的二叉树为原二叉树的扩展二叉树。如下图：</p>
-<p>2.把前序遍历序列：AB#D##C##用键盘诶个输入，代码如下：<br>
-也可以用中序或后序遍历的方法实现<br>
-中序：输入顺序为#B#D#A#C#      对应代码顺序为：构造左子树—》生成结点-》构造右子树<br>
-后序：输入顺序为###DB##CA     对应代码顺序为： 构造左子树-》构造右子树-》生成结点</p>
-<pre><code class="language-cpp">//按前序输入二叉树中结点的值（一个字符）
-//#表示空树，构造二叉链表表示二叉树T
-void CreateBiTree(BiTree *T)
-{
-	TElemType ch;
-	scanf(&quot;%c&quot;, &amp;ch);
-	if(ch==&quot;#&quot;)
-		*T=NULL;
-	else
-	{
-		*T=(BiTree)malloc(sizeof(BiTNode));
-		if(!*T)
-			exit(OVERFLOW);
-		(*T)-&gt;data=ch;     //生成根结点
-		CreateBiTree(&amp;(*T)-&gt;lchild);             //构造左子树
-		CreateBitree(&amp;(*T)-&gt;rchild);            //构造右子树
-	}
-}
-
-</code></pre>
-<p><span id="jump22">6.10线索二叉树</span><br>
-以中序遍历为例：下面二叉树中中序遍历的结果为：HDIBJEAFCG<br>
-线索二叉树的实质：将二叉链表中的空指针改为指向前驱或后继的线索。<br>
-<img src="https://img-blog.csdnimg.cn/202001022049073.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dzZmhkaGpz,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述" loading="lazy"><br>
-将rchild改为后继，如下图：<br>
-<img src="https://img-blog.csdnimg.cn/20200102204323143.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dzZmhkaGpz,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述" loading="lazy"><br>
-将lchild改为它的前驱，如下图：<br>
-<img src="https://img-blog.csdnimg.cn/20200102204350104.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dzZmhkaGpz,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述" loading="lazy"><br>
-整个二叉树的中序遍历结果中的前驱后继关系如下图：<br>
-<img src="https://img-blog.csdnimg.cn/20200102204638116.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dzZmhkaGpz,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述" loading="lazy"></p>
-<p>将lchild,ltag,data,rtag,rchild组合成一个结构，如下图：<br>
-具体如下：<br>
-ltag为0表示指向该节点的左孩子，为1表示指向该节点的前驱<br>
-rtag为0表示指向该结点的右孩子，为1指向该结点的后继<br>
-<img src="https://img-blog.csdnimg.cn/20200102204422155.png" alt="在这里插入图片描述" loading="lazy"></p>
-<p><span id="jump23">二叉树的搜索存储结构定义</span></p>
-<pre><code class="language-cpp">//二叉树的二叉搜索存储结构定义
-typedef enum{Link,Thread} PointerTag;         //Link==0表示指向左右孩子指针，Thread==1表示指向前驱或后继的线索
-typedef struct BiThrNode           //二叉搜索存储结点结构
-{
-	TElemType data;
-	struct BiThrNode *lchild, *rchild;        //左右孩子指针
-	PointerTag LTag;                 //左右标志            
-	PointerTag RTag;      
-}BiThrNode, *BiThrTree;
-
-												
-
-</code></pre>
-<figure data-type="image" tabindex="1"><img src="https://img-blog.csdnimg.cn/20200102204454222.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dzZmhkaGpz,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述" loading="lazy"></figure>
-<p><span id="jump24">中序遍历线索化递归函数代码：(构建线索二叉树)</span><br>
-可以根据上图二叉树来理解</p>
-<pre><code class="language-cpp">//中序遍历进行中序线索化
-void InThreading(BiThrTree p)
-{
-	InThreading(p-&gt;lchild);             //递归左子树线索化
-	if(!p-&gt;lchild)                //没有左孩子
-	{
-		p-&gt;LTag=Thread;                   //将LTag改为1
-		p-&gt;lchild=pre;               //左孩子指针指向前驱
-	}
-	if(!pre-&gt;rchild)
-	{
-		pre-&gt;RTag=Thread;                    //将RTag改为1，为了理解见下图
-		pre-&gt;rchild=p;                //前驱右孩子指针指向后继(当前结点p)
-	}
-	pre=p;                       //保持pre指向p的前驱
-	InThreading(p-&gt;rchild);           //递归右子树线索化
-}
-
-</code></pre>
-<figure data-type="image" tabindex="2"><img src="https://img-blog.csdnimg.cn/20200102214224564.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dzZmhkaGpz,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述" loading="lazy"></figure>
-<p><span id="jump25">二叉线索树的遍历，见下图：</span><br>
-<img src="https://img-blog.csdnimg.cn/20200102220110750.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dzZmhkaGpz,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述" loading="lazy"><br>
-遍历代码如下：</p>
-<pre><code class="language-cpp">//T指向头结点，头结点左链lchild指向根结点，头结点右链rchild指向中序遍历的最后一个结点。中序遍历二叉线索链表表示的二叉树T
-Status InOrderTraverse_Thr(BiThTree T)
-{
-	BiThrTree p;
-	p=T-&gt;lchild;             //p指向根结点
-	while(p!=T)               //空树或遍历结束时，p==T
-	{
-		while(p=&gt;LTag==Link)            //当LTag==0时循环到中序序列的第一个结点
-			p=p-&gt;lchild;
-		printf(&quot;%c&quot;,p-&gt;data);           //显示结点数据，可以更改为其他对结点的操作
-		while(p-&gt;RTag==Thread &amp;&amp; p-&gt;rchild!=T)
-		{
-			p=p-&gt;rchild;                  //p中RTag是1表示存放的是他的后继结点
-			printf(&quot;%c&quot;,p-&gt;data); 
-		}
-		p=p-&gt;rchild;            //p中RTag是0表示，p进入他的右子树  区分上面的
-	}
-	return OK;
-}
-
-</code></pre>
-<p>如果所用二叉树需要经常遍历或查找结点时需要某种遍历序列中的前驱和后继，采用线索二叉树的存储结构</p>
-<p><span id="jump26">6.11.1树转换为二叉树</span><br>
-1.加线。在所有兄弟节点之间加一条线<br>
-2.去线。 就是按照你的思路去就对<br>
-3.层次调整。 以树的根结点为轴心，顺时针旋转，注意第一个孩子是二叉树结点的左孩子，兄弟转换过来为结点的右孩子<br>
-如下图：</p>
-<figure data-type="image" tabindex="3"><img src="https://img-blog.csdnimg.cn/20200103194908705.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dzZmhkaGpz,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述" loading="lazy"></figure>
-<p><span id="jump27">6.11.2将森林转换为二叉树：</span><br>
-1.将每个树按照上面的方法转化成二叉树<br>
-2、第一棵树不动，从第二棵二叉树开始，依次把后一棵二叉树的根结点作为前一棵二叉树的根结点的右孩子，用线连接起来。如下图：<br>
-<img src="https://img-blog.csdnimg.cn/20200103195444927.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dzZmhkaGpz,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述" loading="lazy"></p>
-<p><span id="jump28">6.11.3二叉树转化为树</span><br>
-1.将结点的左孩子n个右孩子，用线连接起来<br>
-2.删除原二叉树中所有结点与其右孩子结点的连线<br>
-3.层次调整。  如果只有一个孩子，就直接转化为竖线即可<br>
-如下图：</p>
-<figure data-type="image" tabindex="4"><img src="https://img-blog.csdnimg.cn/20200103200346330.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dzZmhkaGpz,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述" loading="lazy"></figure>
-<p><span id="jump29">6.11.4二叉树转化为森林：</span><br>
-1.从根结点开始，若右孩子存在则删除连线，若右孩子存在则删除连线，只要有右孩子就把连线删了<br>
-2.再将每棵二叉树转化成树<br>
-<img src="https://img-blog.csdnimg.cn/20200103201021824.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dzZmhkaGpz,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述" loading="lazy"></p>
-<p><span id="jump30">6.11.5.森林的遍历：</span><br>
-1.前序遍历：一颗树接着一棵树来，每棵树都用先序遍历法，对于上图的二叉树的遍历结果为：ABCDEFGHJI<br>
-2.后序遍历：还是一棵树接着一棵树来，每棵树都用后序遍历法，对于上图的二叉树的遍历结果为：BCDAFEJHIG<br>
-对于上图而言，森林的前序遍历法和二叉树的前序遍历结果相同，森林的后序遍历和二叉树的中序遍历法相同。</p>
-<p><span id="jump31">6.12赫夫曼树及其应用：</span><br>
-树的路径长度表示从根结点到每一个结点的长度总和，如下图中二叉a的路径长度为1+1+2+2+3+3+4+4=20，二叉树b的路径长度为1+2+2+3+3+1+2+2=16<br>
-<img src="https://img-blog.csdnimg.cn/20200103204819966.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dzZmhkaGpz,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述" loading="lazy"><br>
-带权路径长度wpl最小的二叉树称作赫夫曼树，上图中二叉树a的wpL=5<em>1+15</em>2+40<em>3+30</em>4+10<em>4=315 ，二叉树b的wpl=40</em>2+15<em>3+5</em>3+30<em>2+10</em>2=220</p>
-<p><span id="jump32">6.12.2最优赫夫曼树构造方法：</span><br>
-1.将把有权值的叶子结点按照从小到大的顺序排成一个有序列<br>
-2.取头两个最小权值的结点之和作为一个新的结点，注意较小的为新的结点的左孩子，每次如此重复，直至结束。如下图：<br>
-<img src="https://img-blog.csdnimg.cn/20200103210711134.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dzZmhkaGpz,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述" loading="lazy"><br>
-<img src="https://img-blog.csdnimg.cn/20200103210742955.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dzZmhkaGpz,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述" loading="lazy"><br>
-<img src="https://img-blog.csdnimg.cn/20200103210759426.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dzZmhkaGpz,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述" loading="lazy"></p>
-<p><span id="jump33">赫夫曼编码：</span><br>
-根据赫夫曼树左0右1，对应每个字符编码。这样可以将字符串的长度变少，同样解码也是根据表6-12-3表示，如下图：<br>
-<img src="https://img-blog.csdnimg.cn/20200103213334549.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dzZmhkaGpz,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述" loading="lazy"></p>
 ]]></content>
     </entry>
 </feed>
